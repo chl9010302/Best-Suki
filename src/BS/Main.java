@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class Main extends JFrame {
@@ -23,6 +24,8 @@ public class Main extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new FlowLayout());
 		JButton button = new JButton("Click Me");
+		JLabel label = new JLabel("Hello World");
+		add(label);
 		JTextField text = new JTextField(5);
 		add(text); // the button is visible
 		add(button); // then button is visible
