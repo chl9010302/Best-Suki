@@ -24,10 +24,12 @@ public class Main extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new FlowLayout());
 		JButton button = new JButton("Click Me");
+		JButton butto2 = new JButton("ㅗㅗ");
 		JLabel label = new JLabel("Hello World");
 		add(label);
 		JTextField text = new JTextField(5);
 		add(text); // the button is visible
 		add(button); // then button is visible
+		add(butto2);
 	}
 }
