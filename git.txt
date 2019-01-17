@@ -1,0 +1,73 @@
+1. https://git-scm.com/download에서 윈도우 다운로드
+
+2. cmd에서 git 쳐보기
+
+3. git config --global user.name chl9010302
+
+4. git config --global user.email chl901030@gmail.com
+
+5. c드라이브에 Education 폴더 생성
+
+6.cd c:\Education
+
+7. get clone https://github.com/chl9010302/Best-Suki.git
+=> 숨김폴더보기 해야함.
+
+8. document.txt 생성
+
+9. git add document.txt
+
+10 git commit -m "Add Text File [document.txt]"
+
+11. git push
+=> 새로고침하면 git에 넣어짐.
+
+contributor : git에 소스를 넣는 사람
+
+commitor : git에 있는 소스를 반영할지 안할지 선택할 수 있는 사람
+
+Working Directory -> Staging Area -> Local Repository -> Remote Repository
+
+12. git fetch + git merge = git pull
+ ( 깃 -> pc )
+
+13. git add .
+
+14. 10 git commit -m "Add my_Moudle"
+
+15. 각각 branch를 만든 후 merge 후 진행
+
+16. git branch develop
+
+17. git checkout develop
+
+18. git checkout master
+
+19. git merge develop
+
+20. git push
+
+21. git branch -d develop
+
+22. git remote
+
+23. git remote add test https://github.com/chl9010302/wootukchoi.git
+
+24. git remote -v
+
+25. git remote rename test temp
+
+26. git log origin/master
+
+27. git log --stat
+
+28. git log -p -3
+
+29. git log --pretty=oneline
+
+30. git log --pretty=format:"%h -> %an, %ar : %s" --graph
+
+31. readme 파일 작성
+
+
+
