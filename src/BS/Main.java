@@ -26,6 +26,7 @@ public class Main extends JFrame {
 		JButton button = new JButton("Click Me");
 		JButton butto2 = new JButton("ㅗㅗ");
 		JButton butto3 = new JButton("ㅗㅗ3");
+		JButton butto4 = new JButton("ㅗㅗ3");
 		JLabel label = new JLabel("Hello World");
 		add(label);
 		JTextField text = new JTextField(5);
@@ -33,5 +34,6 @@ public class Main extends JFrame {
 		add(button); // then button is visible
 		add(butto2);
 		add(butto3);
+		add(butto4);
 	}
 }
