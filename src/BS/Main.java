@@ -27,15 +27,11 @@ public class Main extends JFrame {
 		JButton butto2 = new JButton("ㅗㅗ");
 		JButton butto3 = new JButton("ㅗㅗ3");
 		JButton butto4 = new JButton("ㅗㅗ3");
-		JButton butto5 = new JButton("ㅗㅗ3");
-		JLabel label = new JLabel("Hello World");
-		add(label);
 		JTextField text = new JTextField(5);
 		add(text); // the button is visible
 		add(button); // then button is visible
 		add(butto2);
 		add(butto3);
-		add(butto5);
 		add(butto4);
 	}
 }
