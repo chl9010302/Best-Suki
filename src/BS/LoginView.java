@@ -16,7 +16,7 @@ public class LoginView extends JFrame{
 	private Main main;
 	private JButton btnLogin;
 	private JPasswordField passText;
-	private JTextField userText;
+	private static JTextField userText;
 	private boolean bLoginCheck;
 	
 	public static void main(String[] args) { }
@@ -52,6 +52,12 @@ public class LoginView extends JFrame{
 		//passText
 		passText = new JPasswordField(20);
 		passText.setBounds(200,240,160,25);
+		//Execute addActionListener on JPasswordField if Enter is pressed
+		passText.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				isLoginCheck();
+			}
+		});
 		panel.add(passText);
 		//Button of Login
 		btnLogin = new JButton(Preference.TITLE_LOGIN);
@@ -59,7 +65,6 @@ public class LoginView extends JFrame{
 		panel.add(btnLogin);
 		//Check userID+userPassword
 		btnLogin.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				isLoginCheck();
 			}
@@ -67,7 +72,7 @@ public class LoginView extends JFrame{
 	}	
 	// login ID와 Password를 체크하여 성공하면 SUCCESS + bLoginCheck, 실패하면 FAIL
 	public void isLoginCheck() {
-		if(userText.getText().equals("test") && new String(passText.getPassword()).equals("1234")) {
+		if(userText.getText().equals("temp") && new String(passText.getPassword()).equals("1234")) {
 			JOptionPane.showMessageDialog(null, Preference.MESSAGE_SUCCESS);
 			bLoginCheck = true; // 로그인 됬음을 알려주는 boolean 값
 			
@@ -85,5 +90,8 @@ public class LoginView extends JFrame{
 
 	public boolean isLogin() {
 		return bLoginCheck;
+	}
+	public static String getUserText() {
+		return userText.getText();
 	}
 }
