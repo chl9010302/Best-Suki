@@ -17,6 +17,6 @@ public class Main {
 	
 	public void showFrameTest() {
 		loginView.dispose(); // 로그인창 닫기
-		this.testFrm = new TestFrm(); // 테스트프레임 오픈
+		this.testFrm = new TestFrm(); // 로그인이 되었을 때 보이는 창
 	}
 }

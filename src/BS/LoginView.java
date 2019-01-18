@@ -1,5 +1,7 @@
 package BS;
 
+import java.awt.Color;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,10 +15,7 @@ import javax.swing.JTextField;
 
 public class LoginView extends JFrame{
 	private Main main;
-	private TestFrm testFrm;
-	
 	private JButton btnLogin;
-	private JButton btnInit;
 	private JPasswordField passText;
 	private JTextField userText;
 	private boolean bLoginCheck;
@@ -27,11 +26,12 @@ public class LoginView extends JFrame{
 	
 	public LoginView() {
 		// setting
-		setTitle("login");
-		setSize(280, 150);
+		setTitle(Preference.TITLE_LOGIN);
+		setSize(Preference.WIDTH_SIZE, Preference.HEIGHT_SIZE);
 		setResizable(false);
-		setLocation(800, 450);
+		setLocation(Preference.LOCATION_WIDTH_SIZE, Preference.LOCATION_HEIGHT_SIZE);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
 		
 		//panel
 		JPanel panel = new JPanel();
@@ -47,11 +47,12 @@ public class LoginView extends JFrame{
 	
 	public void placeLoginPanel(JPanel panel){
 		panel.setLayout(null);
-		JLabel userLabel = new JLabel("User");
+		panel.setBackground(Color.white);
+		JLabel userLabel = new JLabel(Preference.USER_ID);
 		userLabel.setBounds(10,10,80,25);
 		panel.add(userLabel);
 		
-		JLabel passLabel = new JLabel("pass");
+		JLabel passLabel = new JLabel(Preference.USER_PASSWORD);
 		passLabel.setBounds(10,40,80,25);
 		panel.add(passLabel);
 		
@@ -69,7 +70,7 @@ public class LoginView extends JFrame{
 			}
 		});
 		
-		btnLogin = new JButton("Login");
+		btnLogin = new JButton(Preference.TITLE_LOGIN);
 		btnLogin.setBounds(160,80,100,25);
 		panel.add(btnLogin);
 		btnLogin.addActionListener(new ActionListener() {
@@ -82,7 +83,7 @@ public class LoginView extends JFrame{
 	
 	public void isLoginCheck() {
 		if(userText.getText().equals("test") && new String(passText.getPassword()).equals("1234")) {
-			JOptionPane.showMessageDialog(null, "Success");
+			JOptionPane.showMessageDialog(null, Preference.MESSAGE_SUCCESS);
 			bLoginCheck = true;
 			
 			// 로그인 성공이라면 매니져창 뛰우기
@@ -90,7 +91,7 @@ public class LoginView extends JFrame{
 				main.showFrameTest();
 			}
 		}else{
-			JOptionPane.showMessageDialog(null, "Failed");
+			JOptionPane.showMessageDialog(null, Preference.MESSAGE_FAIL);
 		}
 	}
 	public void setMain(Main main) {
