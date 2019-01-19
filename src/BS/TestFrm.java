@@ -1,12 +1,15 @@
 package BS;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 public class TestFrm extends JFrame{
 	public TestFrm() {
@@ -34,7 +37,9 @@ public class TestFrm extends JFrame{
 		EASTPanel.add(bt1[3]);
 		EASTPanel.add(bt1[4]);
 		
-		JLabel Username = new JLabel(LoginView.getUserText());
+		JLabel Username = new JLabel(LoginView.getUserText(), SwingConstants.RIGHT); // JLabel 오른쪽 정렬
+		Username.setBorder(new EmptyBorder(0,0,0,10)); // JLabel내부 여백 설정
+		Username.setFont(new Font("나눔고딕", Font.PLAIN, 15)); // JLabel 폰트,크기 설정
 		MainView.add(Username,BorderLayout.NORTH);
 		MainView.add(bt[1],BorderLayout.EAST);
 		MainView.add(bt[2],BorderLayout.CENTER);
