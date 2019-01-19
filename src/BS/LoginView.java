@@ -13,6 +13,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class LoginView extends JFrame{
+	/**
+	 * 
+	 */
 	private Main main;
 	private JButton btnLogin;
 	private JPasswordField passText;
