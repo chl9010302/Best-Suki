@@ -10,5 +10,8 @@ public class Preference {
 	public static String USER_PASSWORD = "PASSWORD";
 	public static String MESSAGE_SUCCESS = "LOGIN HAS BEEN SUCCESSFULLY LOGINED";
 	public static String MESSAGE_FAIL = "LOGIN HAS BEEN FAILED PLEASE CHECK YOUR ID OR PASSWORD";
+	public static String TEST = "TEST";
+	public static String VIDEO = "VIDEO";
+	public static String STASTICS = "STASTICS";
 	
 }
