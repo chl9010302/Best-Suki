@@ -6,7 +6,7 @@ public class Main {
 	 */
 	
 	// 메인클래스 실행
-	LoginView loginView; // 실행 // test // test
+	LoginView loginView; // 실행
 	TestFrm testFrm;
 	public static void main (String[] args){
 		Main main = new Main();
