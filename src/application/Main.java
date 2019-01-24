@@ -30,4 +30,8 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+	//DB 
+	DBConnection connection = new DBConnection();
+	System.out.println("관리자 여부 : "+connection.isAdmin("admin","admin"));
 }
