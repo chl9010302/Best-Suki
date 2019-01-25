@@ -1,0 +1,17 @@
+
+ 
+CREATE TABLE temp_table(
+   id varchar(20),
+  title varchar(20),
+  flag varchar(3)
+);
+
+
+insert into temp_table(id, title, flag) values('1','test1','Y');
+insert into temp_table(id, title, flag) values('2','test2','N');
+insert into temp_table(id, title, flag) values('3','test3','Y');
+insert into temp_table(id, title, flag) values('4','test4','Y');
+insert into temp_table(id, title, flag) values('5','test5','Y');
+insert into temp_table(id, title, flag) values('6','test6','Y');
+insert into temp_table(id, title, flag) values('7','test6','Y');
+
