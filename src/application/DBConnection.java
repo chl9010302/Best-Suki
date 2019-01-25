@@ -13,13 +13,19 @@ public class DBConnection {
 	
 	public DBConnection() {
 		try {
-			Class.forName("com.mysql.jdbc.driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost::3306", "root", "root");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/academymangementdb?serverTimezone=UTC", "root", "root");
 			st = con.createStatement();
+			
+		 SqlTest sqlTest = new SqlTest(con, "temp_table");
+		 
 		}catch(Exception e)
 		{
+			e.printStackTrace();
 			System.out.println("DB 연결오류 :" + e.getMessage() );
 		}
+	
+	
 	}
 	
 	public boolean isAdmin(String adminID, String adminPassword)  {
@@ -39,7 +45,7 @@ public class DBConnection {
 			System.out.println("DB 검색오류");
 			
 		}
-		return false;
+		return true;
 
 	}
 }
