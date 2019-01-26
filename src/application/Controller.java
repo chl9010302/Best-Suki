@@ -6,7 +6,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-
 import DBModel.UserBean;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -34,10 +34,9 @@ public class Controller implements Initializable {
 	private Stage stage; // file choose 하기 위함.
 	private ObservableList<String> listItems;
 	public static String userId;
+	public static String fileName;
 	
-	@FXML
-	private TextField UserId, UserPassword, UserName, UserAddress, 
-						UserSchoolName, UserPhone, UserFmphone;
+	@FXML private TextField UserId, UserPassword, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
 	@FXML private DatePicker UserAge;
 	@FXML private Button Property_userID;
 	@FXML private RadioButton UserGenderMale;
@@ -47,6 +46,7 @@ public class Controller implements Initializable {
 	@FXML private Button BtnDelete;
 	@FXML private ListView<String> listBoxMain;
 	@FXML private TextField txtAddItem; 
+	@FXML private Label Question1_Label;
 	
 	@FXML // Move SignupView
 	private void NAV_SignUp(ActionEvent event) throws IOException {
@@ -71,6 +71,16 @@ public class Controller implements Initializable {
 	@FXML // Move MainView
 	private void NAV_Main(ActionEvent event) throws IOException {
 		Parent MainView = FXMLLoader.load(getClass().getResource("../View/MainView.fxml"));
+		Scene MainView_scene = new Scene(MainView);
+		MainView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(MainView_scene);
+		app_stage.show();
+	}
+	
+	@FXML // Move MainView
+	private void NAV_TestView(ActionEvent event) throws IOException {
+		Parent MainView = FXMLLoader.load(getClass().getResource("../View/TestView.fxml"));
 		Scene MainView_scene = new Scene(MainView);
 		MainView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -108,7 +118,7 @@ public class Controller implements Initializable {
 		if(UserGenderFeMale.isSelected()) { UserGender = UserGenderFeMale.getText(); }
 	}
 	
-	public void fileChooserSelect(ActionEvent event) { openFile(); }
+	
 	
 	//fileChoose function
 	public void openFile() {
@@ -116,8 +126,14 @@ public class Controller implements Initializable {
 		File file = fileChooser.showOpenDialog(stage);
 		if(file != null) {
 			System.out.println("File Chosen : " + file);
+			fileName = file.getName();
 		}
 	}
+	
+	public void fileChooserSelect(ActionEvent event) { 
+		openFile(); 
+		Question1_Label.setText(fileName);
+		}
 	
 	  // Add event handlers
 	  @FXML
