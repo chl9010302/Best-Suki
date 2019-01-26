@@ -84,6 +84,13 @@
             <Insets />
          </opaqueInsets>
       </VBox>
-      <AnchorPane layoutX="169.0" layoutY="79.0" prefHeight="494.0" prefWidth="675.0" style="-fx-border-color: white; -fx-border-width: 3px;" />
+      <AnchorPane layoutX="169.0" layoutY="79.0" prefHeight="494.0" prefWidth="675.0" style="-fx-border-color: white; -fx-border-width: 3px;">
+         <children>
+            <VBox layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="650.0">
+               <children>
+                  <Button mnemonicParsing="false" text="File Chooser" onAction = "#fileChooserSelect"/>
+               </children>
+            </VBox>
+         </children></AnchorPane>
    </children>
 </AnchorPane>
