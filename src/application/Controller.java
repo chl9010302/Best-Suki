@@ -33,7 +33,7 @@ public class Controller {
 	
 	@FXML // Move SignupView
 	private void NAV_SignUp(ActionEvent event) throws IOException {
-		Parent SignupView = FXMLLoader.load(getClass().getResource("SignupView.fxml"));
+		Parent SignupView = FXMLLoader.load(getClass().getResource("../View/SignupView.fxml"));
 		Scene SignupView_scene = new Scene(SignupView);
 		SignupView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -43,7 +43,7 @@ public class Controller {
 	
 	@FXML // Move LoginView
 	private void NAV_Login(ActionEvent event) throws IOException {
-		Parent LoginView = FXMLLoader.load(getClass().getResource("LoginView.fxml"));
+		Parent LoginView = FXMLLoader.load(getClass().getResource("../View/LoginView.fxml"));
 		Scene LoginView_scene = new Scene(LoginView);
 		LoginView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -53,7 +53,7 @@ public class Controller {
 	
 	@FXML // Move MainView
 	private void NAV_Main(ActionEvent event) throws IOException {
-		Parent MainView = FXMLLoader.load(getClass().getResource("MainView.fxml"));
+		Parent MainView = FXMLLoader.load(getClass().getResource("../View/MainView.fxml"));
 		Scene MainView_scene = new Scene(MainView);
 		MainView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -77,7 +77,7 @@ public class Controller {
 		user.setUserFmphone(UserFmphone.getText().toString());
 		
 		// 회원가입과 함께 Login Page로 이동됨.
-		Parent MainView = FXMLLoader.load(getClass().getResource("LoginView.fxml"));
+		Parent MainView = FXMLLoader.load(getClass().getResource("../View/LoginView.fxml"));
 		Scene MainView_scene = new Scene(MainView);
 		MainView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
