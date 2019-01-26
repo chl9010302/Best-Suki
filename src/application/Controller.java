@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import DBModel.UserBean;
+import ImageStore.TestImageStore;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -127,6 +128,15 @@ public class Controller implements Initializable {
 		if(file != null) {
 			System.out.println("File Chosen : " + file);
 			fileName = file.getName();
+			System.out.println(file.toString());
+			
+			String Address = file.toString().replaceAll("\\\\", "//");
+			System.out.println(Address);
+			try {
+				new TestImageStore("112233", Address); 
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
