@@ -40,7 +40,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
-                  <TextField Id="test" prefWidth="230.0" promptText="User ID" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+                  <TextField fx:id="UserId" prefWidth="230.0" promptText="User ID" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>

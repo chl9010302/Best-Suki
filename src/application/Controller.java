@@ -21,6 +21,7 @@ public class Controller {
 	private String operator = "";
 	private int x = 0;
 	private Model model = new Model();
+	String UserGender = "";
 	Parent myNewScene;
 	
 	private UserBean user;
@@ -30,10 +31,8 @@ public class Controller {
 	
 	@FXML private DatePicker UserAge;
 	
-	@FXML RadioButton UserGender;
-	
-	@FXML LocalDate localDate = UserAge.getValue();
-	
+	@FXML RadioButton UserGenderMale;
+	@FXML RadioButton UserGenderFeMale;
 	@FXML private Text result;
 	
 	@FXML // Move LoginView
@@ -54,8 +53,6 @@ public class Controller {
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(LoginView_scene);
 		app_stage.show();
-		
-		System.out.println(localDate.toString());
 	}
 	
 	@FXML // Move MainView
@@ -70,12 +67,8 @@ public class Controller {
 	
 	@FXML // 
 	private void NAV_Signup(ActionEvent event) throws IOException {
-		Parent MainView = FXMLLoader.load(getClass().getResource("LoginView.fxml"));
-		Scene MainView_scene = new Scene(MainView);
-		MainView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(MainView_scene);
-		app_stage.show();
+		
+		LocalDate localDate = UserAge.getValue();
 		user = new UserBean();
 		user.setUserId(UserId.getText().toString());
 		user.setUserPassword(UserPassword.getText().toString());
@@ -83,9 +76,16 @@ public class Controller {
 		user.setUserAddress(UserAddress.getText().toString());
 		user.setUserSchoolName(UserSchoolName.getText().toString());
 		user.setUserAge(localDate.toString());
-		user.setUserGender(UserGender.getText().toString());
+		user.setUserGender(UserGender);
 		user.setUserPhone(UserPhone.getText().toString());
 		user.setUserFmphone(UserFmphone.getText().toString());
+		Parent MainView = FXMLLoader.load(getClass().getResource("LoginView.fxml"));
+		Scene MainView_scene = new Scene(MainView);
+		MainView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(MainView_scene);
+		app_stage.show();
+		
 	}
 	
 	@FXML
@@ -96,6 +96,15 @@ public class Controller {
 			operator = ((Button) event.getSource()).getText();
 			x = Integer.parseInt(result.getText());
 			result.setText("");
+		}
+	}
+	
+	public void radioSelect(ActionEvent event) {
+		if(UserGenderMale.isSelected()) {
+			UserGender = UserGenderMale.getText();
+		}
+		if(UserGenderFeMale.isSelected()) {
+			UserGender = UserGenderFeMale.getText();
 		}
 	}
 }

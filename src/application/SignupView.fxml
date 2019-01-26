@@ -123,7 +123,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <RadioButton fx:id="UserGenderMale" mnemonicParsing="false" text="Male" textFill="GRAY" >
+                  <RadioButton fx:id="UserGenderMale" mnemonicParsing="false" text="Male" textFill="GRAY" onAction="#radioSelect">
                      <HBox.margin>
                         <Insets right="40.0" />
                      </HBox.margin>
@@ -131,7 +131,7 @@
                         <ToggleGroup fx:id="GenderGroup" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="UserGenderFeMale" mnemonicParsing="false" text="Female" textFill="GRAY" toggleGroup="$GenderGroup"/>
+                  <RadioButton fx:id="UserGenderFeMale" mnemonicParsing="false" text="Female" textFill="GRAY" toggleGroup="$GenderGroup" onAction="#radioSelect"/>
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" />
