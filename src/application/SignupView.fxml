@@ -19,7 +19,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #b59c9c" text="Sign up" textFill="WHITE" onAction="#NAV_SignUp">
+                  <Button mnemonicParsing="false" onAction="#NAV_SignUp" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #b59c9c" text="Sign up" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -27,7 +27,7 @@
                         <Font name="Tahoma" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #b59c9c;" text="Login" textFill="#b59c9c" onAction="#NAV_Login">
+                  <Button mnemonicParsing="false" onAction="#NAV_Login" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #b59c9c;" text="Login" textFill="#b59c9c">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>
@@ -36,11 +36,11 @@
             </HBox>
          </children>
       </HBox>
-      <VBox alignment="CENTER" layoutX="537.0" layoutY="116.0" prefHeight="200.0" prefWidth="311.0">
+      <VBox alignment="CENTER" layoutX="490.0" layoutY="79.0" opacity="0.74" prefHeight="200.0" prefWidth="311.0" style="-fx-background-color: #344290;">
          <children>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
-                  <TextField Id="test" prefWidth="230.0" promptText="User ID" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+                  <TextField fx:id="UserId" prefWidth="230.0" promptText="User ID (necessary)" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red;">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>
@@ -50,12 +50,12 @@
                   </TextField>
                </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets top="10.0" />
                </VBox.margin>
             </HBox>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
-                  <PasswordField prefWidth="230.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+                  <PasswordField fx:id="UserPassword" prefWidth="230.0" promptText="Password (necessary)" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red;">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>
@@ -67,7 +67,19 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
-                  <TextField Id="test" prefWidth="230.0" promptText="Password Confirm" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+                  <TextField fx:id="UserPassword" prefWidth="230.0" promptText="Password Confirm (necessary)" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red;">
+                     <font>
+                        <Font name="Tahoma" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
+               <children>
+                  <TextField fx:id="UserName" prefWidth="230.0" promptText="UserName (necessary)" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red;">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>
@@ -79,7 +91,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
-                  <TextField Id="test" prefWidth="230.0" promptText="E-mail" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+                  <TextField fx:id="UserAddress" prefWidth="230.0" promptText="Address" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>
@@ -91,7 +103,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
-                  <TextField Id="test" prefWidth="230.0" promptText="MobileNumber" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+                  <TextField fx:id="UserSchoolName" prefWidth="230.0" promptText="UserSchoolName" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>
@@ -101,33 +113,57 @@
                   </TextField>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextField Id="test" prefWidth="230.0" promptText="FM MobileNumber" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
-                     <font>
-                        <Font name="Tahoma" size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets bottom="10.0" />
-                     </HBox.margin>
-                  </TextField>
+                  <DatePicker fx:id="UserAge" prefWidth="235.0" style="-fx-background-color: transparent;" />
                </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
-               <children>
-                  <TextField Id="test" prefWidth="230.0" promptText="Birthday" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
-                     <font>
-                        <Font name="Tahoma" size="16.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets bottom="10.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-            </HBox>
-            <Button Id="Login" mnemonicParsing="false" opacity="0.72" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3;" text="SIGN UP" textFill="WHITE">
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <RadioButton fx:id="UserGenderMale" mnemonicParsing="false" text="Male" textFill="GRAY" >
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="GenderGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="UserGenderFeMale" mnemonicParsing="false" text="Female" textFill="GRAY" toggleGroup="$GenderGroup"/>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
+               <children>
+                  <TextField fx:id="UserPhone" prefWidth="230.0" promptText="MobileNumber (necessary)" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red;">
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
+               <children>
+                  <TextField fx:id="UserFmphone" prefWidth="230.0" promptText="FM MobileNumber (necessary)" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red;">
+                     <font>
+                        <Font name="Tahoma" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <Button Id="Login" mnemonicParsing="false" opacity="0.72" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3;" text="SIGN UP" textFill="WHITE" onAction="#NAV_Signup">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
                </VBox.margin>
                <font>
                   <Font name="Tahoma" size="14.0" />

@@ -1,7 +1,9 @@
 package application;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
+import DBModel.UserBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -18,8 +23,18 @@ public class Controller {
 	private Model model = new Model();
 	Parent myNewScene;
 	
+	private UserBean user;
+	
 	@FXML
-	private Text result;
+	private TextField UserId, UserPassword, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
+	
+	@FXML private DatePicker UserAge;
+	
+	@FXML RadioButton UserGender;
+	
+	@FXML LocalDate localDate = UserAge.getValue();
+	
+	@FXML private Text result;
 	
 	@FXML // Move LoginView
 	private void NAV_SignUp(ActionEvent event) throws IOException {
@@ -39,9 +54,11 @@ public class Controller {
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(LoginView_scene);
 		app_stage.show();
+		
+		System.out.println(localDate.toString());
 	}
 	
-	@FXML // Move LoginView
+	@FXML // Move MainView
 	private void NAV_Main(ActionEvent event) throws IOException {
 		Parent MainView = FXMLLoader.load(getClass().getResource("MainView.fxml"));
 		Scene MainView_scene = new Scene(MainView);
@@ -49,6 +66,26 @@ public class Controller {
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(MainView_scene);
 		app_stage.show();
+	}
+	
+	@FXML // 
+	private void NAV_Signup(ActionEvent event) throws IOException {
+		Parent MainView = FXMLLoader.load(getClass().getResource("LoginView.fxml"));
+		Scene MainView_scene = new Scene(MainView);
+		MainView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(MainView_scene);
+		app_stage.show();
+		user = new UserBean();
+		user.setUserId(UserId.getText().toString());
+		user.setUserPassword(UserPassword.getText().toString());
+		user.setUserName(UserName.getText().toString());
+		user.setUserAddress(UserAddress.getText().toString());
+		user.setUserSchoolName(UserSchoolName.getText().toString());
+		user.setUserAge(localDate.toString());
+		user.setUserGender(UserGender.getText().toString());
+		user.setUserPhone(UserPhone.getText().toString());
+		user.setUserFmphone(UserFmphone.getText().toString());
 	}
 	
 	@FXML

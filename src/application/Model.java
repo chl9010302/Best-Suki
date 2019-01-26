@@ -15,4 +15,8 @@ public class Model {
 			return x / y;
 		}
 	}
+	public void user(String User[]) {
+//		String UserId, String UserPassword, String UserName, String UserAddress,
+//		String UserSchoolName, String UserAge, String UserGender, String UserPhone, String UserFMPhone, String UserFmphone, String UserStudentnumber, String UserLoginsession, String Isteacher
+	}
 }
