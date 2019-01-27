@@ -16,7 +16,7 @@
             <Image url="@back.jpg" />
          </image>
       </ImageView>
-      <HBox alignment="CENTER_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="65.0" prefWidth="834.0">
+      <HBox alignment="CENTER_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="65.0" prefWidth="834.0" AnchorPane.bottomAnchor="521.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
@@ -55,7 +55,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="TEST" textFill="WHITE" onAction="#NAV_TestView">
+            <Button mnemonicParsing="false" onAction="#NAV_TestView" style="-fx-background-color: transparent;" text="TEST" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>

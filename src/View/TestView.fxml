@@ -107,7 +107,7 @@
                               <Font name="Tahoma" size="16.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="File Search" onAction="#fileChooserSelect" />
+                        <Button fx:id="SearchFile" mnemonicParsing="false" text="File Search" onAction="#fileChooserSelect" />
                      </children>
                   </HBox>
                   <HBox prefHeight="30.0" prefWidth="200.0">
