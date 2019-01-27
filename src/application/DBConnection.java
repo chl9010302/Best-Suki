@@ -33,7 +33,7 @@ public class DBConnection {
 			System.out.println("DB 연결오류 :" + e.getMessage() );
 		}
 	
-	
+		
 	}
 	
 	public boolean isAdmin(String adminID, String adminPassword)  {
