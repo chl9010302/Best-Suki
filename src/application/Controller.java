@@ -30,6 +30,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class Controller implements Initializable {
+	//Declare JAVA
 	private String UserGender = "";
 	private UserBean user; // 회원가입 시 User 정보를 송신하기 위함.
 	private Stage stage; // file choose 하기 위함.
@@ -37,6 +38,7 @@ public class Controller implements Initializable {
 	public static String userId;
 	public static String fileName;
 	
+	//Declare FXML
 	@FXML private TextField UserId, UserPassword, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
 	@FXML private DatePicker UserAge;
 	@FXML private Button Property_userID;
@@ -48,49 +50,12 @@ public class Controller implements Initializable {
 	@FXML private ListView<String> listBoxMain;
 	@FXML private TextField txtAddItem; 
 	@FXML private Label Question1_Label;
-	
-	@FXML // Move SignupView
-	private void NAV_SignUp(ActionEvent event) throws IOException {
-		Parent SignupView = FXMLLoader.load(getClass().getResource("../View/SignupView.fxml"));
-		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(SignupView_scene);
-		app_stage.show();
-	}
-	
-	@FXML // Move LoginView
-	private void NAV_Login(ActionEvent event) throws IOException {
-		Parent LoginView = FXMLLoader.load(getClass().getResource("../View/LoginView.fxml"));
-		Scene LoginView_scene = new Scene(LoginView);
-		LoginView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(LoginView_scene);
-		app_stage.show();
-	}
-	
-	@FXML // Move MainView
-	private void NAV_Main(ActionEvent event) throws IOException {
-		Parent MainView = FXMLLoader.load(getClass().getResource("../View/MainView.fxml"));
-		Scene MainView_scene = new Scene(MainView);
-		MainView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(MainView_scene);
-		app_stage.show();
-	}
-	
-	@FXML // Move MainView
-	private void NAV_TestView(ActionEvent event) throws IOException {
-		Parent MainView = FXMLLoader.load(getClass().getResource("../View/TestView.fxml"));
-		Scene MainView_scene = new Scene(MainView);
-		MainView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(MainView_scene);
-		app_stage.show();
-	}
-	
+	@FXML private void NAV_SignUp(ActionEvent event) throws IOException { NAV(event, "../View/SignupView.fxml"); }
+	@FXML private void NAV_Login(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
+	@FXML private void NAV_Main(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml"); }
+	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
 	@FXML // 회원가입 버튼 클릭 시 활성화
-	private void NAV_Signup(ActionEvent event) throws IOException {
+	private void Signup(ActionEvent event) throws IOException {
 		LocalDate localDate = UserAge.getValue();
 		// 회원가입 시 정보가 인터페이스됨.
 		user = new UserBean();
@@ -103,23 +68,25 @@ public class Controller implements Initializable {
 		user.setUserGender(UserGender);
 		user.setUserPhone(UserPhone.getText().toString());
 		user.setUserFmphone(UserFmphone.getText().toString());
-		
-		
 		// 회원가입과 함께 Login Page로 이동됨.
-		Parent MainView = FXMLLoader.load(getClass().getResource("../View/LoginView.fxml"));
-		Scene MainView_scene = new Scene(MainView);
-		MainView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(MainView_scene);
-		app_stage.show();
+		NAV(event, "../View/LoginView.fxml");
+	}
+	@FXML
+	private void addAction(ActionEvent action){
+	  listItems.add(txtAddItem.getText());
+	  System.out.println("동적 추가");
+	  txtAddItem.clear();
+	}
+	@FXML
+	private void deleteAction(ActionEvent action){
+	  int selectedItem = listBoxMain.getSelectionModel().getSelectedIndex();
+	  listItems.remove(selectedItem);
 	}
 	
 	public void radioSelect(ActionEvent event) {
 		if(UserGenderMale.isSelected()) { UserGender = UserGenderMale.getText(); }
 		if(UserGenderFeMale.isSelected()) { UserGender = UserGenderFeMale.getText(); }
 	}
-	
-	
 	
 	//fileChoose function
 	public void openFile() {
@@ -128,36 +95,11 @@ public class Controller implements Initializable {
 		if(file != null) {
 			System.out.println("File Chosen : " + file);
 			fileName = file.getName();
-			System.out.println(file.toString());
-			
 			String Address = file.toString().replaceAll("\\\\", "//");
-			System.out.println(Address);
-			try {
-				new TestImageStore("112233", Address); 
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
+			new TestImageStore("112233", Address); 
 		}
 	}
-	
-	public void fileChooserSelect(ActionEvent event) { 
-		openFile(); 
-		Question1_Label.setText(fileName);
-		}
-	
-	  // Add event handlers
-	  @FXML
-	  private void addAction(ActionEvent action){
-	    listItems.add(txtAddItem.getText());
-	    System.out.println("동적 추가");
-	    txtAddItem.clear();
-	  }
 	  
-	  @FXML
-	  private void deleteAction(ActionEvent action){
-	    int selectedItem = listBoxMain.getSelectionModel().getSelectedIndex();
-	    listItems.remove(selectedItem);
-	  }
 	  
 	  public void initialize(URL url, ResourceBundle rb) {
 	    // TODO
@@ -185,6 +127,19 @@ public class Controller implements Initializable {
 			  });    
 			  
 		  }catch(Exception e) {  }
-	  }  
+	  }
 	  
+	public void fileChooserSelect(ActionEvent event) { 
+		openFile(); 
+		Question1_Label.setText(fileName);
+	}
+	
+	private void NAV (ActionEvent event, String str) throws IOException {
+		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
+		Scene SignupView_scene = new Scene(SignupView);
+		SignupView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(SignupView_scene);
+		app_stage.show();
+	}
 }
