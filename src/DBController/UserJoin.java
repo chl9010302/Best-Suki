@@ -12,12 +12,14 @@ public class UserJoin {
 	UserBean user;
 	Connection conn = null;
 	Statement stmt = null;	
-
-
+	
+	
 		public void insert(String UserId , String UserPassword ,String UserName , 
 				String UserAddress , String UserSchoolName , String UserGender, String UserAge,
 				String UserPhone , String UserFmphone) {
 		    StringBuilder sb = new StringBuilder();
+		    	   
+		    user = new UserBean();
 		    
 		    String sql = sb.append("insert into " + user + " values(")
 		            .append(user.getUserId() + ",")
@@ -33,7 +35,7 @@ public class UserJoin {
 		            .toString();
 		    try {
 		        stmt.executeUpdate(sql);
-		        System.out.println(sql);
+		       
 		    } catch (SQLException e) {
 		        // TODO Auto-generated catch block
 		        e.printStackTrace();
