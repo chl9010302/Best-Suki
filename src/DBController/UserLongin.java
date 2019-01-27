@@ -20,13 +20,13 @@ public class UserLongin {
 	public void loginCheck(String UserId , String UserPassword) {
 	//	String SQL = "SELECT userPassword FROM USER WHERE userID=?";
 		
-		try {
-			if(UserId != null &&  ) {
-				
-			}
-		}catch(Exception e) {
-			System.out.println("계정이나 비밀번호를 확인해주세요.");
-		}
+//		try {
+//			if(UserId != null &&  ) {
+//				
+//			}
+//		}catch(Exception e) {
+//			System.out.println("계정이나 비밀번호를 확인해주세요.");
+//		}
 	
 		
 		

@@ -17,10 +17,10 @@ public class DBConnection {
 	public DBConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bss?serverTimezone=UTC", "root", "root");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/academymangementdb?serverTimezone=UTC", "root", "root");
 			st = con.createStatement();
 			
-		SqlTest sqlTest = new SqlTest(con, "user");
+		SqlTest sqlTest = new SqlTest(con, "temp_table");
 			
 		/*
 		UserJoin user = new UserJoin();
