@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import DBController.UserJoin;
+import DBModel.UserBean;
+
 public class DBConnection {
 	
 	private Connection con;
@@ -14,11 +17,16 @@ public class DBConnection {
 	public DBConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/academymangementdb?serverTimezone=UTC", "root", "root");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bss?serverTimezone=UTC", "root", "root");
 			st = con.createStatement();
 			
-		 SqlTest sqlTest = new SqlTest(con, "temp_table");
-		 
+		SqlTest sqlTest = new SqlTest(con, "user");
+			
+		/*
+		UserJoin user = new UserJoin();
+		user.insert("eung89","254833","강응교","집집집","집대학교","male","31","01040004000","01040004000");
+		*/
+		
 		}catch(Exception e)
 		{
 			e.printStackTrace();
