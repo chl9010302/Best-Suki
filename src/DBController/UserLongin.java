@@ -4,10 +4,10 @@ import DBModel.UserBean;
 
 public class UserLongin {
 	
-	UserBean bean = new UserBean();
+	//UserBean bean = new UserBean();
 	
-	String UserId = bean.getUserId();
-	String UserPassword = bean.getUserPassword();
+	//String UserId = bean.getUserId();
+	//String UserPassword = bean.getUserPassword();
 	
 	
 	/*

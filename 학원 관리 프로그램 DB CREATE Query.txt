@@ -8,6 +8,8 @@
 // Userclass_StudentCount 이반에 총원
 // Userclass_Teacher 이반의 선생님은 누구인가 선생님의 User 기본키값을 가지고 있다.
 
+SET foreign_key_checks = 0; 
+DROP TABLE user;
 
 CREATE TABLE `user` (
   `UserId` varchar(20)  NOT NULL,        
@@ -15,8 +17,8 @@ CREATE TABLE `user` (
   `UserName` varchar(20)  NOT NULL,
   `UserAddress` varchar(20),
   `UserSchoolName` varchar(20),
-  `UserAge` varchar(6),
-  `UserGender` varchar(1),
+  `UserAge` varchar(10),
+  `UserGender` varchar(20),
   `UserStudentnumber` varchar(20) NOT NULL,
   `UserPhone` varchar(20)  NOT NULL,
   `UserFmphone` varchar(20) NOT NULL,

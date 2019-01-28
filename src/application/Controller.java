@@ -6,6 +6,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import DBController.UserJoin;
 import DBModel.UserBean;
 import ImageStore.TestImageStore;
 import javafx.beans.value.ChangeListener;
@@ -57,7 +58,7 @@ public class Controller implements Initializable {
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	private void Signup(ActionEvent event) throws IOException {
 		LocalDate localDate = UserAge.getValue();
-		// 회원가입 시 정보가 인터페이스됨.
+		// 회원가입 시 정보가  인터페이스됨.
 		user = new UserBean();
 		user.setUserId(UserId.getText().toString());
 		user.setUserPassword(UserPassword.getText().toString());
@@ -68,6 +69,7 @@ public class Controller implements Initializable {
 		user.setUserGender(UserGender);
 		user.setUserPhone(UserPhone.getText().toString());
 		user.setUserFmphone(UserFmphone.getText().toString());
+		UserJoin join = new UserJoin(user);
 		// 회원가입과 함께 Login Page로 이동됨.
 		NAV(event, "../View/LoginView.fxml");
 	}

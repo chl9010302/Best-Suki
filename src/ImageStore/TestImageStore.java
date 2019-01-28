@@ -33,8 +33,10 @@ public class TestImageStore {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			return null;
+			
 		}
+		
+		return null;
 	}
 	private boolean Imagestore(String FileSrc, String directorypath) {
 		String imagePath = FileSrc;
@@ -54,11 +56,11 @@ public class TestImageStore {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			
 		}finally {
 			
 		}
-
+		return false;
 	}
 	public static void main(String[] args) {
 	
