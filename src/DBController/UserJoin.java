@@ -40,6 +40,7 @@ public class UserJoin {
 			  
 			conn.close();
 			pstmt.close();
+			System.out.println(user.getUserSchoolName());
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

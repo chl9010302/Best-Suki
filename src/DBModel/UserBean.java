@@ -20,7 +20,7 @@ public class UserBean {
 	private String Classnumber_4     ;
 	public UserBean(){
 		setIsteacher("1");
-		setUserStudentnumber("201901130");
+		setUserStudentnumber("201901136");
 	}
 	public String getUserId() {
 		return UserId;

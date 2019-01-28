@@ -67,14 +67,14 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
-                  <PasswordField fx:id="UserPasswordConfirm" prefWidth="230.0" promptText="Password Confirm (necessary)" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red;">
+                  <TextField fx:id="UserPassword" prefWidth="230.0" promptText="Password Confirm (necessary)" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red;">
                      <font>
                         <Font name="Tahoma" size="15.0" />
                      </font>
                      <HBox.margin>
                         <Insets bottom="10.0" />
                      </HBox.margin>
-                  </PasswordField>
+                  </TextField>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
@@ -123,7 +123,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <RadioButton fx:id="UserGenderMale" mnemonicParsing="false" text="Male" textFill="GRAY" onAction="#radioSelect">
+                  <RadioButton fx:id="UserGenderMale" mnemonicParsing="false" onAction="#radioSelect" text="Male" textFill="GRAY">
                      <HBox.margin>
                         <Insets right="40.0" />
                      </HBox.margin>
@@ -131,7 +131,7 @@
                         <ToggleGroup fx:id="GenderGroup" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="UserGenderFeMale" mnemonicParsing="false" text="Female" textFill="GRAY" toggleGroup="$GenderGroup" onAction="#radioSelect"/>
+                  <RadioButton fx:id="UserGenderFeMale" mnemonicParsing="false" onAction="#radioSelect" text="Female" textFill="GRAY" toggleGroup="$GenderGroup" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" />
@@ -161,7 +161,7 @@
                   </TextField>
                </children>
             </HBox>
-            <Button Id="Login" mnemonicParsing="false" opacity="0.72" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3;" text="SIGN UP" textFill="WHITE" onAction="#Signup">
+            <Button Id="Login" mnemonicParsing="false" onAction="#Signup" opacity="0.72" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3;" text="SIGN UP" textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>

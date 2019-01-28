@@ -17,3 +17,7 @@
 .text-field {
 	-fx-text-fill: white;
 }
+
+.date-picker > .text-field {
+	-fx-text-fill: black;
+}
