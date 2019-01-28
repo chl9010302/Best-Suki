@@ -16,7 +16,7 @@
             <Image url="@back.jpg" />
          </image>
       </ImageView>
-      <HBox alignment="CENTER_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="65.0" prefWidth="834.0" AnchorPane.bottomAnchor="521.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
+      <HBox alignment="CENTER_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="65.0" prefWidth="834.0">
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
@@ -55,7 +55,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="TEST" textFill="WHITE" onAction="#NAV_TestView">
+            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="TEST" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>
@@ -63,7 +63,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Text" textFill="WHITE" onAction="#NAV_TestBoardView">
+            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Text" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>
@@ -87,34 +87,22 @@
       <AnchorPane layoutX="169.0" layoutY="79.0" prefHeight="504.0" prefWidth="679.0" xmlns:fx="http://javafx.com/fxml">
   <children>
     <VBox alignment="TOP_CENTER" layoutX="30" prefHeight="250.0" prefWidth="341.0" style="-fx-border-color: white; -fx-border-width: 2px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <children>
-                  <HBox prefHeight="42.0" prefWidth="679.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
-                     <children>
-              <Label alignment="TOP_LEFT" text="NOTICE" textFill="WHITE">
-                <font>
-                  <Font name="System Bold" size="21.0" />
-                </font>
-              </Label>
-                     </children>
-                  </HBox>
-        <ListView fx:id="listBoxMain" prefHeight="300.0" prefWidth="200.0" style="-fx-background-color: transparent;">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin></ListView>
-        <TextField fx:id="txtAddItem" prefHeight="100.0" prefWidth="200.0" promptText="Input Text" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1px;">
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </VBox.margin></TextField>
-        <HBox alignment="TOP_RIGHT" spacing="5.0">
-          <children>
-            <Button fx:id="BtnAdd" onAction="#addAction" text="글쓰기" />
-            <Button fx:id="BtnDelete" onAction="#deleteAction" text="삭제" />
-          </children>
-        </HBox>
-      </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
+               <children>
+                  <ListView fx:id="testBoxMain" prefHeight="440.0" prefWidth="200.0" style="-fx-background-color: transparent;"/>
+                  <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;" text="Add" textFill="WHITE" onAction="#NAV_AddTestView"/>
+                        <Button mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;" text="Modify" textFill="WHITE" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;" text="Delete" textFill="WHITE" onAction="#removeAction" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
     </VBox>
   </children>
          <opaqueInsets>

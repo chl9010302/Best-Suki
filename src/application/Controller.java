@@ -36,6 +36,7 @@ public class Controller implements Initializable {
 	private UserBean user; // 회원가입 시 User 정보를 송신하기 위함.
 	private Stage stage; // file choose 하기 위함.
 	private ObservableList<String> listItems;
+	private ObservableList<String> testItems;
 	public static String userId;
 	public static String fileName;
 	
@@ -46,15 +47,20 @@ public class Controller implements Initializable {
 	@FXML private RadioButton UserGenderMale;
 	@FXML private RadioButton UserGenderFeMale;
 	@FXML private Text result;
+	@FXML private Button BtnSave;
 	@FXML private Button BtnAdd;
 	@FXML private Button BtnDelete;
 	@FXML private ListView<String> listBoxMain;
+	@FXML private ListView<String> testBoxMain;
 	@FXML private TextField txtAddItem; 
+	@FXML private TextField txtSubtitle; 
 	@FXML private Label Question1_Label;
 	@FXML private void NAV_SignUp(ActionEvent event) throws IOException { NAV(event, "../View/SignupView.fxml"); }
 	@FXML private void NAV_Login(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_Main(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml"); }
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
+	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
+	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	private void Signup(ActionEvent event) throws IOException {
 		LocalDate localDate = UserAge.getValue();
@@ -84,8 +90,20 @@ public class Controller implements Initializable {
 	  int selectedItem = listBoxMain.getSelectionModel().getSelectedIndex();
 	  listItems.remove(selectedItem);
 	}
+	@FXML
+	private void saveAction(ActionEvent action) {
+		testItems.add(txtSubtitle.getText());
+		System.out.println("동적 추가");
+		txtSubtitle.clear();
+	}
 	
-	public void radioSelect(ActionEvent event) {
+	@FXML
+	private void removeAction(ActionEvent action){
+	  int selectedItem = testBoxMain.getSelectionModel().getSelectedIndex();
+	  testItems.remove(selectedItem);
+	}
+	
+	public void radioSelect(ActionEvent action) {
 		if(UserGenderMale.isSelected()) { UserGender = UserGenderMale.getText(); }
 		if(UserGenderFeMale.isSelected()) { UserGender = UserGenderFeMale.getText(); }
 	}
@@ -102,12 +120,15 @@ public class Controller implements Initializable {
 		}
 	}
 	  
-	  
 	  public void initialize(URL url, ResourceBundle rb) {
 	    // TODO
 		  try {
-			  listItems = FXCollections.observableArrayList("First"); 
+			  listItems = FXCollections.observableArrayList("First");
 			  listBoxMain.setItems(listItems);
+//			  testItems = FXCollections.observableArrayList("Second");
+//			  testBoxMain.setItems(testItems);
+			  
+			  
 			  // Disable buttons to start
 			  BtnAdd.setDisable(true);
 			  BtnDelete.setDisable(true);
@@ -118,7 +139,6 @@ public class Controller implements Initializable {
 					  }
 				  }
 			  });    
-			  
 			  // Add a ChangeListener to ListView to look for change in focus
 			  listBoxMain.focusedProperty().addListener(new ChangeListener<Boolean>() {
 				  public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -127,7 +147,6 @@ public class Controller implements Initializable {
 					  }
 				  }
 			  });    
-			  
 		  }catch(Exception e) {  }
 	  }
 	  
@@ -144,4 +163,14 @@ public class Controller implements Initializable {
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();
 	}
+	
+	private void NAV_POPUP (ActionEvent event, String str) throws IOException {
+		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
+		Scene SignupView_scene = new Scene(SignupView);
+		SignupView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		Stage app_stage = new Stage();
+		app_stage.setScene(SignupView_scene);
+		app_stage.show();
+	}
+	
 }
