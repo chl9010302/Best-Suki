@@ -40,7 +40,7 @@ public class Controller implements Initializable {
 	public static String fileName;
 	
 	//Declare FXML
-	@FXML private TextField UserId, UserPassword, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
+	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
 	@FXML private DatePicker UserAge;
 	@FXML private Button Property_userID;
 	@FXML private RadioButton UserGenderMale;

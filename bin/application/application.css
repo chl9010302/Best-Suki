@@ -13,3 +13,7 @@
 	-fx-border-color : white;
 	-fx-padding: 10px;
 }
+
+.text-field {
+	-fx-text-fill: white;
+}
