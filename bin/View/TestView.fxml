@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="860.0">
+         <image>
+            <Image url="@back.jpg" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="65.0" prefWidth="834.0">
+         <children>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
+               <children>
+                  <Button fx:id="Property_userID" mnemonicParsing="false" style="-fx-background-color: transparent;" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Logout" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="79.0" prefHeight="494.0" prefWidth="155.0" AnchorPane.topAnchor="79.0">
+         <children>
+            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="NOTICE" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="TEST" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Text" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="STASTICS" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <AnchorPane layoutX="169.0" layoutY="79.0" prefHeight="504.0" prefWidth="679.0" xmlns:fx="http://javafx.com/fxml">
+  <children>
+    <VBox alignment="TOP_CENTER" layoutX="30" prefHeight="250.0" prefWidth="341.0" style="-fx-border-color: white; -fx-border-width: 2px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+                  <HBox prefHeight="42.0" prefWidth="679.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
+                     <children>
+              <Label alignment="TOP_LEFT" text="Make Test" textFill="WHITE">
+                <font>
+                  <Font name="System Bold" size="21.0" />
+                </font>
+              </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id = "Question1_Label" text="File Name" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Tahoma" size="16.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" text="File Search" onAction="#fileChooserSelect" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <RadioButton mnemonicParsing="false" text="1. " textFill="WHITE">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="Quest1Group2" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <TextField promptText="Answer 1" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <RadioButton mnemonicParsing="false" text="2. " textFill="WHITE" toggleGroup="$Quest1Group" />
+                        <TextField promptText="Answer 2" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <RadioButton mnemonicParsing="false" text="3. " textFill="WHITE">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="Quest1Group2" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <TextField promptText="Answer 3" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <RadioButton mnemonicParsing="false" text="4. " textFill="WHITE">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="Quest1Group2" />
+                           </toggleGroup>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </RadioButton>
+                        <TextField promptText="Answer 4" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <RadioButton mnemonicParsing="false" text="5. " textFill="WHITE">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="Quest1Group2" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <TextField promptText="Answer 5" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                     </children>
+                  </HBox>
+      </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+    </VBox>
+  </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+</AnchorPane>
+   </children>
+</AnchorPane>

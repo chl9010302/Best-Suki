@@ -1,8 +1,15 @@
 package DBController;
 
+import java.sql.Connection;
+import java.sql.Statement;
+
 import DBModel.UserBean;
 
 public class UserLongin {
+	
+	Connection conn = null;
+	Statement stmt = null;
+
 	
 	//UserBean bean = new UserBean();
 	
