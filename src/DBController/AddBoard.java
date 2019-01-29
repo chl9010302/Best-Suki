@@ -15,7 +15,6 @@ public class AddBoard {
 
 	public AddBoard(BoardBean addboard) {
 		insert(addboard);
-		count();
 	}
 	public boolean insert(BoardBean addboard) {
 		String insertsql1 = "insert into board(BoardId, Subtitle, Filepath, Radio1, Radio2, Radio3, Radio4, Radio5, Flag) values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -56,7 +55,6 @@ public class AddBoard {
 		}
 		return false;
 	}
-	
 	public int count(){
 		int rowcount = 0;
 		try {
@@ -67,11 +65,7 @@ public class AddBoard {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			if(rs.next()) rowcount = rs.getInt(1);
-			
-			System.out.println("rowcount : " + rowcount );
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		}catch(Exception e) { }
 		
         return rowcount;
     }

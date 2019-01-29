@@ -11,6 +11,7 @@ import DBController.UserJoin;
 import DBModel.BoardBean;
 import DBModel.UserBean;
 import ImageStore.TestImageStore;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -87,7 +88,6 @@ public class Controller implements Initializable {
 	@FXML
 	private void addAction(ActionEvent action){
 		listItems.add(txtAddItem.getText());
-		System.out.println("동적 추가");
 	}
 	@FXML
 	private void deleteAction(ActionEvent action){
@@ -115,31 +115,23 @@ public class Controller implements Initializable {
 		}else {
 			board.setFlag(Radio5.getText().toString());
 		}
-//		testItems.add(txtSubtitle.getText());
-		System.out.println("board : " + Radio1.getText().toString());
-		System.out.println("동적 추가");
-		txtSubtitle.clear();
 		AddBoard addboard = new AddBoard(board);
 		for(int i=0; i<addboard.count()-1; i++) {
 			try {
-				testItems.add("dd");
-//				testItems = FXCollections.observableArrayList("Second");
-//				testBoxMain.setItems(testItems);
+				testItems.add(txtSubtitle.getText().toString());
 			}catch(Exception e) { }
 		}
+	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 닫음.
 	}
-	
 	@FXML
 	private void removeAction(ActionEvent action){
 	  int selectedItem = testBoxMain.getSelectionModel().getSelectedIndex();
 	  testItems.remove(selectedItem);
 	}
-	
 	public void radioSelect(ActionEvent action) {
 		if(UserGenderMale.isSelected()) { UserGender = UserGenderMale.getText(); }
 		if(UserGenderFeMale.isSelected()) { UserGender = UserGenderFeMale.getText(); }
 	}
-	
 	//fileChoose function
 	public void openFile() {
 		FileChooser fileChooser = new FileChooser();
@@ -152,12 +144,11 @@ public class Controller implements Initializable {
 			board.setFilepath(Address);
 		}
 	}
-	  
 	  public void initialize(URL url, ResourceBundle rb) {
 	    // TODO
 		  try {
-			  listItems = FXCollections.observableArrayList("First");
-			  listBoxMain.setItems(listItems);
+//			  listItems = FXCollections.observableArrayList("First");
+//			  listBoxMain.setItems(listItems);
 			  testItems = FXCollections.observableArrayList("Second");
 			  testBoxMain.setItems(testItems);
 			  
@@ -181,12 +172,10 @@ public class Controller implements Initializable {
 			  });    
 		  }catch(Exception e) {  }
 	  }
-	  
 	public void fileChooserSelect(ActionEvent event) { 
 		openFile(); 
 		txtFilepath.setText(fileName);
 	}
-	
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
@@ -195,7 +184,6 @@ public class Controller implements Initializable {
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();
 	}
-	
 	private void NAV_POPUP (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
@@ -204,5 +192,4 @@ public class Controller implements Initializable {
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();
 	}
-	
 }
