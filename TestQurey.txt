@@ -6,6 +6,17 @@ CREATE TABLE temp_table(
   flag varchar(3)
 );
 
+CREATE TABLE board(
+   id varchar(20),
+  subtitle varchar(20),
+  filepath varchar(255),
+  radio1 varchar(3),
+  radio2 varchar(3),
+  radio3 varchar(3),
+  radio4 varchar(3),
+  radio5 varchar(3),
+  flag varchar(3)
+);
 
 insert into temp_table(id, title, flag) values('1','test1','Y');
 insert into temp_table(id, title, flag) values('2','test2','N');
@@ -14,4 +25,6 @@ insert into temp_table(id, title, flag) values('4','test4','Y');
 insert into temp_table(id, title, flag) values('5','test5','Y');
 insert into temp_table(id, title, flag) values('6','test6','Y');
 insert into temp_table(id, title, flag) values('7','test6','Y');
+
+
 
