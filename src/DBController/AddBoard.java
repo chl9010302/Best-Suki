@@ -2,6 +2,7 @@ package DBController;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -14,6 +15,7 @@ public class AddBoard {
 
 	public AddBoard(BoardBean addboard) {
 		insert(addboard);
+		count();
 	}
 	public boolean insert(BoardBean addboard) {
 		String insertsql1 = "insert into board(BoardId, Subtitle, Filepath, Radio1, Radio2, Radio3, Radio4, Radio5, Flag) values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -54,4 +56,18 @@ public class AddBoard {
 		}
 		return false;
 	}
+	
+	public int count(){
+		try {
+			StringBuilder sb = new StringBuilder();
+			String sql = sb.append("select count(*) from board")
+					.append(";").toString();
+			ResultSet rs = stmt.executeQuery(sql);
+			System.out.print(rs.getInt("count(*)"));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+        return 0;
+    }
 }
