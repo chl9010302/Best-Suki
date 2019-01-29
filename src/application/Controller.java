@@ -154,7 +154,6 @@ public class Controller implements Initializable {
 //			  testItems = FXCollections.observableArrayList("Second");
 //			  testBoxMain.setItems(testItems);
 			  
-			  
 			  // Disable buttons to start
 			  BtnAdd.setDisable(true);
 			  BtnDelete.setDisable(true);
