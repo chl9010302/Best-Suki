@@ -15,6 +15,7 @@ public class UserJoin {
 	public UserJoin(UserBean joinuser) {
 		insert(joinuser);
 	}
+	
 	public boolean insert(UserBean joinuser) {
 		String insertsql = "insert into user(UserId, UserPassword, UserName, UserAddress, UserSchoolName, UserAge, UserGender, UserStudentnumber, UserPhone, UserFmphone, Isteacher) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	    PreparedStatement pstmt = null;

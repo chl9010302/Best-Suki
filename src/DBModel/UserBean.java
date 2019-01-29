@@ -18,6 +18,7 @@ public class UserBean {
 	private String Classnumber_2     ;
 	private String Classnumber_3     ;
 	private String Classnumber_4     ;
+	
 	public UserBean(){
 		setIsteacher("1");
 		setUserStudentnumber("201901136");
