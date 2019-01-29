@@ -6,7 +6,9 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import DBController.AddBoard;
 import DBController.UserJoin;
+import DBModel.BoardBean;
 import DBModel.UserBean;
 import ImageStore.TestImageStore;
 import javafx.beans.value.ChangeListener;
@@ -34,6 +36,7 @@ public class Controller implements Initializable {
 	//Declare JAVA
 	private String UserGender = "";
 	private UserBean user; // 회원가입 시 User 정보를 송신하기 위함.
+	private BoardBean board; // 게시판 보내
 	private Stage stage; // file choose 하기 위함.
 	private ObservableList<String> listItems;
 	private ObservableList<String> testItems;
@@ -42,6 +45,8 @@ public class Controller implements Initializable {
 	
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
+	@FXML private TextField Radio1, Radio2, Radio3, Radio4, Radio5;
+	@FXML private RadioButton Rb1, Rb2, Rb3, Rb4, Rb5;
 	@FXML private DatePicker UserAge;
 	@FXML private Button Property_userID;
 	@FXML private RadioButton UserGenderMale;
@@ -54,7 +59,7 @@ public class Controller implements Initializable {
 	@FXML private ListView<String> testBoxMain;
 	@FXML private TextField txtAddItem; 
 	@FXML private TextField txtSubtitle; 
-	@FXML private Label Question1_Label;
+	@FXML private Label txtFilepath;
 	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { NAV(event, "../View/SignupView.fxml"); }
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml"); }
@@ -81,9 +86,9 @@ public class Controller implements Initializable {
 	}
 	@FXML
 	private void addAction(ActionEvent action){
-	  listItems.add(txtAddItem.getText());
-	  System.out.println("동적 추가");
-	  txtAddItem.clear();
+		listItems.add(txtAddItem.getText());
+		System.out.println("동적 추가");
+		txtAddItem.clear();
 	}
 	@FXML
 	private void deleteAction(ActionEvent action){
@@ -92,9 +97,30 @@ public class Controller implements Initializable {
 	}
 	@FXML
 	private void saveAction(ActionEvent action) {
-		testItems.add(txtSubtitle.getText());
+		board = new BoardBean();
+		board.setBoardId("1");
+		board.setSubtitle(txtSubtitle.getText().toString());
+		board.setRadio1(Radio1.getText().toString());
+		board.setRadio2(Radio1.getText().toString());
+		board.setRadio3(Radio1.getText().toString());
+		board.setRadio4(Radio1.getText().toString());
+		board.setRadio5(Radio1.getText().toString());
+		if(Rb1.isSelected()) {
+			board.setFlag(Radio1.getText().toString());
+		}else if(Rb2.isSelected()) {
+			board.setFlag(Radio2.getText().toString());
+		}else if(Rb3.isSelected()) {
+			board.setFlag(Radio3.getText().toString());
+		}else if(Rb4.isSelected()) {
+			board.setFlag(Radio4.getText().toString());
+		}else {
+			board.setFlag(Radio5.getText().toString());
+		}
+//		testItems.add(txtSubtitle.getText());
+		System.out.println("board : " + Radio1.getText().toString());
 		System.out.println("동적 추가");
 		txtSubtitle.clear();
+		AddBoard addboard = new AddBoard(board);
 	}
 	
 	@FXML
@@ -152,7 +178,7 @@ public class Controller implements Initializable {
 	  
 	public void fileChooserSelect(ActionEvent event) { 
 		openFile(); 
-		Question1_Label.setText(fileName);
+		txtFilepath.setText(fileName);
 	}
 	
 	private void NAV (ActionEvent event, String str) throws IOException {
