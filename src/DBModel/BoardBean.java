@@ -11,6 +11,14 @@ public class BoardBean {
 	private String Radio4     	  	 ;
 	private String Radio5			 ;
 	private String Flag        		 ;
+	private int Count;
+	
+	public int getCount() {
+		return Count;
+	}
+	public void setBoardId(int count) {
+		Count = count;
+	}
 	
 	public String getBoardId() {
 		return BoardId;
