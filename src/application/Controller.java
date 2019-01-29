@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import DBController.AddBoard;
@@ -11,7 +12,6 @@ import DBController.UserJoin;
 import DBModel.BoardBean;
 import DBModel.UserBean;
 import ImageStore.TestImageStore;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -43,6 +43,7 @@ public class Controller implements Initializable {
 	private ObservableList<String> testItems;
 	public static String userId;
 	public static String fileName;
+	public static String filePath;
 	
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
@@ -99,6 +100,7 @@ public class Controller implements Initializable {
 		board = new BoardBean();
 		board.setBoardId("1");
 		board.setSubtitle(txtSubtitle.getText().toString());
+		board.setFilepath(filePath);
 		board.setRadio1(Radio1.getText().toString());
 		board.setRadio2(Radio1.getText().toString());
 		board.setRadio3(Radio1.getText().toString());
@@ -116,17 +118,21 @@ public class Controller implements Initializable {
 			board.setFlag(Radio5.getText().toString());
 		}
 		AddBoard addboard = new AddBoard(board);
+		testItems.add(txtSubtitle.getText().toString());
 		for(int i=0; i<addboard.count()-1; i++) {
 			try {
-				testItems.add(txtSubtitle.getText().toString());
 			}catch(Exception e) { }
 		}
-	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 닫음.
+	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
 	}
 	@FXML
 	private void removeAction(ActionEvent action){
 	  int selectedItem = testBoxMain.getSelectionModel().getSelectedIndex();
 	  testItems.remove(selectedItem);
+	}
+	@FXML
+	private void modify(ActionEvent action) {
+		testItems.add("abc");
 	}
 	public void radioSelect(ActionEvent action) {
 		if(UserGenderMale.isSelected()) { UserGender = UserGenderMale.getText(); }
@@ -141,7 +147,7 @@ public class Controller implements Initializable {
 			fileName = file.getName();
 			String Address = file.toString().replaceAll("\\\\", "//");
 			new TestImageStore("112233", Address); 
-			board.setFilepath(Address);
+			filePath = Address;
 		}
 	}
 	  public void initialize(URL url, ResourceBundle rb) {
@@ -149,7 +155,7 @@ public class Controller implements Initializable {
 		  try {
 //			  listItems = FXCollections.observableArrayList("First");
 //			  listBoxMain.setItems(listItems);
-			  testItems = FXCollections.observableArrayList("Second");
+			  testItems = FXCollections.observableArrayList("second");
 			  testBoxMain.setItems(testItems);
 			  
 			  // Disable buttons to start

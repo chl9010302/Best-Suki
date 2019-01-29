@@ -95,7 +95,7 @@
                   <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="200.0">
                      <children>
                         <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;" text="Add" textFill="WHITE" onAction="#NAV_AddTestView"/>
-                        <Button mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;" text="Modify" textFill="WHITE" />
+                        <Button mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;" text="Modify" textFill="WHITE" onAction="#modify"/>
                         <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;" text="Delete" textFill="WHITE" onAction="#removeAction" />
                      </children>
                      <VBox.margin>
