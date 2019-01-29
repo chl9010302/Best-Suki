@@ -63,7 +63,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Text" textFill="WHITE">
+            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Text" textFill="WHITE" onAction="#NAV_TestBoardView">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>

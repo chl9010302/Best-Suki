@@ -88,7 +88,6 @@ public class Controller implements Initializable {
 	private void addAction(ActionEvent action){
 		listItems.add(txtAddItem.getText());
 		System.out.println("동적 추가");
-		txtAddItem.clear();
 	}
 	@FXML
 	private void deleteAction(ActionEvent action){
@@ -121,6 +120,13 @@ public class Controller implements Initializable {
 		System.out.println("동적 추가");
 		txtSubtitle.clear();
 		AddBoard addboard = new AddBoard(board);
+		for(int i=0; i<addboard.count()-1; i++) {
+			try {
+				testItems.add("dd");
+//				testItems = FXCollections.observableArrayList("Second");
+//				testBoxMain.setItems(testItems);
+			}catch(Exception e) { }
+		}
 	}
 	
 	@FXML
@@ -143,6 +149,7 @@ public class Controller implements Initializable {
 			fileName = file.getName();
 			String Address = file.toString().replaceAll("\\\\", "//");
 			new TestImageStore("112233", Address); 
+			board.setFilepath(Address);
 		}
 	}
 	  
@@ -151,8 +158,8 @@ public class Controller implements Initializable {
 		  try {
 			  listItems = FXCollections.observableArrayList("First");
 			  listBoxMain.setItems(listItems);
-//			  testItems = FXCollections.observableArrayList("Second");
-//			  testBoxMain.setItems(testItems);
+			  testItems = FXCollections.observableArrayList("Second");
+			  testBoxMain.setItems(testItems);
 			  
 			  // Disable buttons to start
 			  BtnAdd.setDisable(true);

@@ -24,7 +24,7 @@ public class AddBoard {
 		try {
 			 conn = application.DBConnection.getDBConection();
 			 pstmt = conn.prepareStatement(insertsql1);
-			  			pstmt.setString(1,board.getBoardId() );
+			  			pstmt.setString(1,board.getBoardId());
 			  			pstmt.setString(2,board.getSubtitle()); 
 			  			pstmt.setString(3, board.getFilepath()); 
 			  			pstmt.setString(4, board.getRadio1()); 
@@ -58,16 +58,21 @@ public class AddBoard {
 	}
 	
 	public int count(){
+		int rowcount = 0;
 		try {
 			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
 			String sql = sb.append("select count(*) from board")
 					.append(";").toString();
+			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			System.out.print(rs.getInt("count(*)"));
+			if(rs.next()) rowcount = rs.getInt(1);
+			
+			System.out.println("rowcount : " + rowcount );
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-        return 0;
+        return rowcount;
     }
 }

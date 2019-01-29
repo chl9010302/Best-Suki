@@ -16,7 +16,7 @@ public class DBConnection {
 		ResultSet rs = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/academymanagementdb?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC", 
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/academymangementdb?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC", 
 					"root", "root");
 			st = con.createStatement();
 
@@ -51,7 +51,7 @@ public class DBConnection {
 		ResultSet rs = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/academymanagementdb?serverTimezone=UTC",
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/academymangementdb?serverTimezone=UTC",
 					"root", "root");
 		
 			return con;
