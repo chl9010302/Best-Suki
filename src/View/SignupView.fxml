@@ -19,7 +19,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#NAV_SignUp" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #b59c9c" text="Sign up" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#NAV_SignUpView" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #b59c9c" text="Sign up" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -27,7 +27,7 @@
                         <Font name="Tahoma" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#NAV_Login" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #b59c9c;" text="Login" textFill="#b59c9c">
+                  <Button mnemonicParsing="false" onAction="#NAV_LoginView" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #b59c9c;" text="Login" textFill="#b59c9c">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>

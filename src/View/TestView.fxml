@@ -107,14 +107,14 @@
                               <Font name="Tahoma" size="16.0" />
                            </font>
                         </Label>
-                        <Button fx:id="SearchFile" mnemonicParsing="false" text="File Search" onAction="#fileChooserSelect" />
+                        <Button mnemonicParsing="false" text="File Search" onAction="#fileChooserSelect" />
                      </children>
                   </HBox>
                   <HBox prefHeight="30.0" prefWidth="200.0">
                      <children>
                         <RadioButton mnemonicParsing="false" text="1. " textFill="WHITE">
                            <toggleGroup>
-                              <ToggleGroup fx:id="Quest1Group" />
+                              <ToggleGroup fx:id="Quest1Group2" />
                            </toggleGroup>
                         </RadioButton>
                         <TextField promptText="Answer 1" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
@@ -130,7 +130,7 @@
                      <children>
                         <RadioButton mnemonicParsing="false" text="3. " textFill="WHITE">
                            <toggleGroup>
-                              <ToggleGroup fx:id="Quest1Group" />
+                              <ToggleGroup fx:id="Quest1Group2" />
                            </toggleGroup>
                         </RadioButton>
                         <TextField promptText="Answer 3" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
@@ -140,7 +140,7 @@
                      <children>
                         <RadioButton mnemonicParsing="false" text="4. " textFill="WHITE">
                            <toggleGroup>
-                              <ToggleGroup fx:id="Quest1Group" />
+                              <ToggleGroup fx:id="Quest1Group2" />
                            </toggleGroup>
                            <HBox.margin>
                               <Insets />
@@ -153,7 +153,7 @@
                      <children>
                         <RadioButton mnemonicParsing="false" text="5. " textFill="WHITE">
                            <toggleGroup>
-                              <ToggleGroup fx:id="Quest1Group" />
+                              <ToggleGroup fx:id="Quest1Group2" />
                            </toggleGroup>
                         </RadioButton>
                         <TextField promptText="Answer 5" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
