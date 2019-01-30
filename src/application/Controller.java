@@ -155,7 +155,7 @@ public class Controller implements Initializable {
 		  try {
 //			  listItems = FXCollections.observableArrayList("First");
 //			  listBoxMain.setItems(listItems);
-			  testItems = FXCollections.observableArrayList("second");
+			  testItems = FXCollections.observableArrayList();
 			  testBoxMain.setItems(testItems);
 			  
 			  // Disable buttons to start
@@ -177,6 +177,11 @@ public class Controller implements Initializable {
 				  }
 			  });    
 		  }catch(Exception e) {  }
+		  AddBoard addboard = new AddBoard();
+			addboard.getarraylist();
+			for(int i=0; i<addboard.getarraylist().size(); i++ ) {
+				testItems.add(addboard.getarraylist().get(i));
+			}
 	  }
 	public void fileChooserSelect(ActionEvent event) { 
 		openFile(); 
