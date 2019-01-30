@@ -4,11 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import DBController.AddBoard;
 import DBController.UserJoin;
+import DBController.UserLongin;
 import DBModel.BoardBean;
 import DBModel.UserBean;
 import ImageStore.TestImageStore;
@@ -39,6 +39,7 @@ public class Controller implements Initializable {
 	private UserBean user; // 회원가입 시 User 정보를 송신하기 위함.
 	private BoardBean board; // 게시판 보내
 	private Stage stage; // file choose 하기 위함.
+	private UserLongin login;
 	private ObservableList<String> listItems;
 	private ObservableList<String> testItems;
 	public static String userId;
@@ -69,6 +70,8 @@ public class Controller implements Initializable {
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
 	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }
 	@FXML // 회원가입 버튼 클릭 시 활성화
+	
+	
 	private void Signup(ActionEvent event) throws IOException {
 		LocalDate localDate = UserAge.getValue();
 		// 회원가입 시 정보가  인터페이스됨.
@@ -82,8 +85,13 @@ public class Controller implements Initializable {
 		user.setUserGender(UserGender);
 		user.setUserPhone(UserPhone.getText().toString());
 		user.setUserFmphone(UserFmphone.getText().toString());
+		
 		UserJoin join = new UserJoin(user);
 		// 회원가입과 함께 Login Page로 이동됨.
+		
+		login = new UserLongin();
+		login.loginCheck(UserId.getText().toString(),UserPassword.getText().toString());
+		
 		NAV(event, "../View/LoginView.fxml");
 	}
 	@FXML
