@@ -135,7 +135,6 @@ public class SqlTest {
                      System.out.print(rs.getString("flag"));
                      System.out.print("\n");
                 }
-            
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import DBModel.BoardBean;
 
@@ -12,10 +13,20 @@ public class AddBoard {
 	BoardBean board;
 	Connection conn = null;
 	Statement stmt = null;
-
+	ArrayList<String> arraylist;
+	
+	public ArrayList<String> getarraylist() {
+		select();
+		return arraylist;
+	}
+	
 	public AddBoard(BoardBean addboard) {
 		insert(addboard);
 	}
+	public AddBoard() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public boolean insert(BoardBean addboard) {
 		String insertsql1 = "insert into board(BoardId, Subtitle, Filepath, Radio1, Radio2, Radio3, Radio4, Radio5, Flag) values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	    PreparedStatement pstmt = null;
@@ -69,4 +80,24 @@ public class AddBoard {
 		
         return rowcount;
     }
+	
+	public boolean select() {
+		arraylist = new ArrayList();
+		StringBuilder sb = new StringBuilder();
+		try {
+			conn = application.DBConnection.getDBConection();
+			stmt = conn.createStatement();
+			String sql = sb.append("select * from board")
+					.append(";").toString(); 
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				arraylist.add(rs.getString("Subtitle"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

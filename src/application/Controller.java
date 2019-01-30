@@ -118,11 +118,6 @@ public class Controller implements Initializable {
 			board.setFlag(Radio5.getText().toString());
 		}
 		AddBoard addboard = new AddBoard(board);
-		testItems.add(txtSubtitle.getText().toString());
-		for(int i=0; i<addboard.count()-1; i++) {
-			try {
-			}catch(Exception e) { }
-		}
 	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
 	}
 	@FXML
@@ -132,7 +127,12 @@ public class Controller implements Initializable {
 	}
 	@FXML
 	private void modify(ActionEvent action) {
-		testItems.add("abc");
+		AddBoard addboard = new AddBoard();
+		addboard.getarraylist();
+		for(int i=0; i<addboard.getarraylist().size(); i++ ) {
+			testItems.add(addboard.getarraylist().get(i));
+		}
+		
 	}
 	public void radioSelect(ActionEvent action) {
 		if(UserGenderMale.isSelected()) { UserGender = UserGenderMale.getText(); }
