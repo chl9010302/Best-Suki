@@ -44,7 +44,6 @@ public class Controller implements Initializable {
 	private Stage stage; // file choose 하기 위함.
 	private UserLongin login;
 	private ObservableList<String> listItems;
-	private ObservableList<AddBoard> testItems = FXCollections.observableArrayList();
 	public static String userId;
 	public static String fileName;
 	public static String filePath;
@@ -73,7 +72,7 @@ public class Controller implements Initializable {
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { 
 
-		login = new UserLongin(user);
+//		login = new UserLongin(user);
 	//	login.loginCheck(UserId.getText().toString(),UserPassword.getText().toString());
 
 		NAV(event, "../View/MainView.fxml"); 
@@ -141,7 +140,6 @@ public class Controller implements Initializable {
 	@FXML
 	private void removeAction(ActionEvent action){
 	  int selectedItem = testBoxMain.getSelectionModel().getSelectedIndex();
-	  testItems.remove(selectedItem);
 	}
 	@FXML
 	private void modify(ActionEvent action) {
@@ -166,8 +164,7 @@ public class Controller implements Initializable {
 		  try {
 //			  listItems = FXCollections.observableArrayList("First");
 //			  listBoxMain.setItems(listItems);
-			  testItems = FXCollections.observableArrayList();
-//			  testBoxMain.setItems(testItems);
+			  
 			  // Disable buttons to start
 			  BtnAdd.setDisable(true);
 			  BtnDelete.setDisable(true);
@@ -186,15 +183,14 @@ public class Controller implements Initializable {
 					  }
 				  }
 			  }); 
+		  }catch(Exception e) {  }
+		  
+		  try {
 			  AddBoard addboard = new AddBoard();
 			  ColBoardId.setCellValueFactory(cellData -> cellData.getValue().getarraylist());
 			  ColSubtitle.setCellValueFactory(cellData -> cellData.getValue().getarraylist2());
 			  testTableView.setItems(addboard.getaddboard());
-		  }catch(Exception e) {  }
-//			addboard.getarraylist();
-//			for(int i=0; i<addboard.getarraylist().size(); i++ ) {
-//				testItems.add(new AddBoard (addboard.getarraylist(), addboard.getarraylist2()));
-//			}
+		  }catch(Exception e) {}
 	  }
 	public void fileChooserSelect(ActionEvent event) { 
 		openFile(); 

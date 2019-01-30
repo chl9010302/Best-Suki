@@ -17,11 +17,9 @@ public class AddBoard {
 	BoardBean board;
 	Connection conn = null;
 	Statement stmt = null;
-	ArrayList<StringProperty> arraylist;
 	private ObservableList<AddBoard> addboard = FXCollections.observableArrayList();
 	private StringProperty boardId;
 	private StringProperty subtitle;
-	ArrayList<StringProperty> arraylist2;
 	
 	public ObservableList<AddBoard> getaddboard() {
 		select();
@@ -102,8 +100,6 @@ public class AddBoard {
     }
 	
 	public boolean select() {
-		arraylist = new ArrayList();
-		arraylist2 = new ArrayList();
 		StringBuilder sb = new StringBuilder();
 		try {
 			conn = application.DBConnection.getDBConection();
@@ -112,7 +108,6 @@ public class AddBoard {
 					.append(";").toString(); 
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
-				System.out.println("ddd");
 				addboard.add(new AddBoard((String)rs.getString("BoardId"), (String)rs.getString("Subtitle")));
 			}
 			

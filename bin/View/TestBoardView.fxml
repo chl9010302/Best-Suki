@@ -63,7 +63,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Text" textFill="WHITE" onAction="#NAV_TestBoardView">
+            <Button mnemonicParsing="false" onAction="#NAV_TestBoardView" style="-fx-background-color: transparent;" text="Text" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>
@@ -91,12 +91,17 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <children>
-                  <ListView fx:id="testBoxMain" prefHeight="440.0" prefWidth="200.0" style="-fx-background-color: transparent;"/>
+                  <TableView fx:id="testTableView" prefHeight="450.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                    <columns>
+                      <TableColumn fx:id="ColBoardId" prefWidth="75.0" text="BoardId" />
+                      <TableColumn fx:id="ColSubtitle" prefWidth="578.0" text="Subtitle" />
+                    </columns>
+                  </TableView>
                   <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="200.0">
                      <children>
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;" text="Add" textFill="WHITE" onAction="#NAV_AddTestView"/>
-                        <Button mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;" text="Modify" textFill="WHITE" onAction="#modify"/>
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;" text="Delete" textFill="WHITE" onAction="#removeAction" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#NAV_AddTestView" style="-fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;" text="Add" textFill="WHITE" />
+                        <Button mnemonicParsing="false" onAction="#modify" style="-fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;" text="Modify" textFill="WHITE" />
+                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#removeAction" style="-fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;" text="Delete" textFill="WHITE" />
                      </children>
                      <VBox.margin>
                         <Insets top="5.0" />
