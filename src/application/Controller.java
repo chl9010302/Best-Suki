@@ -65,8 +65,16 @@ public class Controller implements Initializable {
 	@FXML private Label txtFilepath;
 	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { NAV(event, "../View/SignupView.fxml"); }
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
-	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml"); login = new UserLongin();
-	login.loginCheck(UserId.getText().toString(),UserPassword.getText().toString());}
+	@FXML private void NAV_MainView(ActionEvent event) throws IOException { 
+		
+		login = new UserLongin(user);
+	//	login.loginCheck(UserId.getText().toString(),UserPassword.getText().toString());
+	
+		NAV(event, "../View/MainView.fxml"); 
+	}
+		
+		
+	
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
 	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }

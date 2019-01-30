@@ -19,22 +19,31 @@ public class UserLongin {
 	UserBean user;
 	ResultSet rs;
 	PreparedStatement pstmt;
+	
+	public UserLongin(UserBean loginuser)
+	{
+		loginCheck(loginuser);
+	}
 
 	
-	public void loginCheck(String UserId , String UserPassword) {
+	public void loginCheck(UserBean loginuser) {
 		
 		
 		String selectsql = "SELECT UserPassword FROM USER WHERE UserId=?";
 	     pstmt = null;
+	     user = loginuser;
+	     
+	   //  String UserId ;
+	     //String UserPassword ;
 	
 		try {
 			 conn = application.DBConnection.getDBConection();
 			 pstmt = conn.prepareStatement(selectsql);
-			pstmt.setString(1, UserId);
+			pstmt.setString(1, user.getUserId());
 			rs = pstmt.executeQuery();
 			 
 			 while(rs.next()) { //결과가 존재한다면
-				 if(rs.getString(1).equals(UserPassword)) {
+				 if(rs.getString(1).equals(user.getUserPassword())) {
 					System.out.println("로그인성공");
 				 }
 				 else {
