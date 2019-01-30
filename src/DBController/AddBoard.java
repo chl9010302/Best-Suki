@@ -8,23 +8,43 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import DBModel.BoardBean;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class AddBoard {
 	BoardBean board;
 	Connection conn = null;
 	Statement stmt = null;
-	ArrayList<String> arraylist;
+	ArrayList<StringProperty> arraylist;
+	private ObservableList<AddBoard> addboard = FXCollections.observableArrayList();
+	private StringProperty boardId;
+	private StringProperty subtitle;
+	ArrayList<StringProperty> arraylist2;
 	
-	public ArrayList<String> getarraylist() {
+	public ObservableList<AddBoard> getaddboard() {
 		select();
-		return arraylist;
+		return addboard;
 	}
 	
-	public AddBoard(BoardBean addboard) {
-		insert(addboard);
+	public StringProperty getarraylist() {
+		return boardId;
 	}
+	public StringProperty getarraylist2() {
+		return subtitle;
+	}
+	
+	
 	public AddBoard() {
 		// TODO Auto-generated constructor stub
+	}
+	public AddBoard(String BoardId, String Subtitle) {
+		this.boardId = new SimpleStringProperty(BoardId);
+		this.subtitle = new SimpleStringProperty(Subtitle); 
+	}
+	public AddBoard(BoardBean addboard) {
+		insert(addboard);
 	}
 
 	public boolean insert(BoardBean addboard) {
@@ -83,6 +103,7 @@ public class AddBoard {
 	
 	public boolean select() {
 		arraylist = new ArrayList();
+		arraylist2 = new ArrayList();
 		StringBuilder sb = new StringBuilder();
 		try {
 			conn = application.DBConnection.getDBConection();
@@ -91,7 +112,8 @@ public class AddBoard {
 					.append(";").toString(); 
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
-				arraylist.add(rs.getString("Subtitle"));
+				System.out.println("ddd");
+				addboard.add(new AddBoard((String)rs.getString("BoardId"), (String)rs.getString("Subtitle")));
 			}
 			
 		} catch (SQLException e) {
