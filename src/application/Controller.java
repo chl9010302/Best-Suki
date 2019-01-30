@@ -47,6 +47,7 @@ public class Controller implements Initializable {
 	public static String userId;
 	public static String fileName;
 	public static String filePath;
+	public static int setid = 0;
 	
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
@@ -115,14 +116,14 @@ public class Controller implements Initializable {
 	@FXML
 	private void saveAction(ActionEvent action) {
 		board = new BoardBean();
-		board.setBoardId("1");
+		board.setBoardId(String.valueOf(setid+1));
 		board.setSubtitle(txtSubtitle.getText().toString());
 		board.setFilepath(filePath);
 		board.setRadio1(Radio1.getText().toString());
-		board.setRadio2(Radio1.getText().toString());
-		board.setRadio3(Radio1.getText().toString());
-		board.setRadio4(Radio1.getText().toString());
-		board.setRadio5(Radio1.getText().toString());
+		board.setRadio2(Radio2.getText().toString());
+		board.setRadio3(Radio3.getText().toString());
+		board.setRadio4(Radio4.getText().toString());
+		board.setRadio5(Radio5.getText().toString());
 		if(Rb1.isSelected()) {
 			board.setFlag(Radio1.getText().toString());
 		}else if(Rb2.isSelected()) {
@@ -136,6 +137,7 @@ public class Controller implements Initializable {
 		}
 		AddBoard addboard = new AddBoard(board);
 	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
+	    setid++;
 	}
 	@FXML
 	private void removeAction(ActionEvent action){
@@ -143,6 +145,7 @@ public class Controller implements Initializable {
 	}
 	@FXML
 	private void modify(ActionEvent action) {
+		testTableView.refresh();
 	}
 	public void radioSelect(ActionEvent action) {
 		if(UserGenderMale.isSelected()) { UserGender = UserGenderMale.getText(); }
@@ -162,9 +165,6 @@ public class Controller implements Initializable {
 	  public void initialize(URL url, ResourceBundle rb) {
 	    // TODO
 		  try {
-//			  listItems = FXCollections.observableArrayList("First");
-//			  listBoxMain.setItems(listItems);
-			  
 			  // Disable buttons to start
 			  BtnAdd.setDisable(true);
 			  BtnDelete.setDisable(true);
@@ -190,6 +190,7 @@ public class Controller implements Initializable {
 			  ColBoardId.setCellValueFactory(cellData -> cellData.getValue().getarraylist());
 			  ColSubtitle.setCellValueFactory(cellData -> cellData.getValue().getarraylist2());
 			  testTableView.setItems(addboard.getaddboard());
+			  setid = addboard.count();
 		  }catch(Exception e) {}
 	  }
 	public void fileChooserSelect(ActionEvent event) { 
