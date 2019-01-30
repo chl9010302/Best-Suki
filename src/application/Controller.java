@@ -28,10 +28,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class Controller implements Initializable {
 	//Declare JAVA
@@ -41,7 +44,7 @@ public class Controller implements Initializable {
 	private Stage stage; // file choose 하기 위함.
 	private UserLongin login;
 	private ObservableList<String> listItems;
-	private ObservableList<String> testItems;
+	private ObservableList<AddBoard> testItems = FXCollections.observableArrayList();
 	public static String userId;
 	public static String fileName;
 	public static String filePath;
@@ -60,21 +63,21 @@ public class Controller implements Initializable {
 	@FXML private Button BtnDelete;
 	@FXML private ListView<String> listBoxMain;
 	@FXML private ListView<String> testBoxMain;
+	@FXML private TableView<AddBoard> testTableView;
+	@FXML private TableColumn<AddBoard, String> ColBoardId;
+	@FXML private TableColumn<AddBoard, String> ColSubtitle;
 	@FXML private TextField txtAddItem; 
 	@FXML private TextField txtSubtitle; 
 	@FXML private Label txtFilepath;
 	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { NAV(event, "../View/SignupView.fxml"); }
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { 
-		
+
 		login = new UserLongin(user);
 	//	login.loginCheck(UserId.getText().toString(),UserPassword.getText().toString());
-	
+
 		NAV(event, "../View/MainView.fxml"); 
 	}
-		
-		
-	
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
 	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }
@@ -97,7 +100,6 @@ public class Controller implements Initializable {
 		
 		UserJoin join = new UserJoin(user);
 		// 회원가입과 함께 Login Page로 이동됨.
-		
 		
 		
 		NAV(event, "../View/LoginView.fxml");
@@ -143,12 +145,6 @@ public class Controller implements Initializable {
 	}
 	@FXML
 	private void modify(ActionEvent action) {
-		AddBoard addboard = new AddBoard();
-		addboard.getarraylist();
-		for(int i=0; i<addboard.getarraylist().size(); i++ ) {
-			testItems.add(addboard.getarraylist().get(i));
-		}
-		
 	}
 	public void radioSelect(ActionEvent action) {
 		if(UserGenderMale.isSelected()) { UserGender = UserGenderMale.getText(); }
@@ -159,7 +155,6 @@ public class Controller implements Initializable {
 		FileChooser fileChooser = new FileChooser();
 		File file = fileChooser.showOpenDialog(stage);
 		if(file != null) {
-			System.out.println("File Chosen : " + file);
 			fileName = file.getName();
 			String Address = file.toString().replaceAll("\\\\", "//");
 			new TestImageStore("112233", Address); 
@@ -172,8 +167,7 @@ public class Controller implements Initializable {
 //			  listItems = FXCollections.observableArrayList("First");
 //			  listBoxMain.setItems(listItems);
 			  testItems = FXCollections.observableArrayList();
-			  testBoxMain.setItems(testItems);
-			  
+//			  testBoxMain.setItems(testItems);
 			  // Disable buttons to start
 			  BtnAdd.setDisable(true);
 			  BtnDelete.setDisable(true);
@@ -191,13 +185,16 @@ public class Controller implements Initializable {
 						  BtnDelete.setDisable(false);
 					  }
 				  }
-			  });    
+			  }); 
+			  AddBoard addboard = new AddBoard();
+			  ColBoardId.setCellValueFactory(cellData -> cellData.getValue().getarraylist());
+			  ColSubtitle.setCellValueFactory(cellData -> cellData.getValue().getarraylist2());
+			  testTableView.setItems(addboard.getaddboard());
 		  }catch(Exception e) {  }
-		  AddBoard addboard = new AddBoard();
-			addboard.getarraylist();
-			for(int i=0; i<addboard.getarraylist().size(); i++ ) {
-				testItems.add(addboard.getarraylist().get(i));
-			}
+//			addboard.getarraylist();
+//			for(int i=0; i<addboard.getarraylist().size(); i++ ) {
+//				testItems.add(new AddBoard (addboard.getarraylist(), addboard.getarraylist2()));
+//			}
 	  }
 	public void fileChooserSelect(ActionEvent event) { 
 		openFile(); 
