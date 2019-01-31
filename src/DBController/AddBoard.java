@@ -146,7 +146,7 @@ public class AddBoard {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return lastselect+1;
+		return ++lastselect;
 	}
 	
 }

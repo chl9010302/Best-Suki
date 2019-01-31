@@ -7,15 +7,16 @@ CREATE TABLE temp_table(
 );
 
 CREATE TABLE board(
-   id varchar(20),
-  subtitle varchar(20),
-  filepath varchar(255),
-  radio1 varchar(3),
-  radio2 varchar(3),
-  radio3 varchar(3),
-  radio4 varchar(3),
-  radio5 varchar(3),
-  flag varchar(3)
+  BoardId varchar(20) NOT NULL,
+  Subtitle varchar(255),
+  Filepath varchar(255),
+  Radio1 varchar(255),
+  Radio2 varchar(255),
+  Radio3 varchar(255),
+  Radio4 varchar(255),
+  Radio5 varchar(255),
+  Flag varchar(255)
+  PRIMARY KEY  (`BoardId`)
 );
 
 insert into temp_table(id, title, flag) values('1','test1','Y');
