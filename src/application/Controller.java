@@ -74,7 +74,7 @@ public class Controller implements Initializable {
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { 
 
 //		login = new UserLongin(user);
-	//	login.loginCheck(UserId.getText().toString(),UserPassword.getText().toString());
+//		login.loginCheck(UserId.getText().toString(),UserPassword.getText().toString());
 
 		NAV(event, "../View/MainView.fxml"); 
 	}
@@ -141,7 +141,9 @@ public class Controller implements Initializable {
 	}
 	@FXML
 	private void removeAction(ActionEvent action){
-	  int selectedItem = testBoxMain.getSelectionModel().getSelectedIndex();
+		AddBoard addboard = new AddBoard();
+	  int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
+	  addboard.delete(selectedItem+1);
 	}
 	@FXML
 	private void modify(ActionEvent action) {
