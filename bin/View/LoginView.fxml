@@ -52,7 +52,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
-                  <PasswordField prefWidth="230.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+                  <PasswordField fx:id="UserPassword" prefWidth="230.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>

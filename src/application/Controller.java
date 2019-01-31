@@ -143,11 +143,11 @@ public class Controller implements Initializable {
 	private void removeAction(ActionEvent action){
 		AddBoard addboard = new AddBoard();
 	  int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
-	  addboard.delete(selectedItem+1);
+	  addboard.delete(Integer.parseInt(testTableView.getItems().get(selectedItem).getarraylist().getValue()));
+	  testTableView.setItems(addboard.getaddboard());
 	}
 	@FXML
 	private void modify(ActionEvent action) {
-		testTableView.refresh();
 	}
 	public void radioSelect(ActionEvent action) {
 		if(UserGenderMale.isSelected()) { UserGender = UserGenderMale.getText(); }
