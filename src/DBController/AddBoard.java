@@ -117,4 +117,19 @@ public class AddBoard {
 		}
 		return false;
 	}
+	public void delete(int id) {
+		StringBuilder sb = new StringBuilder();
+		conn = application.DBConnection.getDBConection();
+		String sql = sb.append("delete from board where BoardId = ")
+				.append(id)
+				.append(";")
+				.toString();
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
