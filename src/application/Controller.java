@@ -116,7 +116,8 @@ public class Controller implements Initializable {
 	@FXML
 	private void saveAction(ActionEvent action) {
 		board = new BoardBean();
-		board.setBoardId(String.valueOf(setid+1));
+		AddBoard addboard = new AddBoard();
+		board.setBoardId(String.valueOf(addboard.lastselect()));
 		board.setSubtitle(txtSubtitle.getText().toString());
 		board.setFilepath(filePath);
 		board.setRadio1(Radio1.getText().toString());
@@ -135,9 +136,9 @@ public class Controller implements Initializable {
 		}else {
 			board.setFlag(Radio5.getText().toString());
 		}
-		AddBoard addboard = new AddBoard(board);
 	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
-	    setid++;
+	    AddBoard addboard2 = new AddBoard(board);
+	    
 	}
 	@FXML
 	private void removeAction(ActionEvent action){

@@ -132,4 +132,21 @@ public class AddBoard {
 			e.printStackTrace();
 		}
 	}
+	public int lastselect() {
+		int lastselect = 0;
+		StringBuilder sb = new StringBuilder();
+		try {
+			conn = application.DBConnection.getDBConection();
+			stmt = conn.createStatement();
+			String sql = sb.append("select * from board order by BoardId desc limit 1")
+					.append(";").toString(); 
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs.next()) lastselect = rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lastselect+1;
+	}
+	
 }
