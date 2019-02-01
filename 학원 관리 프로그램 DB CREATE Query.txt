@@ -72,7 +72,7 @@ CREATE TABLE `TestDetail` (
   `TestDetail_Data4` varchar(255),  
   `TestDetail_Data5` varchar(255),  
   `TestDetail_CorrectAnswer` varchar(1),  
-  `TestDetail_Image` MEDIUMBLOB, 
+  `TestDetail_Image` varchar(255),  
   PRIMARY KEY  (`TestDetail_pkey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 //TestDetail_pkey 기본키

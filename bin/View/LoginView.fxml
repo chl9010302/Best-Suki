@@ -59,7 +59,7 @@
                   </PasswordField>
                </children>
             </HBox>
-            <Button Id="Login" mnemonicParsing="false" opacity="0.72" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3;" text="LOGIN" textFill="WHITE" onAction="#NAV_MainView">
+            <Button Id="Login" mnemonicParsing="false" opacity="0.72" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3;" text="LOGIN" textFill="WHITE" onAction="#login">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>
