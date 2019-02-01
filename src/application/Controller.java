@@ -14,7 +14,6 @@ import DBModel.UserBean;
 import ImageStore.TestImageStore;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,10 +30,11 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 public class Controller implements Initializable {
 	//Declare JAVA
@@ -47,7 +47,7 @@ public class Controller implements Initializable {
 	public static String userId;
 	public static String fileName;
 	public static String filePath;
-	public static int setid = 0;
+	
 	
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
@@ -57,12 +57,12 @@ public class Controller implements Initializable {
 	@FXML private Button Property_userID;
 	@FXML private RadioButton UserGenderMale;
 	@FXML private RadioButton UserGenderFeMale;
+	@FXML private ToggleGroup Quest1Group1;
 	@FXML private Text result;
 	@FXML private Button BtnSave;
 	@FXML private Button BtnAdd;
 	@FXML private Button BtnDelete;
 	@FXML private ListView<String> listBoxMain;
-	@FXML private ListView<String> testBoxMain;
 	@FXML private TableView<AddBoard> testTableView;
 	@FXML private TableColumn<AddBoard, String> ColBoardId;
 	@FXML private TableColumn<AddBoard, String> ColSubtitle;
@@ -125,6 +125,21 @@ public class Controller implements Initializable {
 		board.setRadio3(Radio3.getText().toString());
 		board.setRadio4(Radio4.getText().toString());
 		board.setRadio5(Radio5.getText().toString());
+		Quest1Group1.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+			public void changed(ObservableValue<? extends Toggle> observable, Toggle old_toggle, Toggle new_toggle) {
+				System.out.println("qwewqe");
+				if(Quest1Group1.getSelectedToggle() != null) {
+					System.out.println("qwrwqr : " + Quest1Group1.getSelectedToggle().toString());
+				}
+			}
+		});
+		txtAddItem.focusedProperty().addListener(new ChangeListener<Boolean>() {
+			  public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				  if(txtAddItem.isFocused()){
+					  BtnAdd.setDisable(false);
+				  }
+			  }
+		  });    
 		if(Rb1.isSelected()) {
 			board.setFlag(Radio1.getText().toString());
 		}else if(Rb2.isSelected()) {
@@ -137,8 +152,12 @@ public class Controller implements Initializable {
 			board.setFlag(Radio5.getText().toString());
 		}
 	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
-	    AddBoard addboard2 = new AddBoard(board);
+	    AddBoard Excute = new AddBoard(board);
 	    
+	}
+	@FXML
+	private void Quest1Group1Action(ActionEvent action) {
+		System.out.println(Quest1Group1.getSelectedToggle().toString());
 	}
 	@FXML
 	private void removeAction(ActionEvent action){
@@ -150,6 +169,7 @@ public class Controller implements Initializable {
 	@FXML
 	private void modify(ActionEvent action) {
 	}
+	
 	public void radioSelect(ActionEvent action) {
 		if(UserGenderMale.isSelected()) { UserGender = UserGenderMale.getText(); }
 		if(UserGenderFeMale.isSelected()) { UserGender = UserGenderFeMale.getText(); }
@@ -193,7 +213,6 @@ public class Controller implements Initializable {
 			  ColBoardId.setCellValueFactory(cellData -> cellData.getValue().getarraylist());
 			  ColSubtitle.setCellValueFactory(cellData -> cellData.getValue().getarraylist2());
 			  testTableView.setItems(addboard.getaddboard());
-			  setid = addboard.count();
 		  }catch(Exception e) {}
 	  }
 	public void fileChooserSelect(ActionEvent event) { 
