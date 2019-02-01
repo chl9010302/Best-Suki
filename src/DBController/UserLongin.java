@@ -19,7 +19,7 @@ public class UserLongin {
 	public int loginCheck(String user_id, String user_pw) {
 		int i = 0;
 		sql = "SELECT USERID FROM USER WHERE USERID = ? AND USERPASSWORD = ?";
-
+		System.out.println("Userid : " + user_id + user_pw);
 		try {
 			conn = application.DBConnection.getDBConection();
 			pstmt = conn.prepareStatement(sql);
@@ -29,7 +29,7 @@ public class UserLongin {
 			 
 			 while(rs.next()) {
 				 if(rs.getString("USERID") != null) {
-					 sql = "UPDATE SET USER USERLOGINSESSION = 1 WHERE USERID = ?";
+					 sql = "UPDATE USER SET USERLOGINSESSION = 1 WHERE USERID = ?";
 					 pstmt = conn.prepareStatement(sql);
 					 pstmt.setString(1, user_id);
 					 i = pstmt.executeUpdate();
