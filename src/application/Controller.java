@@ -125,21 +125,14 @@ public class Controller implements Initializable {
 		board.setRadio3(Radio3.getText().toString());
 		board.setRadio4(Radio4.getText().toString());
 		board.setRadio5(Radio5.getText().toString());
-		Quest1Group1.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-			public void changed(ObservableValue<? extends Toggle> observable, Toggle old_toggle, Toggle new_toggle) {
-				System.out.println("qwewqe");
-				if(Quest1Group1.getSelectedToggle() != null) {
-					System.out.println("qwrwqr : " + Quest1Group1.getSelectedToggle().toString());
-				}
-			}
-		});
-		txtAddItem.focusedProperty().addListener(new ChangeListener<Boolean>() {
-			  public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-				  if(txtAddItem.isFocused()){
-					  BtnAdd.setDisable(false);
-				  }
-			  }
-		  });    
+//		Quest1Group1.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+//			public void changed(ObservableValue<? extends Toggle> observable, Toggle old_toggle, Toggle new_toggle) {
+//				System.out.println("qwewqe");
+//				if(Quest1Group1.getSelectedToggle() != null) {
+//					System.out.println("qwrwqr : " + Quest1Group1.getSelectedToggle().toString());
+//				}
+//			}
+//		});
 		if(Rb1.isSelected()) {
 			board.setFlag(Radio1.getText().toString());
 		}else if(Rb2.isSelected()) {

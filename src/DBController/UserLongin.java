@@ -28,13 +28,12 @@ public class UserLongin {
 	
 	public void loginCheck(UserBean loginuser) {
 		
-		
 		String selectsql = "SELECT UserPassword FROM USER WHERE UserId=?";
 	     pstmt = null;
 	     user = loginuser;
 	     
 	   //  String UserId ;
-	     //String UserPassword ;
+	   //  String UserPassword ;
 	
 		try {
 			 conn = application.DBConnection.getDBConection();
