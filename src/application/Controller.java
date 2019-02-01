@@ -2,7 +2,9 @@ package application;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -12,6 +14,7 @@ import DBController.UserLongin;
 import DBModel.BoardBean;
 import DBModel.UserBean;
 import ImageStore.TestImageStore;
+import academyutil.Sha256;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -47,6 +50,7 @@ public class Controller implements Initializable {
 	public static String userId;
 	public static String fileName;
 	public static String filePath;
+	Sha256 sha256 = new Sha256();
 	
 	
 	//Declare FXML
@@ -73,10 +77,6 @@ public class Controller implements Initializable {
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { 
 
-//		login = new UserLongin(user);
-//		login.loginCheck(UserId.getText().toString(),UserPassword.getText().toString());
-
-		NAV(event, "../View/MainView.fxml"); 
 	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
@@ -84,12 +84,31 @@ public class Controller implements Initializable {
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	
 	
-	private void Signup(ActionEvent event) throws IOException {
+	private void login(ActionEvent event) {
+		
+		try {
+			int i = login.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
+			if(i == 1)
+				NAV(event, "../View/MainView.fxml");
+			else
+				System.out.println("실패시 뷰 구현해주세요");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void Signup(ActionEvent event) throws IOException, NoSuchAlgorithmException {
 		LocalDate localDate = UserAge.getValue();
 		// 회원가입 시 정보가  인터페이스됨.
 		user = new UserBean();
 		user.setUserId(UserId.getText().toString());
-		user.setUserPassword(UserPassword.getText().toString());
+		user.setUserPassword(sha256.sha256(UserPassword.getText()));
 		user.setUserName(UserName.getText().toString());
 		user.setUserAddress(UserAddress.getText().toString());
 		user.setUserSchoolName(UserSchoolName.getText().toString());

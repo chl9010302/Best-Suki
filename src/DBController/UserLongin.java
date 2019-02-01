@@ -12,41 +12,31 @@ import DBModel.UserBean;
 public class UserLongin {
 	
 	Connection conn = null;
-	
-	/*자바쪽은 DB쪽으로 SQL 전송 , DB는 처리 된 결과를 다시 자바 프로그램에 전달하는 역활을 하는 객체
-	PreparedStatement
-	*/
-	UserBean user;
 	ResultSet rs;
 	PreparedStatement pstmt;
+	String sql;
 	
-	public UserLongin(UserBean loginuser)
-	{
-		loginCheck(loginuser);
-	}
+	public int loginCheck(String user_id, String user_pw) {
+		int i = 0;
+		sql = "SELECT USERID FROM USER WHERE USERID = ? AND USERPASSWORD = ?";
 
-	
-	public void loginCheck(UserBean loginuser) {
-		
-		String selectsql = "SELECT UserPassword FROM USER WHERE UserId=?";
-	     pstmt = null;
-	     user = loginuser;
-	     
-	   //  String UserId ;
-	   //  String UserPassword ;
-	
 		try {
-			 conn = application.DBConnection.getDBConection();
-			 pstmt = conn.prepareStatement(selectsql);
-			pstmt.setString(1, user.getUserId());
+			conn = application.DBConnection.getDBConection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, user_pw);
 			rs = pstmt.executeQuery();
 			 
-			 while(rs.next()) { //결과가 존재한다면
-				 if(rs.getString(1).equals(user.getUserPassword())) {
-					System.out.println("로그인성공");
-				 }
-				 else {
-					 System.out.println("로그인 실패");
+			 while(rs.next()) {
+				 if(rs.getString("USERID") != null) {
+					 sql = "UPDATE SET USER USERLOGINSESSION = 1 WHERE USERID = ?";
+					 pstmt = conn.prepareStatement(sql);
+					 pstmt.setString(1, user_id);
+					 i = pstmt.executeUpdate();
+					 if(i == 1) 
+						i = user_log(user_id);
+					 else
+						 System.out.println("로그인 실패 뷰 구현해주세요.");
 				 }
 			 }
 						
@@ -55,19 +45,28 @@ public class UserLongin {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (conn != null)
-					conn.close();
-		} catch (SQLException e2) {
-
-			}
-			try {
+				if (rs != null)
+					rs.close();
 				if (pstmt != null)
 					pstmt.close();
-			} catch (SQLException e3) {
-
-			}
+				if (conn != null)
+					conn.close();				
+		}catch (SQLException e2) {
+			e2.printStackTrace();
 		}
-		
+			
+		}
+		return i;
+	}
+	
+	private int user_log(String user_id) throws SQLException {
+		int i = 0;
+		sql = "INSERT INTO USER_LOG(USER_ID, USER_ACTION, WRITE_DATE)VALUES(?,?,now())";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, user_id);
+		pstmt.setString(2, "로그인");
+		i = pstmt.executeUpdate();
+		return i;
 	}
 }
 
