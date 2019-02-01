@@ -82,10 +82,7 @@ public class Controller implements Initializable {
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
 	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }
 	@FXML // 회원가입 버튼 클릭 시 활성화
-	
-	
 	private void login(ActionEvent event) {
-		
 		try {
 			int i = login.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 			if(i == 1)
@@ -102,7 +99,7 @@ public class Controller implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
+	@FXML
 	private void Signup(ActionEvent event) throws IOException, NoSuchAlgorithmException {
 		LocalDate localDate = UserAge.getValue();
 		// 회원가입 시 정보가  인터페이스됨.
