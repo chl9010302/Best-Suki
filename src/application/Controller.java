@@ -25,6 +25,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -33,7 +35,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -83,12 +84,17 @@ public class Controller implements Initializable {
 	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	private void login(ActionEvent event) {
+		UserLongin login = new UserLongin();
 		try {
 			int i = login.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 			if(i == 1)
 				NAV(event, "../View/MainView.fxml");
-			else
-				System.out.println("실패시 뷰 구현해주세요");
+			else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Message Here...");
+				alert.setHeaderText("실패 시 뷰");
+				alert.showAndWait();
+			}
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
