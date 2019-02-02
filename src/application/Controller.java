@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import DBController.AddBoard;
@@ -31,6 +32,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -55,9 +58,10 @@ public class Controller implements Initializable {
 	public static String userId;
 	public static String fileName;
 	public static String filePath;
+	public static String Login_Id;
 	Sha256 sha256 = new Sha256();
-	
-	
+		
+		
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
 	@FXML private TextField Radio1, Radio2, Radio3, Radio4, Radio5;
@@ -84,24 +88,23 @@ public class Controller implements Initializable {
 	@FXML private Label txtFilepath;
 	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { NAV(event, "../View/SignupView.fxml"); }
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
-	@FXML private void NAV_MainView(ActionEvent event) throws IOException { 
-
-	}
+	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
 	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }
-	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/StasticsView.fxml"); }
+	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { NAV(event, "../View/StasticsView.fxml"); }
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	private void login(ActionEvent event) {
 		UserLongin login = new UserLongin();
 		try {
 			int i = login.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
+			Login_Id = UserId.getText().toString();
 			if(i == 1)
 				NAV(event, "../View/MainView.fxml");
 			else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Message Here...");
-				alert.setHeaderText("실패 시 뷰");
+				alert.setHeaderText("로그인에 실패하셨습니다.");
 				alert.showAndWait();
 			}
 		} catch (NoSuchAlgorithmException e) {
@@ -112,6 +115,22 @@ public class Controller implements Initializable {
 			e.printStackTrace();
 		}catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	@FXML
+	private void logout(ActionEvent event) {
+		UserLongin logout = new UserLongin();
+		ButtonType foo = new ButtonType("foo", ButtonBar.ButtonData.OK_DONE);
+		ButtonType bar = new ButtonType("bar", ButtonBar.ButtonData.CANCEL_CLOSE);
+		Alert alert = new Alert(AlertType.WARNING,"Would you want to logout?", foo, bar);
+		alert.setTitle("Logout");
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.orElse(bar) == foo) {
+			try {
+				System.out.println("Id : " + Login_Id);
+				logout.logout(Login_Id);
+				NAV(event, "../View/LoginView.fxml");
+			}catch(Exception e) { }
 		}
 	}
 	@FXML
