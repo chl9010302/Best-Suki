@@ -4,10 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 
-import DBModel.UserBean;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class UserLongin {
 	
@@ -19,7 +18,6 @@ public class UserLongin {
 	public int loginCheck(String user_id, String user_pw) {
 		int i = 0;
 		sql = "SELECT USERID FROM USER WHERE USERID = ? AND USERPASSWORD = ?";
-		System.out.println("Userid : " + user_id + user_pw);
 		try {
 			conn = application.DBConnection.getDBConection();
 			pstmt = conn.prepareStatement(sql);
@@ -35,8 +33,8 @@ public class UserLongin {
 					 i = pstmt.executeUpdate();
 					 if(i == 1) 
 						i = user_log(user_id);
-					 else
-						 System.out.println("로그인 실패 뷰 구현해주세요.");
+					 else {
+					 }
 				 }
 			 }
 						
@@ -68,6 +66,17 @@ public class UserLongin {
 		i = pstmt.executeUpdate();
 		return i;
 	}
+	public void logout(String user_id) throws SQLException {
+		sql = "UPDATE USER SET USERLOGINSESSION = 0 WHERE USERID = ?";
+		conn = application.DBConnection.getDBConection();
+		System.out.println("Id2 : " + user_id);
+		pstmt.setString(1, user_id);
+		pstmt = conn.prepareStatement(sql);
+		System.out.println("sql : " + sql);
+		try {
+			pstmt.executeUpdate(sql);
+		}catch(Exception e) { }
+	} 
 }
 
 	
