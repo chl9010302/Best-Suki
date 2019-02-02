@@ -12,13 +12,13 @@ SET foreign_key_checks = 0;
 DROP TABLE user;
 
 CREATE TABLE `user` (
-  `UserId` varchar(20)  NOT NULL,        
-  `UserPassword` varchar(20) NOT NULL,
+  `UserId` INT(20)  NOT NULL,        
+  `UserPassword` VARCHAR(255) NOT NULL,
   `UserName` varchar(20)  NOT NULL,
   `UserAddress` varchar(20),
   `UserSchoolName` varchar(20),
-  `UserAge` varchar(10),
-  `UserGender` varchar(20),
+  `UserAge` VARCHAR(255),
+  `UserGender` VARCHAR(255),
   `UserStudentnumber` varchar(20) NOT NULL,
   `UserPhone` varchar(20)  NOT NULL,
   `UserFmphone` varchar(20) NOT NULL,
