@@ -12,7 +12,7 @@ SET foreign_key_checks = 0;
 DROP TABLE user;
 
 CREATE TABLE `user` (
-  `UserId` INT(20)  NOT NULL,        
+  `UserId` VARCHAR(255)  NOT NULL,        
   `UserPassword` VARCHAR(255) NOT NULL,
   `UserName` varchar(20)  NOT NULL,
   `UserAddress` varchar(20),
@@ -64,14 +64,15 @@ CREATE TABLE `Test` (
 
 
 CREATE TABLE `TestDetail` (
-  `TestDetail_pkey`  varchar(20) NOT NULL,
+  `TestDetail_pkey`  varchar(255) NOT NULL,
   `TestDetail_Data`  varchar(255),  
   `TestDetail_Data2` varchar(255),  
   `TestDetail_Data3` varchar(255),  
   `TestDetail_Data4` varchar(255),  
   `TestDetail_Data5` varchar(255),  
-  `TestDetail_CorrectAnswer` varchar(1),  
-  `TestDetail_Image` varchar(255),  
+  `TestDetail_CorrectAnswer` varchar(255),  
+  `TestDetail_Image` varchar(255), 
+  TestDetail_Subtitle varchar(255),
   PRIMARY KEY  (`TestDetail_pkey`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 //TestDetail_pkey 기본키
@@ -104,20 +105,20 @@ CREATE TABLE `sGrade` (
 
 
 CREATE TABLE `sDate` (
-  `UserStudentnumber` varchar(20) NOT NULL,
-  `sDate_Logintime` varchar(20) NOT NULL,
-  `sDate_Logouttime` varchar(20),
-  `sDate_IsLate` varchar(1),               
-  `sDate_IsFinish` varchar(1),             
-  FOREIGN KEY (`UserStudentnumber`) REFERENCES `user` (`UserStudentnumber`)
+  `UserId` VARCHAR(255)  NOT NULL,    
+  `sDate_Logintime` varchar(255) NOT NULL,
+  `sDate_Logouttime` varchar(255),
+  `sDate_IsLate` varchar(1),                
+  `sDate_IsFinish` varchar(1),              
+  FOREIGN KEY (`UserId`) REFERENCES `user` (`UserId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 // UserStudentnumber User 기봊키값
 // sDate_Logintime 최초 학원등원 
 // sDate_Logouttime 학원 퇴실한 시간
-// sDate_IsLate  지각체크
+// sDate_IsLate  지각체크 
 // sDate_IsFinish 조퇴체크
 
-USE ACADEMYMANGEMENTDB;
+USE ACADEMYMANAGEMENTDB;
 
 CREATE TABLE USER_LOG
 (

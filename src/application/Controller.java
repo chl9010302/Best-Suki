@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import DBController.AddBoard;
+import DBController.AddStastics;
 import DBController.TestDetailAdd;
 import DBController.UserJoin;
 import DBController.UserLongin;

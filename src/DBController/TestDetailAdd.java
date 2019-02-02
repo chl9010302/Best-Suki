@@ -18,7 +18,7 @@ public class TestDetailAdd {
 		insertTestDetail(testdetailbean);
 	}
 	public boolean insertTestDetail(TestDetailBean testdetailbean) {
-		String insertsql = "INSERT INTO TestDetail(TestDetail_pkey, TestDetail_Data, TestDetail_Data2, TestDetail_Data3, TestDetail_Data4, TestDetail_Data5, TestDetail_CorrectAnswer, TestDetail_Image) VALUSE(?, ?, ?, ?, ?, ?, ?, ?);";
+		String insertsql = "INSERT INTO testdetail(TestDetail_pkey, TestDetail_Data, TestDetail_Data2, TestDetail_Data3, TestDetail_Data4, TestDetail_Data5, TestDetail_CorrectAnswer, TestDetail_Image, TestDetail_Subtitle) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		PreparedStatement pstmt = null;
 		this.testdetailbean = testdetailbean;
 		try {
@@ -32,6 +32,7 @@ public class TestDetailAdd {
 			pstmt.setString(6, testdetailbean.getTestDetail_Data5());
 			pstmt.setString(7, testdetailbean.getTestDetail_CorrectAnswer());
 			pstmt.setString(8, testdetailbean.getTestDetail_Image());	
+			pstmt.setString(9, testdetailbean.getTestDetail_Subtitle());	
 			pstmt.executeUpdate();
 			
 			conn.close();
@@ -39,12 +40,7 @@ public class TestDetailAdd {
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+		
 			e.printStackTrace();
 		} finally {
 			try {
