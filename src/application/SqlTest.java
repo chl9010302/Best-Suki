@@ -63,7 +63,7 @@ public class SqlTest {
     // 수정
     public void update(int id, String title, String flag) {
         StringBuilder sb = new StringBuilder();
-        String sql = sb.append("update " + table + " set")
+        String sql = sb.append("update " + table + " set") 
                 .append(" title = ")
                 .append("'" + title + "',")
                 .append(" flag = '")
