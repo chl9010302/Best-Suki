@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <Button fx:id="Property_userID" mnemonicParsing="false" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE">
+                  <Button fx:id="Property_userID" mnemonicParsing="false" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE" onAction="#NAV_MypageView">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>

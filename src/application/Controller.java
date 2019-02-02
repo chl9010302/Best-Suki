@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import DBController.AddBoard;
 import DBController.AddStastics;
+import DBController.SelectNowUser;
 import DBController.TestDetailAdd;
 import DBController.UserJoin;
 import DBController.UserLongin;
@@ -58,12 +59,14 @@ public class Controller implements Initializable {
 	public static String userId;
 	public static String fileName;
 	public static String filePath;
-	public static String Login_Id;
+	public static String Login_Id="";
+	 
 	Sha256 sha256 = new Sha256();
 		
 		
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
+	@FXML private Label Mypage_UserId, Mypage_UserPassword, Mypage_UserName,  Mypage_UserAddress, Mypage_UserSchoolName, Mypage_UserAge, Mypage_UserGender, Mypage_UserPhone, Mypage_UserFmphone;
 	@FXML private TextField Radio1, Radio2, Radio3, Radio4, Radio5;
 	@FXML private RadioButton Rb1, Rb2, Rb3, Rb4, Rb5;
 	@FXML private DatePicker UserAge;
@@ -75,6 +78,7 @@ public class Controller implements Initializable {
 	@FXML private Button BtnSave;
 	@FXML private Button BtnAdd;
 	@FXML private Button BtnDelete;
+	@FXML private Button TestButton;
 	@FXML private ListView<String> listBoxMain;
 	@FXML private TableView<AddBoard> testTableView;
 	@FXML private TableColumn<AddBoard, String> ColBoardId;
@@ -93,20 +97,50 @@ public class Controller implements Initializable {
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
 	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }
 	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { NAV(event, "../View/StasticsView.fxml"); }
+	@FXML 
+	private void NAV_MypageView(ActionEvent event) throws IOException 
+	{  
+		NAV(event, "../View/MypageView.fxml"); 
+	}
+	@FXML
+	private void ButtonTest(ActionEvent event) {
+		sung(event);
+	}
+	public void sung(ActionEvent event) { 
+		try {
+		SelectNowUser selectnowuser = new SelectNowUser();
+		UserBean getuser;
+		getuser  = selectnowuser.getSelectUser(Login_Id);
+		System.out.println("sdqwdqwd"+getuser.getUserId());
+		Mypage_UserId.setText(getuser.getUserId());
+		Mypage_UserPassword.setText(getuser.getUserPassword());
+		Mypage_UserName.setText(getuser.getUserName());
+		Mypage_UserAddress.setText(getuser.getUserAddress());
+		Mypage_UserSchoolName.setText(getuser.getUserSchoolName());
+		Mypage_UserPhone.setText(getuser.getUserPhone());
+		Mypage_UserFmphone.setText(getuser.getUserFmphone());
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	private void login(ActionEvent event) {
 		UserLongin login = new UserLongin();
 		try {
 			int i = login.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 			Login_Id = UserId.getText().toString();
-			if(i == 1)
+			if(i == 1) {
 				NAV(event, "../View/MainView.fxml");
+				
+			}
 			else {
+				Login_Id ="";
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Message Here...");
 				alert.setHeaderText("로그인에 실패하셨습니다.");
 				alert.showAndWait();
 			}
+			
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -154,6 +188,8 @@ public class Controller implements Initializable {
 		
 		NAV(event, "../View/LoginView.fxml");
 	}
+	
+	
 	@FXML
 	private void addAction(ActionEvent action){
 		listItems.add(txtAddItem.getText());

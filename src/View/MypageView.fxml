@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="860.0">
          <image>
-            <Image url="@스터디/학원관리프로그램/back.jpg" />
+            <Image url="@back.jpg" />
          </image>
       </ImageView>
       <HBox alignment="CENTER_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="65.0" prefWidth="834.0" AnchorPane.bottomAnchor="521.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
@@ -109,7 +109,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <Label text="Label" textFill="WHITE">
+                              <Label fx:id="Mypage_UserId" text="Label" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
@@ -132,7 +132,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <Label text="Label" textFill="WHITE">
+                              <Label fx:id="Mypage_UserPassword" text="Label" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
@@ -155,7 +155,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <Label text="Label" textFill="WHITE">
+                              <Label fx:id="Mypage_UserName" text="Label" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
@@ -178,7 +178,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <Label text="Label" textFill="WHITE">
+                              <Label fx:id="Mypage_UserAddress" text="Label" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
@@ -201,7 +201,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label text="Label" textFill="WHITE">
+                              <Label  fx:id="Mypage_UserSchoolName" text="Label" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
@@ -221,7 +221,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label text="Label" textFill="WHITE">
+                              <Label fx:id="Mypage_UserAge"  text="Label" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
@@ -241,7 +241,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label text="Label" textFill="WHITE">
+                              <Label  fx:id="Mypage_UserGender" text="Label" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
@@ -261,7 +261,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label text="Label" textFill="WHITE">
+                              <Label fx:id="Mypage_UserPhone"  text="Label" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
@@ -281,7 +281,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label text="Label" textFill="WHITE">
+                              <Label fx:id="Mypage_UserFmphone" text="Label" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
@@ -295,7 +295,7 @@
                   </VBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button fx:id="TestButton" mnemonicParsing="false" text="Button" onAction="#ButtonTest" />
                      </children>
                   </HBox>
       </children>
