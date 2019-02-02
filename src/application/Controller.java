@@ -67,6 +67,7 @@ public class Controller implements Initializable {
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
 	@FXML private Label Mypage_UserId, Mypage_UserPassword, Mypage_UserName,  Mypage_UserAddress, Mypage_UserSchoolName, Mypage_UserAge, Mypage_UserGender, Mypage_UserPhone, Mypage_UserFmphone;
+	@FXML private TextField EditProperty_UserId, EditProperty_UserPassword, EditProperty_UserName,  EditProperty_UserAddress, EditProperty_UserSchoolName, EditProperty_UserAge, EditProperty_UserGender, EditProperty_UserPhone, EditProperty_UserFmphone;
 	@FXML private TextField Radio1, Radio2, Radio3, Radio4, Radio5;
 	@FXML private RadioButton Rb1, Rb2, Rb3, Rb4, Rb5;
 	@FXML private DatePicker UserAge;
@@ -117,8 +118,32 @@ public class Controller implements Initializable {
 		Mypage_UserName.setText(getuser.getUserName());
 		Mypage_UserAddress.setText(getuser.getUserAddress());
 		Mypage_UserSchoolName.setText(getuser.getUserSchoolName());
+		Mypage_UserAge.setText(getuser.getUserAge());
+		Mypage_UserGender.setText(getuser.getUserGender());
 		Mypage_UserPhone.setText(getuser.getUserPhone());
 		Mypage_UserFmphone.setText(getuser.getUserFmphone());
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	@FXML
+	private void ButtonTest2(ActionEvent event) {
+		tuk(event);
+	}
+	public void tuk(ActionEvent event) { 
+		try {
+		SelectNowUser selectnowuser = new SelectNowUser();
+		UserBean getuser;
+		getuser  = selectnowuser.getSelectUser(Login_Id);
+		EditProperty_UserId.setText(getuser.getUserId());
+		EditProperty_UserPassword.setText(getuser.getUserPassword());
+		EditProperty_UserName.setText(getuser.getUserName());
+		EditProperty_UserAddress.setText(getuser.getUserAddress());
+		EditProperty_UserSchoolName.setText(getuser.getUserSchoolName());
+		EditProperty_UserAge.setText(getuser.getUserAge());
+		EditProperty_UserGender.setText(getuser.getUserGender());
+		EditProperty_UserPhone.setText(getuser.getUserPhone());
+		EditProperty_UserFmphone.setText(getuser.getUserFmphone());
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
