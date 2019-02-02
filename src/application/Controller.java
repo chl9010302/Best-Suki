@@ -74,6 +74,10 @@ public class Controller implements Initializable {
 	@FXML private TableView<AddBoard> testTableView;
 	@FXML private TableColumn<AddBoard, String> ColBoardId;
 	@FXML private TableColumn<AddBoard, String> ColSubtitle;
+	@FXML private TableView<AddStastics> StasticsView;
+	@FXML private TableColumn<AddStastics, String> USER_ID;
+	@FXML private TableColumn<AddStastics, String> USER_ACTION;
+	@FXML private TableColumn<AddStastics, String> WRITE_DATE;
 	@FXML private TextField txtAddItem; 
 	@FXML private TextField txtSubtitle; 
 	@FXML private Label txtFilepath;
@@ -85,6 +89,7 @@ public class Controller implements Initializable {
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
 	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }
+	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/StasticsView.fxml"); }
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	private void login(ActionEvent event) {
 		UserLongin login = new UserLongin();
@@ -254,6 +259,14 @@ public class Controller implements Initializable {
 				  }
 			  }); 
 		  }catch(Exception e) {  }
+		  
+		  try {
+			  AddStastics stasticsview = new AddStastics();
+			  USER_ID.setCellValueFactory(cellData -> cellData.getValue().getUSER_ID());
+			  USER_ACTION.setCellValueFactory(cellData -> cellData.getValue().getUSER_ACTION());
+			  WRITE_DATE.setCellValueFactory(cellData -> cellData.getValue().getWRITE_DATE());
+			  StasticsView.setItems(stasticsview.getstastics());
+		  }catch(Exception e) {}
 		  
 		  try {
 			  AddBoard addboard = new AddBoard();
