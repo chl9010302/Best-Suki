@@ -13,6 +13,7 @@ import DBController.AddBoard;
 import DBController.AddStastics;
 import DBController.SelectNowUser;
 import DBController.TestDetailAdd;
+import DBController.UserDataUpdate;
 import DBController.UserJoin;
 import DBController.UserLongin;
 import DBModel.BoardBean;
@@ -98,11 +99,8 @@ public class Controller implements Initializable {
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
 	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }
 	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { NAV(event, "../View/StasticsView.fxml"); }
-	@FXML 
-	private void NAV_MypageView(ActionEvent event) throws IOException 
-	{  
-		NAV(event, "../View/MypageView.fxml"); 
-	}
+	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { NAV(event, "../View/MypageView.fxml"); }
+	@FXML private void NAV_MypageEditView(ActionEvent event) throws IOException { NAV(event, "../View/MypageEditView.fxml"); }
 	@FXML
 	private void ButtonTest(ActionEvent event) {
 		sung(event);
@@ -116,6 +114,7 @@ public class Controller implements Initializable {
 		Mypage_UserId.setText(getuser.getUserId());
 		Mypage_UserPassword.setText(getuser.getUserPassword());
 		Mypage_UserName.setText(getuser.getUserName());
+		System.out.println("Username : " + getuser.getUserName());
 		Mypage_UserAddress.setText(getuser.getUserAddress());
 		Mypage_UserSchoolName.setText(getuser.getUserSchoolName());
 		Mypage_UserAge.setText(getuser.getUserAge());
@@ -147,6 +146,20 @@ public class Controller implements Initializable {
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+	@FXML
+	public void ButtonTest3(ActionEvent event) {
+		UserBean getuser = new UserBean();
+		getuser.setUserId(EditProperty_UserId.getText().toString());
+		getuser.setUserPassword(EditProperty_UserPassword.getText().toString());
+		getuser.setUserName(EditProperty_UserName.getText().toString());
+		getuser.setUserAddress(EditProperty_UserAddress.getText().toString());
+		getuser.setUserSchoolName(EditProperty_UserSchoolName.getText().toString());
+		getuser.setUserAge(EditProperty_UserAge.getText().toString());
+		getuser.setUserGender(EditProperty_UserGender.getText().toString());
+		getuser.setUserPhone(EditProperty_UserPhone.getText().toString());
+		getuser.setUserFmphone(EditProperty_UserFmphone.getText().toString());
+		UserDataUpdate userdataupdate = new UserDataUpdate(getuser, EditProperty_UserId.getText().toString());
 	}
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	private void login(ActionEvent event) {

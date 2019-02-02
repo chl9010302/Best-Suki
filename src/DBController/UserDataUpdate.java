@@ -35,9 +35,10 @@ public class UserDataUpdate {
 				.append("', UserGender = '"+userbean.getUserGender())
 				.append("', UserPhone = '"+userbean.getUserPhone())
 				.append("', UserFmphone = '"+userbean.getUserFmphone())
-				.append(" where UserId = '")
+				.append("' where UserId = '")
 				.append(User_id)
 				.append("';").toString();
+		System.out.println(sql);
 		
 			stmt.executeUpdate(sql);
 			System.out.println("Success update");

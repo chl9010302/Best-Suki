@@ -296,6 +296,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="TestButton" mnemonicParsing="false" text="Button" onAction="#ButtonTest" />
+                        <Button mnemonicParsing="false" text="Button" onAction="#NAV_MypageEditView" />
                      </children>
                   </HBox>
       </children>

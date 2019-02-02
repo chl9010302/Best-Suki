@@ -60,6 +60,9 @@ public class SelectNowUser {
 				userbean.setUserPassword(rs.getString("UserPassword"));
 				System.out.print(rs.getString("UserAddress"));
 				System.out.print("\t");
+				userbean.setUserName(rs.getString("UserName"));
+				System.out.print(rs.getString("UserName"));
+				System.out.print("\t");
 				userbean.setUserAddress(rs.getString("UserAddress"));
 				System.out.print(rs.getString("UserSchoolName"));
 				System.out.print("\t");
