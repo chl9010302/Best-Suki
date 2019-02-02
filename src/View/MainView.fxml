@@ -28,7 +28,7 @@
                         <Font name="Tahoma" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Logout" textFill="WHITE" onAction="#NAV_LoginView">
+                  <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Logout" textFill="WHITE" onAction="#logout">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>
@@ -71,7 +71,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="STASTICS" textFill="WHITE">
+            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="STASTICS" textFill="WHITE" onAction="#NAV_StasticsView">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>
@@ -90,7 +90,7 @@
       <children>
                   <HBox prefHeight="42.0" prefWidth="679.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
                      <children>
-              <Label alignment="TOP_LEFT" text="NOTICE" textFill="WHITE">
+              <Label alignment="TOP_LEFT" text="NOTICE" textFill="WHITE" >
                 <font>
                   <Font name="System Bold" size="21.0" />
                 </font>
