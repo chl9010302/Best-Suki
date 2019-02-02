@@ -9,9 +9,11 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import DBController.AddBoard;
+import DBController.TestDetailAdd;
 import DBController.UserJoin;
 import DBController.UserLongin;
 import DBModel.BoardBean;
+import DBModel.TestDetailBean;
 import DBModel.UserBean;
 import ImageStore.TestImageStore;
 import academyutil.Sha256;
@@ -45,6 +47,7 @@ public class Controller implements Initializable {
 	private String UserGender = "";
 	private UserBean user; // 회원가입 시 User 정보를 송신하기 위함.
 	private BoardBean board; // 게시판 보내
+	private TestDetailBean testdetailbean;
 	private Stage stage; // file choose 하기 위함.
 	private UserLongin login;
 	private ObservableList<String> listItems;
@@ -135,6 +138,7 @@ public class Controller implements Initializable {
 	  int selectedItem = listBoxMain.getSelectionModel().getSelectedIndex();
 	  listItems.remove(selectedItem);
 	}
+	/*
 	@FXML
 	private void saveAction(ActionEvent action) {
 		board = new BoardBean();
@@ -168,6 +172,34 @@ public class Controller implements Initializable {
 		}
 	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
 	    AddBoard Excute = new AddBoard(board);
+	    
+	}*/
+	
+	@FXML
+	private void saveAction(ActionEvent action) {
+		testdetailbean = new TestDetailBean();
+		testdetailbean.setTestDetail_pkey(usingstaticfunction.TestDetailFunction.makeTestDetailKey(txtSubtitle.getText().toString()));
+		testdetailbean.setTestDetail_Subtitle(txtSubtitle.getText().toString());
+		testdetailbean.setTestDetail_Image(filePath);
+		testdetailbean.setTestDetail_Data(Radio1.getText().toString());
+		testdetailbean.setTestDetail_Data2(Radio2.getText().toString());
+		testdetailbean.setTestDetail_Data3(Radio3.getText().toString());
+		testdetailbean.setTestDetail_Data4(Radio4.getText().toString());
+		testdetailbean.setTestDetail_Data5(Radio5.getText().toString());
+
+		if(Rb1.isSelected()) {
+			testdetailbean.setTestDetail_CorrectAnswer(Radio1.getText().toString());
+		}else if(Rb2.isSelected()) {
+			testdetailbean.setTestDetail_CorrectAnswer(Radio2.getText().toString());
+		}else if(Rb3.isSelected()) {
+			testdetailbean.setTestDetail_CorrectAnswer(Radio3.getText().toString());
+		}else if(Rb4.isSelected()) {
+			testdetailbean.setTestDetail_CorrectAnswer(Radio4.getText().toString());
+		}else {
+			testdetailbean.setTestDetail_CorrectAnswer(Radio5.getText().toString());
+		}
+	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
+	    TestDetailAdd detailAdd = new TestDetailAdd(testdetailbean);
 	    
 	}
 	@FXML

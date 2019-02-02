@@ -3,6 +3,7 @@ package DBModel;
 public class TestDetailBean {
 
 	private String  TestDetail_pkey;
+	private String  TestDetail_Subtitle;
 	private String  TestDetail_Data;
 	private String  TestDetail_Data2;
 	private String  TestDetail_Data3;
@@ -59,12 +60,10 @@ public class TestDetailBean {
 	public void setTestDetail_Image(String testDetail_Image) {
 		TestDetail_Image = testDetail_Image;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+	public String getTestDetail_Subtitle() {
+		return TestDetail_Subtitle;
+	}
+	public void setTestDetail_Subtitle(String testDetail_Subtitle) {
+		TestDetail_Subtitle = testDetail_Subtitle;
+	}
 }
