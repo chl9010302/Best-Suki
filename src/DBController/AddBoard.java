@@ -92,7 +92,7 @@ public class AddBoard {
 		try {
 			StringBuilder sb = new StringBuilder();
 			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("select count(*) from board").append(";").toString();
+			String sql = sb.append("SELECT COUNT(*) FROM BOARD").append(";").toString();
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			if (rs.next())
@@ -108,7 +108,7 @@ public class AddBoard {
 		try {
 			conn = application.DBConnection.getDBConection();
 			stmt = conn.createStatement();
-			String sql = sb.append("select * from board").append(";").toString();
+			String sql = sb.append("SELECT * FROM BOARD").append(";").toString();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				addboard.add(new AddBoard((String) rs.getString("BoardId"), (String) rs.getString("Subtitle")));
@@ -140,7 +140,7 @@ public class AddBoard {
 		try {
 			conn = application.DBConnection.getDBConection();
 			stmt = conn.createStatement();
-			String sql = sb.append("select * from board order by BoardId desc limit 1").append(";").toString();
+			String sql = sb.append("SELECT * FROM BOARD ORDER BY BoardId desc limit 1").append(";").toString();
 			ResultSet rs = stmt.executeQuery(sql);
 			if (rs.next())
 				lastselect = rs.getInt(1);
