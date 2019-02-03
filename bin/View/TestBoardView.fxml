@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <Button fx:id="Property_userID" mnemonicParsing="false" style="-fx-background-color: transparent;" textFill="WHITE">
+                  <Button fx:id="Property_userID" mnemonicParsing="false" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE" onAction="#NAV_MypageView">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -28,7 +28,7 @@
                         <Font name="Tahoma" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Logout" textFill="WHITE" onAction="#NAV_LoginView">
+                  <Button mnemonicParsing="false" onAction="#logout" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Logout" textFill="WHITE">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>

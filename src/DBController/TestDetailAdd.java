@@ -2,17 +2,45 @@ package DBController;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import DBModel.TestDetailBean;
 import DBModel.UserBean;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class TestDetailAdd {
 
 	TestDetailBean testdetailbean;
 	Connection conn = null;
 	Statement stmt = null;
+	private StringProperty testdetail_id_pk;
+	private StringProperty subtitle;
+	private ObservableList<TestDetailAdd> testdetailadd = FXCollections.observableArrayList();
+	
+	public ObservableList<TestDetailAdd> gettestdetailadd() {
+		select();
+		return testdetailadd;
+	}
+	
+	public StringProperty getTestdetail_id_pk() {
+		return testdetail_id_pk;
+	}
+
+	public StringProperty getSubtitle() {
+		return subtitle;
+	}
+
+	public TestDetailAdd() { }
+	
+	public TestDetailAdd(String TESTDETAIL_ID_PK, String TESTDETAIL_SUBTITLE) {
+		this.testdetail_id_pk = new SimpleStringProperty(TESTDETAIL_ID_PK);
+		this.subtitle = new SimpleStringProperty(TESTDETAIL_SUBTITLE);
+	}
 
 	public TestDetailAdd(TestDetailBean testdetailbean) {
 		insertTestDetail(testdetailbean);
@@ -57,6 +85,37 @@ public class TestDetailAdd {
 			}
 		}
 		return false;
+	}
+	
+	public boolean select() {
+		StringBuilder sb = new StringBuilder();
+		try {
+			conn = application.DBConnection.getDBConection();
+			stmt = conn.createStatement();
+			String sql = sb.append("SELECT * FROM TESTDETAIL_TB").append(";").toString();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				testdetailadd.add(new TestDetailAdd((String) rs.getString("TESTDETAIL_ID_PK"), (String) rs.getString("TESTDETAIL_SUBTITLE")));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public void delete(int id) {
+		StringBuilder sb = new StringBuilder();
+		conn = application.DBConnection.getDBConection();
+		String sql = sb.append("DELETE FROM TESTDETAIL_TB where TESTDETAIL_ID_PK = ").append(id).append(";").toString();
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {

@@ -48,7 +48,7 @@ public class AddBoard {
 	}
 
 	public boolean insert(BoardBean addboard) {
-		String insertsql1 = "insert into board(BoardId, Subtitle, Filepath, Radio1, Radio2, Radio3, Radio4, Radio5, Flag) values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String insertsql1 = "INSERT INTO TESTDETAIL_TB(TESTDETAIL_ID_PK, TESTDETAIL_SUBTITLE, TESTDETAIL_IMAGE, TESTDETAIL_DATA1, TESTDETAIL_DATA2, TESTDETAIL_DATA3, TESTDETAIL_DATA4, TESTDETAIL_DATA5, TESTDETAIL_ANSWER) values(?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		PreparedStatement pstmt = null;
 		board = addboard;
 		try {

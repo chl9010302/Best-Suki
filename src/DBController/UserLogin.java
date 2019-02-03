@@ -88,7 +88,6 @@ public class UserLogin {
 				.append(user_id).append("';").toString();
 		try {
 			stmt.executeUpdate(sql);
-			System.out.println("Success update");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -111,15 +110,13 @@ public class UserLogin {
 
 		String sql = sb.append("UPDATE DATE_TB SET DATE_LOGOUTTIME = now() where DATE_ID_PK = '").append(logintime).append("';").toString();
 		try {
-			System.out.println(logintime);
 			stmt.executeUpdate(sql);
-			System.out.println("Success update_logouttime");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			if(stmt.isClosed()) {
-				
+				logintime = "";
 			}
 		}
 	}

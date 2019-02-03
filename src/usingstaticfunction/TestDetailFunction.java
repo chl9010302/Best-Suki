@@ -15,7 +15,7 @@ public class TestDetailFunction {
 				dbConnectionKeeping = new DBConnectionKeeping();
 
 			Connection con = usingstaticfunction.DBConnectionKeeping.con;
-			String selectsql = "SELECT * FROM TestDetail ORDER BY TestDetail_pkey DESC LIMIT 1;";
+			String selectsql = "SELECT * FROM TESTDETAIL_TB ORDER BY TESTDETAIL_ID_PK DESC LIMIT 1;";
 			String sqlresult = "";
 			String test_detailpkey = "";
 

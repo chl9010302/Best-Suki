@@ -79,9 +79,9 @@ public class Controller implements Initializable {
 	@FXML private Button BtnDelete;
 	@FXML private Button TestButton;
 	@FXML private ListView<String> listBoxMain;
-	@FXML private TableView<AddBoard> testTableView;
-	@FXML private TableColumn<AddBoard, String> ColBoardId;
-	@FXML private TableColumn<AddBoard, String> ColSubtitle;
+	@FXML private TableView<TestDetailAdd> testTableView;
+	@FXML private TableColumn<TestDetailAdd, String> ColBoardId;
+	@FXML private TableColumn<TestDetailAdd, String> ColSubtitle;
 	@FXML private TableView<AddStastics> StasticsView;
 	@FXML private TableColumn<AddStastics, String> USER_ID;
 	@FXML private TableColumn<AddStastics, String> USER_LOGIN_DATE;
@@ -263,10 +263,10 @@ public class Controller implements Initializable {
 	}
 	@FXML
 	private void removeAction(ActionEvent action){
-		AddBoard addboard = new AddBoard();
+		TestDetailAdd testdetailadd = new TestDetailAdd();
 	  int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
-	  addboard.delete(Integer.parseInt(testTableView.getItems().get(selectedItem).getarraylist().getValue()));
-	  testTableView.setItems(addboard.getaddboard());
+	  testdetailadd.delete(Integer.parseInt(testTableView.getItems().get(selectedItem).getTestdetail_id_pk().getValue()));
+	  testTableView.setItems(testdetailadd.gettestdetailadd());
 	}
 	@FXML
 	private void modify(ActionEvent action) {
@@ -319,10 +319,10 @@ public class Controller implements Initializable {
 		  }catch(Exception e) {}
 		  
 		  try {
-			  AddBoard addboard = new AddBoard();
-			  ColBoardId.setCellValueFactory(cellData -> cellData.getValue().getarraylist());
-			  ColSubtitle.setCellValueFactory(cellData -> cellData.getValue().getarraylist2());
-			  testTableView.setItems(addboard.getaddboard());
+			  TestDetailAdd testdetailadd = new TestDetailAdd();
+			  ColBoardId.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_id_pk());
+			  ColSubtitle.setCellValueFactory(cellData -> cellData.getValue().getSubtitle());
+			  testTableView.setItems(testdetailadd.gettestdetailadd());
 		  }catch(Exception e) {}
 	  }
 	public void fileChooserSelect(ActionEvent event) { 
