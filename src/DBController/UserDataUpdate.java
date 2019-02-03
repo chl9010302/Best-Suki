@@ -8,8 +8,8 @@ import DBModel.UserBean;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class UserDataUpdate {
+	public UserDataUpdate() { }
 	public UserDataUpdate(UserBean userbean, String User_id) {
-
 		UserUpdate(userbean, User_id);
 	}
 

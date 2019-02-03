@@ -57,7 +57,8 @@ public class AddTestViewController implements Initializable {
 			testdetailbean.setTESTDETAIL_ANSWER(Radio5.getText().toString());
 		}
 	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
-	    TestDetailAdd detailAdd = new TestDetailAdd(testdetailbean);
+	    TestDetailAdd detailAdd = new TestDetailAdd();
+	    detailAdd.insertTestDetail(testdetailbean);
 	}
 	@FXML
 	private void Quest1Group1Action(ActionEvent action) {

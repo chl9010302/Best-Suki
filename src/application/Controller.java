@@ -152,7 +152,8 @@ public class Controller implements Initializable {
 		userbean.setUSER_GENDER(EditProperty_UserGender.getText().toString());
 		userbean.setUSER_PHONE(EditProperty_UserPhone.getText().toString());
 		userbean.setUSER_FMPHONE(EditProperty_UserFmphone.getText().toString());
-		UserDataUpdate userdataupdate = new UserDataUpdate(userbean, EditProperty_UserId.getText().toString());
+		UserDataUpdate userdataupdate = new UserDataUpdate();
+		userdataupdate.UserUpdate(userbean, EditProperty_UserId.getText().toString());
 	}
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	private void login(ActionEvent event) {
@@ -213,7 +214,8 @@ public class Controller implements Initializable {
 		user.setUSER_PHONE(UserPhone.getText().toString());
 		user.setUSER_FMPHONE(UserFmphone.getText().toString());
 		
-		UserJoin join = new UserJoin(user);
+		UserJoin join = new UserJoin();
+		join.insert(user);
 		// 회원가입과 함께 Login Page로 이동됨.
 		
 		
@@ -226,7 +228,7 @@ public class Controller implements Initializable {
 	}
 	@FXML
 	private void deleteAction(ActionEvent action){
-	  int selectedItem = listBoxMain.getSelectionModel().getSelectedIndex();
+//	  int selectedItem = listBoxMain.getSelectionModel().getSelectedIndex();
 	}
 	
 	@FXML
@@ -253,7 +255,8 @@ public class Controller implements Initializable {
 			testdetailbean.setTESTDETAIL_ANSWER(Radio5.getText().toString());
 		}
 	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
-	    TestDetailAdd detailAdd = new TestDetailAdd(testdetailbean);
+	    TestDetailAdd detailAdd = new TestDetailAdd();
+	    detailAdd.insertTestDetail(testdetailbean);
 	}
 	@FXML
 	private void Quest1Group1Action(ActionEvent action) {

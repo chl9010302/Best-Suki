@@ -55,7 +55,7 @@ public class MainViewController implements Initializable {
 	}
 	@FXML
 	private void deleteAction(ActionEvent action){
-	  int selectedItem = listBoxMain.getSelectionModel().getSelectedIndex();
+//	  int selectedItem = listBoxMain.getSelectionModel().getSelectedIndex();
 	}
 	  public void initialize(URL url, ResourceBundle rb) {
 		  try {

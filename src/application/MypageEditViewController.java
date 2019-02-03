@@ -47,7 +47,8 @@ public class MypageEditViewController implements Initializable {
 		userbean.setUSER_GENDER(EditProperty_UserGender.getText().toString());
 		userbean.setUSER_PHONE(EditProperty_UserPhone.getText().toString());
 		userbean.setUSER_FMPHONE(EditProperty_UserFmphone.getText().toString());
-		UserDataUpdate userdataupdate = new UserDataUpdate(userbean, EditProperty_UserId.getText().toString());
+		UserDataUpdate userdataupdate = new UserDataUpdate();
+		userdataupdate.UserUpdate(userbean, EditProperty_UserId.getText().toString());
 	}
 	@FXML
 	private void logout(ActionEvent event) {

@@ -6,9 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import DBController.UserJoin;
-import DBModel.UserBean;
-
 public class DBConnection {
 	public DBConnection() {
 		Connection con;
