@@ -15,14 +15,12 @@ import DBController.TestDetailAdd;
 import DBController.UserDataUpdate;
 import DBController.UserJoin;
 import DBController.UserLogin;
-import DBModel.BoardBean;
 import DBModel.TestDetailBean;
 import DBModel.UserBean;
 import ImageStore.TestImageStore;
 import academyutil.Sha256;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -168,7 +166,7 @@ public class Controller implements Initializable {
 			}
 			else {
 				login_id ="";
-				Alert alert = new Alert(AlertType.ERROR);
+				Alert alert = new Alert(AlertType.NONE);
 				alert.setTitle("Message Here...");
 				alert.setHeaderText("로그인에 실패하셨습니다.");
 				alert.showAndWait();
@@ -189,7 +187,7 @@ public class Controller implements Initializable {
 		UserLogin userlogout = new UserLogin();
 		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
 		ButtonType NO = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
-		Alert alert = new Alert(AlertType.WARNING,"Would you want to logout?", YES, NO);
+		Alert alert = new Alert(AlertType.NONE,"Would you want to logout?", YES, NO);
 		alert.setTitle("Logout");
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.orElse(NO) == YES) {

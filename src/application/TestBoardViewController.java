@@ -47,7 +47,7 @@ public class TestBoardViewController implements Initializable {
 		UserLogin userlogout = new UserLogin();
 		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
 		ButtonType NO = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
-		Alert alert = new Alert(AlertType.WARNING,"Would you want to logout?", YES, NO);
+		Alert alert = new Alert(AlertType.NONE,"Would you want to logout?", YES, NO);
 		alert.setTitle("Logout");
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.orElse(NO) == YES) {

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import DBController.UserJoin;
@@ -16,9 +17,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class SignupViewController implements Initializable {
@@ -47,9 +52,19 @@ public class SignupViewController implements Initializable {
 		user.setUSER_GENDER(usergender);
 		user.setUSER_PHONE(UserPhone.getText().toString());
 		user.setUSER_FMPHONE(UserFmphone.getText().toString());
-		UserJoin join = new UserJoin(user);
+		user.setUSER_LOGINSESSION("0");
+		user.setUSER_TEACHERSESSION("0");
 		// 회원가입과 함께 Login Page로 이동됨.
-		NAV(event, "../View/LoginView.fxml");
+		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
+		Alert alert = new Alert(AlertType.NONE,"회원가입이 성공적으로 되었습니다.", YES);
+		alert.setTitle("회원가입 - 성공");
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.orElse(YES) == YES) {
+			try {
+				UserJoin join = new UserJoin(user);
+				NAV(event, "../View/LoginView.fxml");
+			}catch(Exception e) { }
+		}
 	}
 	public void radioSelect(ActionEvent action) {
 		if(UserGenderMale.isSelected()) { usergender = UserGenderMale.getText(); }
