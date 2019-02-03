@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import usingstaticfunction.DBConnectionKeeping;
 
@@ -14,6 +16,7 @@ public class UserLogin {
 	ResultSet rs;
 	PreparedStatement pstmt;
 	String sql;
+	public static String logintime;
 
 	public int loginCheck(String user_id, String user_pw) {
 		int i = 0;
@@ -59,9 +62,14 @@ public class UserLogin {
 
 	private int date_tb(String user_id) throws SQLException {
 		int i = 0;
-		sql = "INSERT INTO DATE_TB(USER_ID, DATE_LOGINTIME)VALUES(?,now())";
+		sql = "INSERT INTO DATE_TB(DATE_ID_PK, USER_ID, DATE_LOGINTIME)VALUES(?,?,now())";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, user_id);
+		Calendar calendar = Calendar.getInstance();
+		java.util.Date date = calendar.getTime();
+		String dateidpk = (new SimpleDateFormat("yyyyMMddHHmmss").format(date));
+		logintime = dateidpk;
+		pstmt.setString(1, dateidpk);
+		pstmt.setString(2, user_id);
 		i = pstmt.executeUpdate();
 		return i;
 	}
@@ -91,7 +99,6 @@ public class UserLogin {
 		}
 	}
 	public void logout2(String user_id) throws SQLException {
-		System.out.println("123123123");
 		DBConnectionKeeping dbConnectionKeeping;  
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
@@ -100,9 +107,11 @@ public class UserLogin {
 		Statement stmt = null;
 		stmt = con.createStatement();
 		StringBuilder sb = new StringBuilder();
-		String sql = sb.append("UPDATE DATE_TB SET").append(" DATE_LOGOUTTIME = now()").append(" where USER_ID = '")
-				.append(user_id).append("';").toString();
+		
+
+		String sql = sb.append("UPDATE DATE_TB SET DATE_LOGOUTTIME = now() where DATE_ID_PK = '").append(logintime).append("';").toString();
 		try {
+			System.out.println(logintime);
 			stmt.executeUpdate(sql);
 			System.out.println("Success update_logouttime");
 		} catch (SQLException e) {
