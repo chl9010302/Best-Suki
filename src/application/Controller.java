@@ -50,17 +50,16 @@ import javafx.stage.Stage;
 
 public class Controller implements Initializable {
 	//Declare JAVA
-	private String UserGender = "";
+	private String usergender = "";
 	private UserBean user; // 회원가입 시 User 정보를 송신하기 위함.
 	private BoardBean board; // 게시판 보내
 	private TestDetailBean testdetailbean;
 	private Stage stage; // file choose 하기 위함.
 	private UserLongin login;
-	private ObservableList<String> listItems;
 	public static String userId;
-	public static String fileName;
-	public static String filePath;
-	public static String Login_Id="";
+	public static String filename;
+	public static String filepath;
+	public static String login_id="";
 	 
 	Sha256 sha256 = new Sha256();
 		
@@ -109,7 +108,7 @@ public class Controller implements Initializable {
 		try {
 		SelectNowUser selectnowuser = new SelectNowUser();
 		UserBean getuser;
-		getuser  = selectnowuser.getSelectUser(Login_Id);
+		getuser  = selectnowuser.getSelectUser(login_id);
 		System.out.println("sdqwdqwd"+getuser.getUserId());
 		Mypage_UserId.setText(getuser.getUserId());
 		Mypage_UserPassword.setText(getuser.getUserPassword());
@@ -133,7 +132,7 @@ public class Controller implements Initializable {
 		try {
 		SelectNowUser selectnowuser = new SelectNowUser();
 		UserBean getuser;
-		getuser  = selectnowuser.getSelectUser(Login_Id);
+		getuser  = selectnowuser.getSelectUser(login_id);
 		EditProperty_UserId.setText(getuser.getUserId());
 		EditProperty_UserPassword.setText(getuser.getUserPassword());
 		EditProperty_UserName.setText(getuser.getUserName());
@@ -166,13 +165,13 @@ public class Controller implements Initializable {
 		UserLongin login = new UserLongin();
 		try {
 			int i = login.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
-			Login_Id = UserId.getText().toString();
+			login_id = UserId.getText().toString();
 			if(i == 1) {
 				NAV(event, "../View/MainView.fxml");
 				
 			}
 			else {
-				Login_Id ="";
+				login_id ="";
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Message Here...");
 				alert.setHeaderText("로그인에 실패하셨습니다.");
@@ -199,8 +198,8 @@ public class Controller implements Initializable {
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.orElse(bar) == foo) {
 			try {
-				System.out.println("Id : " + Login_Id);
-				logout.logout(Login_Id);
+				System.out.println("Id : " + login_id);
+				logout.logout(login_id);
 				NAV(event, "../View/LoginView.fxml");
 			}catch(Exception e) { }
 		}
@@ -216,7 +215,7 @@ public class Controller implements Initializable {
 		user.setUserAddress(UserAddress.getText().toString());
 		user.setUserSchoolName(UserSchoolName.getText().toString());
 		user.setUserAge(localDate.toString());
-		user.setUserGender(UserGender);
+		user.setUserGender(usergender);
 		user.setUserPhone(UserPhone.getText().toString());
 		user.setUserFmphone(UserFmphone.getText().toString());
 		
@@ -230,12 +229,10 @@ public class Controller implements Initializable {
 	
 	@FXML
 	private void addAction(ActionEvent action){
-		listItems.add(txtAddItem.getText());
 	}
 	@FXML
 	private void deleteAction(ActionEvent action){
 	  int selectedItem = listBoxMain.getSelectionModel().getSelectedIndex();
-	  listItems.remove(selectedItem);
 	}
 	/*
 	@FXML
@@ -279,7 +276,7 @@ public class Controller implements Initializable {
 		testdetailbean = new TestDetailBean();
 		testdetailbean.setTestDetail_pkey(usingstaticfunction.TestDetailFunction.makeTestDetailKey(txtSubtitle.getText().toString()));
 		testdetailbean.setTestDetail_Subtitle(txtSubtitle.getText().toString());
-		testdetailbean.setTestDetail_Image(filePath);
+		testdetailbean.setTestDetail_Image(filepath);
 		testdetailbean.setTestDetail_Data(Radio1.getText().toString());
 		testdetailbean.setTestDetail_Data2(Radio2.getText().toString());
 		testdetailbean.setTestDetail_Data3(Radio3.getText().toString());
@@ -317,18 +314,18 @@ public class Controller implements Initializable {
 	}
 	
 	public void radioSelect(ActionEvent action) {
-		if(UserGenderMale.isSelected()) { UserGender = UserGenderMale.getText(); }
-		if(UserGenderFeMale.isSelected()) { UserGender = UserGenderFeMale.getText(); }
+		if(UserGenderMale.isSelected()) { usergender = UserGenderMale.getText(); }
+		if(UserGenderFeMale.isSelected()) { usergender = UserGenderFeMale.getText(); }
 	}
 	//fileChoose function
 	public void openFile() {
 		FileChooser fileChooser = new FileChooser();
 		File file = fileChooser.showOpenDialog(stage);
 		if(file != null) {
-			fileName = file.getName();
+			filename = file.getName();
 			String Address = file.toString().replaceAll("\\\\", "//");
 			new TestImageStore("112233", Address); 
-			filePath = Address;
+			filepath = Address;
 		}
 	}
 	  public void initialize(URL url, ResourceBundle rb) {
@@ -371,7 +368,7 @@ public class Controller implements Initializable {
 	  }
 	public void fileChooserSelect(ActionEvent event) { 
 		openFile(); 
-		txtFilepath.setText(fileName);
+		txtFilepath.setText(filename);
 	}
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));

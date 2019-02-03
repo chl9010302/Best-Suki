@@ -1,124 +1,129 @@
-﻿CREATE TABLE `Userclass` (
-  `Userclass_Classnumber` varchar(3) NOT NULL,
-  `Userclass_StudentCount` int,        
-  `Userclass_Teacher` varchar(20),      
-  PRIMARY KEY  (`Userclass_Classnumber`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-// Userclass_Classnumber 반의 기본키값
-// Userclass_StudentCount 이반에 총원
-// Userclass_Teacher 이반의 선생님은 누구인가 선생님의 User 기본키값을 가지고 있다.
-
-SET foreign_key_checks = 0; 
-DROP TABLE user;
-
-CREATE TABLE `user` (
-  `UserId` VARCHAR(255)  NOT NULL,        
-  `UserPassword` VARCHAR(255) NOT NULL,
-  `UserName` varchar(20)  NOT NULL,
-  `UserAddress` varchar(20),
-  `UserSchoolName` varchar(20),
-  `UserAge` VARCHAR(255),
-  `UserGender` VARCHAR(255),
-  `UserPhone` varchar(20)  NOT NULL,
-  `UserFmphone` varchar(20) NOT NULL,
-  `UserLoginsession` varchar(1),
-  `Isteacher` varchar(1) NOT NULL,
-  `Classnumber` varchar(3),       
-  `Classnumber_2` varchar(3),
-  `Classnumber_3` varchar(3),
-  `Classnumber_4` varchar(3),
-  PRIMARY KEY (`UserId`),
-  FOREIGN KEY (`Classnumber`)   REFERENCES `Userclass` (`Userclass_Classnumber`),
-  FOREIGN KEY (`Classnumber_2`) REFERENCES `Userclass` (`Userclass_Classnumber`),
-  FOREIGN KEY (`Classnumber_3`) REFERENCES `Userclass` (`Userclass_Classnumber`),
-  FOREIGN KEY (`Classnumber_4`) REFERENCES `Userclass` (`Userclass_Classnumber`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-// UserId ~ UserFmphone(부모님폰번호) 회원가입시 기입해야되는 기본정보 
-// UserLoginsession 현재 학원에서 강의를 듣고있는가 
-//  Isteacher 학생인지, 강의선생님인지, 데스크선생님인지, 관리자인지 구분
-//  Classnumber ~ Classnumber_4 어떤 클래스(강의)를 듣고 있는지 참조 한다.
-
-CREATE TABLE `Test` (
-  `Test_pkey`  varchar(20) NOT NULL,
-  `Test_TestType`  varchar(1) NOT NULL,
-  `TestDetail_pkey`  varchar(20),
-  `TestDetail_pkey2`  varchar(20),
-  `TestDetail_pkey3`  varchar(20),
-  `TestDetail_pkey4`  varchar(20),
-  `TestDetail_pkey5`  varchar(20),
-  `TestDetail_pkey6`  varchar(20),
-  `TestDetail_pkey7`  varchar(20),
-  `TestDetail_pkey8`  varchar(20),
-  `TestDetail_pkey9`  varchar(20),
-  `TestDetail_pkey10`  varchar(20),
-  `TestDetail_pkey11`  varchar(20),
-  `TestDetail_pkey12`  varchar(20),
-  `TestDetail_pkey13`  varchar(20),
-  `TestDetail_pkey14`  varchar(20),
-  PRIMARY KEY  (`Test_pkey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-// Test_pkey 기본키
-// Test_TestType 정기시험인가 일일시험인가
-// TestDetail_pkey 실제문제 참조
-
-
-CREATE TABLE `TestDetail` (
-  `TestDetail_pkey`  varchar(255) NOT NULL,
-  `TestDetail_Data`  varchar(255),  
-  `TestDetail_Data2` varchar(255),  
-  `TestDetail_Data3` varchar(255),  
-  `TestDetail_Data4` varchar(255),  
-  `TestDetail_Data5` varchar(255),  
-  `TestDetail_CorrectAnswer` varchar(255),  
-  `TestDetail_Image` varchar(255), 
-  TestDetail_Subtitle varchar(255),
-  PRIMARY KEY  (`TestDetail_pkey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-//TestDetail_pkey 기본키
-//TestDetail_Data 객관식 번호 1
-//TestDetail_Image 문제 이미지 파일
-//TestDetail_CorrectAnswer 정답
-
-CREATE TABLE `sGrade` (
-  `UserStudentnumber` varchar(20) NOT NULL,
-  `sGrade_pkey` varchar(20) NOT NULL,
-  `sGrade_ScoreMath` int(10) NOT NULL,
-  `sGrade_InsertDate` varchar(20) NOT NULL,
-  `sGrade_Description` varchar(255),   
-  `sGrade_TestPkey` varchar(20) NOT NULL, 
-  `sGrade_Rank` int, 
-  `sGrade_TotalTestCount` int,
-  PRIMARY KEY  (`sGrade_pkey`),
-  FOREIGN KEY (`UserStudentnumber`) REFERENCES `user` (`UserStudentnumber`),
-  FOREIGN KEY (`sGrade_TestPkey`) REFERENCES `Test` (`Test_pkey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-// UserStudentnumber user의 pkey을 참조한다. 시험칠떄마다 생성되므로
-// sGrade_pkey sGrade 의 기본키값
-// sGrade_ScoreMath 점수
-// sGrade_InsertDate sGrade가 입력된값 즉 시험완료한 시간
-// sGrade_Description 시험에대한 간단한 메모 
-// sGrade_TestPkey sGrade가 참조한 시험 
-// sGrade_Rank 시험등수
-// sGrade_TotalTestCount 같은시험을 친 총원
-
-
-CREATE TABLE `sDate` (
-  `UserId` VARCHAR(255)  NOT NULL,    
-  `sDate_Logintime` varchar(255) NOT NULL,
-  `sDate_Logouttime` varchar(255),
-  `sDate_IsLate` varchar(1),                
-  `sDate_IsFinish` varchar(1),              
-  FOREIGN KEY (`UserId`) REFERENCES `user` (`UserId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-// UserStudentnumber User 기봊키값
-// sDate_Logintime 최초 학원등원 
-// sDate_Logouttime 학원 퇴실한 시간
-// sDate_IsLate  지각체크 
-// sDate_IsFinish 조퇴체크
+﻿CREATE DATABASE ACADEMYMANAGEMENTDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 USE ACADEMYMANAGEMENTDB;
+CREATE TABLE `USERCLASS_TB` (
+  `CLASS_NUMBER_PK` VARCHAR(3) NOT NULL,
+  `CLASS_TOTAL` INT,        
+  `CLASS_TEACHER` VARCHAR(20),      
+  PRIMARY KEY  (`CLASS_NUMBER_PK`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+// CLASS_NUMBER_PK 반의 기본키값
+// CLASS_TOTAL 이반의 총원
+// CLASS_TEACHER 이반의 선생님은 누구인가 선생님의 User 기본키값을 가지고 있다.
+
+SET foreign_key_checks = 0; 
+
+CREATE TABLE `USER_TB` (
+  `USER_ID_PK` VARCHAR(50)  NOT NULL,        
+  `USER_PASSWORD` VARCHAR(255) NOT NULL,
+  `USER_NAME` VARCHAR(20)  NOT NULL,
+  `USER_ADDRESS` VARCHAR(255),
+  `USER_SCHOOLNAME` VARCHAR(50),
+  `USER_AGE` VARCHAR(50),
+  `USER_GENDER` VARCHAR(20),
+  `USER_PHONE` VARCHAR(50)  NOT NULL,
+  `USER_FMPHONE` VARCHAR(50) NOT NULL,
+  `USER_LOGINSESSION` VARCHAR(1),
+  `USER_TEACHERSESSION` VARCHAR(1) NOT NULL,
+  `CLASS_NUMBER1` VARCHAR(3),       
+  `CLASS_NUMBER2` VARCHAR(3),
+  `CLASS_NUMBER3` VARCHAR(3),
+  `CLASS_NUMBER4` VARCHAR(3),
+  PRIMARY KEY (`USER_ID_PK`),
+  FOREIGN KEY (`CLASS_NUMBER1`) REFERENCES `USERCLASS_TB` (`CLASS_NUMBER_PK`),
+  FOREIGN KEY (`CLASS_NUMBER2`) REFERENCES `USERCLASS_TB` (`CLASS_NUMBER_PK`),
+  FOREIGN KEY (`CLASS_NUMBER3`) REFERENCES `USERCLASS_TB` (`CLASS_NUMBER_PK`),
+  FOREIGN KEY (`CLASS_NUMBER4`) REFERENCES `USERCLASS_TB` (`CLASS_NUMBER_PK`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+// USER_ID_PK ~ USER_FMPHONE(부모님폰번호) 회원가입시 기입해야되는 기본정보 
+// USER_LOGINSESSION 현재 학원에서 강의를 듣고있는가 
+//  USER_TEACHERSESSION 학생인지, 강의선생님인지, 데스크선생님인지, 관리자인지 구분
+//  CLASS_NUMBER1 ~ CLASS_NUMBER4 어떤 클래스(강의)를 듣고 있는지 참조 한다.
+
+CREATE TABLE `TEST_TB` (
+  `TEST_ID_PK`  VARCHAR(3) NOT NULL,
+  `TEST_TYPE`  VARCHAR(1) NOT NULL,
+  `TESTDETAIL_ID1_FK`  VARCHAR(20),
+  `TESTDETAIL_ID2_FK`  VARCHAR(20),
+  `TESTDETAIL_ID3_FK`  VARCHAR(20),
+  `TESTDETAIL_ID4_FK`  VARCHAR(20),
+  `TESTDETAIL_ID5_FK`  VARCHAR(20),
+  `TESTDETAIL_ID6_FK`  VARCHAR(20),
+  `TESTDETAIL_ID7_FK`  VARCHAR(20),
+  `TESTDETAIL_ID8_FK`  VARCHAR(20),
+  `TESTDETAIL_ID9_FK`  VARCHAR(20),
+  `TESTDETAIL_ID10_FK`  VARCHAR(20),
+  `TESTDETAIL_ID11_FK`  VARCHAR(20),
+  `TESTDETAIL_ID12_FK`  VARCHAR(20),
+  `TESTDETAIL_ID13_FK`  VARCHAR(20),
+  `TESTDETAIL_ID14_FK`  VARCHAR(20),
+  PRIMARY KEY  (`TEST_ID_PK`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+// TEST_ID_PK 기본키
+// TEST_TYPE 정기시험인가 일일시험인가
+// TESTDETAIL_ID_FK 실제문제 참조
+
+
+CREATE TABLE `TESTDETAIL_TB` (
+  `TESTDETAIL_ID_PK`  VARCHAR(255) NOT NULL,
+  `TESTDETAIL_DATA1`  VARCHAR(255),  
+  `TESTDETAIL_DATA2` VARCHAR(255),  
+  `TESTDETAIL_DATA3` VARCHAR(255),  
+  `TESTDETAIL_DATA4` VARCHAR(255),  
+  `TESTDETAIL_DATA5` VARCHAR(255),  
+  `TESTDETAIL_ANSWER` VARCHAR(255),  
+  `TESTDETAIL_IMAGE` VARCHAR(255), 
+  `TESTDETAIL_SUBTITLE` VARCHAR(255),
+  PRIMARY KEY  (`TESTDETAIL_ID_PK`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+//TESTDETAIL_ID_PK 기본키
+//TESTDETAIL_DATA1 객관식 번호 1
+//TESTDETAIL_IMAGE 문제 이미지 파일
+//TESTDETAIL_ANSWER 정답
+
+CREATE TABLE `GRADE_TB` (
+  `GRADE_ID_PK` VARCHAR(20) NOT NULL,
+  `USER_ID` VARCHAR(50) NOT NULL,
+  `GRADE_SCORE` INT NOT NULL,
+  `GRADE_DATE` VARCHAR(20) NOT NULL,
+  `GRADE_DESCRIPTION` VARCHAR(255),   
+  `GRADE_TEST_ID` VARCHAR(20) NOT NULL, 
+  `GRADE_RANK` INT, 
+  `GRADE_TOTALTESTCOUNT` INT,
+  PRIMARY KEY  (`GRADE_ID_PK`),
+  FOREIGN KEY (`USER_ID`) REFERENCES `USER_TB` (`USER_ID_PK`),
+  FOREIGN KEY (`GRADE_TEST_ID`) REFERENCES `TEST_TB` (`TEST_ID_PK`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+// GRADE_ID_PK GRADE_TB 의 기본키값
+// USER_ID USER_TB의 pkey을 참조한다. 시험칠떄마다 생성되므로
+// GRADE_SCORE 점수
+// GRADE_DATE GRADE_TB가 입력된값 즉 시험완료한 시간
+// GRADE_DESCRIPTION 시험에대한 간단한 메모 
+// GRADE_TEST_ID GRADE_TB가 참조한 시험 
+// GRADE_RANK 시험등수
+// GRADE_TOTALTESTCOUNT 같은시험을 친 총원
+
+
+CREATE TABLE `DATE_TB` (
+  `USER_ID` VARCHAR(50)  NOT NULL,    
+  `DATE_LOGINTIME` VARCHAR(50) NOT NULL,
+  `DATE_LOGOUTTIME` VARCHAR(50),
+  `DATE_LATESESSION` VARCHAR(1),                
+  `DATE_FINISHSESSION` VARCHAR(1),              
+  FOREIGN KEY (`USER_ID`) REFERENCES `USER_TB` (`USER_ID_PK`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+// USER_ID USER_TB 기봊키값
+// DATE_LOGINTIME 최초 학원등원 
+// DATE_LOGOUTTIME 학원 퇴실한 시간
+// DATE_LATESESSION  지각체크 
+// DATE_FINISHSESSION 조퇴체크
+
+
+
+USE ACADEMYMANAGEMENTDB;
+
 
 CREATE TABLE USER_LOG
 (
