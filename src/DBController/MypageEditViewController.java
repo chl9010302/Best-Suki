@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import DBModel.UserBean;
+import academyutil.Sha256;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +25,8 @@ import javafx.stage.Stage;
 
 public class MypageEditViewController implements Initializable {
 	//Declare JAVA
-
+	Sha256 sha256 = new Sha256();
+	
 	//Declare FXML
 	@FXML private Button Property_userID;
 	@FXML private Label Mypage_UserId;
@@ -44,18 +46,18 @@ public class MypageEditViewController implements Initializable {
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.orElse(YES) == YES) {
 			UserBean userbean = new UserBean();
-			userbean.setUSER_ID_PK(Mypage_UserId.getText().toString());
-			userbean.setUSER_PASSWORD(EditProperty_UserPassword.getText().toString());
-			userbean.setUSER_NAME(EditProperty_UserName.getText().toString());
-			userbean.setUSER_ADDRESS(EditProperty_UserAddress.getText().toString());
-			userbean.setUSER_SCHOOLNAME(EditProperty_UserSchoolName.getText().toString());
-			userbean.setUSER_AGE(EditProperty_UserAge.getText().toString());
-			userbean.setUSER_GENDER(EditProperty_UserGender.getText().toString());
-			userbean.setUSER_PHONE(EditProperty_UserPhone.getText().toString());
-			userbean.setUSER_FMPHONE(EditProperty_UserFmphone.getText().toString());
-			UserDataUpdate userdataupdate = new UserDataUpdate();
-			userdataupdate.UserUpdate(userbean, Mypage_UserId.getText().toString());
 			try {
+				userbean.setUSER_ID_PK(Mypage_UserId.getText().toString());
+				userbean.setUSER_PASSWORD(sha256.sha256(EditProperty_UserPassword.getText()));
+				userbean.setUSER_NAME(EditProperty_UserName.getText().toString());
+				userbean.setUSER_ADDRESS(EditProperty_UserAddress.getText().toString());
+				userbean.setUSER_SCHOOLNAME(EditProperty_UserSchoolName.getText().toString());
+				userbean.setUSER_AGE(EditProperty_UserAge.getText().toString());
+				userbean.setUSER_GENDER(EditProperty_UserGender.getText().toString());
+				userbean.setUSER_PHONE(EditProperty_UserPhone.getText().toString());
+				userbean.setUSER_FMPHONE(EditProperty_UserFmphone.getText().toString());
+				UserDataUpdate userdataupdate = new UserDataUpdate();
+				userdataupdate.UserUpdate(userbean, Mypage_UserId.getText().toString());
 				NAV(event, "../View/MypageView.fxml");
 			}catch(Exception e) { }
 		}

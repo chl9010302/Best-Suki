@@ -2,10 +2,7 @@ package usingstaticfunction;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.swing.text.html.HTMLEditorKit.Parser;
 
 public class TestDetailFunction {
 	static public String makeTestDetailKey(String subtitle) {

@@ -2,12 +2,6 @@ package usingstaticfunction;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import DBController.UserJoin;
-import DBModel.UserBean;
 
 public class DBConnectionKeeping {
 	public static Connection con;

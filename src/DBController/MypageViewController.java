@@ -53,7 +53,7 @@ public class MypageViewController implements Initializable {
 			UserBean userbean;
 			userbean  = selectnowuser.getSelectUser(LoginViewController.login_id);
 			Mypage_UserId.setText(userbean.getUSER_ID_PK());
-			Mypage_UserPassword.setText(userbean.getUSER_PASSWORD());
+			Mypage_UserPassword.setText("*********");
 			Mypage_UserName.setText(userbean.getUSER_NAME());
 			Mypage_UserAddress.setText(userbean.getUSER_ADDRESS());
 			Mypage_UserSchoolName.setText(userbean.getUSER_SCHOOLNAME());

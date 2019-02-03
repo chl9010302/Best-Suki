@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <Button fx:id="Property_userID" mnemonicParsing="false" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE">
+                  <Button fx:id="Property_userID" mnemonicParsing="false" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE" onAction="#NAV_MypageView">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -129,7 +129,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserPassword" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                              <PasswordField fx:id="EditProperty_UserPassword" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" />
