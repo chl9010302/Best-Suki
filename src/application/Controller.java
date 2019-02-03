@@ -84,8 +84,8 @@ public class Controller implements Initializable {
 	@FXML private TableColumn<AddBoard, String> ColSubtitle;
 	@FXML private TableView<AddStastics> StasticsView;
 	@FXML private TableColumn<AddStastics, String> USER_ID;
-	@FXML private TableColumn<AddStastics, String> USER_ACTION;
-	@FXML private TableColumn<AddStastics, String> WRITE_DATE;
+	@FXML private TableColumn<AddStastics, String> USER_LOGIN_DATE;
+	@FXML private TableColumn<AddStastics, String> USER_LOGOUT_DATE;
 	@FXML private TextField txtAddItem; 
 	@FXML private TextField txtSubtitle; 
 	@FXML private Label txtFilepath;
@@ -195,6 +195,7 @@ public class Controller implements Initializable {
 		if (result.orElse(NO) == YES) {
 			try {
 				userlogout.logout(login_id);
+				userlogout.logout2(login_id);
 				NAV(event, "../View/LoginView.fxml");
 			}catch(Exception e) { }
 		}
@@ -312,8 +313,8 @@ public class Controller implements Initializable {
 		  try {
 			  AddStastics stasticsview = new AddStastics();
 			  USER_ID.setCellValueFactory(cellData -> cellData.getValue().getUSER_ID());
-			  USER_ACTION.setCellValueFactory(cellData -> cellData.getValue().getUSER_ACTION());
-			  WRITE_DATE.setCellValueFactory(cellData -> cellData.getValue().getWRITE_DATE());
+			  USER_LOGIN_DATE.setCellValueFactory(cellData -> cellData.getValue().getUSER_LOGIN_DATE());
+			  USER_LOGOUT_DATE.setCellValueFactory(cellData -> cellData.getValue().getUSER_LOGOUT_DATE());
 			  StasticsView.setItems(stasticsview.getstastics());
 		  }catch(Exception e) {}
 		  

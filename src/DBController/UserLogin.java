@@ -32,7 +32,7 @@ public class UserLogin {
 					pstmt.setString(1, user_id);
 					i = pstmt.executeUpdate();
 					if (i == 1)
-						i = user_log(user_id);
+						i = date_tb(user_id);
 					else {
 					}
 				}
@@ -57,7 +57,7 @@ public class UserLogin {
 		return i;
 	}
 
-	private int user_log(String user_id) throws SQLException {
+	private int date_tb(String user_id) throws SQLException {
 		int i = 0;
 		sql = "INSERT INTO DATE_TB(USER_ID, DATE_LOGINTIME)VALUES(?,now())";
 		pstmt = conn.prepareStatement(sql);
@@ -81,6 +81,30 @@ public class UserLogin {
 		try {
 			stmt.executeUpdate(sql);
 			System.out.println("Success update");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(stmt.isClosed()) {
+				
+			}
+		}
+	}
+	public void logout2(String user_id) throws SQLException {
+		System.out.println("123123123");
+		DBConnectionKeeping dbConnectionKeeping;  
+		if (usingstaticfunction.DBConnectionKeeping.con == null)
+			dbConnectionKeeping = new DBConnectionKeeping();
+
+		Connection con = usingstaticfunction.DBConnectionKeeping.con;
+		Statement stmt = null;
+		stmt = con.createStatement();
+		StringBuilder sb = new StringBuilder();
+		String sql = sb.append("UPDATE DATE_TB SET").append(" DATE_LOGOUTTIME = now()").append(" where USER_ID = '")
+				.append(user_id).append("';").toString();
+		try {
+			stmt.executeUpdate(sql);
+			System.out.println("Success update_logouttime");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

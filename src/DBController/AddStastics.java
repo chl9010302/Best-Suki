@@ -19,8 +19,8 @@ public class AddStastics {
 	Statement stmt = null;
 	private ObservableList<AddStastics> addstastics = FXCollections.observableArrayList();
 	private StringProperty USER_ID;
-	private StringProperty USER_ACTION;
-	private StringProperty WRITE_DATE;
+	private StringProperty USER_LOGIN_DATE;
+	private StringProperty USER_LOGOUT_DATE;
 	
 	public ObservableList<AddStastics> getstastics() {
 		select();
@@ -30,21 +30,21 @@ public class AddStastics {
 	public StringProperty getUSER_ID() {
 		return USER_ID;
 	}
-	public StringProperty getUSER_ACTION() {
-		return USER_ACTION;
+	public StringProperty getUSER_LOGIN_DATE() {
+		return USER_LOGIN_DATE;
 	}
-	public StringProperty getWRITE_DATE() {
-		return WRITE_DATE;
+	public StringProperty getUSER_LOGOUT_DATE() {
+		return USER_LOGOUT_DATE;
 	}
 	
 	
 	public AddStastics() {
 		// TODO Auto-generated constructor stub
 	}
-	public AddStastics(String user_id, String user_action, String write_date) {
+	public AddStastics(String user_id, String user_login_date, String user_logout_date) {
 		this.USER_ID = new SimpleStringProperty(user_id);
-		this.USER_ACTION = new SimpleStringProperty(user_action); 
-		this.WRITE_DATE = new SimpleStringProperty(write_date); 
+		this.USER_LOGIN_DATE = new SimpleStringProperty(user_login_date); 
+		this.USER_LOGOUT_DATE = new SimpleStringProperty(user_logout_date); 
 	}
 
 	public boolean select() {
@@ -52,11 +52,11 @@ public class AddStastics {
 		try {
 			conn = application.DBConnection.getDBConection();
 			stmt = conn.createStatement();
-			String sql = sb.append("select * from user_log")
+			String sql = sb.append("SELECT * FROM DATE_TB ")
 					.append(";").toString(); 
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
-				addstastics.add(new AddStastics((String)rs.getString("USER_ID"), (String)rs.getString("USER_ACTION"), (String)rs.getString("WRITE_DATE")));
+				addstastics.add(new AddStastics((String)rs.getString("USER_ID"), (String)rs.getString("DATE_LOGINTIME"), (String)rs.getString("DATE_LOGOUTTIME")));
 			}
 			
 		} catch (SQLException e) {
