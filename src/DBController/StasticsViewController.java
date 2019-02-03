@@ -1,13 +1,10 @@
-package application;
+package DBController;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import DBController.UserLogin;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,17 +13,23 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
-public class MainViewController implements Initializable {
+public class StasticsViewController implements Initializable {
+	//Declare JAVA
+	
 	//Declare FXML
-	@FXML private ListView<String> listBoxMain;
-	@FXML private Button BtnDelete;
+	@FXML private Button Property_userID;
+	@FXML private TableView<AddStastics> StasticsView;
+	@FXML private TableColumn<AddStastics, String> USER_ID;
+	@FXML private TableColumn<AddStastics, String> USER_LOGIN_DATE;
+	@FXML private TableColumn<AddStastics, String> USER_LOGOUT_DATE;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
@@ -50,30 +53,19 @@ public class MainViewController implements Initializable {
 			}catch(Exception e) { }
 		}
 	}
-	@FXML
-	private void addAction(ActionEvent action){
+	public void initialize(URL url, ResourceBundle rb) {
+		try {
+			AddStastics stasticsview = new AddStastics();
+			USER_ID.setCellValueFactory(cellData -> cellData.getValue().getUSER_ID());
+			USER_LOGIN_DATE.setCellValueFactory(cellData -> cellData.getValue().getUSER_LOGIN_DATE());
+			USER_LOGOUT_DATE.setCellValueFactory(cellData -> cellData.getValue().getUSER_LOGOUT_DATE());
+			StasticsView.setItems(stasticsview.getstastics());
+		}catch(Exception e) {}
 	}
-	@FXML
-	private void deleteAction(ActionEvent action){
-//	  int selectedItem = listBoxMain.getSelectionModel().getSelectedIndex();
-	}
-	  public void initialize(URL url, ResourceBundle rb) {
-		  try {
-			// Add a ChangeListener to ListView to look for change in focus
-			  listBoxMain.focusedProperty().addListener(new ChangeListener<Boolean>() {
-				  public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-					  if(listBoxMain.isFocused()){
-						  BtnDelete.setDisable(false);
-					  }
-				  }
-			  }); 
-		  }catch (Exception e) { }
-		  
-	  }
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();

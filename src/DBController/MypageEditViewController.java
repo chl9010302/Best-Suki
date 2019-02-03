@@ -1,13 +1,10 @@
-package application;
+package DBController;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import DBController.SelectNowUser;
-import DBController.UserDataUpdate;
-import DBController.UserLogin;
 import DBModel.UserBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -27,6 +25,7 @@ public class MypageEditViewController implements Initializable {
 	//Declare JAVA
 
 	//Declare FXML
+	@FXML private Button Property_userID;
 	@FXML private TextField EditProperty_UserId, EditProperty_UserPassword, EditProperty_UserName,  EditProperty_UserAddress, EditProperty_UserSchoolName, EditProperty_UserAge, EditProperty_UserGender, EditProperty_UserPhone, EditProperty_UserFmphone;
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
@@ -87,7 +86,7 @@ public class MypageEditViewController implements Initializable {
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();

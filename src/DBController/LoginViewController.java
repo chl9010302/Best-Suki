@@ -1,4 +1,4 @@
-package application;
+package DBController;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -6,7 +6,6 @@ import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
-import DBController.UserLogin;
 import academyutil.Sha256;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -61,7 +60,7 @@ public class LoginViewController implements Initializable {
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();

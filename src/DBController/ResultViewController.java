@@ -1,10 +1,9 @@
-package application;
+package DBController;
 
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import DBController.TestDetailAdd;
 import DBModel.TestDetailBean;
 import ImageStore.TestImageStore;
 import javafx.event.ActionEvent;
@@ -19,7 +18,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class AddTestViewController implements Initializable {
+public class ResultViewController implements Initializable {
 	//Declare JAVA
 	private TestDetailBean testdetailbean;
 	private Stage stage; // file choose 하기 위함.

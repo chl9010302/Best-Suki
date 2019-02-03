@@ -1,11 +1,12 @@
-package application;
+package DBController;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import DBController.UserLogin;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,14 +16,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class VideoViewController implements Initializable {
-	//Declare JAVA
-		
+public class MainViewController implements Initializable {
 	//Declare FXML
+	@FXML private Button Property_userID;
+	@FXML private ListView<String> listBoxMain;
+	@FXML private Button BtnDelete;
+	@FXML private TextField txtAddItem;
+	@FXML private Button BtnAdd;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
@@ -46,12 +53,30 @@ public class VideoViewController implements Initializable {
 			}catch(Exception e) { }
 		}
 	}
-	public void initialize(URL url, ResourceBundle rb) {
+	@FXML
+	private void addAction(ActionEvent action){
 	}
+	@FXML
+	private void deleteAction(ActionEvent action){
+//	  int selectedItem = listBoxMain.getSelectionModel().getSelectedIndex();
+	}
+	  public void initialize(URL url, ResourceBundle rb) {
+		  try {
+			// Add a ChangeListener to ListView to look for change in focus
+			  listBoxMain.focusedProperty().addListener(new ChangeListener<Boolean>() {
+				  public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+					  if(listBoxMain.isFocused()){
+						  BtnDelete.setDisable(false);
+					  }
+				  }
+			  }); 
+		  }catch (Exception e) { }
+		  
+	  }
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();

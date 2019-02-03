@@ -1,10 +1,9 @@
-package application;
+package DBController;
 
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import DBController.TestDetailAdd;
 import DBModel.TestDetailBean;
 import ImageStore.TestImageStore;
 import javafx.event.ActionEvent;
@@ -19,7 +18,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class ResultViewController implements Initializable {
+public class AddTestViewController implements Initializable {
 	//Declare JAVA
 	private TestDetailBean testdetailbean;
 	private Stage stage; // file choose 하기 위함.
@@ -29,6 +28,8 @@ public class ResultViewController implements Initializable {
 	//Declare FXML
 	@FXML private TextField Radio1, Radio2, Radio3, Radio4, Radio5;
 	@FXML private RadioButton Rb1, Rb2, Rb3, Rb4, Rb5;
+	@FXML private Button SearchFile;
+	@FXML private Button Property_userID;
 	@FXML private ToggleGroup Quest1Group1;
 	@FXML private Button BtnSave;
 	@FXML private TextField txtSubtitle; 

@@ -1,13 +1,10 @@
-package application;
+package DBController;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import DBController.SelectNowUser;
-import DBController.UserLogin;
-import DBModel.UserBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,21 +14,32 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class MypageViewController implements Initializable {
+public class TestBoardViewController implements Initializable {
+	//Declare JAVA
+		
 	//Declare FXML
-	@FXML private Label Mypage_UserId, Mypage_UserPassword, Mypage_UserName,  Mypage_UserAddress, Mypage_UserSchoolName, Mypage_UserAge, Mypage_UserGender, Mypage_UserPhone, Mypage_UserFmphone;
+	@FXML private Button Property_userID;
+	@FXML private Text result; // logout 시 result 표시
+	@FXML private Button BtnAdd;
+	@FXML private Button BtnDelete;
+	@FXML private TableView<TestDetailAdd> testTableView;
+	@FXML private TableColumn<TestDetailAdd, String> ColBoardId;
+	@FXML private TableColumn<TestDetailAdd, String> ColSubtitle;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
+	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }
 	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { NAV(event, "../View/StasticsView.fxml"); }
 	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { NAV(event, "../View/MypageView.fxml"); }
-	@FXML private void NAV_MypageEditView(ActionEvent event) throws IOException { NAV(event, "../View/MypageEditView.fxml"); }
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { NAV(event, "../View/VideoView.fxml"); }
 	@FXML
 	private void logout(ActionEvent event) {
@@ -49,29 +57,39 @@ public class MypageViewController implements Initializable {
 			}catch(Exception e) { }
 		}
 	}
+	@FXML
+	private void removeAction(ActionEvent action){
+		TestDetailAdd testdetailadd = new TestDetailAdd();
+	  int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
+	  testdetailadd.delete(Integer.parseInt(testTableView.getItems().get(selectedItem).getTestdetail_id_pk().getValue()));
+	  testTableView.setItems(testdetailadd.gettestdetailadd());
+	}
+	@FXML
+	private void modify(ActionEvent action) {
+	}
+	
 	public void initialize(URL url, ResourceBundle rb) {
+	  // TODO
 		try {
-			SelectNowUser selectnowuser = new SelectNowUser();
-			UserBean userbean;
-			userbean  = selectnowuser.getSelectUser(LoginViewController.login_id);
-			Mypage_UserId.setText(userbean.getUSER_ID_PK());
-			Mypage_UserPassword.setText(userbean.getUSER_PASSWORD());
-			Mypage_UserName.setText(userbean.getUSER_NAME());
-			Mypage_UserAddress.setText(userbean.getUSER_ADDRESS());
-			Mypage_UserSchoolName.setText(userbean.getUSER_SCHOOLNAME());
-			Mypage_UserAge.setText(userbean.getUSER_AGE());
-			Mypage_UserGender.setText(userbean.getUSER_GENDER());
-			Mypage_UserPhone.setText(userbean.getUSER_PHONE());
-			Mypage_UserFmphone.setText(userbean.getUSER_FMPHONE());
-			}catch (Exception e) {
-				// TODO: handle exception
-			}
+			TestDetailAdd testdetailadd = new TestDetailAdd();
+			ColBoardId.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_id_pk());
+			ColSubtitle.setCellValueFactory(cellData -> cellData.getValue().getSubtitle());
+			testTableView.setItems(testdetailadd.gettestdetailadd());
+		}catch(Exception e) {}
 	}
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(SignupView_scene);
+		app_stage.show();
+	}
+	private void NAV_POPUP (ActionEvent event, String str) throws IOException {
+		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
+		Scene SignupView_scene = new Scene(SignupView);
+		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
+		Stage app_stage = new Stage();
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();
 	}

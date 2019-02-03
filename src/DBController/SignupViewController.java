@@ -1,4 +1,4 @@
-package application;
+package DBController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import DBController.UserJoin;
 import DBModel.UserBean;
 import academyutil.Sha256;
 import javafx.event.ActionEvent;
@@ -23,6 +22,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
@@ -32,6 +32,7 @@ public class SignupViewController implements Initializable {
 	private String usergender = "";
 	Sha256 sha256 = new Sha256();
 	//Declare FXML
+	@FXML private ToggleGroup GenderGroup;
 	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
 	@FXML private DatePicker UserAge;
 	@FXML private RadioButton UserGenderMale;
@@ -85,7 +86,7 @@ public class SignupViewController implements Initializable {
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();
