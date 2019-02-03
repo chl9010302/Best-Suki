@@ -55,16 +55,26 @@ public class SignupViewController implements Initializable {
 		user.setUSER_LOGINSESSION("0");
 		user.setUSER_TEACHERSESSION("0");
 		// 회원가입과 함께 Login Page로 이동됨.
-		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
-		Alert alert = new Alert(AlertType.NONE,"회원가입이 성공적으로 되었습니다.", YES);
-		alert.setTitle("회원가입 - 성공");
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.orElse(YES) == YES) {
-			try {
-				UserJoin join = new UserJoin(user);
-				NAV(event, "../View/LoginView.fxml");
-			}catch(Exception e) { }
-		}
+		try {
+			UserJoin userjoin = new UserJoin();
+			int i = userjoin.joinCheck(UserId.getText().toString());
+			if(i == 1) {
+				ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
+				Alert alert = new Alert(AlertType.NONE,"회원가입이 성공적으로 되었습니다.", YES);
+				alert.setTitle("회원가입 - 성공");
+				Optional<ButtonType> result = alert.showAndWait();
+				if (result.orElse(YES) == YES) {
+					userjoin = new UserJoin(user);
+					NAV(event, "../View/LoginView.fxml");
+				}
+			}
+			else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Message Here...");
+				alert.setHeaderText("회원가입에 실패하셨습니다.");
+				alert.showAndWait();
+			}
+		}catch(Exception e) { }
 	}
 	public void radioSelect(ActionEvent action) {
 		if(UserGenderMale.isSelected()) { usergender = UserGenderMale.getText(); }
