@@ -12,14 +12,10 @@ public class UserJoin {
 	UserBean userbean;
 	Connection conn = null;
 	Statement stmt = null;
-
-	public UserJoin() {
-		
-	}
+	public UserJoin() { }
 	public UserJoin(UserBean userjoin) {
 		insert(userjoin);
 	}
-	
 	public boolean insert(UserBean userjoin) {
 		String insertsql = "INSERT INTO USER_TB(USER_ID_PK, USER_PASSWORD, USER_NAME, USER_ADDRESS, USER_SCHOOLNAME, USER_AGE, USER_GENDER, USER_PHONE, USER_FMPHONE, USER_TEACHERSESSION) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	    PreparedStatement pstmt = null;
@@ -66,29 +62,22 @@ public class UserJoin {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user_id);
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				if(rs.getString("USER_ID_PK") != null) {
 					i = 0;
 				}
 			}
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
-				if (rs != null)
-					System.out.println("i2 : " + i);
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e2) {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (SQLException e2) { 
 				e2.printStackTrace();
 			}
-
 		}
 		return i;
 	}

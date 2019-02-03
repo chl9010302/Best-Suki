@@ -90,7 +90,7 @@
       <children>
                   <HBox prefHeight="42.0" prefWidth="679.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
                      <children>
-              <Label alignment="TOP_LEFT" text="Make Test" textFill="WHITE">
+              <Label alignment="TOP_LEFT" text="TestView" textFill="WHITE">
                 <font>
                   <Font name="System Bold" size="21.0" />
                 </font>
