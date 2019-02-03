@@ -47,7 +47,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE" onAction="#NAV_VideoView">
+            <Button mnemonicParsing="false" onAction="#NAV_VideoView" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>
@@ -201,7 +201,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label  fx:id="Mypage_UserSchoolName" text="Label" textFill="WHITE">
+                              <Label fx:id="Mypage_UserSchoolName" text="Label" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
@@ -221,7 +221,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="Mypage_UserAge"  text="Label" textFill="WHITE">
+                              <Label fx:id="Mypage_UserAge" text="Label" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
@@ -241,7 +241,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label  fx:id="Mypage_UserGender" text="Label" textFill="WHITE">
+                              <Label fx:id="Mypage_UserGender" text="Label" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
@@ -261,7 +261,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="Mypage_UserPhone"  text="Label" textFill="WHITE">
+                              <Label fx:id="Mypage_UserPhone" text="Label" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
@@ -293,10 +293,9 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="TestButton" mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" onAction="#NAV_MypageEditView" />
+                        <Button mnemonicParsing="false" onAction="#NAV_MypageEditView" style="-fx-border-color: white;" text="Edit" textFill="WHITE" />
                      </children>
                   </HBox>
       </children>

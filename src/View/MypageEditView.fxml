@@ -47,7 +47,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE" onAction="#NAV_VideoView">
+            <Button mnemonicParsing="false" onAction="#NAV_VideoView" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>
@@ -109,7 +109,11 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserId" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"/>
+                              <Label fx:id="Mypage_UserId" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;">
+                            	<font>
+                                    <Font name="Tahoma" size="16.0" />
+                                </font>
+                              </Label>
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" top="10.0" />
@@ -125,7 +129,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserPassword" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"/>
+                              <TextField fx:id="EditProperty_UserPassword" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" />
@@ -141,7 +145,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserName" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"/>
+                              <TextField fx:id="EditProperty_UserName" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" />
@@ -157,7 +161,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserAddress" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"/>
+                              <TextField fx:id="EditProperty_UserAddress" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" />
@@ -173,7 +177,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserSchoolName" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"/>
+                              <TextField fx:id="EditProperty_UserSchoolName" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                            </children>
                         </HBox>
                         <HBox prefHeight="30.0" prefWidth="200.0">
@@ -186,7 +190,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserAge" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"/>
+                              <TextField fx:id="EditProperty_UserAge" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                            </children>
                         </HBox>
                         <HBox prefHeight="30.0" prefWidth="200.0">
@@ -199,7 +203,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserGender" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"/>
+                              <TextField fx:id="EditProperty_UserGender" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                            </children>
                         </HBox>
                         <HBox prefHeight="30.0" prefWidth="200.0">
@@ -212,7 +216,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserPhone" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"/>
+                              <TextField fx:id="EditProperty_UserPhone" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                            </children>
                         </HBox>
                         <HBox prefHeight="30.0" prefWidth="200.0">
@@ -225,15 +229,14 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserFmphone" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;"/>
+                              <TextField fx:id="EditProperty_UserFmphone" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button mnemonicParsing="false" text="Button" onAction="#ButtonTest3"/>
+                        <Button mnemonicParsing="false" onAction="#Btn_Edit" style="-fx-border-color: white;" text="Edit" textFill="WHITE" />
                      </children>
                   </HBox>
       </children>

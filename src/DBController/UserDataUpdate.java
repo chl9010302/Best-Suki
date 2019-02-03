@@ -37,10 +37,7 @@ public class UserDataUpdate {
 				.append("' where USER_ID_PK = '")
 				.append(User_id)
 				.append("';").toString();
-		System.out.println(sql);
-		
 			stmt.executeUpdate(sql);
-			System.out.println("Success update");
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -26,7 +27,8 @@ public class MypageEditViewController implements Initializable {
 
 	//Declare FXML
 	@FXML private Button Property_userID;
-	@FXML private TextField EditProperty_UserId, EditProperty_UserPassword, EditProperty_UserName,  EditProperty_UserAddress, EditProperty_UserSchoolName, EditProperty_UserAge, EditProperty_UserGender, EditProperty_UserPhone, EditProperty_UserFmphone;
+	@FXML private Label Mypage_UserId;
+	@FXML private TextField EditProperty_UserPassword, EditProperty_UserName,  EditProperty_UserAddress, EditProperty_UserSchoolName, EditProperty_UserAge, EditProperty_UserGender, EditProperty_UserPhone, EditProperty_UserFmphone;
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
@@ -35,19 +37,28 @@ public class MypageEditViewController implements Initializable {
 	@FXML private void NAV_MypageEditView(ActionEvent event) throws IOException { NAV(event, "../View/MypageEditView.fxml"); }
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { NAV(event, "../View/VideoView.fxml"); }
 	@FXML
-	public void ButtonTest3(ActionEvent event) {
-		UserBean userbean = new UserBean();
-		userbean.setUSER_ID_PK(EditProperty_UserId.getText().toString());
-		userbean.setUSER_PASSWORD(EditProperty_UserPassword.getText().toString());
-		userbean.setUSER_NAME(EditProperty_UserName.getText().toString());
-		userbean.setUSER_ADDRESS(EditProperty_UserAddress.getText().toString());
-		userbean.setUSER_SCHOOLNAME(EditProperty_UserSchoolName.getText().toString());
-		userbean.setUSER_AGE(EditProperty_UserAge.getText().toString());
-		userbean.setUSER_GENDER(EditProperty_UserGender.getText().toString());
-		userbean.setUSER_PHONE(EditProperty_UserPhone.getText().toString());
-		userbean.setUSER_FMPHONE(EditProperty_UserFmphone.getText().toString());
-		UserDataUpdate userdataupdate = new UserDataUpdate();
-		userdataupdate.UserUpdate(userbean, EditProperty_UserId.getText().toString());
+	public void Btn_Edit(ActionEvent event) {
+		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
+		Alert alert = new Alert(AlertType.NONE,"성공적으로 수정 되었습니다.", YES);
+		alert.setTitle("마이페이지 - 수정 성공");
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.orElse(YES) == YES) {
+			UserBean userbean = new UserBean();
+			userbean.setUSER_ID_PK(Mypage_UserId.getText().toString());
+			userbean.setUSER_PASSWORD(EditProperty_UserPassword.getText().toString());
+			userbean.setUSER_NAME(EditProperty_UserName.getText().toString());
+			userbean.setUSER_ADDRESS(EditProperty_UserAddress.getText().toString());
+			userbean.setUSER_SCHOOLNAME(EditProperty_UserSchoolName.getText().toString());
+			userbean.setUSER_AGE(EditProperty_UserAge.getText().toString());
+			userbean.setUSER_GENDER(EditProperty_UserGender.getText().toString());
+			userbean.setUSER_PHONE(EditProperty_UserPhone.getText().toString());
+			userbean.setUSER_FMPHONE(EditProperty_UserFmphone.getText().toString());
+			UserDataUpdate userdataupdate = new UserDataUpdate();
+			userdataupdate.UserUpdate(userbean, Mypage_UserId.getText().toString());
+			try {
+				NAV(event, "../View/MypageView.fxml");
+			}catch(Exception e) { }
+		}
 	}
 	@FXML
 	private void logout(ActionEvent event) {
@@ -70,7 +81,7 @@ public class MypageEditViewController implements Initializable {
 			SelectNowUser selectnowuser = new SelectNowUser();
 			UserBean userbean;
 			userbean  = selectnowuser.getSelectUser(LoginViewController.login_id);
-			EditProperty_UserId.setText(userbean.getUSER_ID_PK());
+			Mypage_UserId.setText(userbean.getUSER_ID_PK());
 			EditProperty_UserPassword.setText(userbean.getUSER_PASSWORD());
 			EditProperty_UserName.setText(userbean.getUSER_NAME());
 			EditProperty_UserAddress.setText(userbean.getUSER_ADDRESS());

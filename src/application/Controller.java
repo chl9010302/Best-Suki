@@ -44,7 +44,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+//참고용 Controller
 public class Controller implements Initializable {
 	//Declare JAVA
 	private String usergender = "";
@@ -55,10 +55,7 @@ public class Controller implements Initializable {
 	public static String filename;
 	public static String filepath;
 	public static String login_id="";
-	 
 	Sha256 sha256 = new Sha256();
-		
-		
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
 	@FXML private Label Mypage_UserId, Mypage_UserPassword, Mypage_UserName,  Mypage_UserAddress, Mypage_UserSchoolName, Mypage_UserAge, Mypage_UserGender, Mypage_UserPhone, Mypage_UserFmphone;
