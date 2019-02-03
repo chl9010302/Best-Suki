@@ -22,20 +22,19 @@ public class UserDataUpdate {
 		
 		try {
 		Connection con = usingstaticfunction.DBConnectionKeeping.con;
-		
 		stmt = con.createStatement();
 		StringBuilder sb = new StringBuilder();
-		String sql = sb.append("UPDATE USER SET")
-				.append(" UserId = '"+userbean.getUserId())
-				.append("', UserPassword = '"+userbean.getUserPassword())
-				.append("', UserName = '"+userbean.getUserName())
-				.append("', UserAddress = '"+userbean.getUserAddress())
-				.append("', UserSchoolName = '"+userbean.getUserSchoolName())
-				.append("', UserAge = '"+userbean.getUserAge())
-				.append("', UserGender = '"+userbean.getUserGender())
-				.append("', UserPhone = '"+userbean.getUserPhone())
-				.append("', UserFmphone = '"+userbean.getUserFmphone())
-				.append("' where UserId = '")
+		String sql = sb.append("UPDATE USER_TB SET")
+				.append(" USER_ID_PK = '"+userbean.getUSER_ID_PK())
+				.append("', USER_PASSWORD = '"+userbean.getUSER_PASSWORD())
+				.append("', USER_NAME = '"+userbean.getUSER_NAME())
+				.append("', USER_ADDRESS = '"+userbean.getUSER_ADDRESS())
+				.append("', USER_SCHOOLNAME = '"+userbean.getUSER_SCHOOLNAME())
+				.append("', USER_AGE = '"+userbean.getUSER_AGE())
+				.append("', USER_GENDER = '"+userbean.getUSER_GENDER())
+				.append("', USER_PHONE = '"+userbean.getUSER_PHONE())
+				.append("', USER_FMPHONE = '"+userbean.getUSER_FMPHONE())
+				.append("' where USER_ID_PK = '")
 				.append(User_id)
 				.append("';").toString();
 		System.out.println(sql);

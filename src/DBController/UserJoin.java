@@ -8,40 +8,36 @@ import java.sql.Statement;
 import DBModel.UserBean;
 
 public class UserJoin {
-	UserBean user;
+	UserBean userbean;
 	Connection conn = null;
 	Statement stmt = null;
 
-	public UserJoin(UserBean joinuser) {
-		insert(joinuser);
+	public UserJoin(UserBean userjoin) {
+		insert(userjoin);
 	}
 	
-	public boolean insert(UserBean joinuser) {
-		String insertsql = "insert into user(UserId, UserPassword, UserName, UserAddress, UserSchoolName, UserAge, UserGender, UserStudentnumber, UserPhone, UserFmphone, Isteacher) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+	public boolean insert(UserBean userjoin) {
+		String insertsql = "INSERT INTO USER_TB(USER_ID_PK, USER_PASSWORD, USER_NAME, USER_ADDRESS, USER_SCHOOLNAME, USER_AGE, USER_GENDER, USER_PHONE, USER_FMPHONE, USER_TEACHERSESSION) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	    PreparedStatement pstmt = null;
-		user = joinuser;
+	    userbean = userjoin;
 		try {
 			 conn = application.DBConnection.getDBConection();
 			 pstmt = conn.prepareStatement(insertsql);
-	
-			
-			  			pstmt.setString(1,user.getUserId() );
-			  			pstmt.setString(2,user.getUserPassword()); 
-			  			pstmt.setString(3, user.getUserName()); 
-			  			pstmt.setString(4, user.getUserAddress()); 
-			  			pstmt.setString(5, user.getUserSchoolName()); 
-			  			pstmt.setString(6, user.getUserAge()); 
-			  			pstmt.setString(7, user.getUserGender()); 
-			  			pstmt.setString(8, user.getUserStudentnumber()); 
-			  			pstmt.setString(9, user.getUserPhone()); 
-			  			pstmt.setString(10, user.getUserFmphone()); 
-			  			pstmt.setString(11, user.getIsteacher()); 
+			  			pstmt.setString(1,userbean.getUSER_ID_PK() );
+			  			pstmt.setString(2,userbean.getUSER_PASSWORD()); 
+			  			pstmt.setString(3, userbean.getUSER_NAME()); 
+			  			pstmt.setString(4, userbean.getUSER_ADDRESS()); 
+			  			pstmt.setString(5, userbean.getUSER_SCHOOLNAME()); 
+			  			pstmt.setString(6, userbean.getUSER_AGE()); 
+			  			pstmt.setString(7, userbean.getUSER_GENDER()); 
+			  			pstmt.setString(8, userbean.getUSER_PHONE()); 
+			  			pstmt.setString(9, userbean.getUSER_FMPHONE()); 
+			  			pstmt.setString(10, userbean.getUSER_TEACHERSESSION()); 
 			  		
 			  	      pstmt.executeUpdate();
 			  
 			conn.close();
 			pstmt.close();
-			System.out.println(user.getUserSchoolName());
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -20,7 +20,7 @@ public class DBConnection {
 					"root", "root");
 			st = con.createStatement();
 
-			SqlTest sqlTest = new SqlTest(con, "temp_table");
+//			SqlTest sqlTest = new SqlTest(con, "temp_table");
 
 		
 			st.close();
@@ -51,7 +51,7 @@ public class DBConnection {
 		ResultSet rs = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/academymangementdb?serverTimezone=UTC",
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/academymanagementdb?serverTimezone=UTC",
 					"root", "root");
 		
 			return con;

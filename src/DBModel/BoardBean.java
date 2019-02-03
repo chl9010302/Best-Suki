@@ -1,5 +1,6 @@
 package DBModel;
 
+
 public class BoardBean { 
 	//s
 	private String BoardId           ;

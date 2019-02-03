@@ -18,7 +18,7 @@ public class DBConnectionKeeping {
 	public Connection getDBConection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/academymangementdb?serverTimezone=UTC",
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/academymanagementdb?serverTimezone=UTC",
 					"root", "root");
 		
 			return con;

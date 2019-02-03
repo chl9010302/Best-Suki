@@ -2,122 +2,147 @@ package DBModel;
 
 public class UserBean { 
 	//s
-	private String UserId            ;
-	private String UserPassword      ;
-	private String UserName          ;
-	private String UserAddress       ;
-	private String UserSchoolName    ;
-	private String UserAge           ;
-	private String UserGender        ;
-	private String UserStudentnumber ;
-	private String UserPhone         ;
-	private String UserFmphone       ;
-	private String UserLoginsession  ;
-	private String Isteacher         ;
-	private String Classnumber       ;
-	private String Classnumber_2     ;
-	private String Classnumber_3     ;
-	private String Classnumber_4     ;
+	private String USER_ID_PK         ;
+	private String USER_PASSWORD      ;
+	private String USER_NAME          ;
+	private String USER_ADDRESS       ;
+	private String USER_SCHOOLNAME    ;
+	private String USER_AGE           ;
+	private String USER_GENDER        ;
+	private String USER_PHONE         ;
+	private String USER_FMPHONE       ;
+	private String USER_LOGINSESSION  ;
+	private String USER_TEACHERSESSION;
+	private String CLASS_NUMBER1      ;
+	private String CLASS_NUMBER2      ;
+	private String CLASS_NUMBER3      ;
+	private String CLASS_NUMBER4      ;
 	
 	public UserBean(){
-		setIsteacher("1");
-		setUserStudentnumber("201901136");
+		setUSER_TEACHERSESSION("1");
 	}
-	public String getUserId() {
-		return UserId;
+	public String getUSER_ID_PK() {
+		return USER_ID_PK;
 	}
-	public void setUserId(String userId) {
-		UserId = userId;
+
+	public void setUSER_ID_PK(String uSER_ID_PK) {
+		USER_ID_PK = uSER_ID_PK;
 	}
-	public String getUserPassword() {
-		return UserPassword;
+
+	public String getUSER_PASSWORD() {
+		return USER_PASSWORD;
 	}
-	public void setUserPassword(String userPassword) {
-		UserPassword = userPassword;
+
+	public void setUSER_PASSWORD(String uSER_PASSWORD) {
+		USER_PASSWORD = uSER_PASSWORD;
 	}
-	public String getUserName() {
-		return UserName;
+
+	public String getUSER_NAME() {
+		return USER_NAME;
 	}
-	public void setUserName(String userName) {
-		UserName = userName;
+
+	public void setUSER_NAME(String uSER_NAME) {
+		USER_NAME = uSER_NAME;
 	}
-	public String getUserAddress() {
-		return UserAddress;
+
+	public String getUSER_ADDRESS() {
+		return USER_ADDRESS;
 	}
-	public void setUserAddress(String userAddress) {
-		UserAddress = userAddress;
+
+	public void setUSER_ADDRESS(String uSER_ADDRESS) {
+		USER_ADDRESS = uSER_ADDRESS;
 	}
-	public String getUserSchoolName() {
-		return UserSchoolName;
+
+	public String getUSER_SCHOOLNAME() {
+		return USER_SCHOOLNAME;
 	}
-	public void setUserSchoolName(String userSchoolName) {
-		UserSchoolName = userSchoolName;
+
+	public void setUSER_SCHOOLNAME(String uSER_SCHOOLNAME) {
+		USER_SCHOOLNAME = uSER_SCHOOLNAME;
 	}
-	public String getUserAge() {
-		return UserAge;
+
+	public String getUSER_AGE() {
+		return USER_AGE;
 	}
-	public void setUserAge(String userAge) {
-		UserAge = userAge;
+
+	public void setUSER_AGE(String uSER_AGE) {
+		USER_AGE = uSER_AGE;
 	}
-	public String getUserGender() {
-		return UserGender;
+
+	public String getUSER_GENDER() {
+		return USER_GENDER;
 	}
-	public void setUserGender(String userGender) {
-		UserGender = userGender;
+
+	public void setUSER_GENDER(String uSER_GENDER) {
+		USER_GENDER = uSER_GENDER;
 	}
-	public String getUserStudentnumber() {
-		return UserStudentnumber;
+
+	public String getUSER_PHONE() {
+		return USER_PHONE;
 	}
-	public void setUserStudentnumber(String userStudentnumber) {
-		UserStudentnumber = userStudentnumber;
+
+	public void setUSER_PHONE(String uSER_PHONE) {
+		USER_PHONE = uSER_PHONE;
 	}
-	public String getUserPhone() {
-		return UserPhone;
+
+	public String getUSER_FMPHONE() {
+		return USER_FMPHONE;
 	}
-	public void setUserPhone(String userPhone) {
-		UserPhone = userPhone;
+
+	public void setUSER_FMPHONE(String uSER_FMPHONE) {
+		USER_FMPHONE = uSER_FMPHONE;
 	}
-	public String getUserFmphone() {
-		return UserFmphone;
+
+	public String getUSER_LOGINSESSION() {
+		return USER_LOGINSESSION;
 	}
-	public void setUserFmphone(String userFmphone) {
-		UserFmphone = userFmphone;
+
+	public void setUSER_LOGINSESSION(String uSER_LOGINSESSION) {
+		USER_LOGINSESSION = uSER_LOGINSESSION;
 	}
-	public String getUserLoginsession() {
-		return UserLoginsession;
+
+	public String getUSER_TEACHERSESSION() {
+		return USER_TEACHERSESSION;
 	}
-	public void setUserLoginsession(String userLoginsession) {
-		UserLoginsession = userLoginsession;
+
+	public void setUSER_TEACHERSESSION(String uSER_TEACHERSESSION) {
+		USER_TEACHERSESSION = uSER_TEACHERSESSION;
 	}
-	public String getIsteacher() {
-		return Isteacher;
+
+	public String getCLASS_NUMBER1() {
+		return CLASS_NUMBER1;
 	}
-	public void setIsteacher(String isteacher) {
-		Isteacher = isteacher;
+
+	public void setCLASS_NUMBER1(String cLASS_NUMBER1) {
+		CLASS_NUMBER1 = cLASS_NUMBER1;
 	}
-	public String getClassnumber() {
-		return Classnumber;
+
+	public String getCLASS_NUMBER2() {
+		return CLASS_NUMBER2;
 	}
-	public void setClassnumber(String classnumber) {
-		Classnumber = classnumber;
+
+	public void setCLASS_NUMBER2(String cLASS_NUMBER2) {
+		CLASS_NUMBER2 = cLASS_NUMBER2;
 	}
-	public String getClassnumber_2() {
-		return Classnumber_2;
+
+	public String getCLASS_NUMBER3() {
+		return CLASS_NUMBER3;
 	}
-	public void setClassnumber_2(String classnumber_2) {
-		Classnumber_2 = classnumber_2;
+
+	public void setCLASS_NUMBER3(String cLASS_NUMBER3) {
+		CLASS_NUMBER3 = cLASS_NUMBER3;
 	}
-	public String getClassnumber_3() {
-		return Classnumber_3;
+
+	public String getCLASS_NUMBER4() {
+		return CLASS_NUMBER4;
 	}
-	public void setClassnumber_3(String classnumber_3) {
-		Classnumber_3 = classnumber_3;
+
+	public void setCLASS_NUMBER4(String cLASS_NUMBER4) {
+		CLASS_NUMBER4 = cLASS_NUMBER4;
 	}
-	public String getClassnumber_4() {
-		return Classnumber_4;
-	}
-	public void setClassnumber_4(String classnumber_4) {
-		Classnumber_4 = classnumber_4;
-	}
+
+	
+	
+	
 	
 }

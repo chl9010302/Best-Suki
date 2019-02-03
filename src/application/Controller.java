@@ -15,7 +15,7 @@ import DBController.SelectNowUser;
 import DBController.TestDetailAdd;
 import DBController.UserDataUpdate;
 import DBController.UserJoin;
-import DBController.UserLongin;
+import DBController.UserLogin;
 import DBModel.BoardBean;
 import DBModel.TestDetailBean;
 import DBModel.UserBean;
@@ -52,10 +52,8 @@ public class Controller implements Initializable {
 	//Declare JAVA
 	private String usergender = "";
 	private UserBean user; // 회원가입 시 User 정보를 송신하기 위함.
-	private BoardBean board; // 게시판 보내
 	private TestDetailBean testdetailbean;
 	private Stage stage; // file choose 하기 위함.
-	private UserLongin login;
 	public static String userId;
 	public static String filename;
 	public static String filepath;
@@ -107,19 +105,17 @@ public class Controller implements Initializable {
 	public void sung(ActionEvent event) { 
 		try {
 		SelectNowUser selectnowuser = new SelectNowUser();
-		UserBean getuser;
-		getuser  = selectnowuser.getSelectUser(login_id);
-		System.out.println("sdqwdqwd"+getuser.getUserId());
-		Mypage_UserId.setText(getuser.getUserId());
-		Mypage_UserPassword.setText(getuser.getUserPassword());
-		Mypage_UserName.setText(getuser.getUserName());
-		System.out.println("Username : " + getuser.getUserName());
-		Mypage_UserAddress.setText(getuser.getUserAddress());
-		Mypage_UserSchoolName.setText(getuser.getUserSchoolName());
-		Mypage_UserAge.setText(getuser.getUserAge());
-		Mypage_UserGender.setText(getuser.getUserGender());
-		Mypage_UserPhone.setText(getuser.getUserPhone());
-		Mypage_UserFmphone.setText(getuser.getUserFmphone());
+		UserBean userbean;
+		userbean  = selectnowuser.getSelectUser(login_id);
+		Mypage_UserId.setText(userbean.getUSER_ID_PK());
+		Mypage_UserPassword.setText(userbean.getUSER_PASSWORD());
+		Mypage_UserName.setText(userbean.getUSER_NAME());
+		Mypage_UserAddress.setText(userbean.getUSER_ADDRESS());
+		Mypage_UserSchoolName.setText(userbean.getUSER_SCHOOLNAME());
+		Mypage_UserAge.setText(userbean.getUSER_AGE());
+		Mypage_UserGender.setText(userbean.getUSER_GENDER());
+		Mypage_UserPhone.setText(userbean.getUSER_PHONE());
+		Mypage_UserFmphone.setText(userbean.getUSER_FMPHONE());
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -131,40 +127,40 @@ public class Controller implements Initializable {
 	public void tuk(ActionEvent event) { 
 		try {
 		SelectNowUser selectnowuser = new SelectNowUser();
-		UserBean getuser;
-		getuser  = selectnowuser.getSelectUser(login_id);
-		EditProperty_UserId.setText(getuser.getUserId());
-		EditProperty_UserPassword.setText(getuser.getUserPassword());
-		EditProperty_UserName.setText(getuser.getUserName());
-		EditProperty_UserAddress.setText(getuser.getUserAddress());
-		EditProperty_UserSchoolName.setText(getuser.getUserSchoolName());
-		EditProperty_UserAge.setText(getuser.getUserAge());
-		EditProperty_UserGender.setText(getuser.getUserGender());
-		EditProperty_UserPhone.setText(getuser.getUserPhone());
-		EditProperty_UserFmphone.setText(getuser.getUserFmphone());
+		UserBean userbean;
+		userbean  = selectnowuser.getSelectUser(login_id);
+		EditProperty_UserId.setText(userbean.getUSER_ID_PK());
+		EditProperty_UserPassword.setText(userbean.getUSER_PASSWORD());
+		EditProperty_UserName.setText(userbean.getUSER_NAME());
+		EditProperty_UserAddress.setText(userbean.getUSER_ADDRESS());
+		EditProperty_UserSchoolName.setText(userbean.getUSER_SCHOOLNAME());
+		EditProperty_UserAge.setText(userbean.getUSER_AGE());
+		EditProperty_UserGender.setText(userbean.getUSER_GENDER());
+		EditProperty_UserPhone.setText(userbean.getUSER_PHONE());
+		EditProperty_UserFmphone.setText(userbean.getUSER_FMPHONE());
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
 	@FXML
 	public void ButtonTest3(ActionEvent event) {
-		UserBean getuser = new UserBean();
-		getuser.setUserId(EditProperty_UserId.getText().toString());
-		getuser.setUserPassword(EditProperty_UserPassword.getText().toString());
-		getuser.setUserName(EditProperty_UserName.getText().toString());
-		getuser.setUserAddress(EditProperty_UserAddress.getText().toString());
-		getuser.setUserSchoolName(EditProperty_UserSchoolName.getText().toString());
-		getuser.setUserAge(EditProperty_UserAge.getText().toString());
-		getuser.setUserGender(EditProperty_UserGender.getText().toString());
-		getuser.setUserPhone(EditProperty_UserPhone.getText().toString());
-		getuser.setUserFmphone(EditProperty_UserFmphone.getText().toString());
-		UserDataUpdate userdataupdate = new UserDataUpdate(getuser, EditProperty_UserId.getText().toString());
+		UserBean userbean = new UserBean();
+		userbean.setUSER_ID_PK(EditProperty_UserId.getText().toString());
+		userbean.setUSER_PASSWORD(EditProperty_UserPassword.getText().toString());
+		userbean.setUSER_NAME(EditProperty_UserName.getText().toString());
+		userbean.setUSER_ADDRESS(EditProperty_UserAddress.getText().toString());
+		userbean.setUSER_SCHOOLNAME(EditProperty_UserSchoolName.getText().toString());
+		userbean.setUSER_AGE(EditProperty_UserAge.getText().toString());
+		userbean.setUSER_GENDER(EditProperty_UserGender.getText().toString());
+		userbean.setUSER_PHONE(EditProperty_UserPhone.getText().toString());
+		userbean.setUSER_FMPHONE(EditProperty_UserFmphone.getText().toString());
+		UserDataUpdate userdataupdate = new UserDataUpdate(userbean, EditProperty_UserId.getText().toString());
 	}
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	private void login(ActionEvent event) {
-		UserLongin login = new UserLongin();
+		UserLogin userlogin = new UserLogin();
 		try {
-			int i = login.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
+			int i = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 			login_id = UserId.getText().toString();
 			if(i == 1) {
 				NAV(event, "../View/MainView.fxml");
@@ -190,16 +186,15 @@ public class Controller implements Initializable {
 	}
 	@FXML
 	private void logout(ActionEvent event) {
-		UserLongin logout = new UserLongin();
-		ButtonType foo = new ButtonType("foo", ButtonBar.ButtonData.OK_DONE);
-		ButtonType bar = new ButtonType("bar", ButtonBar.ButtonData.CANCEL_CLOSE);
-		Alert alert = new Alert(AlertType.WARNING,"Would you want to logout?", foo, bar);
+		UserLogin userlogout = new UserLogin();
+		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
+		ButtonType NO = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
+		Alert alert = new Alert(AlertType.WARNING,"Would you want to logout?", YES, NO);
 		alert.setTitle("Logout");
 		Optional<ButtonType> result = alert.showAndWait();
-		if (result.orElse(bar) == foo) {
+		if (result.orElse(NO) == YES) {
 			try {
-				System.out.println("Id : " + login_id);
-				logout.logout(login_id);
+				userlogout.logout(login_id);
 				NAV(event, "../View/LoginView.fxml");
 			}catch(Exception e) { }
 		}
@@ -209,15 +204,15 @@ public class Controller implements Initializable {
 		LocalDate localDate = UserAge.getValue();
 		// 회원가입 시 정보가  인터페이스됨.
 		user = new UserBean();
-		user.setUserId(UserId.getText().toString());
-		user.setUserPassword(sha256.sha256(UserPassword.getText()));
-		user.setUserName(UserName.getText().toString());
-		user.setUserAddress(UserAddress.getText().toString());
-		user.setUserSchoolName(UserSchoolName.getText().toString());
-		user.setUserAge(localDate.toString());
-		user.setUserGender(usergender);
-		user.setUserPhone(UserPhone.getText().toString());
-		user.setUserFmphone(UserFmphone.getText().toString());
+		user.setUSER_ID_PK(UserId.getText().toString());
+		user.setUSER_PASSWORD(sha256.sha256(UserPassword.getText()));
+		user.setUSER_NAME(UserName.getText().toString());
+		user.setUSER_ADDRESS(UserAddress.getText().toString());
+		user.setUSER_SCHOOLNAME(UserSchoolName.getText().toString());
+		user.setUSER_AGE(localDate.toString());
+		user.setUSER_GENDER(usergender);
+		user.setUSER_PHONE(UserPhone.getText().toString());
+		user.setUSER_FMPHONE(UserFmphone.getText().toString());
 		
 		UserJoin join = new UserJoin(user);
 		// 회원가입과 함께 Login Page로 이동됨.
@@ -234,69 +229,32 @@ public class Controller implements Initializable {
 	private void deleteAction(ActionEvent action){
 	  int selectedItem = listBoxMain.getSelectionModel().getSelectedIndex();
 	}
-	/*
-	@FXML
-	private void saveAction(ActionEvent action) {
-		board = new BoardBean();
-		AddBoard addboard = new AddBoard();
-		board.setBoardId(String.valueOf(addboard.lastselect()));
-		board.setSubtitle(txtSubtitle.getText().toString());
-		board.setFilepath(filePath);
-		board.setRadio1(Radio1.getText().toString());
-		board.setRadio2(Radio2.getText().toString());
-		board.setRadio3(Radio3.getText().toString());
-		board.setRadio4(Radio4.getText().toString());
-		board.setRadio5(Radio5.getText().toString());
-//		Quest1Group1.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-//			public void changed(ObservableValue<? extends Toggle> observable, Toggle old_toggle, Toggle new_toggle) {
-//				System.out.println("qwewqe");
-//				if(Quest1Group1.getSelectedToggle() != null) {
-//					System.out.println("qwrwqr : " + Quest1Group1.getSelectedToggle().toString());
-//				}
-//			}
-//		});
-		if(Rb1.isSelected()) {
-			board.setFlag(Radio1.getText().toString());
-		}else if(Rb2.isSelected()) {
-			board.setFlag(Radio2.getText().toString());
-		}else if(Rb3.isSelected()) {
-			board.setFlag(Radio3.getText().toString());
-		}else if(Rb4.isSelected()) {
-			board.setFlag(Radio4.getText().toString());
-		}else {
-			board.setFlag(Radio5.getText().toString());
-		}
-	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
-	    AddBoard Excute = new AddBoard(board);
-	    
-	}*/
 	
 	@FXML
 	private void saveAction(ActionEvent action) {
 		testdetailbean = new TestDetailBean();
-		testdetailbean.setTestDetail_pkey(usingstaticfunction.TestDetailFunction.makeTestDetailKey(txtSubtitle.getText().toString()));
-		testdetailbean.setTestDetail_Subtitle(txtSubtitle.getText().toString());
-		testdetailbean.setTestDetail_Image(filepath);
-		testdetailbean.setTestDetail_Data(Radio1.getText().toString());
-		testdetailbean.setTestDetail_Data2(Radio2.getText().toString());
-		testdetailbean.setTestDetail_Data3(Radio3.getText().toString());
-		testdetailbean.setTestDetail_Data4(Radio4.getText().toString());
-		testdetailbean.setTestDetail_Data5(Radio5.getText().toString());
+		testdetailbean.setTESTDETAIL_ID_PK(usingstaticfunction.TestDetailFunction.makeTestDetailKey(txtSubtitle.getText().toString()));
+		testdetailbean.setTESTDETAIL_SUBTITLE(txtSubtitle.getText().toString());
+		testdetailbean.setTESTDETAIL_IMAGE(filepath);
+		testdetailbean.setTESTDETAIL_DATA1(Radio1.getText().toString());
+		testdetailbean.setTESTDETAIL_DATA2(Radio2.getText().toString());
+		testdetailbean.setTESTDETAIL_DATA3(Radio3.getText().toString());
+		testdetailbean.setTESTDETAIL_DATA4(Radio4.getText().toString());
+		testdetailbean.setTESTDETAIL_DATA5(Radio5.getText().toString());
 
 		if(Rb1.isSelected()) {
-			testdetailbean.setTestDetail_CorrectAnswer(Radio1.getText().toString());
+			testdetailbean.setTESTDETAIL_ANSWER(Radio1.getText().toString());
 		}else if(Rb2.isSelected()) {
-			testdetailbean.setTestDetail_CorrectAnswer(Radio2.getText().toString());
+			testdetailbean.setTESTDETAIL_ANSWER(Radio2.getText().toString());
 		}else if(Rb3.isSelected()) {
-			testdetailbean.setTestDetail_CorrectAnswer(Radio3.getText().toString());
+			testdetailbean.setTESTDETAIL_ANSWER(Radio3.getText().toString());
 		}else if(Rb4.isSelected()) {
-			testdetailbean.setTestDetail_CorrectAnswer(Radio4.getText().toString());
+			testdetailbean.setTESTDETAIL_ANSWER(Radio4.getText().toString());
 		}else {
-			testdetailbean.setTestDetail_CorrectAnswer(Radio5.getText().toString());
+			testdetailbean.setTESTDETAIL_ANSWER(Radio5.getText().toString());
 		}
 	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
 	    TestDetailAdd detailAdd = new TestDetailAdd(testdetailbean);
-	    
 	}
 	@FXML
 	private void Quest1Group1Action(ActionEvent action) {

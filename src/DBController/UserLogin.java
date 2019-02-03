@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 import usingstaticfunction.DBConnectionKeeping;
 
-public class UserLongin {
+public class UserLogin {
 
 	Connection conn = null;
 	ResultSet rs;
@@ -17,7 +17,7 @@ public class UserLongin {
 
 	public int loginCheck(String user_id, String user_pw) {
 		int i = 0;
-		sql = "SELECT USERID FROM USER WHERE USERID = ? AND USERPASSWORD = ?";
+		sql = "SELECT USER_ID_PK FROM USER_TB WHERE USER_ID_PK = ? AND USER_PASSWORD = ?";
 		try {
 			conn = application.DBConnection.getDBConection();
 			pstmt = conn.prepareStatement(sql);
@@ -26,8 +26,8 @@ public class UserLongin {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				if (rs.getString("USERID") != null) {
-					sql = "UPDATE USER SET USERLOGINSESSION = 1 WHERE USERID = ?";
+				if (rs.getString("USER_ID_PK") != null) {
+					sql = "UPDATE USER_TB SET USER_LOGINSESSION = 1 WHERE USER_ID_PK = ?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, user_id);
 					i = pstmt.executeUpdate();
@@ -59,10 +59,9 @@ public class UserLongin {
 
 	private int user_log(String user_id) throws SQLException {
 		int i = 0;
-		sql = "INSERT INTO USER_LOG(USER_ID, USER_ACTION, WRITE_DATE)VALUES(?,?,now())";
+		sql = "INSERT INTO DATE_TB(USER_ID, DATE_LOGINTIME)VALUES(?,now())";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, user_id);
-		pstmt.setString(2, "로그인");
 		i = pstmt.executeUpdate();
 		return i;
 	}
@@ -77,7 +76,7 @@ public class UserLongin {
 		Statement stmt = null;
 		stmt = con.createStatement();
 		StringBuilder sb = new StringBuilder();
-		String sql = sb.append("UPDATE USER SET").append(" UserLoginsession = 0").append(" where UserId = '")
+		String sql = sb.append("UPDATE USER_TB SET").append(" USER_LOGINSESSION = 0").append(" where USER_ID_PK = '")
 				.append(user_id).append("';").toString();
 		try {
 			stmt.executeUpdate(sql);
