@@ -1,10 +1,13 @@
-package DBController;
+package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import DBController.TestDetailAdd;
+import DBController.UserLogin;
+import DBModel.TestDetailBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,22 +20,31 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class TestBoardViewController implements Initializable {
+public class TestingViewController implements Initializable {
 	//Declare JAVA
-		
+	private TestDetailBean testdetailbean;
+	public static String filepath;
 	//Declare FXML
-	@FXML private Button Property_userID;
 	@FXML private Text result; // logout 시 result 표시
 	@FXML private Button BtnAdd;
 	@FXML private Button BtnDelete;
+	@FXML private Button BtnSave;
+	@FXML private RadioButton Rb1, Rb2, Rb3, Rb4, Rb5;
+	@FXML private TextField Radio1, Radio2, Radio3, Radio4, Radio5;
+	@FXML private ToggleGroup Quest1Group1;
 	@FXML private TableView<TestDetailAdd> testTableView;
 	@FXML private TableColumn<TestDetailAdd, String> ColBoardId;
 	@FXML private TableColumn<TestDetailAdd, String> ColSubtitle;
+	@FXML private TextField txtAddItem; 
+	@FXML private TextField txtSubtitle; 
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
@@ -63,6 +75,37 @@ public class TestBoardViewController implements Initializable {
 	  int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
 	  testdetailadd.delete(Integer.parseInt(testTableView.getItems().get(selectedItem).getTestdetail_id_pk().getValue()));
 	  testTableView.setItems(testdetailadd.gettestdetailadd());
+	}
+	@FXML
+	private void saveAction(ActionEvent action) {
+		testdetailbean = new TestDetailBean();
+		testdetailbean.setTESTDETAIL_ID_PK(usingstaticfunction.TestDetailFunction.makeTestDetailKey(txtSubtitle.getText().toString()));
+		testdetailbean.setTESTDETAIL_SUBTITLE(txtSubtitle.getText().toString());
+		testdetailbean.setTESTDETAIL_IMAGE(filepath);
+		testdetailbean.setTESTDETAIL_DATA1(Radio1.getText().toString());
+		testdetailbean.setTESTDETAIL_DATA2(Radio2.getText().toString());
+		testdetailbean.setTESTDETAIL_DATA3(Radio3.getText().toString());
+		testdetailbean.setTESTDETAIL_DATA4(Radio4.getText().toString());
+		testdetailbean.setTESTDETAIL_DATA5(Radio5.getText().toString());
+
+		if(Rb1.isSelected()) {
+			testdetailbean.setTESTDETAIL_ANSWER(Radio1.getText().toString());
+		}else if(Rb2.isSelected()) {
+			testdetailbean.setTESTDETAIL_ANSWER(Radio2.getText().toString());
+		}else if(Rb3.isSelected()) {
+			testdetailbean.setTESTDETAIL_ANSWER(Radio3.getText().toString());
+		}else if(Rb4.isSelected()) {
+			testdetailbean.setTESTDETAIL_ANSWER(Radio4.getText().toString());
+		}else {
+			testdetailbean.setTESTDETAIL_ANSWER(Radio5.getText().toString());
+		}
+	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
+	    TestDetailAdd detailAdd = new TestDetailAdd();
+	    detailAdd.insertTestDetail(testdetailbean);
+	}
+	@FXML
+	private void Quest1Group1Action(ActionEvent action) {
+		System.out.println(Quest1Group1.getSelectedToggle().toString());
 	}
 	@FXML
 	private void modify(ActionEvent action) {

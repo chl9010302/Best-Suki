@@ -1,10 +1,12 @@
-package DBController;
+package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import DBController.AddStastics;
+import DBController.UserLogin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,13 +19,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
-public class VideoViewController implements Initializable {
+public class StasticsViewController implements Initializable {
 	//Declare JAVA
-		
+	
 	//Declare FXML
 	@FXML private Button Property_userID;
+	@FXML private TableView<AddStastics> StasticsView;
+	@FXML private TableColumn<AddStastics, String> USER_ID;
+	@FXML private TableColumn<AddStastics, String> USER_LOGIN_DATE;
+	@FXML private TableColumn<AddStastics, String> USER_LOGOUT_DATE;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
@@ -48,6 +56,13 @@ public class VideoViewController implements Initializable {
 		}
 	}
 	public void initialize(URL url, ResourceBundle rb) {
+		try {
+			AddStastics stasticsview = new AddStastics();
+			USER_ID.setCellValueFactory(cellData -> cellData.getValue().getUSER_ID());
+			USER_LOGIN_DATE.setCellValueFactory(cellData -> cellData.getValue().getUSER_LOGIN_DATE());
+			USER_LOGOUT_DATE.setCellValueFactory(cellData -> cellData.getValue().getUSER_LOGOUT_DATE());
+			StasticsView.setItems(stasticsview.getstastics());
+		}catch(Exception e) {}
 	}
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));

@@ -1,4 +1,4 @@
-package DBController;
+package ViewController;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -6,6 +6,7 @@ import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
+import DBController.UserLogin;
 import academyutil.Sha256;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

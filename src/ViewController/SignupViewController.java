@@ -1,4 +1,4 @@
-package DBController;
+package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import DBController.UserJoin;
 import DBModel.UserBean;
 import academyutil.Sha256;
 import javafx.event.ActionEvent;

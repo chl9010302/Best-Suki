@@ -1,12 +1,12 @@
-package DBController;
+package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import DBController.TestDetailAdd;
+import DBController.UserLogin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,21 +19,27 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class MainViewController implements Initializable {
+public class TestBoardViewController implements Initializable {
+	//Declare JAVA
+		
 	//Declare FXML
 	@FXML private Button Property_userID;
-	@FXML private ListView<String> listBoxMain;
-	@FXML private Button BtnDelete;
-	@FXML private TextField txtAddItem;
+	@FXML private Text result; // logout 시 result 표시
 	@FXML private Button BtnAdd;
+	@FXML private Button BtnDelete;
+	@FXML private TableView<TestDetailAdd> testTableView;
+	@FXML private TableColumn<TestDetailAdd, String> ColBoardId;
+	@FXML private TableColumn<TestDetailAdd, String> ColSubtitle;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
+	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }
 	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { NAV(event, "../View/StasticsView.fxml"); }
 	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { NAV(event, "../View/MypageView.fxml"); }
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { NAV(event, "../View/VideoView.fxml"); }
@@ -54,30 +60,38 @@ public class MainViewController implements Initializable {
 		}
 	}
 	@FXML
-	private void addAction(ActionEvent action){
+	private void removeAction(ActionEvent action){
+		TestDetailAdd testdetailadd = new TestDetailAdd();
+	  int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
+	  testdetailadd.delete(Integer.parseInt(testTableView.getItems().get(selectedItem).getTestdetail_id_pk().getValue()));
+	  testTableView.setItems(testdetailadd.gettestdetailadd());
 	}
 	@FXML
-	private void deleteAction(ActionEvent action){
-//	  int selectedItem = listBoxMain.getSelectionModel().getSelectedIndex();
+	private void modify(ActionEvent action) {
 	}
-	  public void initialize(URL url, ResourceBundle rb) {
-		  try {
-			// Add a ChangeListener to ListView to look for change in focus
-			  listBoxMain.focusedProperty().addListener(new ChangeListener<Boolean>() {
-				  public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-					  if(listBoxMain.isFocused()){
-						  BtnDelete.setDisable(false);
-					  }
-				  }
-			  }); 
-		  }catch (Exception e) { }
-		  
-	  }
+	
+	public void initialize(URL url, ResourceBundle rb) {
+	  // TODO
+		try {
+			TestDetailAdd testdetailadd = new TestDetailAdd();
+			ColBoardId.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_id_pk());
+			ColSubtitle.setCellValueFactory(cellData -> cellData.getValue().getSubtitle());
+			testTableView.setItems(testdetailadd.gettestdetailadd());
+		}catch(Exception e) {}
+	}
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
 		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(SignupView_scene);
+		app_stage.show();
+	}
+	private void NAV_POPUP (ActionEvent event, String str) throws IOException {
+		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
+		Scene SignupView_scene = new Scene(SignupView);
+		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
+		Stage app_stage = new Stage();
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();
 	}

@@ -1,9 +1,10 @@
-package DBController;
+package ViewController;
 
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import DBController.TestDetailAdd;
 import DBModel.TestDetailBean;
 import ImageStore.TestImageStore;
 import javafx.event.ActionEvent;
