@@ -64,9 +64,9 @@ public class TestBoardViewController implements Initializable {
 	@FXML
 	private void removeAction(ActionEvent action){
 		TestDetailAdd testdetailadd = new TestDetailAdd();
-	  int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
-	  testdetailadd.delete(String.valueOf(testTableView.getItems().get(selectedItem).getTestdetail_id_pk().getValue()));
-	  testTableView.setItems(testdetailadd.gettestdetailadd());
+		int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
+		testdetailadd.delete(String.valueOf(testTableView.getItems().get(selectedItem).getTestdetail_id_pk().getValue()));
+		testTableView.setItems(testdetailadd.gettestdetailadd());
 	}
 	@FXML
 	private void modify(ActionEvent action) {

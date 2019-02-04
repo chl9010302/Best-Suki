@@ -99,19 +99,19 @@
                   </HBox>
                   <VBox prefHeight="408.0" prefWidth="655.0">
                      <children>
-                        <TableView prefHeight="402.0" prefWidth="655.0" style="-fx-background-color: transparent;">
+                        <TableView fx:id="noticeTableView" prefHeight="402.0" prefWidth="655.0" style="-fx-background-color: transparent;">
                           <columns>
-                            <TableColumn prefWidth="490.0" text="제목" />
-                            <TableColumn prefWidth="75.0" text="작성자" />
-                              <TableColumn prefWidth="89.0" text="시간" />
+                            <TableColumn fx:id="ColNotice_Subtitle" prefWidth="352.0" text="제목" />
+                            <TableColumn fx:id="ColNotice_Writer" prefWidth="63.0" text="작성자" />
+                              <TableColumn fx:id="ColNotice_Date" prefWidth="239.0" text="시간" />
                           </columns>
                         </TableView>
                      </children>
                   </VBox>
         <HBox alignment="TOP_RIGHT" spacing="5.0">
           <children>
-            <Button fx:id="BtnAdd" onAction="#addAction" text="글쓰기" />
-            <Button fx:id="BtnDelete" onAction="#deleteAction" text="삭제" />
+            <Button fx:id="BtnAdd" onAction="#addAction" style="-fx-border-color: white;" text="글쓰기" textFill="WHITE" />
+            <Button fx:id="BtnDelete" onAction="#deleteAction" style="-fx-border-color: white;" text="삭제" textFill="WHITE" />
           </children>
         </HBox>
       </children>

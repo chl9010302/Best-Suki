@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import DBController.NoticeDetailAdd;
 import DBController.UserLogin;
+import DBModel.NoticeDetailBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,22 +20,21 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class MainViewController implements Initializable {
+public class AddMainViewController implements Initializable {
+	//Declare JAVA
+	private NoticeDetailBean noticedetailbean;
+	public static String login_id = LoginViewController.login_id;
+		
 	//Declare FXML
 	@FXML private Button Property_userID;
-	@FXML private Button BtnDelete;
-	@FXML private TextField txtAddItem;
 	@FXML private Button BtnAdd;
-	@FXML private TableView<NoticeDetailAdd> noticeTableView;
-	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Id;
-	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Subtitle;
-	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Writer;
-	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Date;
+	@FXML private Button BtnDelete;
+	@FXML private TextField txtSubtitle, txtContext; 
+	@FXML private Label txtFilepath;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
@@ -59,26 +59,32 @@ public class MainViewController implements Initializable {
 		}
 	}
 	@FXML
-	private void addAction(ActionEvent action){
-		try {
-			NAV(action, "../View/AddMainView.fxml");
-		}catch(Exception e) { }
+	private void deleteAction(ActionEvent action) {
+		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
+		ButtonType NO = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
+		Alert alert = new Alert(AlertType.NONE,"작성을 취소하시겠습니까?", YES, NO);
+		alert.setTitle("Cancel");
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.orElse(NO) == YES) {
+			try {
+				NAV(action, "../View/MainView.fxml");
+			}catch(Exception e) { }
+		}
 	}
 	@FXML
-	private void deleteAction(ActionEvent action){
-		NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
-		int selectedItem = noticeTableView.getSelectionModel().getSelectedIndex();
-		noticedetailadd.delete(String.valueOf(noticeTableView.getItems().get(selectedItem).getNoticedetail_id_pk().getValue()));
-		noticeTableView.setItems(noticedetailadd.getnoticedetailadd());
+	private void addAction(ActionEvent action) {
+		try {
+			noticedetailbean = new NoticeDetailBean();
+			noticedetailbean.setNOTICEDETAIL_ID_PK(txtSubtitle.getText().toString());
+			noticedetailbean.setNOTICEDETAIL_SUBTITLE(txtSubtitle.getText().toString());
+			noticedetailbean.setNOTICEDETAIL_WRITER(login_id);
+			noticedetailbean.setNOTICEDETAIL_CONTEXT(txtContext.getText().toString());
+			NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
+			noticedetailadd.insertNoticeDetail(noticedetailbean);
+			NAV(action, "../View/MainView.fxml");
+		}catch(Exception e) { }
 	}
 	public void initialize(URL url, ResourceBundle rb) {
-		try {
-			NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
-			ColNotice_Subtitle.setCellValueFactory(cellData -> cellData.getValue().getNoticedetail_subtitle());
-			ColNotice_Writer.setCellValueFactory(cellData -> cellData.getValue().getNoticedetail_writer());
-			ColNotice_Date.setCellValueFactory(cellData -> cellData.getValue().getNoticedetail_time());
-			noticeTableView.setItems(noticedetailadd.getnoticedetailadd());
-		}catch(Exception e) {}
 	}
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
