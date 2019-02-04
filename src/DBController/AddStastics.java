@@ -50,7 +50,7 @@ public class AddStastics {
 		try {
 			conn = application.DBConnection.getDBConection();
 			stmt = conn.createStatement();
-			String sql = sb.append("SELECT * FROM DATE_TB ")
+			String sql = sb.append("SELECT * FROM "+config.StaticProperty.getdate_tb()+" ")
 					.append(";").toString(); 
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){

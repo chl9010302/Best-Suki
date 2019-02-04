@@ -24,7 +24,7 @@ public class UserDataUpdate {
 		Connection con = usingstaticfunction.DBConnectionKeeping.con;
 		stmt = con.createStatement();
 		StringBuilder sb = new StringBuilder();
-		String sql = sb.append("UPDATE USER_TB SET")
+		String sql = sb.append("UPDATE "+config.StaticProperty.getuser_tb()+" SET")
 				.append(" USER_ID_PK = '"+userbean.getUSER_ID_PK())
 				.append("', USER_PASSWORD = '"+userbean.getUSER_PASSWORD())
 				.append("', USER_NAME = '"+userbean.getUSER_NAME())

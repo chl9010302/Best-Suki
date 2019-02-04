@@ -17,7 +17,7 @@ public class UserJoin {
 		insert(userjoin);
 	}
 	public boolean insert(UserBean userjoin) {
-		String insertsql = "INSERT INTO USER_TB(USER_ID_PK, USER_PASSWORD, USER_NAME, USER_ADDRESS, USER_SCHOOLNAME, USER_AGE, USER_GENDER, USER_PHONE, USER_FMPHONE, USER_TEACHERSESSION) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String insertsql = "INSERT INTO "+config.StaticProperty.getuser_tb()+"(USER_ID_PK, USER_PASSWORD, USER_NAME, USER_ADDRESS, USER_SCHOOLNAME, USER_AGE, USER_GENDER, USER_PHONE, USER_FMPHONE, USER_TEACHERSESSION) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	    PreparedStatement pstmt = null;
 	    userbean = userjoin;
 		try {
@@ -54,7 +54,7 @@ public class UserJoin {
 	}
 	public int joinCheck(String user_id) {
 		int i = 1;
-		String sql = "SELECT USER_ID_PK FROM USER_TB WHERE USER_ID_PK = ? ";
+		String sql = "SELECT USER_ID_PK FROM "+config.StaticProperty.getuser_tb()+" WHERE USER_ID_PK = ? ";
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		try {

@@ -65,7 +65,7 @@ public class NoticeDetailAdd {
 		insertNoticeDetail(noticedetailbean);
 	}
 	public boolean insertNoticeDetail(NoticeDetailBean noticedetailbean) {
-		String insertsql = "INSERT INTO NOTICEDETAIL_TB(NOTICEDETAIL_ID_PK, NOTICEDETAIL_SUBTITLE, NOTICEDETAIL_WRITER, NOTICEDETAIL_TIME, NOTICEDETAIL_CONTEXT) VALUES(?, ?, ?, now(), ?);";
+		String insertsql = "INSERT INTO "+config.StaticProperty.getnoticedetail_tb()+"(NOTICEDETAIL_ID_PK, NOTICEDETAIL_SUBTITLE, NOTICEDETAIL_WRITER, NOTICEDETAIL_TIME, NOTICEDETAIL_CONTEXT) VALUES(?, ?, ?, now(), ?);";
 		PreparedStatement pstmt = null;
 		this.noticedetailbean = noticedetailbean;
 		try {
@@ -106,7 +106,7 @@ public class NoticeDetailAdd {
 		try {
 			conn = application.DBConnection.getDBConection();
 			stmt = conn.createStatement();
-			String sql = sb.append("SELECT * FROM NOTICEDETAIL_TB").append(";").toString();
+			String sql = sb.append("SELECT * FROM "+config.StaticProperty.getnoticedetail_tb()).append(";").toString();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				noticedetailadd.add(new NoticeDetailAdd((String) rs.getString("NOTICEDETAIL_ID_PK"), (String) rs.getString("NOTICEDETAIL_SUBTITLE"), (String) rs.getString("NOTICEDETAIL_WRITER"),(String) rs.getString("NOTICEDETAIL_TIME").substring(0,10), rs.getString("NOTICEDETAIL_CONTEXT")));
@@ -122,7 +122,7 @@ public class NoticeDetailAdd {
 	public void delete(String id) {
 		StringBuilder sb = new StringBuilder();
 		conn = application.DBConnection.getDBConection();
-		String sql = sb.append("DELETE FROM NOTICEDETAIL_TB where NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
+		String sql = sb.append("DELETE FROM "+config.StaticProperty.getnoticedetail_tb()+" where NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);

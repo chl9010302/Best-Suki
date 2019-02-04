@@ -20,7 +20,7 @@ public class UserLogin {
 
 	public int loginCheck(String user_id, String user_pw) {
 		int i = 0;
-		sql = "SELECT USER_ID_PK FROM USER_TB WHERE USER_ID_PK = ? AND USER_PASSWORD = ?";
+		sql = "SELECT USER_ID_PK FROM "+config.StaticProperty.getuser_tb()+" WHERE USER_ID_PK = ? AND USER_PASSWORD = ?";
 		try {
 			conn = application.DBConnection.getDBConection();
 			pstmt = conn.prepareStatement(sql);
@@ -30,7 +30,7 @@ public class UserLogin {
 
 			while (rs.next()) {
 				if (rs.getString("USER_ID_PK") != null) {
-					sql = "UPDATE USER_TB SET USER_LOGINSESSION = 1 WHERE USER_ID_PK = ?";
+					sql = "UPDATE "+config.StaticProperty.getuser_tb()+" SET USER_LOGINSESSION = 1 WHERE USER_ID_PK = ?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, user_id);
 					i = pstmt.executeUpdate();
@@ -62,7 +62,7 @@ public class UserLogin {
 
 	private int date_tb(String user_id) throws SQLException {
 		int i = 0;
-		sql = "INSERT INTO DATE_TB(DATE_ID_PK, USER_ID, DATE_LOGINTIME)VALUES(?,?,now())";
+		sql = "INSERT INTO "+config.StaticProperty.getdate_tb()+"(DATE_ID_PK, USER_ID, DATE_LOGINTIME)VALUES(?,?,now())";
 		pstmt = conn.prepareStatement(sql);
 		Calendar calendar = Calendar.getInstance();
 		java.util.Date date = calendar.getTime();
@@ -84,7 +84,7 @@ public class UserLogin {
 		Statement stmt = null;
 		stmt = con.createStatement();
 		StringBuilder sb = new StringBuilder();
-		String sql = sb.append("UPDATE USER_TB SET").append(" USER_LOGINSESSION = 0").append(" where USER_ID_PK = '")
+		String sql = sb.append("UPDATE "+config.StaticProperty.getuser_tb()+" SET").append(" USER_LOGINSESSION = 0").append(" where USER_ID_PK = '")
 				.append(user_id).append("';").toString();
 		try {
 			stmt.executeUpdate(sql);
@@ -108,7 +108,7 @@ public class UserLogin {
 		StringBuilder sb = new StringBuilder();
 		
 
-		String sql = sb.append("UPDATE DATE_TB SET DATE_LOGOUTTIME = now() where DATE_ID_PK = '").append(logintime).append("';").toString();
+		String sql = sb.append("UPDATE "+config.StaticProperty.getdate_tb()+" SET DATE_LOGOUTTIME = now() where DATE_ID_PK = '").append(logintime).append("';").toString();
 		try {
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {

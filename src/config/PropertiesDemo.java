@@ -2,21 +2,17 @@ package config;
 
 import java.io.IOException;
 import java.io.InputStream;
-
 import java.util.Properties;
 
 public class PropertiesDemo {
 
     private Properties properties;
-
     public PropertiesDemo() {
         properties = new Properties();
     }
-
     public Properties getProperties() {
         return properties;
     }
-
     /**
      * 이 메소드는 프로퍼티 파일을 스트림으로 읽어 들여 멤버 변수의 프로퍼티에 적재합니다.
      *
@@ -24,7 +20,6 @@ public class PropertiesDemo {
      * @throws IOException
      */
     public void loadProp(String path) throws IOException {
-
         InputStream inputStream = getClass().getResourceAsStream(path);
         properties.load(inputStream);
         inputStream.close();
@@ -51,7 +46,6 @@ public class PropertiesDemo {
         propertiesDemo.loadProp("db.properties");
         Properties properties = propertiesDemo.getProperties();
         properties.list(System.out);
-        System.out.println(properties.getProperty("url"));
         
 /*
         // 아래 코드는 새로운 프로퍼티 파일에 같은 키를 준 경우 오버라이드 하는 것을 확인합니다.

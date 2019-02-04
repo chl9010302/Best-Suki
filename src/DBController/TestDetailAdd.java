@@ -65,7 +65,7 @@ public class TestDetailAdd {
 		insertTestDetail(testdetailbean);
 	}
 	public boolean insertTestDetail(TestDetailBean testdetailbean) {
-		String insertsql = "INSERT INTO TESTDETAIL_TB(TESTDETAIL_ID_PK, TESTDETAIL_DATA1, TESTDETAIL_DATA2, TESTDETAIL_DATA3, TESTDETAIL_DATA4, TESTDETAIL_DATA5, TESTDETAIL_ANSWER, TESTDETAIL_IMAGE, TESTDETAIL_SUBTITLE, TESTDETAIL_WRITER, TESTDETAIL_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
+		String insertsql = "INSERT INTO "+config.StaticProperty.gettestdetail_tb()+"(TESTDETAIL_ID_PK, TESTDETAIL_DATA1, TESTDETAIL_DATA2, TESTDETAIL_DATA3, TESTDETAIL_DATA4, TESTDETAIL_DATA5, TESTDETAIL_ANSWER, TESTDETAIL_IMAGE, TESTDETAIL_SUBTITLE, TESTDETAIL_WRITER, TESTDETAIL_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
 		PreparedStatement pstmt = null;
 		this.testdetailbean = testdetailbean;
 		try {
@@ -112,7 +112,7 @@ public class TestDetailAdd {
 		try {
 			conn = application.DBConnection.getDBConection();
 			stmt = conn.createStatement();
-			String sql = sb.append("SELECT * FROM TESTDETAIL_TB").append(";").toString();
+			String sql = sb.append("SELECT * FROM "+config.StaticProperty.gettestdetail_tb()).append(";").toString();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				testdetailadd.add(new TestDetailAdd((String) rs.getString("TESTDETAIL_ID_PK"), (String) rs.getString("TESTDETAIL_SUBTITLE"), (String) rs.getString("TESTDETAIL_WRITER"),(String) rs.getString("TESTDETAIL_TIME").substring(0,10)));
@@ -128,7 +128,7 @@ public class TestDetailAdd {
 	public void delete(String id) {
 		StringBuilder sb = new StringBuilder();
 		conn = application.DBConnection.getDBConection();
-		String sql = sb.append("DELETE FROM TESTDETAIL_TB where TESTDETAIL_ID_PK = '").append(id).append("';").toString();
+		String sql = sb.append("DELETE FROM "+config.StaticProperty.gettestdetail_tb()+" where TESTDETAIL_ID_PK = '").append(id).append("';").toString();
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);

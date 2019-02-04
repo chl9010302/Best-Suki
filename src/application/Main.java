@@ -1,5 +1,8 @@
 package application;
 	
+import java.io.IOException;
+
+import config.StaticProperty;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,7 +25,8 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		StaticProperty staticproperty = new StaticProperty();
 		launch(args);
 	}
 }
