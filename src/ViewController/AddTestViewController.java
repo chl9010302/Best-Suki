@@ -25,6 +25,7 @@ public class AddTestViewController implements Initializable {
 	private Stage stage; // file choose 하기 위함.
 	public static String filename;
 	public static String filepath;
+	public static String login_id = LoginViewController.login_id;
 		
 	//Declare FXML
 	@FXML private TextField Radio1, Radio2, Radio3, Radio4, Radio5;
@@ -58,6 +59,7 @@ public class AddTestViewController implements Initializable {
 		}else {
 			testdetailbean.setTESTDETAIL_ANSWER(Radio5.getText().toString());
 		}
+		testdetailbean.setTESTDETAIL_WRITER(login_id);
 	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
 	    TestDetailAdd detailAdd = new TestDetailAdd();
 	    detailAdd.insertTestDetail(testdetailbean);

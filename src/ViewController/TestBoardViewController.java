@@ -35,6 +35,8 @@ public class TestBoardViewController implements Initializable {
 	@FXML private TableView<TestDetailAdd> testTableView;
 	@FXML private TableColumn<TestDetailAdd, String> ColBoardId;
 	@FXML private TableColumn<TestDetailAdd, String> ColSubtitle;
+	@FXML private TableColumn<TestDetailAdd, String> ColWriter;
+	@FXML private TableColumn<TestDetailAdd, String> ColDate;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
@@ -63,7 +65,7 @@ public class TestBoardViewController implements Initializable {
 	private void removeAction(ActionEvent action){
 		TestDetailAdd testdetailadd = new TestDetailAdd();
 	  int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
-	  testdetailadd.delete(Integer.parseInt(testTableView.getItems().get(selectedItem).getTestdetail_id_pk().getValue()));
+	  testdetailadd.delete(String.valueOf(testTableView.getItems().get(selectedItem).getTestdetail_id_pk().getValue()));
 	  testTableView.setItems(testdetailadd.gettestdetailadd());
 	}
 	@FXML
@@ -76,6 +78,8 @@ public class TestBoardViewController implements Initializable {
 			TestDetailAdd testdetailadd = new TestDetailAdd();
 			ColBoardId.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_id_pk());
 			ColSubtitle.setCellValueFactory(cellData -> cellData.getValue().getSubtitle());
+			ColWriter.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_writer());
+			ColDate.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_time());
 			testTableView.setItems(testdetailadd.gettestdetailadd());
 		}catch(Exception e) {}
 	}

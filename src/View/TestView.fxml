@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <Button fx:id="Property_userID" mnemonicParsing="false" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE" onAction="#NAV_MypageView">
+                  <Button fx:id="Property_userID" mnemonicParsing="false" onAction="#NAV_MypageView" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -39,7 +39,7 @@
       </HBox>
       <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="79.0" prefHeight="494.0" prefWidth="155.0" AnchorPane.topAnchor="79.0">
          <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="NOTICE" textFill="WHITE" onAction="#NAV_MainView">
+            <Button mnemonicParsing="false" onAction="#NAV_MainView" style="-fx-background-color: transparent;" text="NOTICE" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>
@@ -47,7 +47,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE" onAction="#NAV_VideoView">
+            <Button mnemonicParsing="false" onAction="#NAV_VideoView" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>
@@ -55,7 +55,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="TEST" textFill="WHITE" onAction="#NAV_TestView">
+            <Button mnemonicParsing="false" onAction="#NAV_TestView" style="-fx-background-color: transparent;" text="TEST" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>
@@ -63,7 +63,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="TestBoard" textFill="WHITE" onAction="#NAV_TestBoardView">
+            <Button mnemonicParsing="false" onAction="#NAV_TestBoardView" style="-fx-background-color: transparent;" text="TestBoard" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>
@@ -71,7 +71,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="STASTICS" textFill="WHITE" onAction="#NAV_StasticsView">
+            <Button mnemonicParsing="false" onAction="#NAV_StasticsView" style="-fx-background-color: transparent;" text="STASTICS" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>
@@ -97,68 +97,17 @@
               </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="30.0" prefWidth="200.0">
+                  <VBox prefHeight="431.0" prefWidth="655.0">
                      <children>
-                        <Label fx:id = "txtFilepath" text="File Name" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Tahoma" size="16.0" />
-                           </font>
-                        </Label>
-                        <Button mnemonicParsing="false" text="File Search" onAction="#fileChooserSelect" />
+                        <TableView prefHeight="431.0" prefWidth="655.0" style="-fx-background-color: transparent;">
+                          <columns>
+                            <TableColumn prefWidth="427.0" text="제목" />
+                            <TableColumn minWidth="0.0" prefWidth="99.0" text="작성자" />
+                              <TableColumn prefWidth="128.0" text="글쓴시간" />
+                          </columns>
+                        </TableView>
                      </children>
-                  </HBox>
-                  <HBox prefHeight="30.0" prefWidth="200.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" text="1. " textFill="WHITE">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="Quest1Group2" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <TextField promptText="Answer 1" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="30.0" prefWidth="200.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" text="2. " textFill="WHITE" toggleGroup="$Quest1Group" />
-                        <TextField promptText="Answer 2" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="30.0" prefWidth="200.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" text="3. " textFill="WHITE">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="Quest1Group2" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <TextField promptText="Answer 3" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="30.0" prefWidth="200.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" text="4. " textFill="WHITE">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="Quest1Group2" />
-                           </toggleGroup>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </RadioButton>
-                        <TextField promptText="Answer 4" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="30.0" prefWidth="200.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" text="5. " textFill="WHITE">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="Quest1Group2" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <TextField promptText="Answer 5" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
-                     </children>
-                  </HBox>
+                  </VBox>
       </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -263,7 +263,7 @@ public class Controller implements Initializable {
 	private void removeAction(ActionEvent action){
 		TestDetailAdd testdetailadd = new TestDetailAdd();
 	  int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
-	  testdetailadd.delete(Integer.parseInt(testTableView.getItems().get(selectedItem).getTestdetail_id_pk().getValue()));
+	  testdetailadd.delete(String.valueOf((testTableView.getItems().get(selectedItem).getTestdetail_id_pk().getValue())));
 	  testTableView.setItems(testdetailadd.gettestdetailadd());
 	}
 	@FXML

@@ -11,6 +11,16 @@ public class TestDetailBean {
 	private String TESTDETAIL_ANSWER;
 	private String TESTDETAIL_IMAGE;
 	private String TESTDETAIL_SUBTITLE;
+	private String TESTDETAIL_WRITER;
+	
+	public String getTESTDETAIL_WRITER() {
+		return TESTDETAIL_WRITER;
+	}
+
+	public void setTESTDETAIL_WRITER(String tESTDETAIL_WRITER) {
+		TESTDETAIL_WRITER = tESTDETAIL_WRITER;
+	}
+
 	private int Totalcount; // Board의 총 수를 가지고오기 위함.
 	
 	public TestDetailBean() { }

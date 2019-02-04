@@ -9,10 +9,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	public static String sfxml = "../View/LoginView.fxml";
-	
-	public static void setsfxml(String Sfxml) {
-		sfxml = Sfxml;
-	}
 	@Override
 	public void start(Stage primaryStage) {
 		try {

@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <Button fx:id="Property_userID" mnemonicParsing="false" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE" onAction="#NAV_MypageView">
+                  <Button fx:id="Property_userID" mnemonicParsing="false" onAction="#NAV_MypageView" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -47,7 +47,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE" onAction="#NAV_VideoView">
+            <Button mnemonicParsing="false" onAction="#NAV_VideoView" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE">
                <font>
                   <Font name="Tahoma" size="16.0" />
                </font>
@@ -95,6 +95,17 @@
                   <Font name="System Bold" size="21.0" />
                 </font>
               </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="440.0" prefWidth="655.0">
+                     <children>
+                        <TableView prefHeight="100.0" prefWidth="656.0" style="-fx-background-color: transparent;">
+                          <columns>
+                            <TableColumn prefWidth="449.0" text="제목" />
+                            <TableColumn prefWidth="79.0" text="작성자" />
+                              <TableColumn prefWidth="127.0" text="날짜" />
+                          </columns>
+                        </TableView>
                      </children>
                   </HBox>
       </children>
