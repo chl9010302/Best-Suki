@@ -257,7 +257,6 @@ public class Controller implements Initializable {
 	}
 	@FXML
 	private void Quest1Group1Action(ActionEvent action) {
-		System.out.println(Quest1Group1.getSelectedToggle().toString());
 	}
 	@FXML
 	private void removeAction(ActionEvent action){

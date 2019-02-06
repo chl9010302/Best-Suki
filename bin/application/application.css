@@ -2,8 +2,13 @@
 
 .button {
 	-fx-background-color: transparent;
+	-fx-text-fill:white;
 	/*-fx-border-width: 0px 0px 2px 0px;
 	-fx-border-color: white;*/
+}
+
+.button:hover {
+	-fx-text-fill:gray;
 }
 
 .list-cell {
@@ -32,4 +37,3 @@
 	-fx-border-width : 0px 0px 1px 0px;
 	-fx-border-color : white;
 }
-

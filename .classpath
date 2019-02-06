@@ -9,6 +9,5 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="lib" path="jar/mysql-connector-java-8.0.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/allbe/git/Best-Suki/jar/jfxrt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

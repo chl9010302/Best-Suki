@@ -11,3 +11,31 @@
 [완성] 9. 비밀번호 바꾸기
 11. id마다 볼수있게 필터
 [완성] 12. Test Id 필요 - 채번규칙같은게있어야할것같음.
+
+TestView 게시판 값 넣기
+Notice 게시판 값 넣기 [ 완성 ]
+Video 게시판 값 넣기
+로그인창 시작 시 포커스 UserId 넣기
+이클립스 한번에 단어 바꾸기 가능한지?
+서버 - mariadb는 있지만..
+
+1. NOTICE 게시판 DB 생성
+CREATE TABLE `NOTICEDETAIL_TB` (
+  `NOTICEDETAIL_ID_PK`  VARCHAR(255) NOT NULL,
+  `NOTICEDETAIL_SUBTITLE` VARCHAR(255),
+  `NOTICEDETAIL_WRITER` VARCHAR(50),
+  `NOTICEDETAIL_TIME` VARCHAR(50),
+  `NOTICEDETAIL_CONTEXT` VARCHAR(255),
+  PRIMARY KEY  (`NOTICEDETAIL_ID_PK`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+2. NOTICE BEAN 생성
+
+3. NOTICE ADD VIEW 생성 - NO POP UP
+
+4. NOTICE VIEW 값 반영
+ColNotice_Id;
+	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Subtitle;
+	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Writer;
+	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Date;
+  - ONKEYSET으로 뷰로 이동하게 하면 될 듯?

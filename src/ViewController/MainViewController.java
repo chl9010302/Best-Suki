@@ -7,7 +7,9 @@ import java.util.ResourceBundle;
 
 import DBController.NoticeDetailAdd;
 import DBController.UserLogin;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,10 +23,14 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class MainViewController implements Initializable {
+	public static String selectedid= "";
 	//Declare FXML
 	@FXML private Button Property_userID;
 	@FXML private Button BtnDelete;
@@ -35,6 +41,7 @@ public class MainViewController implements Initializable {
 	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Subtitle;
 	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Writer;
 	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Date;
+	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Btndetail;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
@@ -71,16 +78,26 @@ public class MainViewController implements Initializable {
 		noticedetailadd.delete(String.valueOf(noticeTableView.getItems().get(selectedItem).getNoticedetail_id_pk().getValue()));
 		noticeTableView.setItems(noticedetailadd.getnoticedetailadd());
 	}
+	
 	public void initialize(URL url, ResourceBundle rb) {
 		try {
 			NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
 			ColNotice_Subtitle.setCellValueFactory(cellData -> cellData.getValue().getNoticedetail_subtitle());
 			ColNotice_Writer.setCellValueFactory(cellData -> cellData.getValue().getNoticedetail_writer());
 			ColNotice_Date.setCellValueFactory(cellData -> cellData.getValue().getNoticedetail_time());
+			ColNotice_Btndetail.setCellValueFactory(new PropertyValueFactory<NoticeDetailAdd, String>("noticedetail_btndetail"));
 			noticeTableView.setItems(noticedetailadd.getnoticedetailadd());
-		}catch(Exception e) {}
+		}catch(Exception e) { }
 	}
 	private void NAV (ActionEvent event, String str) throws IOException {
+		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
+		Scene SignupView_scene = new Scene(SignupView);
+		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(SignupView_scene);
+		app_stage.show();
+	}
+	private void NAV_Mouse (MouseEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
 		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());

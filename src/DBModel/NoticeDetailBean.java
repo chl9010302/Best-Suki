@@ -1,11 +1,14 @@
 package DBModel;
 
+import javafx.scene.control.Button;
+
 public class NoticeDetailBean {
 
 	private String NOTICEDETAIL_ID_PK;
 	private String NOTICEDETAIL_SUBTITLE;
 	private String NOTICEDETAIL_WRITER;
 	private String NOTICEDETAIL_CONTEXT;
+	private Button NOTICEDETAIL_BTNDETAIL;
 	
 	public String getNOTICEDETAIL_ID_PK() {
 		return NOTICEDETAIL_ID_PK;
@@ -30,6 +33,12 @@ public class NoticeDetailBean {
 	}
 	public void setNOTICEDETAIL_CONTEXT(String nOTICEDETAIL_CONTEXT) {
 		NOTICEDETAIL_CONTEXT = nOTICEDETAIL_CONTEXT;
+	}
+	public Button getNOTICEDETAIL_BTNDETAIL() {
+		return NOTICEDETAIL_BTNDETAIL;
+	}
+	public void setNOTICEDETAIL_BTNDETAIL(Button nOTICEDETAIL_BTNDETAIL) {
+		NOTICEDETAIL_BTNDETAIL = nOTICEDETAIL_BTNDETAIL;
 	}
 	
 	

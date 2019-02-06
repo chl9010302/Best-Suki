@@ -1,13 +1,13 @@
 package ViewController;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import DBController.NoticeDetailAdd;
 import DBController.UserLogin;
-import ImageStore.TestImageStore;
+import DBModel.NoticeDetailBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,36 +16,32 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class TestViewController implements Initializable {
+public class MainDetailViewController implements Initializable {
 	//Declare JAVA
-	private Stage stage; // file choose 하기 위함.
-	public static String filename;
-	public static String filepath;
+	private NoticeDetailBean noticedetailbean;
+	public static String login_id = LoginViewController.login_id;
+	public static String noticedetail_id = "";
 		
 	//Declare FXML
+	@FXML private Label maindetail_subtitle;
+	@FXML private Label maindetail_context;
 	@FXML private Button Property_userID;
-	@FXML private TextField Radio1, Radio2, Radio3, Radio4, Radio5;
-	@FXML private RadioButton Rb1, Rb2, Rb3, Rb4, Rb5;
-	@FXML private ToggleGroup Quest1Group1;
-	@FXML private Text result;
+	@FXML private Button BtnAdd;
+	@FXML private Button BtnDelete;
+	@FXML private TextField txtSubtitle, txtContext; 
 	@FXML private Label txtFilepath;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
-	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }
 	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { NAV(event, "../View/StasticsView.fxml"); }
 	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { NAV(event, "../View/MypageView.fxml"); }
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { NAV(event, "../View/VideoView.fxml"); }
@@ -66,38 +62,41 @@ public class TestViewController implements Initializable {
 		}
 	}
 	@FXML
-	private void Quest1Group1Action(ActionEvent action) {
-	}
-	//fileChoose function
-	public void openFile() {
-		FileChooser fileChooser = new FileChooser();
-		File file = fileChooser.showOpenDialog(stage);
-		if(file != null) {
-			filename = file.getName();
-			String Address = file.toString().replaceAll("\\\\", "//");
-			new TestImageStore("112233", Address); 
-			filepath = Address;
+	private void deleteAction(ActionEvent action) {
+		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
+		ButtonType NO = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
+		Alert alert = new Alert(AlertType.NONE,"작성을 취소하시겠습니까?", YES, NO);
+		alert.setTitle("Cancel");
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.orElse(NO) == YES) {
+			try {
+				NAV(action, "../View/MainView.fxml");
+			}catch(Exception e) { }
 		}
 	}
-	public void initialize(URL url, ResourceBundle rb) {
+	@FXML
+	private void addAction(ActionEvent action) {
+		try {
+			noticedetailbean = new NoticeDetailBean();
+			noticedetailbean.setNOTICEDETAIL_ID_PK(txtSubtitle.getText().toString());
+			noticedetailbean.setNOTICEDETAIL_SUBTITLE(txtSubtitle.getText().toString());
+			noticedetailbean.setNOTICEDETAIL_WRITER(login_id);
+			noticedetailbean.setNOTICEDETAIL_CONTEXT(txtContext.getText().toString());
+			NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
+			noticedetailadd.insertNoticeDetail(noticedetailbean);
+			NAV(action, "../View/MainView.fxml");
+		}catch(Exception e) { }
 	}
-	public void fileChooserSelect(ActionEvent event) { 
-		openFile(); 
-		txtFilepath.setText(filename);
+	public void initialize(URL url, ResourceBundle rb) {
+		NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
+		maindetail_subtitle.setText(noticedetailadd.selectSubtitle(noticedetailadd.noticedetail_id));
+		maindetail_context.setText(noticedetailadd.selectContext(noticedetailadd.noticedetail_id));
 	}
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
 		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(SignupView_scene);
-		app_stage.show();
-	}
-	private void NAV_POPUP (ActionEvent event, String str) throws IOException {
-		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
-		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
-		Stage app_stage = new Stage();
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();
 	}

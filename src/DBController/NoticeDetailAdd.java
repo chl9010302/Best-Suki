@@ -1,5 +1,6 @@
 package DBController;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,22 +8,29 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import DBModel.NoticeDetailBean;
-import DBModel.TestDetailBean;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class NoticeDetailAdd {
 
 	NoticeDetailBean noticedetailbean;
 	Connection conn = null;
 	Statement stmt = null;
+	public static String noticedetail_id = "";
 	private StringProperty noticedetail_id_pk;
 	private StringProperty noticedetail_subtitle;
 	private StringProperty noticedetail_writer;
 	private StringProperty noticedetail_time;
 	private StringProperty noticedetail_context;
+	private Button noticedetail_btndetail;
 
 	public StringProperty getNoticedetail_id_pk() {
 		return noticedetail_id_pk;
@@ -44,6 +52,14 @@ public class NoticeDetailAdd {
 		return noticedetail_context;
 	}
 
+	public Button getNoticedetail_btndetail() {
+		return noticedetail_btndetail;
+	}
+
+	public void setNoticedetail_btndetail(Button noticedetail_btndetail) {
+		this.noticedetail_btndetail = noticedetail_btndetail;
+	}
+
 	private ObservableList<NoticeDetailAdd> noticedetailadd = FXCollections.observableArrayList();
 	
 	public ObservableList<NoticeDetailAdd> getnoticedetailadd() {
@@ -59,6 +75,24 @@ public class NoticeDetailAdd {
 		this.noticedetail_writer = new SimpleStringProperty(NOTICEDETAIL_WRITER);
 		this.noticedetail_time = new SimpleStringProperty(NOTICEDETAIL_TIME);
 		this.noticedetail_context = new SimpleStringProperty(NOTICEDETAIL_CONTEXT);
+		this.noticedetail_btndetail = new Button("Details");
+		
+		noticedetail_btndetail.setOnAction(event -> {
+				noticedetail_id = "";
+				noticedetail_id = noticedetail_id_pk.get();
+				Parent SignupView = null;
+				try {
+					SignupView = FXMLLoader.load(getClass().getResource("../View/MainDetailView.fxml"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Scene SignupView_scene = new Scene(SignupView);
+				SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
+				Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				app_stage.setScene(SignupView_scene);
+				app_stage.show();
+		});
 	}
 
 	public NoticeDetailAdd(NoticeDetailBean noticedetailbean) {
@@ -130,5 +164,36 @@ public class NoticeDetailAdd {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public String selectSubtitle(String id) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT NOTICEDETAIL_SUBTITLE FROM "+config.StaticProperty.getnoticedetail_tb()+" where NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("NOTICEDETAIL_SUBTITLE") != null)
+					result = rs.getString("NOTICEDETAIL_SUBTITLE");
+			}
+		}catch(Exception e) { }
+		return result;
+	}
+	
+	public String selectContext(String id) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT NOTICEDETAIL_CONTEXT FROM "+config.StaticProperty.getnoticedetail_tb()+" where NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("NOTICEDETAIL_CONTEXT") != null)
+					result = rs.getString("NOTICEDETAIL_CONTEXT");
+			}
+		}catch(Exception e) { }
+		return result;
 	}
 }

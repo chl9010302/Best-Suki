@@ -99,11 +99,12 @@
                   </HBox>
                   <VBox prefHeight="408.0" prefWidth="655.0">
                      <children>
-                        <TableView fx:id="noticeTableView" prefHeight="402.0" prefWidth="655.0" style="-fx-background-color: transparent;">
+                        <TableView fx:id="noticeTableView" prefHeight="402.0" style="-fx-background-color: transparent;">
                           <columns>
-                            <TableColumn fx:id="ColNotice_Subtitle" prefWidth="352.0" text="제목" />
-                            <TableColumn fx:id="ColNotice_Writer" prefWidth="63.0" text="작성자" />
-                              <TableColumn fx:id="ColNotice_Date" prefWidth="239.0" text="시간" />
+                            <TableColumn fx:id="ColNotice_Subtitle" prefWidth="317.0" text="제목" />
+                            <TableColumn fx:id="ColNotice_Writer" prefWidth="89.0" text="작성자" />
+                              <TableColumn fx:id="ColNotice_Date" prefWidth="132.0" text="시간" />
+                              <TableColumn fx:id="ColNotice_Btndetail" minWidth="0.0" prefWidth="116.0" text="상세보기" />
                           </columns>
                         </TableView>
                      </children>
