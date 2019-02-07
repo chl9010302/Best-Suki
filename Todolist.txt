@@ -39,3 +39,19 @@ ColNotice_Id;
 	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Writer;
 	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Date;
   - ONKEYSET으로 뷰로 이동하게 하면 될 듯?
+  -----------------------------------
+  1. db 추가
+CREATE TABLE `VIDEODETAIL_TB` (
+  `VIDEODETAIL_ID_PK`  VARCHAR(255) NOT NULL,
+  `VIDEODETAIL_SUBTITLE` VARCHAR(255),
+  `VIDEODETAIL_WRITER` VARCHAR(50),
+  `VIDEODETAIL_TIME` VARCHAR(50),
+  `VIDEODETAIL_FILEPATH` VARCHAR(255),
+  PRIMARY KEY  (`VIDEODETAIL_ID_PK`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+2. videodetailBean 생성
+
+3. videodetailadd 생성
+
+4. 
