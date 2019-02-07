@@ -125,7 +125,7 @@
                   </HBox>
         <HBox alignment="TOP_RIGHT" prefHeight="23.0" prefWidth="628.0" spacing="5.0">
           <children>
-            <Button fx:id="BtnDelete" onAction="#deleteAction" text="수정" />
+            <Button fx:id="BtnEdit" onAction="#editAction" text="수정" />
           </children>
                      <VBox.margin>
                         <Insets right="20.0" />

@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import usingstaticfunction.DBConnectionKeeping;
 
 public class NoticeDetailAdd {
 
@@ -131,6 +132,26 @@ public class NoticeDetailAdd {
 			} catch (SQLException e3) {
 
 			}
+		}
+		return false;
+	}
+	
+	public boolean updateNoticeDetail(NoticeDetailBean noticedetailbean) {
+		DBConnectionKeeping dbConnectionKeeping;
+		if (usingstaticfunction.DBConnectionKeeping.con == null)
+			dbConnectionKeeping = new DBConnectionKeeping();
+		
+		Statement stmt = null;
+		try {
+			Connection con = usingstaticfunction.DBConnectionKeeping.con;
+			stmt = con.createStatement();
+			System.out.println("123123");
+			String updatesql = "UPDATE "+config.StaticProperty.getnoticedetail_tb()+" SET NOTICEDETAIL_SUBTITLE = '" + noticedetailbean.getNOTICEDETAIL_SUBTITLE() + "', NOTICEDETAIL_CONTEXT = '" + noticedetailbean.getNOTICEDETAIL_CONTEXT() + "' WHERE NOTICEDETAIL_ID_PK = '" + noticedetailbean.getNOTICEDETAIL_ID_PK() + "';";
+			stmt.executeUpdate(updatesql);
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return false;
 	}

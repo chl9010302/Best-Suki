@@ -24,17 +24,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class MainDetailViewController implements Initializable {
+public class MainDetailEditViewController implements Initializable {
 	//Declare JAVA
 	private NoticeDetailBean noticedetailbean;
 	public static String login_id = LoginViewController.login_id;
-	public static String noticedetail_id = "";
 		
 	//Declare FXML
-	@FXML private Label maindetail_subtitle;
-	@FXML private Label maindetail_context;
 	@FXML private Button Property_userID;
-	@FXML private Button BtnEdit;
+	@FXML private Button BtnAdd;
+	@FXML private Button BtnDelete;
 	@FXML private TextField txtSubtitle, txtContext; 
 	@FXML private Label txtFilepath;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
@@ -61,23 +59,37 @@ public class MainDetailViewController implements Initializable {
 		}
 	}
 	@FXML
-	private void editAction(ActionEvent action) {
+	private void deleteAction(ActionEvent action) {
 		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
 		ButtonType NO = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
-		Alert alert = new Alert(AlertType.NONE,"수정하시겠습니까?", YES, NO);
+		Alert alert = new Alert(AlertType.NONE,"작성을 취소하시겠습니까?", YES, NO);
 		alert.setTitle("Cancel");
 		Optional<ButtonType> result = alert.showAndWait();
-		
 		if (result.orElse(NO) == YES) {
 			try {
-				NAV(action, "../View/MainDetailEditView.fxml");
+				NAV(action, "../View/MainDetailView.fxml");
 			}catch(Exception e) { }
 		}
 	}
+	@FXML
+	private void addAction(ActionEvent action) {
+		System.out.println("adfaf");
+		try {
+			noticedetailbean = new NoticeDetailBean();
+			noticedetailbean.setNOTICEDETAIL_ID_PK(txtSubtitle.getText().toString());
+			noticedetailbean.setNOTICEDETAIL_SUBTITLE(txtSubtitle.getText().toString());
+			noticedetailbean.setNOTICEDETAIL_CONTEXT(txtContext.getText().toString());
+			NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
+			noticedetailadd.updateNoticeDetail(noticedetailbean);
+		}catch(Exception e) { }
+		try {
+			NAV(action, "../View/MainDetailView.fxml");
+		}catch(Exception e) { }
+	}
 	public void initialize(URL url, ResourceBundle rb) {
 		NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
-		maindetail_subtitle.setText(noticedetailadd.selectSubtitle(noticedetailadd.noticedetail_id));
-		maindetail_context.setText(noticedetailadd.selectContext(noticedetailadd.noticedetail_id));
+		txtSubtitle.setText(noticedetailadd.selectSubtitle(noticedetailadd.noticedetail_id));
+		txtContext.setText(noticedetailadd.selectContext(noticedetailadd.noticedetail_id));
 	}
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));

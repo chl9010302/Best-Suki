@@ -23,8 +23,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 public class VideoDetailViewController implements Initializable {
@@ -33,7 +31,6 @@ public class VideoDetailViewController implements Initializable {
 	public static String login_id = LoginViewController.login_id;
 	public static String videodetail_id = "";
 	private BorderPane rootLayout;
-	private Stage stage;
 		
 	//Declare FXML
 	@FXML private Label videodetail_subtitle;
@@ -92,20 +89,9 @@ public class VideoDetailViewController implements Initializable {
 		}catch(Exception e) { }
 	}
 	public void initialize(URL url, ResourceBundle rb) {
-		try {
-			VideoDetailAdd videodetailadd = new VideoDetailAdd();
-			FXMLLoader loader = new FXMLLoader();
-			rootLayout = (BorderPane) loader.load();
-			WebView browserWebView = new WebView();
-	        WebEngine myWebEngine = browserWebView.getEngine();
-	        myWebEngine.load(videodetailadd.selectFilepath(videodetailadd.videodetail_id));
-	        rootLayout.setCenter(browserWebView);
-	        Scene scene = new Scene(rootLayout);
-	        stage.setScene(scene);
-	        stage.show();
-//			videodetail_subtitle.setText(videodetailadd.selectSubtitle(videodetailadd.videodetail_id));
-//			videodetail_filepath.setText(videodetailadd.selectFilepath(videodetailadd.videodetail_id));
-		}catch(Exception e) { }
+		VideoDetailAdd videodetailadd = new VideoDetailAdd();
+		videodetail_subtitle.setText(videodetailadd.selectSubtitle(videodetailadd.videodetail_id));
+		videodetail_filepath.setText(videodetailadd.selectFilepath(videodetailadd.videodetail_id));
 	}
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
