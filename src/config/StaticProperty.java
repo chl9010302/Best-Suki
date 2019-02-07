@@ -41,6 +41,9 @@ public class StaticProperty {
 	public static String getnoticedetail_tb(){
 		return properties.getProperty("db7");
 	}
+	public static String getvideodetail_tb(){
+		return properties.getProperty("db8");
+	}
 	
 	
 	

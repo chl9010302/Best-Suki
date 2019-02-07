@@ -97,15 +97,22 @@
               </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="440.0" prefWidth="655.0">
+                  <HBox prefHeight="408.0" prefWidth="655.0">
                      <children>
-                        <TableView prefHeight="100.0" prefWidth="656.0" style="-fx-background-color: transparent;">
+                        <TableView fx:id="videoTableView" prefHeight="378.0" prefWidth="656.0" style="-fx-background-color: transparent;">
                           <columns>
-                            <TableColumn prefWidth="449.0" text="제목" />
-                            <TableColumn prefWidth="79.0" text="작성자" />
-                              <TableColumn prefWidth="127.0" text="날짜" />
+                              <TableColumn fx:id="ColVideo_Subtitle" prefWidth="317.0" text="제목" />
+                              <TableColumn fx:id="ColVideo_Writer" prefWidth="89.0" text="작성자" />
+                              <TableColumn fx:id="ColVideo_Date" prefWidth="132.0" text="날짜" />
+                              <TableColumn fx:id="ColVideo_Btndetail" prefWidth="116.0" text="상세보기" />
                           </columns>
                         </TableView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" spacing="5.0">
+                     <children>
+                        <Button fx:id="BtnAdd" onAction="#addAction" style="-fx-border-color: white;" text="글쓰기" textFill="WHITE" />
+                        <Button fx:id="BtnDelete" onAction="#deleteAction" style="-fx-border-color: white;" text="삭제" textFill="WHITE" />
                      </children>
                   </HBox>
       </children>

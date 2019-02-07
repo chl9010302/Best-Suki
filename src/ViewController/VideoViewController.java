@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import DBController.UserLogin;
+import DBController.VideoDetailAdd;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,17 +15,29 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class VideoViewController implements Initializable {
-	//Declare JAVA
-		
+	public static String selectedid= "";
 	//Declare FXML
 	@FXML private Button Property_userID;
+	@FXML private Button BtnDelete;
+	@FXML private TextField txtAddItem;
+	@FXML private Button BtnAdd;
+	@FXML private TableView<VideoDetailAdd> videoTableView;
+	@FXML private TableColumn<VideoDetailAdd, String> ColVideo_Id;
+	@FXML private TableColumn<VideoDetailAdd, String> ColVideo_Subtitle;
+	@FXML private TableColumn<VideoDetailAdd, String> ColVideo_Writer;
+	@FXML private TableColumn<VideoDetailAdd, String> ColVideo_Date;
+	@FXML private TableColumn<VideoDetailAdd, String> ColVideo_Btndetail;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
@@ -48,13 +61,42 @@ public class VideoViewController implements Initializable {
 			}catch(Exception e) { }
 		}
 	}
+	@FXML
+	private void addAction(ActionEvent action){
+		try {
+			NAV_POPUP(action, "../View/AddVideoView.fxml");
+		}catch(Exception e) { }
+	}
+	@FXML
+	private void deleteAction(ActionEvent action){
+		VideoDetailAdd videodetailadd = new VideoDetailAdd();
+		int selectedItem = videoTableView.getSelectionModel().getSelectedIndex();
+		videodetailadd.delete(String.valueOf(videoTableView.getItems().get(selectedItem).getVideodetail_id_pk().getValue()));
+		videoTableView.setItems(videodetailadd.getvideodetailadd());
+	}
+	
 	public void initialize(URL url, ResourceBundle rb) {
+		VideoDetailAdd videodetailadd = new VideoDetailAdd();
+		ColVideo_Subtitle.setCellValueFactory(cellData -> cellData.getValue().getVideodetail_subtitle());
+		ColVideo_Writer.setCellValueFactory(cellData -> cellData.getValue().getVideodetail_writer());
+		ColVideo_Date.setCellValueFactory(cellData -> cellData.getValue().getVideodetail_time());
+		ColVideo_Btndetail.setCellValueFactory(new PropertyValueFactory<VideoDetailAdd, String>("videodetail_btndetail"));
+		videoTableView.setItems(videodetailadd.getvideodetailadd());
 	}
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
 		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(SignupView_scene);
+		app_stage.show();
+	}
+	
+	private void NAV_POPUP (ActionEvent event, String str) throws IOException {
+		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
+		Scene SignupView_scene = new Scene(SignupView);
+		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
+		Stage app_stage = new Stage();
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();
 	}

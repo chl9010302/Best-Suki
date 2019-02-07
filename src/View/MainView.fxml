@@ -104,7 +104,7 @@
                             <TableColumn fx:id="ColNotice_Subtitle" prefWidth="317.0" text="제목" />
                             <TableColumn fx:id="ColNotice_Writer" prefWidth="89.0" text="작성자" />
                               <TableColumn fx:id="ColNotice_Date" prefWidth="132.0" text="시간" />
-                              <TableColumn fx:id="ColNotice_Btndetail" minWidth="0.0" prefWidth="116.0" text="상세보기" />
+                              <TableColumn fx:id="ColNotice_Btndetail" prefWidth="116.0" text="상세보기" />
                           </columns>
                         </TableView>
                      </children>

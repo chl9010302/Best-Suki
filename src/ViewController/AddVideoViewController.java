@@ -5,8 +5,9 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import DBController.NoticeDetailAdd;
 import DBController.UserLogin;
+import DBController.VideoDetailAdd;
+import DBModel.VideoDetailBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,25 +20,20 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class MainViewController implements Initializable {
-	public static String selectedid= "";
+public class AddVideoViewController implements Initializable {
+	//Declare JAVA
+	private VideoDetailBean videodetailbean;
+	public static String login_id = LoginViewController.login_id;
+		
 	//Declare FXML
 	@FXML private Button Property_userID;
-	@FXML private Button BtnDelete;
-	@FXML private TextField txtAddItem;
 	@FXML private Button BtnAdd;
-	@FXML private TableView<NoticeDetailAdd> noticeTableView;
-	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Id;
-	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Subtitle;
-	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Writer;
-	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Date;
-	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Btndetail;
+	@FXML private Button BtnDelete;
+	@FXML private TextField txtSubtitle, txtFilepath; 
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
@@ -62,28 +58,32 @@ public class MainViewController implements Initializable {
 		}
 	}
 	@FXML
-	private void addAction(ActionEvent action){
-		try {
-			NAV(action, "../View/AddMainView.fxml");
-		}catch(Exception e) { }
+	private void deleteAction(ActionEvent action) {
+		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
+		ButtonType NO = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
+		Alert alert = new Alert(AlertType.NONE,"작성을 취소하시겠습니까?", YES, NO);
+		alert.setTitle("Cancel");
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.orElse(NO) == YES) {
+			try {
+				NAV(action, "../View/VideoView.fxml");
+			}catch(Exception e) { }
+		}
 	}
 	@FXML
-	private void deleteAction(ActionEvent action){
-		NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
-		int selectedItem = noticeTableView.getSelectionModel().getSelectedIndex();
-		noticedetailadd.delete(String.valueOf(noticeTableView.getItems().get(selectedItem).getNoticedetail_id_pk().getValue()));
-		noticeTableView.setItems(noticedetailadd.getnoticedetailadd());
-	}
-	
-	public void initialize(URL url, ResourceBundle rb) {
+	private void addAction(ActionEvent action) {
 		try {
-			NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
-			ColNotice_Subtitle.setCellValueFactory(cellData -> cellData.getValue().getNoticedetail_subtitle());
-			ColNotice_Writer.setCellValueFactory(cellData -> cellData.getValue().getNoticedetail_writer());
-			ColNotice_Date.setCellValueFactory(cellData -> cellData.getValue().getNoticedetail_time());
-			ColNotice_Btndetail.setCellValueFactory(new PropertyValueFactory<NoticeDetailAdd, String>("noticedetail_btndetail"));
-			noticeTableView.setItems(noticedetailadd.getnoticedetailadd());
+			videodetailbean = new VideoDetailBean();
+			videodetailbean.setVIDEODETAIL_ID_PK(txtSubtitle.getText().toString());
+			videodetailbean.setVIDEODETAIL_SUBTITLE(txtSubtitle.getText().toString());
+			videodetailbean.setVIDEODETAIL_WRITER(login_id);
+			videodetailbean.setVIDEODETAIL_FILEPATH(txtFilepath.getText().toString());
+			VideoDetailAdd videodetailadd = new VideoDetailAdd();
+			videodetailadd.insertVideodetail(videodetailbean);
+			((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
 		}catch(Exception e) { }
+	}
+	public void initialize(URL url, ResourceBundle rb) {
 	}
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
