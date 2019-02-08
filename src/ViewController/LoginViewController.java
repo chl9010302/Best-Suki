@@ -88,20 +88,19 @@ public class LoginViewController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 	}
 	private void NAV (ActionEvent event, String str) throws IOException {
-		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
-		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
+		Parent View = FXMLLoader.load(getClass().getResource(str));
+		Scene View_scene = new Scene(View);
+		View_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(SignupView_scene);
+		app_stage.setScene(View_scene);
 		app_stage.show();
-		
 	}
 	private void NAV_Key (KeyEvent event, String str) throws IOException {
-		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
-		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
+		Parent View = FXMLLoader.load(getClass().getResource(str));
+		Scene View_scene = new Scene(View);
+		View_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(SignupView_scene);
+		app_stage.setScene(View_scene);
 		app_stage.show();
 	}
 }
