@@ -20,22 +20,18 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class VideoDetailViewController implements Initializable {
+public class VideoDetailEditViewController implements Initializable {
 	//Declare JAVA
 	private VideoDetailBean videodetailbean;
 	public static String login_id = LoginViewController.login_id;
-	public static String videodetail_id = "";
 		
 	//Declare FXML
-	@FXML private Label videodetail_subtitle;
-	@FXML private Label videodetail_filepath;
 	@FXML private Button Property_userID;
-	@FXML private Button BtnEdit;
+	@FXML private Button BtnAdd;
+	@FXML private Button BtnDelete;
 	@FXML private TextField txtSubtitle, txtFilepath; 
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
@@ -61,37 +57,37 @@ public class VideoDetailViewController implements Initializable {
 		}
 	}
 	@FXML
-	private void editAction(ActionEvent action) {
+	private void deleteAction(ActionEvent action) {
 		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
 		ButtonType NO = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
-		Alert alert = new Alert(AlertType.NONE,"수정하시겠습니까?", YES, NO);
+		Alert alert = new Alert(AlertType.NONE,"작성을 취소하시겠습니까?", YES, NO);
 		alert.setTitle("Cancel");
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.orElse(NO) == YES) {
 			try {
-				NAV(action, "../View/VideoDetailEditView.fxml");
+				NAV(action, "../View/VideoDetailView.fxml");
 			}catch(Exception e) { }
 		}
 	}
 	@FXML
 	private void addAction(ActionEvent action) {
+		System.out.println("adfaf");
 		try {
 			videodetailbean = new VideoDetailBean();
 			videodetailbean.setVIDEODETAIL_ID_PK(txtSubtitle.getText().toString());
 			videodetailbean.setVIDEODETAIL_SUBTITLE(txtSubtitle.getText().toString());
-			videodetailbean.setVIDEODETAIL_WRITER(login_id);
 			videodetailbean.setVIDEODETAIL_FILEPATH(txtFilepath.getText().toString());
 			VideoDetailAdd videodetailadd = new VideoDetailAdd();
-			
-			
-			videodetailadd.insertVideodetail(videodetailbean);
-			NAV(action, "../View/VideoView.fxml");
+			videodetailadd.updateVideoDetail(videodetailbean);
+		}catch(Exception e) { }
+		try {
+			NAV(action, "../View/VideoDetailView.fxml");
 		}catch(Exception e) { }
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		VideoDetailAdd videodetailadd = new VideoDetailAdd();
-		videodetail_subtitle.setText(videodetailadd.selectSubtitle(videodetailadd.videodetail_id));
-		videodetail_filepath.setText(videodetailadd.selectFilepath(videodetailadd.videodetail_id));
+		txtSubtitle.setText(videodetailadd.selectSubtitle(videodetailadd.videodetail_id));
+		txtFilepath.setText(videodetailadd.selectFilepath(videodetailadd.videodetail_id));
 	}
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));

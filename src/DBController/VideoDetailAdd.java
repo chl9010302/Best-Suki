@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import usingstaticfunction.DBConnectionKeeping;
 
 public class VideoDetailAdd {
 
@@ -97,6 +98,24 @@ public class VideoDetailAdd {
 
 	public VideoDetailAdd(VideoDetailBean videodetailbean) {
 		insertVideodetail(videodetailbean);
+	}
+	public boolean updateVideoDetail(VideoDetailBean videodetailbean) {
+		DBConnectionKeeping dbConnectionKeeping;
+		if (usingstaticfunction.DBConnectionKeeping.con == null)
+			dbConnectionKeeping = new DBConnectionKeeping();
+		
+		Statement stmt = null;
+		try {
+			Connection con = usingstaticfunction.DBConnectionKeeping.con;
+			stmt = con.createStatement();
+			String updatesql = "UPDATE "+config.StaticProperty.getvideodetail_tb()+" SET VIDEODETAIL_SUBTITLE = '" + videodetailbean.getVIDEODETAIL_SUBTITLE() + "', VIDEODETAIL_FILEPATH = '" + videodetailbean.getVIDEODETAIL_FILEPATH() + "' WHERE VIDEODETAIL_ID_PK = '" + videodetailbean.getVIDEODETAIL_ID_PK() + "';";
+			stmt.executeUpdate(updatesql);
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 	public boolean insertVideodetail(VideoDetailBean videodetailbean) {
 		String insertsql = "INSERT INTO "+config.StaticProperty.getvideodetail_tb()+"(VIDEODETAIL_ID_PK, VIDEODETAIL_SUBTITLE, VIDEODETAIL_WRITER, VIDEODETAIL_TIME, VIDEODETAIL_FILEPATH) VALUES(?, ?, ?, now(), ?);";
