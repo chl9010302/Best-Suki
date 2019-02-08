@@ -121,6 +121,24 @@ public class StaticProperty {
 	public static String alertgoback(){
 		return properties.getProperty("alert8");
 	}
+	public static String alerttitlemessage(){
+		return properties.getProperty("alerttitle1");
+	}
+	public static String alerttitlecancel(){
+		return properties.getProperty("alerttitle2");
+	}
+	public static String alerttitlelogout(){
+		return properties.getProperty("alerttitle3");
+	}
+	public static String alertbtnyes(){
+		return properties.getProperty("alertbtn1");
+	}
+	public static String alertbtnno(){
+		return properties.getProperty("alertbtn2");
+	}
+	public static String alertbtndone(){
+		return properties.getProperty("alertbtn3");
+	}
 }
 
 

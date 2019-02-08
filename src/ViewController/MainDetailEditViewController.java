@@ -45,10 +45,10 @@ public class MainDetailEditViewController implements Initializable {
 	@FXML
 	private void logout(ActionEvent event) {
 		UserLogin userlogout = new UserLogin();
-		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
-		ButtonType NO = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
+		ButtonType YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
+		ButtonType NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
 		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertlogout(), YES, NO);
-		alert.setTitle("Logout");
+		alert.setTitle(config.StaticProperty.alerttitlelogout());
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.orElse(NO) == YES) {
 			try {
@@ -60,10 +60,10 @@ public class MainDetailEditViewController implements Initializable {
 	}
 	@FXML
 	private void deleteAction(ActionEvent action) {
-		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
-		ButtonType NO = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
+		ButtonType YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
+		ButtonType NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
 		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertgoback(), YES, NO);
-		alert.setTitle("Cancel");
+		alert.setTitle(config.StaticProperty.alerttitlecancel());
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.orElse(NO) == YES) {
 			try {

@@ -61,9 +61,9 @@ public class SignupViewController implements Initializable {
 			UserJoin userjoin = new UserJoin();
 			int i = userjoin.joinCheck(UserId.getText().toString());
 			if(i == 1) {
-				ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
+				ButtonType YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
 				Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetosignup(), YES);
-				alert.setTitle("회원가입 - 성공");
+				alert.setTitle(config.StaticProperty.alertcompletetosignup());
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.orElse(YES) == YES) {
 					userjoin = new UserJoin(user);
@@ -72,7 +72,7 @@ public class SignupViewController implements Initializable {
 			}
 			else {
 				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Message Here...");
+				alert.setTitle(config.StaticProperty.alerttitlemessage());
 				alert.setHeaderText(config.StaticProperty.alertfailedtosignup());
 				alert.showAndWait();
 			}

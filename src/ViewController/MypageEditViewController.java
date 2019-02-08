@@ -43,9 +43,9 @@ public class MypageEditViewController implements Initializable {
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavvideoview()); }
 	@FXML
 	public void Btn_Edit(ActionEvent event) {
-		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
+		ButtonType YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
 		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetoedit(), YES);
-		alert.setTitle("마이페이지 - 수정 성공");
+		alert.setTitle(config.StaticProperty.alertcompletetoedit());
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.orElse(YES) == YES) {
 			UserBean userbean = new UserBean();
@@ -68,10 +68,10 @@ public class MypageEditViewController implements Initializable {
 	@FXML
 	private void logout(ActionEvent event) {
 		UserLogin userlogout = new UserLogin();
-		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
-		ButtonType NO = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
+		ButtonType YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
+		ButtonType NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
 		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertlogout(), YES, NO);
-		alert.setTitle("Logout");
+		alert.setTitle(config.StaticProperty.alerttitlelogout());
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.orElse(NO) == YES) {
 			try {

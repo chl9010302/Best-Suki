@@ -43,7 +43,7 @@ public class LoginViewController implements Initializable {
 			else {
 				login_id ="";
 				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Message Here...");
+				alert.setTitle(config.StaticProperty.alerttitlemessage());
 				alert.setHeaderText(config.StaticProperty.alertfailedtologin());
 				alert.showAndWait();
 			}
@@ -70,7 +70,7 @@ public class LoginViewController implements Initializable {
 				else {
 					login_id ="";
 					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Message Here...");
+					alert.setTitle(config.StaticProperty.alerttitlemessage());
 					alert.setHeaderText(config.StaticProperty.alertfailedtologin());
 					alert.showAndWait();
 				}
