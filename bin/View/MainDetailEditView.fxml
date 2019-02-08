@@ -28,7 +28,7 @@
                         <Font name="Tahoma" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#logout" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text=config.StaticProperty.alerttitlelogout() textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#logout" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Logout" textFill="WHITE">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>
