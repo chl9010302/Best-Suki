@@ -145,7 +145,6 @@ public class NoticeDetailAdd {
 		try {
 			Connection con = usingstaticfunction.DBConnectionKeeping.con;
 			stmt = con.createStatement();
-			System.out.println("123123");
 			String updatesql = "UPDATE "+config.StaticProperty.getnoticedetail_tb()+" SET NOTICEDETAIL_SUBTITLE = '" + noticedetailbean.getNOTICEDETAIL_SUBTITLE() + "', NOTICEDETAIL_CONTEXT = '" + noticedetailbean.getNOTICEDETAIL_CONTEXT() + "' WHERE NOTICEDETAIL_ID_PK = '" + noticedetailbean.getNOTICEDETAIL_ID_PK() + "';";
 			stmt.executeUpdate(updatesql);
 			return true;

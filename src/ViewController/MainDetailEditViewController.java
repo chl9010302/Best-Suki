@@ -73,7 +73,6 @@ public class MainDetailEditViewController implements Initializable {
 	}
 	@FXML
 	private void addAction(ActionEvent action) {
-		System.out.println("adfaf");
 		try {
 			noticedetailbean = new NoticeDetailBean();
 			noticedetailbean.setNOTICEDETAIL_ID_PK(txtSubtitle.getText().toString());

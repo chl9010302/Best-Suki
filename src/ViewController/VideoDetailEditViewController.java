@@ -71,7 +71,6 @@ public class VideoDetailEditViewController implements Initializable {
 	}
 	@FXML
 	private void addAction(ActionEvent action) {
-		System.out.println("adfaf");
 		try {
 			videodetailbean = new VideoDetailBean();
 			videodetailbean.setVIDEODETAIL_ID_PK(txtSubtitle.getText().toString());
