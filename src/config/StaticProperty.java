@@ -10,6 +10,8 @@ public class StaticProperty {
 	public StaticProperty() throws IOException{
 		 properties = new Properties();
 		 loadProp("db.properties");
+		 loadProp("nav.properties");
+		 loadProp("alert.properties");
 		
 	}
 	public Properties getProperties() {
@@ -44,9 +46,81 @@ public class StaticProperty {
 	public static String getvideodetail_tb(){
 		return properties.getProperty("db8");
 	}
-	
-	
-	
+	public static String getnavloginview(){
+		return properties.getProperty("nav1");
+	}
+	public static String getnavtestview(){
+		return properties.getProperty("nav2");
+	}
+	public static String getnavtestboardview(){
+		return properties.getProperty("nav3");
+	}
+	public static String getnavstasticsview(){
+		return properties.getProperty("nav4");
+	}
+	public static String getnavmypageview(){
+		return properties.getProperty("nav5");
+	}
+	public static String getnavmypageeditview(){
+		return properties.getProperty("nav6");
+	}
+	public static String getnavsignupview(){
+		return properties.getProperty("nav7");
+	}
+	public static String getnavaddtestview(){
+		return properties.getProperty("nav8");
+	}
+	public static String getnavaddmainview(){
+		return properties.getProperty("nav11");
+	}
+	public static String getnavmainview(){
+		return properties.getProperty("nav12");
+	}
+	public static String getnavmaindetailview(){
+		return properties.getProperty("nav13");
+	}
+	public static String getnavmaindetaileditview(){
+		return properties.getProperty("nav14");
+	}
+	public static String getnavvideoview(){
+		return properties.getProperty("nav15");
+	}
+	public static String getnavvideodetailview(){
+		return properties.getProperty("nav16");
+	}
+	public static String getnavvideodetaileditview(){
+		return properties.getProperty("nav17");
+	}
+	public static String getnavaddvideoview(){
+		return properties.getProperty("nav18");
+	}
+	public static String getnavapplication(){
+		return properties.getProperty("nav20");
+	}
+	public static String alertlogout(){
+		return properties.getProperty("alert1");
+	}
+	public static String alertcancel(){
+		return properties.getProperty("alert2");
+	}
+	public static String alertfailedtologin(){
+		return properties.getProperty("alert3");
+	}
+	public static String alertedit(){
+		return properties.getProperty("alert4");
+	}
+	public static String alertcompletetoedit(){
+		return properties.getProperty("alert5");
+	}
+	public static String alertcompletetosignup(){
+		return properties.getProperty("alert6");
+	}
+	public static String alertfailedtosignup(){
+		return properties.getProperty("alert7");
+	}
+	public static String alertgoback(){
+		return properties.getProperty("alert8");
+	}
 }
 
 

@@ -38,8 +38,8 @@ public class SignupViewController implements Initializable {
 	@FXML private DatePicker UserAge;
 	@FXML private RadioButton UserGenderMale;
 	@FXML private RadioButton UserGenderFeMale;
-	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { NAV(event, "../View/SignupView.fxml"); }
-	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
+	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavsignupview()); }
+	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavloginview()); }
 	@FXML
 	private void Signup(ActionEvent event) throws IOException, NoSuchAlgorithmException {
 		LocalDate localDate = UserAge.getValue();
@@ -62,18 +62,18 @@ public class SignupViewController implements Initializable {
 			int i = userjoin.joinCheck(UserId.getText().toString());
 			if(i == 1) {
 				ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
-				Alert alert = new Alert(AlertType.NONE,"회원가입이 성공적으로 되었습니다.", YES);
+				Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetosignup(), YES);
 				alert.setTitle("회원가입 - 성공");
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.orElse(YES) == YES) {
 					userjoin = new UserJoin(user);
-					NAV(event, "../View/LoginView.fxml");
+					NAV(event, config.StaticProperty.getnavloginview());
 				}
 			}
 			else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Message Here...");
-				alert.setHeaderText("회원가입에 실패하셨습니다.");
+				alert.setHeaderText(config.StaticProperty.alertfailedtosignup());
 				alert.showAndWait();
 			}
 		}catch(Exception e) { }
@@ -87,7 +87,7 @@ public class SignupViewController implements Initializable {
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
+		SignupView_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();

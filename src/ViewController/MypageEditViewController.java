@@ -34,17 +34,17 @@ public class MypageEditViewController implements Initializable {
 	@FXML private Button Property_userID;
 	@FXML private Label Mypage_UserId;
 	@FXML private TextField EditProperty_UserPassword, EditProperty_UserName,  EditProperty_UserAddress, EditProperty_UserSchoolName, EditProperty_UserAge, EditProperty_UserGender, EditProperty_UserPhone, EditProperty_UserFmphone;
-	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
-	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
-	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
-	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { NAV(event, "../View/StasticsView.fxml"); }
-	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { NAV(event, "../View/MypageView.fxml"); }
-	@FXML private void NAV_MypageEditView(ActionEvent event) throws IOException { NAV(event, "../View/MypageEditView.fxml"); }
-	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { NAV(event, "../View/VideoView.fxml"); }
+	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavmainview());	}
+	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavtestview()); }
+	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavtestboardview()); }
+	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavstasticsview()); }
+	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavmypageview()); }
+	@FXML private void NAV_MypageEditView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavmypageeditview()); }
+	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavvideoview()); }
 	@FXML
 	public void Btn_Edit(ActionEvent event) {
 		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
-		Alert alert = new Alert(AlertType.NONE,"성공적으로 수정 되었습니다.", YES);
+		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetoedit(), YES);
 		alert.setTitle("마이페이지 - 수정 성공");
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.orElse(YES) == YES) {
@@ -61,7 +61,7 @@ public class MypageEditViewController implements Initializable {
 				userbean.setUSER_FMPHONE(EditProperty_UserFmphone.getText().toString());
 				UserDataUpdate userdataupdate = new UserDataUpdate();
 				userdataupdate.UserUpdate(userbean, Mypage_UserId.getText().toString());
-				NAV(event, "../View/MypageView.fxml");
+				NAV(event, config.StaticProperty.getnavmypageview());
 			}catch(Exception e) { }
 		}
 	}
@@ -70,14 +70,14 @@ public class MypageEditViewController implements Initializable {
 		UserLogin userlogout = new UserLogin();
 		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
 		ButtonType NO = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
-		Alert alert = new Alert(AlertType.NONE,"Would you want to logout?", YES, NO);
+		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertlogout(), YES, NO);
 		alert.setTitle("Logout");
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.orElse(NO) == YES) {
 			try {
 				userlogout.logout(LoginViewController.login_id);
 				userlogout.logout2(LoginViewController.login_id);
-				NAV(event, "../View/LoginView.fxml");
+				NAV(event, config.StaticProperty.getnavloginview());
 			}catch(Exception e) { }
 		}
 	}
@@ -102,7 +102,7 @@ public class MypageEditViewController implements Initializable {
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
+		SignupView_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();

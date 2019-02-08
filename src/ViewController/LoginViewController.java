@@ -28,9 +28,9 @@ public class LoginViewController implements Initializable {
 	
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword;
-	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { NAV(event, "../View/SignupView.fxml"); }
-	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
-	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
+	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavsignupview()); }
+	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavloginview()); }
+	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavmainview());	}
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	private void login(ActionEvent event) {
 		UserLogin userlogin = new UserLogin();
@@ -38,13 +38,13 @@ public class LoginViewController implements Initializable {
 			int i = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 			login_id = UserId.getText().toString(); // 로그아웃 시 아이디를 기억하기 위함
 			if(i == 1) {
-				NAV(event, "../View/MainView.fxml");
+				NAV(event, config.StaticProperty.getnavmainview());
 			}
 			else {
 				login_id ="";
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Message Here...");
-				alert.setHeaderText("로그인에 실패하셨습니다.");
+				alert.setHeaderText(config.StaticProperty.alertfailedtologin());
 				alert.showAndWait();
 			}
 		} catch (NoSuchAlgorithmException e) {
@@ -65,13 +65,13 @@ public class LoginViewController implements Initializable {
 				int i = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 				login_id = UserId.getText().toString(); // 로그아웃 시 아이디를 기억하기 위함
 				if(i == 1) {
-					NAV_Key(ev, "../View/MainView.fxml");
+					NAV_Key(ev, config.StaticProperty.getnavmainview());
 				}
 				else {
 					login_id ="";
 					Alert alert = new Alert(AlertType.ERROR);
 					alert.setTitle("Message Here...");
-					alert.setHeaderText("로그인에 실패하셨습니다.");
+					alert.setHeaderText(config.StaticProperty.alertfailedtologin());
 					alert.showAndWait();
 				}
 			} catch (NoSuchAlgorithmException e) {
@@ -90,7 +90,7 @@ public class LoginViewController implements Initializable {
 	private void NAV (ActionEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
+		SignupView_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();
@@ -99,7 +99,7 @@ public class LoginViewController implements Initializable {
 	private void NAV_Key (KeyEvent event, String str) throws IOException {
 		Parent SignupView = FXMLLoader.load(getClass().getResource(str));
 		Scene SignupView_scene = new Scene(SignupView);
-		SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
+		SignupView_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(SignupView_scene);
 		app_stage.show();

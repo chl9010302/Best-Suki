@@ -83,16 +83,16 @@ public class Controller implements Initializable {
 	@FXML private TextField txtAddItem; 
 	@FXML private TextField txtSubtitle; 
 	@FXML private Label txtFilepath;
-	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { NAV(event, "../View/SignupView.fxml"); }
-	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, "../View/LoginView.fxml"); }
-	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, "../View/MainView.fxml");	}
-	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, "../View/TestView.fxml"); }
-	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, "../View/TestBoardView.fxml"); }
-	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, "../View/AddTestView.fxml"); }
-	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { NAV(event, "../View/StasticsView.fxml"); }
-	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { NAV(event, "../View/MypageView.fxml"); }
-	@FXML private void NAV_MypageEditView(ActionEvent event) throws IOException { NAV(event, "../View/MypageEditView.fxml"); }
-	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { NAV(event, "../View/VideoView.fxml"); }
+	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavsignupview()); }
+	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavloginview()); }
+	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavmainview());	}
+	@FXML private void NAV_TestView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavtestview()); }
+	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavtestboardview()); }
+	@FXML private void NAV_AddTestView(ActionEvent event) throws IOException { NAV_POPUP(event, config.StaticProperty.getnavaddtestview()); }
+	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavstasticsview()); }
+	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavmypageview()); }
+	@FXML private void NAV_MypageEditView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavmypageeditview()); }
+	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavvideoview()); }
 	@FXML
 	private void ButtonTest(ActionEvent event) {
 		sung(event);
@@ -159,14 +159,14 @@ public class Controller implements Initializable {
 			int i = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 			login_id = UserId.getText().toString();
 			if(i == 1) {
-				NAV(event, "../View/MainView.fxml");
+				NAV(event, config.StaticProperty.getnavmainview());
 				
 			}
 			else {
 				login_id ="";
 				Alert alert = new Alert(AlertType.NONE);
 				alert.setTitle("Message Here...");
-				alert.setHeaderText("로그인에 실패하셨습니다.");
+				alert.setHeaderText(config.StaticProperty.alertfailedtologin());
 				alert.showAndWait();
 			}
 			
@@ -185,14 +185,14 @@ public class Controller implements Initializable {
 		UserLogin userlogout = new UserLogin();
 		ButtonType YES = new ButtonType("YES", ButtonBar.ButtonData.OK_DONE);
 		ButtonType NO = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
-		Alert alert = new Alert(AlertType.NONE,"Would you want to logout?", YES, NO);
+		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertlogout(), YES, NO);
 		alert.setTitle("Logout");
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.orElse(NO) == YES) {
 			try {
 				userlogout.logout(login_id);
 				userlogout.logout2(login_id);
-				NAV(event, "../View/LoginView.fxml");
+				NAV(event, config.StaticProperty.getnavloginview());
 			}catch(Exception e) { }
 		}
 	}
@@ -216,7 +216,7 @@ public class Controller implements Initializable {
 		// 회원가입과 함께 Login Page로 이동됨.
 		
 		
-		NAV(event, "../View/LoginView.fxml");
+		NAV(event, config.StaticProperty.getnavloginview());
 	}
 	
 	

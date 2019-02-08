@@ -83,13 +83,13 @@ public class NoticeDetailAdd {
 				noticedetail_id = noticedetail_id_pk.get();
 				Parent SignupView = null;
 				try {
-					SignupView = FXMLLoader.load(getClass().getResource("../View/MainDetailView.fxml"));
+					SignupView = FXMLLoader.load(getClass().getResource(config.StaticProperty.getnavmaindetailview()));
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				Scene SignupView_scene = new Scene(SignupView);
-				SignupView_scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
+				SignupView_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
 				Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				app_stage.setScene(SignupView_scene);
 				app_stage.show();

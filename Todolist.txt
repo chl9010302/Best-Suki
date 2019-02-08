@@ -15,6 +15,7 @@ Testview 구현하기
 Test 다수를 한번에 만드는 기능 필요
 VIDEO 뷰 구현 완성 - 기능 해야함. 
 id마다 볼수있게 필터
+Properties로 모두 넣기
 
 TestView 게시판 값 넣기
 로그인창 시작 시 포커스 UserId 넣기
@@ -46,6 +47,7 @@ ColNotice_Id;
   - ONKEYSET으로 뷰로 이동하게 하면 될 듯?
   -----------------------------------
   1. db 추가
+  
 CREATE TABLE `VIDEODETAIL_TB` (
   `VIDEODETAIL_ID_PK`  VARCHAR(255) NOT NULL,
   `VIDEODETAIL_SUBTITLE` VARCHAR(255),
