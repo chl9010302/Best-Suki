@@ -10,16 +10,11 @@ import DBController.UserLogin;
 import academyutil.Sha256;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
 public class LoginViewController implements Initializable {
 	//Declare JAVA
@@ -28,9 +23,9 @@ public class LoginViewController implements Initializable {
 	
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword;
-	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavsignupview()); }
-	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavloginview()); }
-	@FXML private void NAV_MainView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavmainview());	}
+	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavsignupview()); }
+	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
+	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	private void login(ActionEvent event) {
 		UserLogin userlogin = new UserLogin();
@@ -38,7 +33,7 @@ public class LoginViewController implements Initializable {
 			int i = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 			login_id = UserId.getText().toString(); // 로그아웃 시 아이디를 기억하기 위함
 			if(i == 1) {
-				NAV(event, config.StaticProperty.getnavmainview());
+				CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());
 			}
 			else {
 				login_id ="";
@@ -57,15 +52,15 @@ public class LoginViewController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	public void setOnKeyPressed(KeyEvent ev) {
-		if(ev.getCode().toString().equals("ENTER"))
+	public void setOnKeyPressed(KeyEvent event) {
+		if(event.getCode().toString().equals("ENTER"))
 		{
 			UserLogin userlogin = new UserLogin();
 			try {
 				int i = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 				login_id = UserId.getText().toString(); // 로그아웃 시 아이디를 기억하기 위함
 				if(i == 1) {
-					NAV_Key(ev, config.StaticProperty.getnavmainview());
+					CommonController.NAV_Key(getClass(), event, config.StaticProperty.getnavmainview());
 				}
 				else {
 					login_id ="";
@@ -86,21 +81,5 @@ public class LoginViewController implements Initializable {
 	    }
 	}
 	public void initialize(URL url, ResourceBundle rb) {
-	}
-	private void NAV (ActionEvent event, String str) throws IOException {
-		Parent View = FXMLLoader.load(getClass().getResource(str));
-		Scene View_scene = new Scene(View);
-		View_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(View_scene);
-		app_stage.show();
-	}
-	private void NAV_Key (KeyEvent event, String str) throws IOException {
-		Parent View = FXMLLoader.load(getClass().getResource(str));
-		Scene View_scene = new Scene(View);
-		View_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(View_scene);
-		app_stage.show();
 	}
 }

@@ -1,7 +1,6 @@
 package ViewController;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -10,11 +9,8 @@ import DBModel.TestDetailBean;
 import ImageStore.TestImageStore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -87,13 +83,5 @@ public class AddTestViewController implements Initializable {
 	public void fileChooserSelect(ActionEvent event) { 
 		openFile(); 
 		txtFilepath.setText(filename);
-	}
-	private void NAV (ActionEvent event, String str) throws IOException {
-		Parent View = FXMLLoader.load(getClass().getResource(str));
-		Scene View_scene = new Scene(View);
-		View_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(View_scene);
-		app_stage.show();
 	}
 }

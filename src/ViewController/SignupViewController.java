@@ -12,20 +12,15 @@ import DBModel.UserBean;
 import academyutil.Sha256;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 
 public class SignupViewController implements Initializable {
 	//Declare JAVA
@@ -38,8 +33,8 @@ public class SignupViewController implements Initializable {
 	@FXML private DatePicker UserAge;
 	@FXML private RadioButton UserGenderMale;
 	@FXML private RadioButton UserGenderFeMale;
-	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavsignupview()); }
-	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { NAV(event, config.StaticProperty.getnavloginview()); }
+	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavsignupview()); }
+	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML
 	private void Signup(ActionEvent event) throws IOException, NoSuchAlgorithmException {
 		LocalDate localDate = UserAge.getValue();
@@ -67,7 +62,7 @@ public class SignupViewController implements Initializable {
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.orElse(YES) == YES) {
 					userjoin = new UserJoin(user);
-					NAV(event, config.StaticProperty.getnavloginview());
+					CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview());
 				}
 			}
 			else {
@@ -83,13 +78,5 @@ public class SignupViewController implements Initializable {
 		if(UserGenderFeMale.isSelected()) { usergender = UserGenderFeMale.getText(); }
 	}
 	public void initialize(URL url, ResourceBundle rb) {
-	}
-	private void NAV (ActionEvent event, String str) throws IOException {
-		Parent View = FXMLLoader.load(getClass().getResource(str));
-		Scene View_scene = new Scene(View);
-		View_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		app_stage.setScene(View_scene);
-		app_stage.show();
 	}
 }

@@ -23,9 +23,7 @@ public class ResultViewController implements Initializable {
 	//Declare JAVA
 	private TestDetailBean testdetailbean;
 	private Stage stage; // file choose 하기 위함.
-	public static String filename;
-	public static String filepath;
-		
+	public static String filename, filepath;
 	//Declare FXML
 	@FXML private TextField Radio1, Radio2, Radio3, Radio4, Radio5;
 	@FXML private RadioButton Rb1, Rb2, Rb3, Rb4, Rb5;
@@ -44,7 +42,6 @@ public class ResultViewController implements Initializable {
 		testdetailbean.setTESTDETAIL_DATA3(Radio3.getText().toString());
 		testdetailbean.setTESTDETAIL_DATA4(Radio4.getText().toString());
 		testdetailbean.setTESTDETAIL_DATA5(Radio5.getText().toString());
-
 		if(Rb1.isSelected()) {
 			testdetailbean.setTESTDETAIL_ANSWER(Radio1.getText().toString());
 		}else if(Rb2.isSelected()) {
