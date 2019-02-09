@@ -5,8 +5,7 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import DBController.VideoDetailAdd;
-import DBModel.VideoDetailBean;
+import DBController.TestDetailAdd;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,18 +14,19 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
+import javafx.scene.control.ToggleGroup;
 
-public class VideoDetailViewController implements Initializable {
+public class TestDetailViewController implements Initializable {
 	//Declare JAVA
+	
 	public static String login_id = LoginViewController.login_id;
-	private WebEngine engine;
 	//Declare FXML
-	@FXML private WebView Myweb;
-	@FXML private Label videodetail_subtitle, videodetail_filepath;
-	@FXML private TextField txtSubtitle, txtFilepath; 
+	@FXML private Label testdetail_subtitle;
+	@FXML private ToggleGroup Quest1Group1;
+	@FXML private Label Radio1, Radio2, Radio3, Radio4, Radio5;
+	@FXML private RadioButton Rb1, Rb2, Rb3, Rb4, Rb5;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview()); }
@@ -44,16 +44,20 @@ public class VideoDetailViewController implements Initializable {
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.orElse(NO) == YES) {
 			try {
-				CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideodetaileditview());
+//				CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestdetaileditview());
 			}catch(Exception e) { }
 		}
 	}
+	@FXML
+	private void Quest1Group1Action(ActionEvent action) {
+	}
 	public void initialize(URL url, ResourceBundle rb) {
-		String URL = "";
-		VideoDetailAdd videodetailadd = new VideoDetailAdd();
-		URL = "https://www.youtube.com/embed/" + videodetailadd.selectFilepath(videodetailadd.videodetail_id).substring(32, videodetailadd.selectFilepath(videodetailadd.videodetail_id).length()) + "?wmode=opaque";
-		videodetail_subtitle.setText(videodetailadd.selectSubtitle(videodetailadd.videodetail_id));
-		engine = Myweb.getEngine();
-		engine.load(URL);
+		TestDetailAdd testdetailadd = new TestDetailAdd();
+		testdetail_subtitle.setText(testdetailadd.selectSubtitle(testdetailadd.testdetail_id));
+		Radio1.setText(testdetailadd.selectDATA1(testdetailadd.testdetail_id));
+		Radio2.setText(testdetailadd.selectDATA2(testdetailadd.testdetail_id));
+		Radio3.setText(testdetailadd.selectDATA3(testdetailadd.testdetail_id));
+		Radio4.setText(testdetailadd.selectDATA4(testdetailadd.testdetail_id));
+		Radio5.setText(testdetailadd.selectDATA5(testdetailadd.testdetail_id));
 	}
 }

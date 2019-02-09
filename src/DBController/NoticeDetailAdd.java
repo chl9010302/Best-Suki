@@ -12,12 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class NoticeDetailAdd {
@@ -68,20 +63,11 @@ public class NoticeDetailAdd {
 		this.noticedetail_context = new SimpleStringProperty(NOTICEDETAIL_CONTEXT);
 		this.noticedetail_btndetail = new Button("Details");
 		noticedetail_btndetail.setOnAction(event -> {
-				noticedetail_id = "";
-				noticedetail_id = noticedetail_id_pk.get();
-				Parent SignupView = null;
-				try {
-					SignupView = FXMLLoader.load(getClass().getResource(config.StaticProperty.getnavmaindetailview()));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				Scene SignupView_scene = new Scene(SignupView);
-				SignupView_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
-				Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				app_stage.setScene(SignupView_scene);
-				app_stage.show();
+			noticedetail_id = "";
+			noticedetail_id = noticedetail_id_pk.get();
+			try {
+				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavmaindetailview());
+			} catch (IOException e) { }
 		});
 	}
 	public NoticeDetailAdd(NoticeDetailBean noticedetailbean) {

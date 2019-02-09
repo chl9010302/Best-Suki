@@ -73,6 +73,9 @@ public class StaticProperty {
 	public static String getnavmypageeditpasswordview(){
 		return properties.getProperty("nav9");
 	}
+	public static String getnavtestdetailview(){
+		return properties.getProperty("nav10");
+	}
 	public static String getnavaddmainview(){
 		return properties.getProperty("nav11");
 	}

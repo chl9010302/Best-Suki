@@ -1,5 +1,7 @@
 package DBModel;
 
+import javafx.scene.control.Button;
+
 public class TestDetailBean {
 
 	private String TESTDETAIL_ID_PK;
@@ -12,7 +14,7 @@ public class TestDetailBean {
 	private String TESTDETAIL_IMAGE;
 	private String TESTDETAIL_SUBTITLE;
 	private String TESTDETAIL_WRITER;
-	
+	private Button TESTDETAIL_BTNDETAIL;
 	public String getTESTDETAIL_WRITER() {
 		return TESTDETAIL_WRITER;
 	}
@@ -104,4 +106,13 @@ public class TestDetailBean {
 	public void setTESTDETAIL_SUBTITLE(String tESTDETAIL_SUBTITLE) {
 		TESTDETAIL_SUBTITLE = tESTDETAIL_SUBTITLE;
 	}
+
+	public Button getTESTDETAIL_BTNDETAIL() {
+		return TESTDETAIL_BTNDETAIL;
+	}
+
+	public void setTESTDETAIL_BTNDETAIL(Button tESTDETAIL_BTNDETAIL) {
+		TESTDETAIL_BTNDETAIL = tESTDETAIL_BTNDETAIL;
+	}
+	
 }

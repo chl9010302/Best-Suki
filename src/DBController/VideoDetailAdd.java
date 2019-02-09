@@ -12,12 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class VideoDetailAdd {
@@ -66,17 +61,11 @@ public class VideoDetailAdd {
 		this.videodetail_filepath = new SimpleStringProperty(VIDEODETAIL_FILEPATH);
 		this.videodetail_btndetail = new Button("Details");
 		videodetail_btndetail.setOnAction(event -> {
-				videodetail_id = ""; // 초기화
-				videodetail_id = videodetail_id_pk.get();
-				Parent SignupView = null;
-				try {
-					SignupView = FXMLLoader.load(getClass().getResource(config.StaticProperty.getnavvideodetailview()));
-				} catch (IOException e) { }
-				Scene SignupView_scene = new Scene(SignupView);
-				SignupView_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
-				Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				app_stage.setScene(SignupView_scene);
-				app_stage.show();
+			videodetail_id = ""; // 초기화
+			videodetail_id = videodetail_id_pk.get();
+			try {
+				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideodetailview());
+			} catch (IOException e) { }
 		});
 	}
 	public VideoDetailAdd(VideoDetailBean videodetailbean) {

@@ -1,5 +1,6 @@
 package DBController;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,15 +12,19 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import usingstaticfunction.DBConnectionKeeping;
 
 public class TestDetailAdd {
-
 	TestDetailBean testdetailbean;
 	Connection conn = null;
 	Statement stmt = null;
+	public static String testdetail_id = "";
 	private StringProperty testdetail_id_pk;
-	private StringProperty subtitle;
+	private StringProperty testdetail_subtitle;
 	private StringProperty testdetail_writer;
+	private StringProperty testdetail_time;
+	private Button testdetail_btndetail;
 	public StringProperty getTestdetail_writer() {
 		return testdetail_writer;
 	}
@@ -32,7 +37,6 @@ public class TestDetailAdd {
 	public void setTestdetail_time(StringProperty testdetail_time) {
 		this.testdetail_time = testdetail_time;
 	}
-	private StringProperty testdetail_time;
 	private ObservableList<TestDetailAdd> testdetailadd = FXCollections.observableArrayList();
 	public ObservableList<TestDetailAdd> gettestdetailadd() {
 		select();
@@ -41,18 +45,54 @@ public class TestDetailAdd {
 	public StringProperty getTestdetail_id_pk() {
 		return testdetail_id_pk;
 	}
-	public StringProperty getSubtitle() {
-		return subtitle;
+	public StringProperty getTestdetail_Subtitle() {
+		return testdetail_subtitle;
+	}
+	public Button getTestdetail_btndetail() {
+		return testdetail_btndetail;
+	}
+	public void setTestdetail_btndetail(Button testdetail_btndetail) {
+		this.testdetail_btndetail = testdetail_btndetail;
 	}
 	public TestDetailAdd() { }
 	public TestDetailAdd(String TESTDETAIL_ID_PK, String TESTDETAIL_SUBTITLE, String TESTDETAIL_WRITER, String TESTDETAIL_TIME) {
 		this.testdetail_id_pk = new SimpleStringProperty(TESTDETAIL_ID_PK);
-		this.subtitle = new SimpleStringProperty(TESTDETAIL_SUBTITLE);
+		this.testdetail_subtitle = new SimpleStringProperty(TESTDETAIL_SUBTITLE);
 		this.testdetail_writer = new SimpleStringProperty(TESTDETAIL_WRITER);
 		this.testdetail_time = new SimpleStringProperty(TESTDETAIL_TIME);
+		this.testdetail_btndetail = new Button("Details");
+		testdetail_btndetail.setOnAction(event -> {
+			testdetail_id = ""; // 초기화
+			testdetail_id = testdetail_id_pk.get();
+			try {
+				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestdetailview());
+			} catch (IOException e) { }
+		});
 	}
 	public TestDetailAdd(TestDetailBean testdetailbean) {
 		insertTestDetail(testdetailbean);
+	}
+	public boolean updateTestDetail(TestDetailBean testdetailbean) {
+		DBConnectionKeeping dbConnectionKeeping;
+		if (usingstaticfunction.DBConnectionKeeping.con == null)
+			dbConnectionKeeping = new DBConnectionKeeping();
+		Statement stmt = null;
+		try {
+			Connection con = usingstaticfunction.DBConnectionKeeping.con;
+			stmt = con.createStatement();
+			String updatesql = "UPDATE "+config.StaticProperty.gettestdetail_tb()
+			+" SET TESTDETAIL_SUBTITLE = '" + testdetailbean.getTESTDETAIL_SUBTITLE() 
+			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_DATA1() 
+			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_DATA2() 
+			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_DATA3() 
+			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_DATA4() 
+			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_DATA5() 
+			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_ANSWER() 
+			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_IMAGE() 
+			+ "' WHERE TESTDETAIL_ID_PK = '" + testdetailbean.getTESTDETAIL_ID_PK() + "';";
+			stmt.executeUpdate(updatesql);
+			return true;
+		} catch (SQLException e) { } return false;
 	}
 	public boolean insertTestDetail(TestDetailBean testdetailbean) {
 		String insertsql = "INSERT INTO "+config.StaticProperty.gettestdetail_tb()+"(TESTDETAIL_ID_PK, TESTDETAIL_DATA1, TESTDETAIL_DATA2, TESTDETAIL_DATA3, TESTDETAIL_DATA4, TESTDETAIL_DATA5, TESTDETAIL_ANSWER, TESTDETAIL_IMAGE, TESTDETAIL_SUBTITLE, TESTDETAIL_WRITER, TESTDETAIL_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
@@ -107,5 +147,89 @@ public class TestDetailAdd {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) { }
+	}
+	public String selectSubtitle(String id) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT TESTDETAIL_SUBTITLE FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("TESTDETAIL_SUBTITLE") != null)
+					result = rs.getString("TESTDETAIL_SUBTITLE");
+			}
+		}catch(Exception e) { } return result;
+	}
+	public String selectDATA1(String id) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT TESTDETAIL_DATA1 FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("TESTDETAIL_DATA1") != null)
+					result = rs.getString("TESTDETAIL_DATA1");
+			}
+		}catch(Exception e) { } return result;
+	}
+	public String selectDATA2(String id) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT TESTDETAIL_DATA2 FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("TESTDETAIL_DATA2") != null)
+					result = rs.getString("TESTDETAIL_DATA2");
+			}
+		}catch(Exception e) { } return result;
+	}
+	public String selectDATA3(String id) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT TESTDETAIL_DATA3 FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("TESTDETAIL_DATA3") != null)
+					result = rs.getString("TESTDETAIL_DATA3");
+			}
+		}catch(Exception e) { } return result;
+	}
+	public String selectDATA4(String id) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT TESTDETAIL_DATA4 FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("TESTDETAIL_DATA4") != null)
+					result = rs.getString("TESTDETAIL_DATA4");
+			}
+		}catch(Exception e) { } return result;
+	}
+	public String selectDATA5(String id) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT TESTDETAIL_DATA5 FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("TESTDETAIL_DATA5") != null)
+					result = rs.getString("TESTDETAIL_DATA5");
+			}
+		}catch(Exception e) { } return result;
 	}
 }

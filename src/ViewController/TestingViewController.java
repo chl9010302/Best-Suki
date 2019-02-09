@@ -79,7 +79,7 @@ public class TestingViewController implements Initializable {
 		try {
 			TestDetailAdd testdetailadd = new TestDetailAdd();
 			ColBoardId.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_id_pk());
-			ColSubtitle.setCellValueFactory(cellData -> cellData.getValue().getSubtitle());
+			ColSubtitle.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_Subtitle());
 			testTableView.setItems(testdetailadd.gettestdetailadd());
 		}catch(Exception e) {}
 	}
