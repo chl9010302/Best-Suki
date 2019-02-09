@@ -23,17 +23,12 @@ public class AddTestViewController implements Initializable {
 	//Declare JAVA
 	private TestDetailBean testdetailbean;
 	private Stage stage; // file choose 하기 위함.
-	public static String filename;
-	public static String filepath;
+	public static String filename, filepath;
 	public static String login_id = LoginViewController.login_id;
-		
 	//Declare FXML
 	@FXML private TextField Radio1, Radio2, Radio3, Radio4, Radio5;
 	@FXML private RadioButton Rb1, Rb2, Rb3, Rb4, Rb5;
-	@FXML private Button SearchFile;
-	@FXML private Button Property_userID;
 	@FXML private ToggleGroup Quest1Group1;
-	@FXML private Button BtnSave;
 	@FXML private TextField txtSubtitle; 
 	@FXML private Label txtFilepath;
 	@FXML
@@ -47,7 +42,6 @@ public class AddTestViewController implements Initializable {
 		testdetailbean.setTESTDETAIL_DATA3(Radio3.getText().toString());
 		testdetailbean.setTESTDETAIL_DATA4(Radio4.getText().toString());
 		testdetailbean.setTESTDETAIL_DATA5(Radio5.getText().toString());
-
 		if(Rb1.isSelected()) {
 			testdetailbean.setTESTDETAIL_ANSWER(Radio1.getText().toString());
 		}else if(Rb2.isSelected()) {

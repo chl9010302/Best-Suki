@@ -28,7 +28,6 @@ public class ResultViewController implements Initializable {
 	@FXML private TextField Radio1, Radio2, Radio3, Radio4, Radio5;
 	@FXML private RadioButton Rb1, Rb2, Rb3, Rb4, Rb5;
 	@FXML private ToggleGroup Quest1Group1;
-	@FXML private Button BtnSave;
 	@FXML private TextField txtSubtitle; 
 	@FXML private Label txtFilepath;
 	@FXML

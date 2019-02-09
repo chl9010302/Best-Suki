@@ -75,11 +75,9 @@ public class UserLogin {
 	}
 
 	public void logout(String user_id) throws SQLException {
-
 		DBConnectionKeeping dbConnectionKeeping;  
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
-
 		Connection con = usingstaticfunction.DBConnectionKeeping.con;
 		Statement stmt = null;
 		stmt = con.createStatement();

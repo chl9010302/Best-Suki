@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <Button fx:id="Property_userID" mnemonicParsing="false" onAction="#NAV_MypageView" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#NAV_MypageView" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -99,7 +99,7 @@
                   </HBox>
                   <HBox prefHeight="408.0" prefWidth="655.0">
                      <children>
-                        <TableView fx:id="videoTableView" prefHeight="378.0" prefWidth="656.0" style="-fx-background-color: transparent;">
+                        <TableView fx:id="videotableview" prefHeight="378.0" prefWidth="656.0" style="-fx-background-color: transparent;">
                           <columns>
                               <TableColumn fx:id="ColVideo_Subtitle" prefWidth="317.0" text="제목" />
                               <TableColumn fx:id="ColVideo_Writer" prefWidth="89.0" text="작성자" />
@@ -111,8 +111,8 @@
                   </HBox>
                   <HBox alignment="TOP_RIGHT" spacing="5.0">
                      <children>
-                        <Button fx:id="BtnAdd" onAction="#addAction" style="-fx-border-color: white;" text="글쓰기" textFill="WHITE" />
-                        <Button fx:id="BtnDelete" onAction="#deleteAction" style="-fx-border-color: white;" text="삭제" textFill="WHITE" />
+                        <Button onAction="#addAction" style="-fx-border-color: white;" text="글쓰기" textFill="WHITE" />
+                        <Button onAction="#deleteAction" style="-fx-border-color: white;" text="삭제" textFill="WHITE" />
                      </children>
                   </HBox>
       </children>

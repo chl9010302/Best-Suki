@@ -14,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -23,9 +22,7 @@ import javafx.scene.control.TextField;
 public class MypageEditViewController implements Initializable {
 	//Declare JAVA
 	Sha256 sha256 = new Sha256();
-	
 	//Declare FXML
-	@FXML private Button Property_userID;
 	@FXML private Label Mypage_UserId, EditProperty_UserPassword;
 	@FXML private TextField EditProperty_UserName,  EditProperty_UserAddress, EditProperty_UserSchoolName, EditProperty_UserAge, EditProperty_UserGender, EditProperty_UserPhone, EditProperty_UserFmphone;
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}

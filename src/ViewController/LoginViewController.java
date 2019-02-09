@@ -20,7 +20,6 @@ public class LoginViewController implements Initializable {
 	//Declare JAVA
 	public static String login_id="";
 	Sha256 sha256 = new Sha256();
-	
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword;
 	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavsignupview()); }
@@ -69,17 +68,10 @@ public class LoginViewController implements Initializable {
 					alert.setHeaderText(config.StaticProperty.alertfailedtologin());
 					alert.showAndWait();
 				}
-			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
+			}catch (NoSuchAlgorithmException e) {	
+			}catch (UnsupportedEncodingException e) {
+			}catch (Exception e) { }
 	    }
 	}
-	public void initialize(URL url, ResourceBundle rb) {
-	}
+	public void initialize(URL url, ResourceBundle rb) { }
 }

@@ -116,7 +116,7 @@
                         </VBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="BtnSave" mnemonicParsing="false" onAction="#saveAction" style="-fx-border-color: white; -fx-border-width: 2px;" text="NEXT" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#saveAction" style="-fx-border-color: white; -fx-border-width: 2px;" text="NEXT" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>

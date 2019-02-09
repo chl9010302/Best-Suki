@@ -8,13 +8,11 @@ import DBController.TestDetailAdd;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class TestBoardViewController implements Initializable {
 	//Declare FXML
-	@FXML private Button Property_userID, BtnAdd, BtnDelete;
 	@FXML private TableView<TestDetailAdd> testTableView;
 	@FXML private TableColumn<TestDetailAdd, String> ColBoardId, ColSubtitle, ColWriter, ColDate;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }

@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -22,10 +21,8 @@ public class VideoDetailViewController implements Initializable {
 	//Declare JAVA
 	private VideoDetailBean videodetailbean;
 	public static String login_id = LoginViewController.login_id;
-	public static String videodetail_id = "";
 	//Declare FXML
 	@FXML private Label videodetail_subtitle, videodetail_filepath;
-	@FXML private Button Property_userID, BtnEdit;
 	@FXML private TextField txtSubtitle, txtFilepath; 
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}

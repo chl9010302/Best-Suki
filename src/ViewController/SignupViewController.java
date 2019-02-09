@@ -31,8 +31,7 @@ public class SignupViewController implements Initializable {
 	@FXML private ToggleGroup GenderGroup;
 	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
 	@FXML private DatePicker UserAge;
-	@FXML private RadioButton UserGenderMale;
-	@FXML private RadioButton UserGenderFeMale;
+	@FXML private RadioButton UserGenderMale, UserGenderFeMale;
 	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavsignupview()); }
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML

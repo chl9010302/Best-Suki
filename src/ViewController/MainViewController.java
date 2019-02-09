@@ -8,17 +8,12 @@ import DBController.NoticeDetailAdd;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MainViewController implements Initializable {
-	public static String selectedid= "";
 	//Declare FXML
-	@FXML private Button Property_userID, BtnDelete, BtnAdd;
-	@FXML private TextField txtAddItem;
 	@FXML private TableView<NoticeDetailAdd> noticeTableView;
 	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Id, ColNotice_Subtitle, ColNotice_Writer, ColNotice_Date, ColNotice_Btndetail;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }

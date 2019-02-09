@@ -14,7 +14,6 @@ import javafx.scene.control.TableView;
 
 public class StasticsViewController implements Initializable {
 	//Declare FXML
-	@FXML private Button Property_userID;
 	@FXML private TableView<AddStastics> StasticsView;
 	@FXML private TableColumn<AddStastics, String> USER_ID, USER_LOGIN_DATE, USER_LOGOUT_DATE;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }

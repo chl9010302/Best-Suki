@@ -10,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -23,7 +22,6 @@ public class TestingViewController implements Initializable {
 	private TestDetailBean testdetailbean;
 	public static String filepath;
 	//Declare FXML
-	@FXML private Button BtnAdd, BtnDelete, BtnSave;
 	@FXML private RadioButton Rb1, Rb2, Rb3, Rb4, Rb5;
 	@FXML private TextField Radio1, Radio2, Radio3, Radio4, Radio5, txtAddItem, txtSubtitle;
 	@FXML private ToggleGroup Quest1Group1;

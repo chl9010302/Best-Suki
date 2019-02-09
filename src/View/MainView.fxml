@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <Button fx:id="Property_userID" mnemonicParsing="false" onAction="#NAV_MypageView" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#NAV_MypageView" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -111,8 +111,8 @@
                   </VBox>
         <HBox alignment="TOP_RIGHT" spacing="5.0">
           <children>
-            <Button fx:id="BtnAdd" onAction="#addAction" style="-fx-border-color: white;" text="글쓰기" textFill="WHITE" />
-            <Button fx:id="BtnDelete" onAction="#deleteAction" style="-fx-border-color: white;" text="삭제" textFill="WHITE" />
+            <Button style="-fx-border-color: white;" text="글쓰기" textFill="WHITE" onAction="#addAction"/>
+            <Button style="-fx-border-color: white;" text="삭제" textFill="WHITE" onAction="#deleteAction"/>
           </children>
         </HBox>
       </children>

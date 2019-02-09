@@ -8,18 +8,13 @@ import DBController.VideoDetailAdd;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class VideoViewController implements Initializable {
-	public static String selectedid= "";
 	//Declare FXML
-	@FXML private Button Property_userID, BtnDelete, BtnAdd;
-	@FXML private TextField txtAddItem;
-	@FXML private TableView<VideoDetailAdd> videoTableView;
+	@FXML private TableView<VideoDetailAdd> videotableview;
 	@FXML private TableColumn<VideoDetailAdd, String> ColVideo_Id, ColVideo_Subtitle, ColVideo_Writer, ColVideo_Date, ColVideo_Btndetail;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}
@@ -38,9 +33,9 @@ public class VideoViewController implements Initializable {
 	@FXML
 	private void deleteAction(ActionEvent action){
 		VideoDetailAdd videodetailadd = new VideoDetailAdd();
-		int selectedItem = videoTableView.getSelectionModel().getSelectedIndex();
-		videodetailadd.delete(String.valueOf(videoTableView.getItems().get(selectedItem).getVideodetail_id_pk().getValue()));
-		videoTableView.setItems(videodetailadd.getvideodetailadd());
+		int selectedItem = videotableview.getSelectionModel().getSelectedIndex();
+		videodetailadd.delete(String.valueOf(videotableview.getItems().get(selectedItem).getVideodetail_id_pk().getValue()));
+		videotableview.setItems(videodetailadd.getvideodetailadd());
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		VideoDetailAdd videodetailadd = new VideoDetailAdd();
@@ -48,6 +43,6 @@ public class VideoViewController implements Initializable {
 		ColVideo_Writer.setCellValueFactory(cellData -> cellData.getValue().getVideodetail_writer());
 		ColVideo_Date.setCellValueFactory(cellData -> cellData.getValue().getVideodetail_time());
 		ColVideo_Btndetail.setCellValueFactory(new PropertyValueFactory<VideoDetailAdd, String>("videodetail_btndetail"));
-		videoTableView.setItems(videodetailadd.getvideodetailadd());
+		videotableview.setItems(videodetailadd.getvideodetailadd());
 	}
 }

@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
@@ -24,7 +23,6 @@ public class AddVideoViewController implements Initializable {
 	private VideoDetailBean videodetailbean;
 	public static String login_id = LoginViewController.login_id;
 	//Declare FXML
-	@FXML private Button Property_userID, BtnAdd, BtnDelete;
 	@FXML private TextField txtSubtitle, txtFilepath; 
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}
