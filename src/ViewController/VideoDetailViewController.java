@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import DBController.VideoDetailAdd;
-import DBModel.VideoDetailBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

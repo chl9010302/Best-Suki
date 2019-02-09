@@ -19,7 +19,6 @@ public class DBConnectionKeeping {
 			e.printStackTrace();
 			System.out.println("DB 연결오류 :" + e.getMessage());
 		} finally {
-			
 		}
 		return null;
 	}
