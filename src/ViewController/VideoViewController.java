@@ -23,13 +23,8 @@ public class VideoViewController implements Initializable {
 	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavstasticsview()); }
 	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageview()); }
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
-	@FXML private void logout(ActionEvent event) { CommonController.logout(event, getClass()); }
-	@FXML
-	private void addAction(ActionEvent event){
-		try {
-			CommonController.NAV_POPUP(getClass(), event, config.StaticProperty.getnavaddvideoview());
-		}catch(Exception e) { }
-	}
+	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
+	@FXML private void addAction(ActionEvent event) throws IOException { CommonController.NAV_POPUP(getClass(), event, config.StaticProperty.getnavaddvideoview());	}
 	@FXML
 	private void deleteAction(ActionEvent action){
 		VideoDetailAdd videodetailadd = new VideoDetailAdd();

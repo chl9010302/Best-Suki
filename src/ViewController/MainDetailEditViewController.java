@@ -28,9 +28,9 @@ public class MainDetailEditViewController implements Initializable {
 	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavstasticsview()); }
 	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageview()); }
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
-	@FXML private void logout(ActionEvent event) { CommonController.logout(event, getClass()); }
+	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML
-	private void deleteAction(ActionEvent event) {
+	private void cancelAction(ActionEvent event) {
 		ButtonType YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
 		ButtonType NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
 		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertgoback(), YES, NO);
@@ -43,7 +43,7 @@ public class MainDetailEditViewController implements Initializable {
 		}
 	}
 	@FXML
-	private void addAction(ActionEvent event) {
+	private void editAction(ActionEvent event) {
 		try {
 			noticedetailbean = new NoticeDetailBean();
 			noticedetailbean.setNOTICEDETAIL_ID_PK(txtSubtitle.getText().toString());

@@ -126,12 +126,12 @@
                         </HBox>
                         <HBox prefHeight="30.0">
                            <children>
-                              <RadioButton fx:id="Rb1" mnemonicParsing="false" onAction="#Quest1Group1Action" text="1. " textFill="WHITE">
+                              <RadioButton fx:id="testdetail_rb1" mnemonicParsing="false" onAction="#Quest1Group1Action" text="1. " textFill="WHITE">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="Quest1Group1" />
                                  </toggleGroup>
                               </RadioButton>
-                              <Label fx:id="Radio1" Text="Answer 1" prefHeight="25.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                              <Label fx:id="testdetail_answer1" Text="Answer 1" prefHeight="25.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="10.0" />
@@ -139,8 +139,8 @@
                         </HBox>
                         <HBox prefHeight="30.0">
                            <children>
-                              <RadioButton fx:id="Rb2" mnemonicParsing="false" text="2. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                              <Label fx:id="Radio2" Text="Answer 2" prefHeight="25.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                              <RadioButton fx:id="testdetail_rb2" mnemonicParsing="false" text="2. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                              <Label fx:id="testdetail_answer2" Text="Answer 2" prefHeight="25.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" />
@@ -148,8 +148,8 @@
                         </HBox>
                         <HBox prefHeight="30.0">
                            <children>
-                              <RadioButton fx:id="Rb3" mnemonicParsing="false" text="3. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                              <Label fx:id="Radio3" Text="Answer 3" prefHeight="25.0" prefWidth="323.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                              <RadioButton fx:id="testdetail_rb3" mnemonicParsing="false" text="3. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                              <Label fx:id="testdetail_answer3" Text="Answer 3" prefHeight="25.0" prefWidth="323.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" />
@@ -157,8 +157,8 @@
                         </HBox>
                         <HBox prefHeight="30.0">
                            <children>
-                              <RadioButton fx:id="Rb4" mnemonicParsing="false" text="4. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                              <Label fx:id="Radio4" Text="Answer 4" prefHeight="25.0" prefWidth="324.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                              <RadioButton fx:id="testdetail_rb4" mnemonicParsing="false" text="4. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                              <Label fx:id="testdetail_answer4" Text="Answer 4" prefHeight="25.0" prefWidth="324.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" />
@@ -166,8 +166,8 @@
                         </HBox>
                         <HBox prefHeight="30.0">
                            <children>
-                              <RadioButton fx:id="Rb5" mnemonicParsing="false" text="5. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                              <Label fx:id="Radio5" Text="Answer 5" prefHeight="25.0" prefWidth="323.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                              <RadioButton fx:id="testdetail_rb5" mnemonicParsing="false" text="5. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                              <Label fx:id="testdetail_answer5" Text="Answer 5" prefHeight="25.0" prefWidth="323.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                         </HBox>
                      </children>

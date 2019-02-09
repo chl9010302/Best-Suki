@@ -39,7 +39,7 @@
                                     <Insets left="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label contentDisplay="CENTER" prefHeight="20.0" text="label" textFill="WHITE" />
+                              <Label fx:id="testdetail_subtitle" contentDisplay="CENTER" prefHeight="20.0" text="label" textFill="WHITE" />
                            </children>
                            <VBox.margin>
                               <Insets top="10.0" />
@@ -54,12 +54,12 @@
                            <children>
                               <HBox prefHeight="30.0">
                                  <children>
-                                    <RadioButton fx:id="Rb1" mnemonicParsing="false" onAction="#Quest1Group1Action" text="1. " textFill="WHITE">
+                                    <RadioButton fx:id="testdetail_rb1" mnemonicParsing="false" onAction="#Quest1Group1Action" text="1. " textFill="WHITE">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="Quest1Group1" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <Label contentDisplay="CENTER" prefHeight="20.0" text="label" textFill="WHITE">
+                                    <Label fx:id="testdetail_answer1" contentDisplay="CENTER" prefHeight="20.0" text="label" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
@@ -68,8 +68,8 @@
                               </HBox>
                               <HBox prefHeight="30.0">
                                  <children>
-                                    <RadioButton fx:id="Rb2" mnemonicParsing="false" text="2. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                                    <Label contentDisplay="CENTER" prefHeight="20.0" text="label" textFill="WHITE">
+                                    <RadioButton fx:id="testdetail_rb2" mnemonicParsing="false" text="2. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                                    <Label fx:id="testdetail_answer2" contentDisplay="CENTER" prefHeight="20.0" text="label" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
@@ -78,8 +78,8 @@
                               </HBox>
                               <HBox prefHeight="30.0">
                                  <children>
-                                    <RadioButton fx:id="Rb3" mnemonicParsing="false" text="3. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                                    <Label contentDisplay="CENTER" prefHeight="20.0" text="label" textFill="WHITE">
+                                    <RadioButton fx:id="testdetail_rb3" mnemonicParsing="false" text="3. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                                    <Label fx:id="testdetail_answer3" contentDisplay="CENTER" prefHeight="20.0" text="label" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
@@ -88,8 +88,8 @@
                               </HBox>
                               <HBox prefHeight="30.0">
                                  <children>
-                                    <RadioButton fx:id="Rb4" mnemonicParsing="false" text="4. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                                    <Label contentDisplay="CENTER" prefHeight="20.0" text="label" textFill="WHITE">
+                                    <RadioButton fx:id="testdetail_rb4" mnemonicParsing="false" text="4. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                                    <Label fx:id="testdetail_answer4" contentDisplay="CENTER" prefHeight="20.0" text="label" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
@@ -98,8 +98,8 @@
                               </HBox>
                               <HBox prefHeight="30.0">
                                  <children>
-                                    <RadioButton fx:id="Rb5" mnemonicParsing="false" text="5. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                                    <Label contentDisplay="CENTER" prefHeight="20.0" text="label" textFill="WHITE">
+                                    <RadioButton fx:id="testdetail_rb5" mnemonicParsing="false" text="5. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                                    <Label fx:id="testdetail_answer5" contentDisplay="CENTER" prefHeight="20.0" text="label" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>

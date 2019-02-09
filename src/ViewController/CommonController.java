@@ -17,6 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class CommonController{
+	// 마우스를 눌러서 화면 이동 액션
 	public static void NAV (Class getclass, ActionEvent event, String str) throws IOException {
 		Parent View = FXMLLoader.load(getclass.getResource(str));
 		Scene View_scene = new Scene(View);
@@ -25,7 +26,7 @@ public class CommonController{
 		app_stage.setScene(View_scene);
 		app_stage.show();
 	}
-	
+	// 키를 눌러서 화면 이동 액션
 	public static void NAV_Key (Class getclass, KeyEvent event, String str) throws IOException {
 		Parent View = FXMLLoader.load(getclass.getResource(str));
 		Scene View_scene = new Scene(View);
@@ -34,7 +35,7 @@ public class CommonController{
 		app_stage.setScene(View_scene);
 		app_stage.show();
 	}
-	
+	// 팝업하여 화면 이동 액션
 	public static void NAV_POPUP (Class getclass, ActionEvent event, String str) throws IOException {
 		Parent View = FXMLLoader.load(getclass.getResource(str));
 		Scene View_scene = new Scene(View);
@@ -43,8 +44,8 @@ public class CommonController{
 		app_stage.setScene(View_scene);
 		app_stage.show();
 	}
-	
-	public static void logout(ActionEvent event, Class getclass) {
+	// 로그아웃 액션
+	public static void logout(Class getclass, ActionEvent event) {
 		UserLogin userlogout = new UserLogin();
 		ButtonType YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
 		ButtonType NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);

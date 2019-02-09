@@ -62,7 +62,7 @@ public class MypageEditPasswordViewController implements Initializable {
 			}
 		}
 	}
-	@FXML private void logout(ActionEvent event) { CommonController.logout(event, getClass()); }
+	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	public void initialize(URL url, ResourceBundle rb) {
 		try {
 			SelectNowUser selectnowuser = new SelectNowUser();

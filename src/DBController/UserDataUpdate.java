@@ -31,7 +31,7 @@ public class UserDataUpdate {
 				.append("', USER_GENDER = '"+userbean.getUSER_GENDER())
 				.append("', USER_PHONE = '"+userbean.getUSER_PHONE())
 				.append("', USER_FMPHONE = '"+userbean.getUSER_FMPHONE())
-				.append("' where USER_ID_PK = '")
+				.append("' WHERE USER_ID_PK = '")
 				.append(User_id)
 				.append("';").toString();
 			stmt.executeUpdate(sql);

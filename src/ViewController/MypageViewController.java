@@ -20,9 +20,9 @@ public class MypageViewController implements Initializable {
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestboardview()); }
 	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavstasticsview()); }
 	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageview()); }
-	@FXML private void NAV_MypageEditView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageeditview()); }
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
-	@FXML private void logout(ActionEvent event) { CommonController.logout(event, getClass()); }
+	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
+	@FXML private void editAction(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageeditview()); }
 	public void initialize(URL url, ResourceBundle rb) {
 		try {
 			SelectNowUser selectnowuser = new SelectNowUser();
@@ -37,8 +37,6 @@ public class MypageViewController implements Initializable {
 			Mypage_UserGender.setText(userbean.getUSER_GENDER());
 			Mypage_UserPhone.setText(userbean.getUSER_PHONE());
 			Mypage_UserFmphone.setText(userbean.getUSER_FMPHONE());
-			}catch (Exception e) {
-				// TODO: handle exception
-			}
+			}catch (Exception e) { }
 	}
 }

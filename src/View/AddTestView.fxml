@@ -39,7 +39,7 @@
                                     <Insets left="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="txtSubtitle"  prefHeight="25.0" prefWidth="318.0" style="-fx-background-color: transparent; -fx-border-color: white;">
+                              <TextField fx:id="testdetail_subtitle"  prefHeight="25.0" prefWidth="318.0" style="-fx-background-color: transparent; -fx-border-color: white;">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -83,36 +83,36 @@
                               </HBox>
                               <HBox prefHeight="30.0">
                                  <children>
-                                    <RadioButton fx:id="Rb1" mnemonicParsing="false" text="1. " textFill="WHITE" onAction="#Quest1Group1Action">
+                                    <RadioButton fx:id="testdetail_rb1" mnemonicParsing="false" text="1. " textFill="WHITE" onAction="#Quest1Group1Action">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="Quest1Group1" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <TextField fx:id="Radio1" prefHeight="25.0" prefWidth="322.0" promptText="Answer 1" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                                    <TextField fx:id="testdetail_answer1" prefHeight="25.0" prefWidth="322.0" promptText="Answer 1" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="30.0">
                                  <children>
-                                    <RadioButton fx:id="Rb2" mnemonicParsing="false" text="2. " textFill="WHITE" toggleGroup="$Quest1Group1"/>
-                                    <TextField fx:id="Radio2" prefHeight="25.0" prefWidth="322.0" promptText="Answer 2" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                                    <RadioButton fx:id="testdetail_rb2" mnemonicParsing="false" text="2. " textFill="WHITE" toggleGroup="$Quest1Group1"/>
+                                    <TextField fx:id="testdetail_answer2" prefHeight="25.0" prefWidth="322.0" promptText="Answer 2" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="30.0">
                                  <children>
-                                    <RadioButton fx:id="Rb3" mnemonicParsing="false" text="3. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                                    <TextField fx:id="Radio3" prefHeight="25.0" prefWidth="323.0" promptText="Answer 3" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                                    <RadioButton fx:id="testdetail_rb3" mnemonicParsing="false" text="3. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                                    <TextField fx:id="testdetail_answer3" prefHeight="25.0" prefWidth="323.0" promptText="Answer 3" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="30.0">
                                  <children>
-                                    <RadioButton fx:id="Rb4" mnemonicParsing="false" text="4. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                                    <TextField fx:id="Radio4" prefHeight="25.0" prefWidth="324.0" promptText="Answer 4" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                                    <RadioButton fx:id="testdetail_rb4" mnemonicParsing="false" text="4. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                                    <TextField fx:id="testdetail_answer4" prefHeight="25.0" prefWidth="324.0" promptText="Answer 4" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                                  </children>
                               </HBox>
                               <HBox prefHeight="30.0">
                                  <children>
-                                    <RadioButton fx:id="Rb5" mnemonicParsing="false" text="5. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                                    <TextField fx:id="Radio5" prefHeight="25.0" prefWidth="323.0" promptText="Answer 5" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                                    <RadioButton fx:id="testdetail_rb5" mnemonicParsing="false" text="5. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                                    <TextField fx:id="testdetail_answer5" prefHeight="25.0" prefWidth="323.0" promptText="Answer 5" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                                  </children>
                               </HBox>
                            </children>

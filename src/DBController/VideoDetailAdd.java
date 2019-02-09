@@ -20,11 +20,7 @@ public class VideoDetailAdd {
 	Connection conn = null;
 	Statement stmt = null;
 	public static String videodetail_id = "";
-	private StringProperty videodetail_id_pk;
-	private StringProperty videodetail_subtitle;
-	private StringProperty videodetail_writer;
-	private StringProperty videodetail_time;
-	private StringProperty videodetail_filepath;
+	private StringProperty videodetail_id_pk, videodetail_subtitle, videodetail_writer, videodetail_time, videodetail_filepath;
 	private Button videodetail_btndetail;
 	public StringProperty getVideodetail_id_pk() {
 		return videodetail_id_pk;

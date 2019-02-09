@@ -20,10 +20,7 @@ public class TestDetailAdd {
 	Connection conn = null;
 	Statement stmt = null;
 	public static String testdetail_id = "";
-	private StringProperty testdetail_id_pk;
-	private StringProperty testdetail_subtitle;
-	private StringProperty testdetail_writer;
-	private StringProperty testdetail_time;
+	private StringProperty testdetail_id_pk, testdetail_subtitle, testdetail_writer, testdetail_time;
 	private Button testdetail_btndetail;
 	public StringProperty getTestdetail_writer() {
 		return testdetail_writer;
@@ -142,7 +139,7 @@ public class TestDetailAdd {
 	public void delete(String id) {
 		StringBuilder sb = new StringBuilder();
 		conn = application.DBConnection.getDBConection();
-		String sql = sb.append("DELETE FROM "+config.StaticProperty.gettestdetail_tb()+" where TESTDETAIL_ID_PK = '").append(id).append("';").toString();
+		String sql = sb.append("DELETE FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);

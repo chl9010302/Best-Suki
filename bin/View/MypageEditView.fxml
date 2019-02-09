@@ -130,7 +130,7 @@
                                  </HBox.margin>
                               </Label>
                               <Label fx:id="EditProperty_UserPassword" style="-fx-background-color: transparent; -fx-text-fill: white;" />
-                           		<Button mnemonicParsing="false" onAction="#Btn_EditPassword" style="-fx-border-color: white;" text="Edit Password" textFill="WHITE">
+                           		<Button mnemonicParsing="false" onAction="#editpasswordAction" style="-fx-border-color: white;" text="Edit Password" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin></Button>
@@ -240,7 +240,8 @@
                   </VBox>
                   <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#Btn_Edit" style="-fx-border-color: white;" text="Edit" textFill="WHITE" />
+                        <Button mnemonicParsing="false" onAction="#editAction" style="-fx-border-color: white;" text="Edit" textFill="WHITE" />
+                     	<Button onAction="#cancelAction" style="-fx-border-color: white;" text="취소" />
                      </children>
                   </HBox>
       </children>

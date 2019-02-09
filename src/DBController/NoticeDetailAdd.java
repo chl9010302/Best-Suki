@@ -16,16 +16,11 @@ import javafx.scene.control.Button;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class NoticeDetailAdd {
-
 	NoticeDetailBean noticedetailbean;
 	Connection conn = null;
 	Statement stmt = null;
 	public static String noticedetail_id = "";
-	private StringProperty noticedetail_id_pk;
-	private StringProperty noticedetail_subtitle;
-	private StringProperty noticedetail_writer;
-	private StringProperty noticedetail_time;
-	private StringProperty noticedetail_context;
+	private StringProperty noticedetail_id_pk, noticedetail_subtitle, noticedetail_writer, noticedetail_time, noticedetail_context;
 	private Button noticedetail_btndetail;
 	public StringProperty getNoticedetail_id_pk() {
 		return noticedetail_id_pk;
@@ -49,12 +44,14 @@ public class NoticeDetailAdd {
 		this.noticedetail_btndetail = noticedetail_btndetail;
 	}
 	private ObservableList<NoticeDetailAdd> noticedetailadd = FXCollections.observableArrayList();
-	
 	public ObservableList<NoticeDetailAdd> getnoticedetailadd() {
 		select();
 		return noticedetailadd;
 	}
 	public NoticeDetailAdd() { }
+	public NoticeDetailAdd(NoticeDetailBean noticedetailbean) {
+		insertNoticeDetail(noticedetailbean);
+	}
 	public NoticeDetailAdd(String NOTICEDETAIL_ID_PK, String NOTICEDETAIL_SUBTITLE, String NOTICEDETAIL_WRITER, String NOTICEDETAIL_TIME, String NOTICEDETAIL_CONTEXT) {
 		this.noticedetail_id_pk = new SimpleStringProperty(NOTICEDETAIL_ID_PK);
 		this.noticedetail_subtitle = new SimpleStringProperty(NOTICEDETAIL_SUBTITLE);
@@ -70,9 +67,7 @@ public class NoticeDetailAdd {
 			} catch (IOException e) { }
 		});
 	}
-	public NoticeDetailAdd(NoticeDetailBean noticedetailbean) {
-		insertNoticeDetail(noticedetailbean);
-	}
+	
 	public boolean insertNoticeDetail(NoticeDetailBean noticedetailbean) {
 		String insertsql = "INSERT INTO "+config.StaticProperty.getnoticedetail_tb()+"(NOTICEDETAIL_ID_PK, NOTICEDETAIL_SUBTITLE, NOTICEDETAIL_WRITER, NOTICEDETAIL_TIME, NOTICEDETAIL_CONTEXT) VALUES(?, ?, ?, now(), ?);";
 		PreparedStatement pstmt = null;
@@ -97,13 +92,10 @@ public class NoticeDetailAdd {
 			try {
 				if (pstmt != null)
 					pstmt.close();
-			} catch (SQLException e3) {
-
-			}
+			} catch (SQLException e3) { }
 		}
 		return false;
 	}
-	
 	public boolean updateNoticeDetail(NoticeDetailBean noticedetailbean) {
 		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
@@ -134,7 +126,7 @@ public class NoticeDetailAdd {
 	public void delete(String id) {
 		StringBuilder sb = new StringBuilder();
 		conn = application.DBConnection.getDBConection();
-		String sql = sb.append("DELETE FROM "+config.StaticProperty.getnoticedetail_tb()+" where NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
+		String sql = sb.append("DELETE FROM "+config.StaticProperty.getnoticedetail_tb()+" WHERE NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
@@ -145,7 +137,7 @@ public class NoticeDetailAdd {
 		try {
 			StringBuilder sb = new StringBuilder();
 			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT NOTICEDETAIL_SUBTITLE FROM "+config.StaticProperty.getnoticedetail_tb()+" where NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
+			String sql = sb.append("SELECT NOTICEDETAIL_SUBTITLE FROM "+config.StaticProperty.getnoticedetail_tb()+" WHERE NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
@@ -160,7 +152,7 @@ public class NoticeDetailAdd {
 		try {
 			StringBuilder sb = new StringBuilder();
 			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT NOTICEDETAIL_CONTEXT FROM "+config.StaticProperty.getnoticedetail_tb()+" where NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
+			String sql = sb.append("SELECT NOTICEDETAIL_CONTEXT FROM "+config.StaticProperty.getnoticedetail_tb()+" WHERE NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {

@@ -73,7 +73,7 @@ public class UserLogin {
 		Statement stmt = null;
 		stmt = con.createStatement();
 		StringBuilder sb = new StringBuilder();
-		String sql = sb.append("UPDATE "+config.StaticProperty.getuser_tb()+" SET").append(" USER_LOGINSESSION = 0").append(" where USER_ID_PK = '")
+		String sql = sb.append("UPDATE "+config.StaticProperty.getuser_tb()+" SET").append(" USER_LOGINSESSION = 0").append(" WHERE USER_ID_PK = '")
 				.append(user_id).append("';").toString();
 		try {
 			stmt.executeUpdate(sql);
@@ -87,7 +87,7 @@ public class UserLogin {
 		Statement stmt = null;
 		stmt = con.createStatement();
 		StringBuilder sb = new StringBuilder();
-		String sql = sb.append("UPDATE "+config.StaticProperty.getdate_tb()+" SET DATE_LOGOUTTIME = now() where DATE_ID_PK = '").append(logintime).append("';").toString();
+		String sql = sb.append("UPDATE "+config.StaticProperty.getdate_tb()+" SET DATE_LOGOUTTIME = now() WHERE DATE_ID_PK = '").append(logintime).append("';").toString();
 		try {
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {

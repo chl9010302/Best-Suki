@@ -28,12 +28,10 @@ public class TestDetailEditViewController implements Initializable {
 	private TestDetailBean testdetailbean;
 	private Stage stage; // file choose 하기 위함.
 	public static String filename, filepath;
-	public static String login_id = LoginViewController.login_id;
 	//Declare FXML
-	@FXML private TextField testdetail_subtitle;
 	@FXML private ToggleGroup Quest1Group1;
-	@FXML private TextField Radio1, Radio2, Radio3, Radio4, Radio5;
-	@FXML private RadioButton Rb1, Rb2, Rb3, Rb4, Rb5;
+	@FXML private TextField testdetail_subtitle, testdetail_answer1, testdetail_answer2, testdetail_answer3, testdetail_answer4, testdetail_answer5;
+	@FXML private RadioButton testdetail_rb1, testdetail_rb2, testdetail_rb3, testdetail_rb4, testdetail_rb5;
 	@FXML private Label txtFilepath;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}
@@ -42,9 +40,9 @@ public class TestDetailEditViewController implements Initializable {
 	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavstasticsview()); }
 	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageview()); }
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
-	@FXML private void logout(ActionEvent event) { CommonController.logout(event, getClass()); }
+	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML
-	private void deleteAction(ActionEvent event) {
+	private void cancelAction(ActionEvent event) {
 		ButtonType YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
 		ButtonType NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
 		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcancel(), YES, NO);
@@ -64,21 +62,21 @@ public class TestDetailEditViewController implements Initializable {
 			testdetailbean.setTESTDETAIL_ID_PK(testdetailadd.testdetail_id);
 			testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
 			testdetailbean.setTESTDETAIL_IMAGE(filepath);
-			testdetailbean.setTESTDETAIL_DATA1(Radio1.getText().toString());
-			testdetailbean.setTESTDETAIL_DATA2(Radio2.getText().toString());
-			testdetailbean.setTESTDETAIL_DATA3(Radio3.getText().toString());
-			testdetailbean.setTESTDETAIL_DATA4(Radio4.getText().toString());
-			testdetailbean.setTESTDETAIL_DATA5(Radio5.getText().toString());
-			if(Rb1.isSelected()) {
-				testdetailbean.setTESTDETAIL_ANSWER(Radio1.getText().toString());
-			}else if(Rb2.isSelected()) {
-				testdetailbean.setTESTDETAIL_ANSWER(Radio2.getText().toString());
-			}else if(Rb3.isSelected()) {
-				testdetailbean.setTESTDETAIL_ANSWER(Radio3.getText().toString());
-			}else if(Rb4.isSelected()) {
-				testdetailbean.setTESTDETAIL_ANSWER(Radio4.getText().toString());
+			testdetailbean.setTESTDETAIL_DATA1(testdetail_answer1.getText().toString());
+			testdetailbean.setTESTDETAIL_DATA2(testdetail_answer2.getText().toString());
+			testdetailbean.setTESTDETAIL_DATA3(testdetail_answer3.getText().toString());
+			testdetailbean.setTESTDETAIL_DATA4(testdetail_answer4.getText().toString());
+			testdetailbean.setTESTDETAIL_DATA5(testdetail_answer5.getText().toString());
+			if(testdetail_rb1.isSelected()) {
+				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer1.getText().toString());
+			}else if(testdetail_rb2.isSelected()) {
+				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer2.getText().toString());
+			}else if(testdetail_rb3.isSelected()) {
+				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer3.getText().toString());
+			}else if(testdetail_rb4.isSelected()) {
+				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer4.getText().toString());
 			}else {
-				testdetailbean.setTESTDETAIL_ANSWER(Radio5.getText().toString());
+				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer5.getText().toString());
 			}
 			testdetailadd.updateTestDetail(testdetailbean);
 		}catch(Exception e) {e.printStackTrace(); }
@@ -92,11 +90,11 @@ public class TestDetailEditViewController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		TestDetailAdd testdetailadd = new TestDetailAdd();
 		testdetail_subtitle.setText(testdetailadd.selectSubtitle(testdetailadd.testdetail_id));
-		Radio1.setText(testdetailadd.selectDATA1(testdetailadd.testdetail_id));
-		Radio2.setText(testdetailadd.selectDATA2(testdetailadd.testdetail_id));
-		Radio3.setText(testdetailadd.selectDATA3(testdetailadd.testdetail_id));
-		Radio4.setText(testdetailadd.selectDATA4(testdetailadd.testdetail_id));
-		Radio5.setText(testdetailadd.selectDATA5(testdetailadd.testdetail_id));
+		testdetail_answer1.setText(testdetailadd.selectDATA1(testdetailadd.testdetail_id));
+		testdetail_answer2.setText(testdetailadd.selectDATA2(testdetailadd.testdetail_id));
+		testdetail_answer3.setText(testdetailadd.selectDATA3(testdetailadd.testdetail_id));
+		testdetail_answer4.setText(testdetailadd.selectDATA4(testdetailadd.testdetail_id));
+		testdetail_answer5.setText(testdetailadd.selectDATA5(testdetailadd.testdetail_id));
 	}
 	public void openFile() {
 		FileChooser fileChooser = new FileChooser();

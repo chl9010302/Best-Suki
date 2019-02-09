@@ -5,20 +5,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import DBModel.BoardBean;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class AddStastics {
-	BoardBean board;
 	Connection conn = null;
 	Statement stmt = null;
 	private ObservableList<AddStastics> addstastics = FXCollections.observableArrayList();
-	private StringProperty USER_ID;
-	private StringProperty USER_LOGIN_DATE;
-	private StringProperty USER_LOGOUT_DATE;
+	private StringProperty USER_ID, USER_LOGIN_DATE, USER_LOGOUT_DATE;
 	public ObservableList<AddStastics> getstastics() {
 		select();
 		return addstastics;
