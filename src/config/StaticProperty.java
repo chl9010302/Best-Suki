@@ -70,6 +70,9 @@ public class StaticProperty {
 	public static String getnavaddtestview(){
 		return properties.getProperty("nav8");
 	}
+	public static String getnavmypageeditpasswordview(){
+		return properties.getProperty("nav9");
+	}
 	public static String getnavaddmainview(){
 		return properties.getProperty("nav11");
 	}
@@ -120,6 +123,9 @@ public class StaticProperty {
 	}
 	public static String alertgoback(){
 		return properties.getProperty("alert8");
+	}
+	public static String alertpasswordnotchanged(){
+		return properties.getProperty("alert9");
 	}
 	public static String alerttitlemessage(){
 		return properties.getProperty("alerttitle1");

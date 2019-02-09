@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <Button fx:id="Property_userID" mnemonicParsing="false" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE" onAction="#NAV_MypageView">
+                  <Button fx:id="Property_userID" mnemonicParsing="false" onAction="#NAV_MypageView" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -109,7 +109,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="Mypage_UserId" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;">
+                              <Label fx:id="Mypage_UserId" style="-fx-background-color: transparent; -fx-text-fill: white;">
                             	<font>
                                     <Font name="Tahoma" size="16.0" />
                                 </font>
@@ -129,7 +129,11 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <PasswordField fx:id="EditProperty_UserPassword" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                              <Label fx:id="EditProperty_UserPassword" style="-fx-background-color: transparent; -fx-text-fill: white;" />
+                           		<Button mnemonicParsing="false" onAction="#Btn_EditPassword" style="-fx-border-color: white;" text="Edit Password" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin></Button>
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" />
