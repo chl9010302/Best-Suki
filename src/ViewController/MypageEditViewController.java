@@ -52,6 +52,13 @@ public class MypageEditViewController implements Initializable {
 			try {
 				userbean.setUSER_ID_PK(Mypage_UserId.getText().toString());
 				userbean.setUSER_PASSWORD(sha256.sha256(EditProperty_UserPassword.getText()));
+				userbean.setUSER_NAME(EditProperty_UserName.getText().toString());
+				userbean.setUSER_ADDRESS(EditProperty_UserAddress.getText().toString());
+				userbean.setUSER_SCHOOLNAME(EditProperty_UserSchoolName.getText().toString());
+				userbean.setUSER_AGE(EditProperty_UserAge.getText().toString());
+				userbean.setUSER_GENDER(EditProperty_UserGender.getText().toString());
+				userbean.setUSER_PHONE(EditProperty_UserPhone.getText().toString());
+				userbean.setUSER_FMPHONE(EditProperty_UserFmphone.getText().toString());
 				UserDataUpdate userdataupdate = new UserDataUpdate();
 				userdataupdate.UserUpdate(userbean, Mypage_UserId.getText().toString());
 				NAV(event, config.StaticProperty.getnavmypageview());
