@@ -8,7 +8,6 @@ import DBModel.UserBean;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class SelectNowUser {
-
 	public UserBean getSelectUser(String login_Id) {
 		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
@@ -38,22 +37,7 @@ public class SelectNowUser {
 				userbean.setCLASS_NUMBER2(rs.getString("CLASS_NUMBER2"));
 				userbean.setCLASS_NUMBER3(rs.getString("CLASS_NUMBER3"));
 				userbean.setCLASS_NUMBER4(rs.getString("CLASS_NUMBER4"));
-			}
-				return userbean;
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} finally {
-
-		}
-
-		return null;
+			} return userbean;
+		} catch (Exception e) { } return null;
 	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

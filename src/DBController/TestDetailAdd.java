@@ -23,44 +23,34 @@ public class TestDetailAdd {
 	public StringProperty getTestdetail_writer() {
 		return testdetail_writer;
 	}
-
 	public void setTestdetail_writer(StringProperty testdetail_writer) {
 		this.testdetail_writer = testdetail_writer;
 	}
-
 	public StringProperty getTestdetail_time() {
 		return testdetail_time;
 	}
-
 	public void setTestdetail_time(StringProperty testdetail_time) {
 		this.testdetail_time = testdetail_time;
 	}
-
 	private StringProperty testdetail_time;
 	private ObservableList<TestDetailAdd> testdetailadd = FXCollections.observableArrayList();
-	
 	public ObservableList<TestDetailAdd> gettestdetailadd() {
 		select();
 		return testdetailadd;
 	}
-	
 	public StringProperty getTestdetail_id_pk() {
 		return testdetail_id_pk;
 	}
-
 	public StringProperty getSubtitle() {
 		return subtitle;
 	}
-
 	public TestDetailAdd() { }
-	
 	public TestDetailAdd(String TESTDETAIL_ID_PK, String TESTDETAIL_SUBTITLE, String TESTDETAIL_WRITER, String TESTDETAIL_TIME) {
 		this.testdetail_id_pk = new SimpleStringProperty(TESTDETAIL_ID_PK);
 		this.subtitle = new SimpleStringProperty(TESTDETAIL_SUBTITLE);
 		this.testdetail_writer = new SimpleStringProperty(TESTDETAIL_WRITER);
 		this.testdetail_time = new SimpleStringProperty(TESTDETAIL_TIME);
 	}
-
 	public TestDetailAdd(TestDetailBean testdetailbean) {
 		insertTestDetail(testdetailbean);
 	}
@@ -82,31 +72,21 @@ public class TestDetailAdd {
 			pstmt.setString(9, testdetailbean.getTESTDETAIL_SUBTITLE());
 			pstmt.setString(10, testdetailbean.getTESTDETAIL_WRITER());
 			pstmt.executeUpdate();
-			
 			conn.close();
 			pstmt.close();
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-		
-			e.printStackTrace();
 		} finally {
 			try {
 				if (conn != null)
 					conn.close();
-			} catch (SQLException e2) {
-
-			}
+			} catch (SQLException e2) { }
 			try {
 				if (pstmt != null)
 					pstmt.close();
-			} catch (SQLException e3) {
-
-			}
-		}
-		return false;
+			} catch (SQLException e3) { }
+		} return false;
 	}
-	
 	public boolean select() {
 		StringBuilder sb = new StringBuilder();
 		try {
@@ -117,14 +97,8 @@ public class TestDetailAdd {
 			while (rs.next()) {
 				testdetailadd.add(new TestDetailAdd((String) rs.getString("TESTDETAIL_ID_PK"), (String) rs.getString("TESTDETAIL_SUBTITLE"), (String) rs.getString("TESTDETAIL_WRITER"),(String) rs.getString("TESTDETAIL_TIME").substring(0,10)));
 			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
+		} catch (SQLException e) { } return false;
 	}
-	
 	public void delete(String id) {
 		StringBuilder sb = new StringBuilder();
 		conn = application.DBConnection.getDBConection();
@@ -132,9 +106,6 @@ public class TestDetailAdd {
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (SQLException e) { }
 	}
 }

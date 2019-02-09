@@ -19,12 +19,10 @@ public class AddStastics {
 	private StringProperty USER_ID;
 	private StringProperty USER_LOGIN_DATE;
 	private StringProperty USER_LOGOUT_DATE;
-	
 	public ObservableList<AddStastics> getstastics() {
 		select();
 		return addstastics;
 	}
-	
 	public StringProperty getUSER_ID() {
 		return USER_ID;
 	}
@@ -34,8 +32,6 @@ public class AddStastics {
 	public StringProperty getUSER_LOGOUT_DATE() {
 		return USER_LOGOUT_DATE;
 	}
-	
-	
 	public AddStastics() {
 		// TODO Auto-generated constructor stub
 	}
@@ -44,7 +40,6 @@ public class AddStastics {
 		this.USER_LOGIN_DATE = new SimpleStringProperty(user_login_date); 
 		this.USER_LOGOUT_DATE = new SimpleStringProperty(user_logout_date); 
 	}
-
 	public boolean select() {
 		StringBuilder sb = new StringBuilder();
 		try {
@@ -56,12 +51,10 @@ public class AddStastics {
 			while(rs.next()){
 				addstastics.add(new AddStastics((String)rs.getString("USER_ID"), (String)rs.getString("DATE_LOGINTIME"), (String)rs.getString("DATE_LOGOUTTIME")));
 			}
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
 	}
-	
 }

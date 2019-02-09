@@ -37,9 +37,7 @@ public class UserJoin {
 			conn.close();
 			pstmt.close();
 			return true;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (SQLException e) { 
 		} finally {
 			try {
 				if (conn != null)
@@ -68,17 +66,12 @@ public class UserJoin {
 				}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} finally {
 			try {
 				if (rs != null) rs.close();
 				if (pstmt != null) pstmt.close();
 				if (conn != null) conn.close();
-			} catch (SQLException e2) { 
-				e2.printStackTrace();
-			}
-		}
-		return i;
+			} catch (SQLException e2) {  }
+		} return i;
 	}
 }

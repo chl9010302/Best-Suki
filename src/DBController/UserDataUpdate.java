@@ -12,14 +12,11 @@ public class UserDataUpdate {
 	public UserDataUpdate(UserBean userbean, String User_id) {
 		UserUpdate(userbean, User_id);
 	}
-
 	public boolean UserUpdate(UserBean userbean, String User_id) {
 		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
-		
 		Statement stmt = null;
-		
 		try {
 		Connection con = usingstaticfunction.DBConnectionKeeping.con;
 		stmt = con.createStatement();
@@ -39,12 +36,6 @@ public class UserDataUpdate {
 				.append("';").toString();
 			stmt.executeUpdate(sql);
 			return true;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			
-		}
-		return false;
+		} catch (SQLException e) { } return false;
 	}
 }

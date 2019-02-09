@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class VideoDetailAdd {
-
 	VideoDetailBean videodetailbean;
 	Connection conn = null;
 	Statement stmt = null;
@@ -32,44 +31,33 @@ public class VideoDetailAdd {
 	private StringProperty videodetail_time;
 	private StringProperty videodetail_filepath;
 	private Button videodetail_btndetail;
-
 	public StringProperty getVideodetail_id_pk() {
 		return videodetail_id_pk;
 	}
-
 	public StringProperty getVideodetail_subtitle() {
 		return videodetail_subtitle;
 	}
-
 	public StringProperty getVideodetail_writer() {
 		return videodetail_writer;
 	}
-
 	public StringProperty getVideodetail_time() {
 		return videodetail_time;
 	}
-
 	public StringProperty getVideodetail_filepath() {
 		return videodetail_filepath;
 	}
-
 	public Button getVideodetail_btndetail() {
 		return videodetail_btndetail;
 	}
-
 	public void setvideodetail_btndetail(Button videodetail_btndetail) {
 		this.videodetail_btndetail = videodetail_btndetail;
 	}
-
 	private ObservableList<VideoDetailAdd> videodetailadd = FXCollections.observableArrayList();
-	
 	public ObservableList<VideoDetailAdd> getvideodetailadd() {
 		select();
 		return videodetailadd;
 	}
-	
 	public VideoDetailAdd() { }
-	
 	public VideoDetailAdd(String VIDEODETAIL_ID_PK, String VIDEODETAIL_SUBTITLE, String VIDEODETAIL_WRITER, String VIDEODETAIL_TIME, String VIDEODETAIL_FILEPATH) {
 		this.videodetail_id_pk = new SimpleStringProperty(VIDEODETAIL_ID_PK);
 		this.videodetail_subtitle = new SimpleStringProperty(VIDEODETAIL_SUBTITLE);
@@ -77,17 +65,13 @@ public class VideoDetailAdd {
 		this.videodetail_time = new SimpleStringProperty(VIDEODETAIL_TIME);
 		this.videodetail_filepath = new SimpleStringProperty(VIDEODETAIL_FILEPATH);
 		this.videodetail_btndetail = new Button("Details");
-		
 		videodetail_btndetail.setOnAction(event -> {
 				videodetail_id = ""; // 초기화
 				videodetail_id = videodetail_id_pk.get();
 				Parent SignupView = null;
 				try {
 					SignupView = FXMLLoader.load(getClass().getResource(config.StaticProperty.getnavvideodetailview()));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				} catch (IOException e) { }
 				Scene SignupView_scene = new Scene(SignupView);
 				SignupView_scene.getStylesheets().add(getClass().getResource(config.StaticProperty.getnavapplication()).toExternalForm());
 				Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -95,7 +79,6 @@ public class VideoDetailAdd {
 				app_stage.show();
 		});
 	}
-
 	public VideoDetailAdd(VideoDetailBean videodetailbean) {
 		insertVideodetail(videodetailbean);
 	}
@@ -103,7 +86,6 @@ public class VideoDetailAdd {
 		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
-		
 		Statement stmt = null;
 		try {
 			Connection con = usingstaticfunction.DBConnectionKeeping.con;
@@ -111,11 +93,7 @@ public class VideoDetailAdd {
 			String updatesql = "UPDATE "+config.StaticProperty.getvideodetail_tb()+" SET VIDEODETAIL_SUBTITLE = '" + videodetailbean.getVIDEODETAIL_SUBTITLE() + "', VIDEODETAIL_FILEPATH = '" + videodetailbean.getVIDEODETAIL_FILEPATH() + "' WHERE VIDEODETAIL_ID_PK = '" + videodetailbean.getVIDEODETAIL_ID_PK() + "';";
 			stmt.executeUpdate(updatesql);
 			return true;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
+		} catch (SQLException e) { } return false;
 	}
 	public boolean insertVideodetail(VideoDetailBean videodetailbean) {
 		String insertsql = "INSERT INTO "+config.StaticProperty.getvideodetail_tb()+"(VIDEODETAIL_ID_PK, VIDEODETAIL_SUBTITLE, VIDEODETAIL_WRITER, VIDEODETAIL_TIME, VIDEODETAIL_FILEPATH) VALUES(?, ?, ?, now(), ?);";
@@ -129,31 +107,21 @@ public class VideoDetailAdd {
 			pstmt.setString(3, videodetailbean.getVIDEODETAIL_WRITER());
 			pstmt.setString(4, videodetailbean.getVIDEODETAIL_FILEPATH());
 			pstmt.executeUpdate();
-			
 			conn.close();
 			pstmt.close();
 			return true;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-		
-			e.printStackTrace();
+		} catch (SQLException e) { 
 		} finally {
 			try {
 				if (conn != null)
 					conn.close();
-			} catch (SQLException e2) {
-
-			}
-			try {
+			} catch (SQLException e2) { 
+			}try {
 				if (pstmt != null)
 					pstmt.close();
-			} catch (SQLException e3) {
-
-			}
-		}
-		return false;
+			}catch (SQLException e3) { }
+		} return false;
 	}
-	
 	public boolean select() {
 		StringBuilder sb = new StringBuilder();
 		try {
@@ -164,14 +132,8 @@ public class VideoDetailAdd {
 			while (rs.next()) {
 				videodetailadd.add(new VideoDetailAdd((String) rs.getString("VIDEODETAIL_ID_PK"), (String) rs.getString("VIDEODETAIL_SUBTITLE"), (String) rs.getString("VIDEODETAIL_WRITER"),(String) rs.getString("VIDEODETAIL_TIME").substring(0,10), rs.getString("VIDEODETAIL_FILEPATH")));
 			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
+		} catch (SQLException e) { } return false;
 	}
-	
 	public void delete(String id) {
 		StringBuilder sb = new StringBuilder();
 		conn = application.DBConnection.getDBConection();
@@ -179,10 +141,7 @@ public class VideoDetailAdd {
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (SQLException e) { }
 	}
 	public String selectSubtitle(String id) {
 		String result = "";
@@ -196,10 +155,8 @@ public class VideoDetailAdd {
 				if (rs.getString("VIDEODETAIL_SUBTITLE") != null)
 					result = rs.getString("VIDEODETAIL_SUBTITLE");
 			}
-		}catch(Exception e) { }
-		return result;
+		}catch(Exception e) { } return result;
 	}
-	
 	public String selectFilepath(String id) {
 		String result = "";
 		try {
@@ -212,7 +169,6 @@ public class VideoDetailAdd {
 				if (rs.getString("VIDEODETAIL_FILEPATH") != null)
 					result = rs.getString("VIDEODETAIL_FILEPATH");
 			}
-		}catch(Exception e) { }
-		return result;
+		}catch(Exception e) { } return result;
 	}
 }

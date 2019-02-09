@@ -11,13 +11,11 @@ import java.util.Calendar;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class UserLogin {
-
 	Connection conn = null;
 	ResultSet rs;
 	PreparedStatement pstmt;
 	String sql;
 	public static String logintime;
-
 	public int loginCheck(String user_id, String user_pw) {
 		int i = 0;
 		sql = "SELECT USER_ID_PK FROM "+config.StaticProperty.getuser_tb()+" WHERE USER_ID_PK = ? AND USER_PASSWORD = ?";
@@ -42,8 +40,6 @@ public class UserLogin {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} finally {
 			try {
 				if (rs != null)
@@ -53,13 +49,9 @@ public class UserLogin {
 				if (conn != null)
 					conn.close();
 			} catch (SQLException e2) {
-				e2.printStackTrace();
 			}
-
-		}
-		return i;
+		} return i;
 	}
-
 	private int date_tb(String user_id) throws SQLException {
 		int i = 0;
 		sql = "INSERT INTO "+config.StaticProperty.getdate_tb()+"(DATE_ID_PK, USER_ID, DATE_LOGINTIME)VALUES(?,?,now())";
@@ -73,7 +65,6 @@ public class UserLogin {
 		i = pstmt.executeUpdate();
 		return i;
 	}
-
 	public void logout(String user_id) throws SQLException {
 		DBConnectionKeeping dbConnectionKeeping;  
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
@@ -86,32 +77,20 @@ public class UserLogin {
 				.append(user_id).append("';").toString();
 		try {
 			stmt.executeUpdate(sql);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			if(stmt.isClosed()) {
-				
-			}
-		}
+		} catch (SQLException e) { }
 	}
 	public void logout2(String user_id) throws SQLException {
 		DBConnectionKeeping dbConnectionKeeping;  
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
-
 		Connection con = usingstaticfunction.DBConnectionKeeping.con;
 		Statement stmt = null;
 		stmt = con.createStatement();
 		StringBuilder sb = new StringBuilder();
-		
-
 		String sql = sb.append("UPDATE "+config.StaticProperty.getdate_tb()+" SET DATE_LOGOUTTIME = now() where DATE_ID_PK = '").append(logintime).append("';").toString();
 		try {
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}finally {
 			if(stmt.isClosed()) {
 				logintime = "";
