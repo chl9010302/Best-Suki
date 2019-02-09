@@ -61,6 +61,8 @@ public class AddTestViewController implements Initializable {
 	private void Quest1Group1Action(ActionEvent action) {
 	}
 	//fileChoose function
+	public void initialize(URL url, ResourceBundle rb) {
+	}
 	public void openFile() {
 		FileChooser fileChooser = new FileChooser();
 		File file = fileChooser.showOpenDialog(stage);
@@ -70,8 +72,6 @@ public class AddTestViewController implements Initializable {
 			new TestImageStore("112233", Address); 
 			filepath = Address;
 		}
-	}
-	public void initialize(URL url, ResourceBundle rb) {
 	}
 	public void fileChooserSelect(ActionEvent event) { 
 		openFile(); 

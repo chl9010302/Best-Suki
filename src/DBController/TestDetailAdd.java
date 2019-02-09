@@ -82,13 +82,13 @@ public class TestDetailAdd {
 			stmt = con.createStatement();
 			String updatesql = "UPDATE "+config.StaticProperty.gettestdetail_tb()
 			+" SET TESTDETAIL_SUBTITLE = '" + testdetailbean.getTESTDETAIL_SUBTITLE() 
-			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_DATA1() 
-			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_DATA2() 
-			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_DATA3() 
-			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_DATA4() 
-			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_DATA5() 
-			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_ANSWER() 
-			+ "', TESTDETAIL_FILEPATH = '" + testdetailbean.getTESTDETAIL_IMAGE() 
+			+ "', TESTDETAIL_DATA1 = '" + testdetailbean.getTESTDETAIL_DATA1() 
+			+ "', TESTDETAIL_DATA2 = '" + testdetailbean.getTESTDETAIL_DATA2() 
+			+ "', TESTDETAIL_DATA3 = '" + testdetailbean.getTESTDETAIL_DATA3() 
+			+ "', TESTDETAIL_DATA4 = '" + testdetailbean.getTESTDETAIL_DATA4() 
+			+ "', TESTDETAIL_DATA5 = '" + testdetailbean.getTESTDETAIL_DATA5() 
+			+ "', TESTDETAIL_ANSWER = '" + testdetailbean.getTESTDETAIL_ANSWER() 
+			+ "', TESTDETAIL_IMAGE = '" + testdetailbean.getTESTDETAIL_IMAGE() 
 			+ "' WHERE TESTDETAIL_ID_PK = '" + testdetailbean.getTESTDETAIL_ID_PK() + "';";
 			stmt.executeUpdate(updatesql);
 			return true;

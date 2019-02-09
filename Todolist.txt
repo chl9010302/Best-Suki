@@ -26,3 +26,6 @@ TestView 게시판 값 넣기
 2. 게시판 BEAN 생성
 3. 게시판 ADD VIEW 생성
 4. 게시판 VIEW 값(FXML에 fx:id) 및 Add에 값 매핑 반영
+
+**주의사항**
+TextField -> Label 시 PromptText -> Text로 바꿔줄 것

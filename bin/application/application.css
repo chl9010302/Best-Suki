@@ -33,7 +33,11 @@
 
 .table-row-cell {
 	-fx-background-color: transparent;
-	-fx-font-size: 16px;
+	-fx-font-size: 14px;
 	-fx-border-width : 0px 0px 1px 0px;
 	-fx-border-color : white;
+}
+
+.table-column {
+	-fx-alignment: CENTER;
 }

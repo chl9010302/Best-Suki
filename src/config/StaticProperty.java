@@ -100,6 +100,9 @@ public class StaticProperty {
 	public static String getnavaddvideoview(){
 		return properties.getProperty("nav18");
 	}
+	public static String getnavtestdetaileditview(){
+		return properties.getProperty("nav19");
+	}
 	public static String getnavapplication(){
 		return properties.getProperty("nav20");
 	}
