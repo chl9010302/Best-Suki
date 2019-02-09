@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -8,9 +9,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.LoginViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.LoginViewController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="860.0">
+      <ImageView fitWidth="860.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@back.jpg" />
          </image>
@@ -19,7 +20,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #b59c9c" text="Sign up" textFill="#b59c9c" onAction="#NAV_SignUpView">
+                  <Button mnemonicParsing="false" onAction="#NAV_SignUpView" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #b59c9c" text="Sign up" textFill="#b59c9c">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
@@ -27,7 +28,7 @@
                         <Font name="Tahoma" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-border-color: white;" text="Login" textFill="WHITE" onAction="#NAV_LoginView">
+                  <Button mnemonicParsing="false" onAction="#NAV_LoginView" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-border-color: white;" text="Login" textFill="WHITE">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>
@@ -36,7 +37,7 @@
             </HBox>
          </children>
       </HBox>
-      <VBox alignment="CENTER" layoutX="537.0" layoutY="116.0" prefHeight="200.0" prefWidth="311.0">
+      <VBox alignment="CENTER" layoutX="537.0" layoutY="116.0" prefHeight="200.0" prefWidth="311.0" AnchorPane.leftAnchor="537.0" AnchorPane.topAnchor="116.0">
          <children>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
@@ -52,14 +53,14 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
-                  <PasswordField fx:id="UserPassword" prefWidth="230.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" onKeyPressed="#setOnKeyPressed">
+                  <PasswordField fx:id="UserPassword" onKeyPressed="#setOnKeyPressed" prefWidth="230.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>
                   </PasswordField>
                </children>
             </HBox>
-            <Button Id="Login" mnemonicParsing="false" opacity="0.72" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3;" text="LOGIN" textFill="WHITE" onAction="#login">
+            <Button Id="Login" mnemonicParsing="false" onAction="#login" opacity="0.72" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3;" text="LOGIN" textFill="WHITE">
                <VBox.margin>
                   <Insets top="30.0" />
                </VBox.margin>

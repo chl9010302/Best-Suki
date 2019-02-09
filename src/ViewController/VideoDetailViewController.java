@@ -16,12 +16,16 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 public class VideoDetailViewController implements Initializable {
 	//Declare JAVA
 	private VideoDetailBean videodetailbean;
 	public static String login_id = LoginViewController.login_id;
+	private WebEngine engine;
 	//Declare FXML
+	@FXML private WebView Myweb;
 	@FXML private Label videodetail_subtitle, videodetail_filepath;
 	@FXML private TextField txtSubtitle, txtFilepath; 
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
@@ -59,8 +63,11 @@ public class VideoDetailViewController implements Initializable {
 		}catch(Exception e) { }
 	}
 	public void initialize(URL url, ResourceBundle rb) {
+		String URL = "";
 		VideoDetailAdd videodetailadd = new VideoDetailAdd();
+		URL = "https://www.youtube.com/embed/" + videodetailadd.selectFilepath(videodetailadd.videodetail_id).substring(32, videodetailadd.selectFilepath(videodetailadd.videodetail_id).length());
 		videodetail_subtitle.setText(videodetailadd.selectSubtitle(videodetailadd.videodetail_id));
-		videodetail_filepath.setText(videodetailadd.selectFilepath(videodetailadd.videodetail_id));
+		engine = Myweb.getEngine();
+		engine.load(URL);
 	}
 }
