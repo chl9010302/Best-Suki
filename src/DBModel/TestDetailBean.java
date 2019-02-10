@@ -1,5 +1,7 @@
 package DBModel;
 
+import java.io.FileInputStream;
+
 import javafx.scene.control.Button;
 
 public class TestDetailBean {
@@ -11,7 +13,8 @@ public class TestDetailBean {
 	private String TESTDETAIL_DATA4;
 	private String TESTDETAIL_DATA5;
 	private String TESTDETAIL_ANSWER;
-	private String TESTDETAIL_IMAGE;
+	private FileInputStream TESTDETAIL_IMAGE;
+	private String TESTDETAIL_IMAGE_PATH;
 	private String TESTDETAIL_SUBTITLE;
 	private String TESTDETAIL_WRITER;
 	private Button TESTDETAIL_BTNDETAIL;
@@ -91,12 +94,20 @@ public class TestDetailBean {
 		TESTDETAIL_ANSWER = tESTDETAIL_ANSWER;
 	}
 
-	public String getTESTDETAIL_IMAGE() {
+	public String getTESTDETAIL_IMAGE_PATH() {
+		return TESTDETAIL_IMAGE_PATH;
+	}
+	
+	public FileInputStream getTESTDETAIL_IMAGE() {
 		return TESTDETAIL_IMAGE;
 	}
 
-	public void setTESTDETAIL_IMAGE(String tESTDETAIL_IMAGE) {
+	public void setTESTDETAIL_IMAGE(FileInputStream tESTDETAIL_IMAGE) {
 		TESTDETAIL_IMAGE = tESTDETAIL_IMAGE;
+	}
+
+	public void setTESTDETAIL_IMAGE_PATH(String tESTDETAIL_IMAGE_PATH) {
+		TESTDETAIL_IMAGE_PATH = tESTDETAIL_IMAGE_PATH;
 	}
 
 	public String getTESTDETAIL_SUBTITLE() {

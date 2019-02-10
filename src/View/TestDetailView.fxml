@@ -115,7 +115,7 @@
                      <children>
                         <HBox prefHeight="30.0">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="623.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="testdetail_imageview" fitHeight="150.0" fitWidth="623.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="10.0" />

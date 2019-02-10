@@ -1,6 +1,9 @@
 package DBController;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -63,7 +66,7 @@ public class TestDetailAdd {
 			testdetail_id = testdetail_id_pk.get();
 			try {
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestdetailview());
-			} catch (IOException e) { }
+			} catch (IOException e) {e.printStackTrace(); }
 		});
 	}
 	public TestDetailAdd(TestDetailBean testdetailbean) {
@@ -85,14 +88,15 @@ public class TestDetailAdd {
 			+ "', TESTDETAIL_DATA4 = '" + testdetailbean.getTESTDETAIL_DATA4() 
 			+ "', TESTDETAIL_DATA5 = '" + testdetailbean.getTESTDETAIL_DATA5() 
 			+ "', TESTDETAIL_ANSWER = '" + testdetailbean.getTESTDETAIL_ANSWER() 
-			+ "', TESTDETAIL_IMAGE = '" + testdetailbean.getTESTDETAIL_IMAGE() 
+			+ "', TESTDETAIL_IMAGE = '" + testdetailbean.getTESTDETAIL_IMAGE_PATH() 
+			+ "', TESTDETAIL_IMAGE_PATH = '" + testdetailbean.getTESTDETAIL_IMAGE_PATH() 
 			+ "' WHERE TESTDETAIL_ID_PK = '" + testdetailbean.getTESTDETAIL_ID_PK() + "';";
 			stmt.executeUpdate(updatesql);
 			return true;
 		} catch (SQLException e) { } return false;
 	}
 	public boolean insertTestDetail(TestDetailBean testdetailbean) {
-		String insertsql = "INSERT INTO "+config.StaticProperty.gettestdetail_tb()+"(TESTDETAIL_ID_PK, TESTDETAIL_DATA1, TESTDETAIL_DATA2, TESTDETAIL_DATA3, TESTDETAIL_DATA4, TESTDETAIL_DATA5, TESTDETAIL_ANSWER, TESTDETAIL_IMAGE, TESTDETAIL_SUBTITLE, TESTDETAIL_WRITER, TESTDETAIL_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
+		String insertsql = "INSERT INTO "+config.StaticProperty.gettestdetail_tb()+"(TESTDETAIL_ID_PK, TESTDETAIL_DATA1, TESTDETAIL_DATA2, TESTDETAIL_DATA3, TESTDETAIL_DATA4, TESTDETAIL_DATA5, TESTDETAIL_ANSWER, TESTDETAIL_IMAGE, TESTDETAIL_IMAGE_PATH, TESTDETAIL_SUBTITLE, TESTDETAIL_WRITER, TESTDETAIL_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
 		PreparedStatement pstmt = null;
 		this.testdetailbean = testdetailbean;
 		try {
@@ -105,9 +109,10 @@ public class TestDetailAdd {
 			pstmt.setString(5, testdetailbean.getTESTDETAIL_DATA4());
 			pstmt.setString(6, testdetailbean.getTESTDETAIL_DATA5());
 			pstmt.setString(7, testdetailbean.getTESTDETAIL_ANSWER());
-			pstmt.setString(8, testdetailbean.getTESTDETAIL_IMAGE());	
-			pstmt.setString(9, testdetailbean.getTESTDETAIL_SUBTITLE());
-			pstmt.setString(10, testdetailbean.getTESTDETAIL_WRITER());
+			pstmt.setBinaryStream(8, testdetailbean.getTESTDETAIL_IMAGE());	
+			pstmt.setString(9, testdetailbean.getTESTDETAIL_IMAGE_PATH());
+			pstmt.setString(10, testdetailbean.getTESTDETAIL_SUBTITLE());
+			pstmt.setString(11, testdetailbean.getTESTDETAIL_WRITER());
 			pstmt.executeUpdate();
 			conn.close();
 			pstmt.close();
@@ -228,5 +233,25 @@ public class TestDetailAdd {
 					result = rs.getString("TESTDETAIL_DATA5");
 			}
 		}catch(Exception e) { } return result;
+	}
+	
+	public File selectIMAGE(String id) {
+		try {
+			StringBuilder sb = new StringBuilder();
+			File theFile = new File("abc.jpg");
+			FileOutputStream output =new FileOutputStream(theFile);
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT TESTDETAIL_IMAGE FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				InputStream input = rs.getBinaryStream("TESTDETAIL_IMAGE");
+				byte[] buffer = new byte[1024];
+				while(input.read(buffer) > 0 ) {
+					output.write(buffer);
+				}
+			}
+			return theFile;
+		}catch(Exception e) { } return null;
 	}
 }

@@ -16,10 +16,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class TestDetailViewController implements Initializable {
+	public static Image image;
 	//Declare FXML
 	@FXML private ToggleGroup Quest1Group1;
+	@FXML private ImageView testdetail_imageview;
 	@FXML private Label testdetail_subtitle, testdetail_answer1, testdetail_answer2, testdetail_answer3, testdetail_answer4, testdetail_answer5;
 	@FXML private RadioButton testdetail_rb1, testdetail_rb2, testdetail_rb3, testdetail_rb4, testdetail_rb5;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
@@ -54,5 +58,7 @@ public class TestDetailViewController implements Initializable {
 		testdetail_answer3.setText(testdetailadd.selectDATA3(testdetailadd.testdetail_id));
 		testdetail_answer4.setText(testdetailadd.selectDATA4(testdetailadd.testdetail_id));
 		testdetail_answer5.setText(testdetailadd.selectDATA5(testdetailadd.testdetail_id));
+		image = new Image(testdetailadd.selectIMAGE(testdetailadd.testdetail_id).toURI().toString(),623,150,true,true);
+		testdetail_imageview.setImage(image);
 	}
 }

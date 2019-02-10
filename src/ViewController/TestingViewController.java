@@ -40,7 +40,7 @@ public class TestingViewController implements Initializable {
 		testdetailbean = new TestDetailBean();
 		testdetailbean.setTESTDETAIL_ID_PK(usingstaticfunction.TestDetailFunction.makeTestDetailKey(testdetail_subtitle.getText().toString()));
 		testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
-		testdetailbean.setTESTDETAIL_IMAGE(filepath);
+		testdetailbean.setTESTDETAIL_IMAGE_PATH(filepath);
 		testdetailbean.setTESTDETAIL_DATA1(testdetail_answer1.getText().toString());
 		testdetailbean.setTESTDETAIL_DATA2(testdetail_answer2.getText().toString());
 		testdetailbean.setTESTDETAIL_DATA3(testdetail_answer3.getText().toString());
