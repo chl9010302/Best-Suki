@@ -67,13 +67,13 @@ public class StaticProperty {
 	public static String getnavsignupview(){
 		return properties.getProperty("nav7");
 	}
-	public static String getnavaddtestview(){
+	public static String getnavaddtestboardview(){
 		return properties.getProperty("nav8");
 	}
 	public static String getnavmypageeditpasswordview(){
 		return properties.getProperty("nav9");
 	}
-	public static String getnavtestdetailview(){
+	public static String getnavtestboarddetailview(){
 		return properties.getProperty("nav10");
 	}
 	public static String getnavaddmainview(){
@@ -100,7 +100,7 @@ public class StaticProperty {
 	public static String getnavaddvideoview(){
 		return properties.getProperty("nav18");
 	}
-	public static String getnavtestdetaileditview(){
+	public static String getnavtestboarddetaileditview(){
 		return properties.getProperty("nav19");
 	}
 	public static String getnavapplication(){
@@ -108,6 +108,15 @@ public class StaticProperty {
 	}
 	public static String getnavfullscreenvideo(){
 		return properties.getProperty("nav21");
+	}
+	public static String getnavtestdetailview(){
+		return properties.getProperty("nav22");
+	}
+	public static String getnavtestdetaileditview(){
+		return properties.getProperty("nav23");
+	}
+	public static String getnavaddtestview(){
+		return properties.getProperty("nav24");
 	}
 	public static String alertlogout(){
 		return properties.getProperty("alert1");

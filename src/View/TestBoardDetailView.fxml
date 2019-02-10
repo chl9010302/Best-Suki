@@ -10,7 +10,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.TestDetailEditViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.TestBoardDetailViewController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="860.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -101,30 +101,22 @@
                   <HBox prefHeight="35.0" prefWidth="655.0">
                      <children>
                         <Label prefHeight="29.0" prefWidth="36.0" text="제목 : " textFill="WHITE" />
-                        <TextField fx:id="testdetail_subtitle" prefHeight="29.0" prefWidth="598.0" style="-fx-border-color: white; -fx-background-color: transparent">
+                        <Label fx:id="testdetail_subtitle" prefHeight="29.0" prefWidth="598.0" style="-fx-border-color: white;" text="제목" textFill="WHITE">
                            <padding>
                               <Insets left="5.0" />
                            </padding>
-                        </TextField>
+                        </Label>
                      </children>
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <VBox prefHeight="200.0" prefWidth="314.0" style="-fx-border-color: white; -fx-border-width: 1px;">
+                  <VBox prefHeight="364.0" prefWidth="635.0" style="-fx-border-color: white; -fx-border-width: 1px;">
                      <children>
                         <HBox prefHeight="30.0">
                            <children>
-                                    <Label fx:id="txtFilepath" text="File Name" textFill="WHITE">
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin>
-                                       <font>
-                                          <Font name="Tahoma" size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <Button mnemonicParsing="false" onAction="#fileChooserSelect" text="File Search" />
-                                 </children>
+                              <ImageView fx:id="testdetail_imageview" fitHeight="150.0" fitWidth="623.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
@@ -139,7 +131,7 @@
                                     <ToggleGroup fx:id="Quest1Group1" />
                                  </toggleGroup>
                               </RadioButton>
-                              <TextField fx:id="testdetail_answer1" PromptText="Answer 1" prefHeight="25.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                              <Label fx:id="testdetail_answer1" Text="Answer 1" prefHeight="25.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="10.0" />
@@ -148,7 +140,7 @@
                         <HBox prefHeight="30.0">
                            <children>
                               <RadioButton fx:id="testdetail_rb2" mnemonicParsing="false" text="2. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                              <TextField fx:id="testdetail_answer2" PromptText="Answer 2" prefHeight="25.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                              <Label fx:id="testdetail_answer2" Text="Answer 2" prefHeight="25.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" />
@@ -157,7 +149,7 @@
                         <HBox prefHeight="30.0">
                            <children>
                               <RadioButton fx:id="testdetail_rb3" mnemonicParsing="false" text="3. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                              <TextField fx:id="testdetail_answer3" PromptText="Answer 3" prefHeight="25.0" prefWidth="323.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                              <Label fx:id="testdetail_answer3" Text="Answer 3" prefHeight="25.0" prefWidth="323.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" />
@@ -166,7 +158,7 @@
                         <HBox prefHeight="30.0">
                            <children>
                               <RadioButton fx:id="testdetail_rb4" mnemonicParsing="false" text="4. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                              <TextField fx:id="testdetail_answer4" PromptText="Answer 4" prefHeight="25.0" prefWidth="324.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                              <Label fx:id="testdetail_answer4" Text="Answer 4" prefHeight="25.0" prefWidth="324.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" />
@@ -175,7 +167,7 @@
                         <HBox prefHeight="30.0">
                            <children>
                               <RadioButton fx:id="testdetail_rb5" mnemonicParsing="false" text="5. " textFill="WHITE" toggleGroup="$Quest1Group1" />
-                              <TextField fx:id="testdetail_answer5" PromptText="Answer 5" prefHeight="25.0" prefWidth="323.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                              <Label fx:id="testdetail_answer5" Text="Answer 5" prefHeight="25.0" prefWidth="323.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                         </HBox>
                      </children>
@@ -183,13 +175,12 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
                      </VBox.margin>
                   </VBox>
         <HBox alignment="TOP_RIGHT" prefHeight="23.0" prefWidth="628.0" spacing="5.0">
           <children>
-            <Button onAction="#editAction" style="-fx-border-color: white;" text="수정" />
-            <Button onAction="#cancelAction" style="-fx-border-color: white;" text="취소" />
+            <Button onAction="#editAction" text="수정" />
           </children>
                      <VBox.margin>
                         <Insets right="20.0" />

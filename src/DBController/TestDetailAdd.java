@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import DBModel.TestDetailBean;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,15 +17,18 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class TestDetailAdd {
 	TestDetailBean testdetailbean;
 	Connection conn = null;
 	Statement stmt = null;
+	public static ArrayList<String> selected_testid;
 	public static String testdetail_id = "";
 	private StringProperty testdetail_id_pk, testdetail_subtitle, testdetail_writer, testdetail_time;
 	private Button testdetail_btndetail;
+	private CheckBox testdetail_checkboxdetail;
 	public StringProperty getTestdetail_writer() {
 		return testdetail_writer;
 	}
@@ -54,13 +58,21 @@ public class TestDetailAdd {
 	public void setTestdetail_btndetail(Button testdetail_btndetail) {
 		this.testdetail_btndetail = testdetail_btndetail;
 	}
+	public CheckBox getTestdetail_checkboxdetail() {
+		return testdetail_checkboxdetail;
+	}
+	public void setTestdetail_checkboxdetail(CheckBox testdetail_checkboxdetail) {
+		this.testdetail_checkboxdetail = testdetail_checkboxdetail;
+	}
 	public TestDetailAdd() { }
 	public TestDetailAdd(String TESTDETAIL_ID_PK, String TESTDETAIL_SUBTITLE, String TESTDETAIL_WRITER, String TESTDETAIL_TIME) {
+		selected_testid = new ArrayList<String>();
 		this.testdetail_id_pk = new SimpleStringProperty(TESTDETAIL_ID_PK);
 		this.testdetail_subtitle = new SimpleStringProperty(TESTDETAIL_SUBTITLE);
 		this.testdetail_writer = new SimpleStringProperty(TESTDETAIL_WRITER);
 		this.testdetail_time = new SimpleStringProperty(TESTDETAIL_TIME);
 		this.testdetail_btndetail = new Button("Details");
+		this.testdetail_checkboxdetail = new CheckBox(TESTDETAIL_SUBTITLE);
 		testdetail_btndetail.setOnAction(event -> {
 			testdetail_id = ""; // 초기화
 			testdetail_id = testdetail_id_pk.get();
@@ -71,6 +83,21 @@ public class TestDetailAdd {
 	}
 	public TestDetailAdd(TestDetailBean testdetailbean) {
 		insertTestDetail(testdetailbean);
+	}
+	public boolean updateTest(String test_id_pk) {
+		DBConnectionKeeping dbConnectionKeeping;
+		if (usingstaticfunction.DBConnectionKeeping.con == null)
+			dbConnectionKeeping = new DBConnectionKeeping();
+		Statement stmt = null;
+		try {
+			Connection con = usingstaticfunction.DBConnectionKeeping.con;
+			stmt = con.createStatement();
+			String updatesql = "UPDATE "+config.StaticProperty.gettest_tb()
+			+" SET TESTDETAIL_ID1_FK = '" + testdetailbean.getTESTDETAIL_SUBTITLE() 
+			+ "' WHERE TEST_ID_PK = '" + testdetailbean.getTESTDETAIL_ID_PK() + "';";
+			stmt.executeUpdate(updatesql);
+			return true;
+		} catch (SQLException e) { } return false;
 	}
 	public boolean updateTestDetail(TestDetailBean testdetailbean) {
 		DBConnectionKeeping dbConnectionKeeping;
@@ -253,5 +280,8 @@ public class TestDetailAdd {
 			}
 			return theFile;
 		}catch(Exception e) { } return null;
+	}
+	private void SelectedItems() {
+		
 	}
 }
