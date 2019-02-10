@@ -106,6 +106,9 @@ public class StaticProperty {
 	public static String getnavapplication(){
 		return properties.getProperty("nav20");
 	}
+	public static String getnavfullscreenvideo(){
+		return properties.getProperty("nav21");
+	}
 	public static String alertlogout(){
 		return properties.getProperty("alert1");
 	}

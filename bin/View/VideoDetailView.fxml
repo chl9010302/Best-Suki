@@ -111,16 +111,18 @@
                         <Insets left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="366.0" prefWidth="651.0">
+                  <HBox prefHeight="366.0" prefWidth="651.0" style="width: 100%; height: 100%;" >
                      <children>
-                        <WebView fx:id="Myweb" prefHeight="-1.0" prefWidth="700.0" />
+                        <WebView fx:id="Myweb" prefHeight="-1.0" prefWidth="700.0"  />
                      </children>
                      <VBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </VBox.margin>
+                 
                   </HBox>
         <HBox alignment="TOP_RIGHT" prefHeight="23.0" prefWidth="628.0" spacing="5.0">
           <children>
+           <Button onAction="#NAV_FullScreenVideo" text="전체화면" />
             <Button onAction="#editAction" text="수정" />
           </children>
                      <VBox.margin>
