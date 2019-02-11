@@ -1,6 +1,8 @@
 package ViewController;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -8,7 +10,6 @@ import java.util.ResourceBundle;
 
 import DBController.TestDetailAdd;
 import DBModel.TestDetailBean;
-import ImageStore.TestImageStore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,7 +28,8 @@ public class TestBoardDetailEditViewController implements Initializable {
 	//Declare JAVA
 	private TestDetailBean testdetailbean;
 	private Stage stage; // file choose 하기 위함.
-	public static String filename, filepath;
+	public static String filename;
+	public static FileInputStream input;
 	//Declare FXML
 	@FXML private ToggleGroup Quest1Group1;
 	@FXML private TextField testdetail_subtitle, testdetail_answer1, testdetail_answer2, testdetail_answer3, testdetail_answer4, testdetail_answer5;
@@ -59,9 +61,11 @@ public class TestBoardDetailEditViewController implements Initializable {
 		TestDetailAdd testdetailadd = new TestDetailAdd();
 		try {
 			testdetailbean = new TestDetailBean();
+			System.out.println(testdetailadd.testdetail_id);
 			testdetailbean.setTESTDETAIL_ID_PK(testdetailadd.testdetail_id);
 			testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
-			testdetailbean.setTESTDETAIL_IMAGE_PATH(filepath);
+			testdetailbean.setTESTDETAIL_IMAGE_PATH(filename);
+			testdetailbean.setTESTDETAIL_IMAGE(input);
 			testdetailbean.setTESTDETAIL_DATA1(testdetail_answer1.getText().toString());
 			testdetailbean.setTESTDETAIL_DATA2(testdetail_answer2.getText().toString());
 			testdetailbean.setTESTDETAIL_DATA3(testdetail_answer3.getText().toString());
@@ -99,11 +103,12 @@ public class TestBoardDetailEditViewController implements Initializable {
 	public void openFile() {
 		FileChooser fileChooser = new FileChooser();
 		File file = fileChooser.showOpenDialog(stage);
-		if(file != null) {
-			filename = file.getName();
-			String Address = file.toString().replaceAll("\\\\", "//");
-			new TestImageStore("112233", Address); 
-			filepath = Address;
+		filename = file.getAbsolutePath();
+		try {
+			input = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	public void fileChooserSelect(ActionEvent event) { 

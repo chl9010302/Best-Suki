@@ -23,7 +23,7 @@ public class AddTestBoardViewController implements Initializable {
 	//Declare JAVA
 	private TestDetailBean testdetailbean;
 	private Stage stage; // file choose 하기 위함.
-	public static String filename, filepath;
+	public static String filename;
 	public static String login_id = LoginViewController.login_id;
 	public static FileInputStream input;
 	//Declare FXML
@@ -36,7 +36,7 @@ public class AddTestBoardViewController implements Initializable {
 		testdetailbean = new TestDetailBean();
 		testdetailbean.setTESTDETAIL_ID_PK(usingstaticfunction.TestDetailFunction.makeTestDetailKey(testdetail_subtitle.getText().toString()));
 		testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
-		testdetailbean.setTESTDETAIL_IMAGE_PATH(filepath);
+		testdetailbean.setTESTDETAIL_IMAGE_PATH(filename);
 		testdetailbean.setTESTDETAIL_IMAGE(input);
 		testdetailbean.setTESTDETAIL_DATA1(testdetail_answer1.getText().toString());
 		testdetailbean.setTESTDETAIL_DATA2(testdetail_answer2.getText().toString());
@@ -68,6 +68,7 @@ public class AddTestBoardViewController implements Initializable {
 	public void openFile() {
 		FileChooser fileChooser = new FileChooser();
 		File file = fileChooser.showOpenDialog(stage);
+		filename = file.getName();
 		try {
 			input = new FileInputStream(file);
 		} catch (FileNotFoundException e) {

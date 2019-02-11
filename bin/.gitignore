@@ -1,8 +1,11 @@
 /DBController/
 /DBModel/
 /ImageStore/
-/ViewController/
-/academyutil/
+/View/
 /application/
 /config/
+/jfxrt.jar
+/mysql-connector-java-5.1.47.jar
+/ViewController/
+/academyutil/
 /usingstaticfunction/

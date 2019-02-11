@@ -77,7 +77,7 @@ public class TestDetailAdd {
 			testdetail_id = ""; // 초기화
 			testdetail_id = testdetail_id_pk.get();
 			try {
-				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestdetailview());
+				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestboarddetailview());
 			} catch (IOException e) {e.printStackTrace(); }
 		});
 	}
@@ -103,24 +103,28 @@ public class TestDetailAdd {
 		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
-		Statement stmt = null;
+		//이미지 연결 시에는 PreparedStatement를 통해 setBinaryStream을사용해야 함.
+		String updatesql = "UPDATE "+config.StaticProperty.gettestdetail_tb()
+		+" SET TESTDETAIL_SUBTITLE = '" + testdetailbean.getTESTDETAIL_SUBTITLE() 
+		+ "', TESTDETAIL_DATA1 = '" + testdetailbean.getTESTDETAIL_DATA1() 
+		+ "', TESTDETAIL_DATA2 = '" + testdetailbean.getTESTDETAIL_DATA2() 
+		+ "', TESTDETAIL_DATA3 = '" + testdetailbean.getTESTDETAIL_DATA3() 
+		+ "', TESTDETAIL_DATA4 = '" + testdetailbean.getTESTDETAIL_DATA4() 
+		+ "', TESTDETAIL_DATA5 = '" + testdetailbean.getTESTDETAIL_DATA5() 
+		+ "', TESTDETAIL_ANSWER = '" + testdetailbean.getTESTDETAIL_ANSWER() 
+		+ "', TESTDETAIL_IMAGE_PATH = '" + testdetailbean.getTESTDETAIL_IMAGE_PATH() 
+		+ "', TESTDETAIL_IMAGE = ? " 
+		+ " WHERE TESTDETAIL_ID_PK = '" + testdetailbean.getTESTDETAIL_ID_PK() + "';";
 		try {
-			Connection con = usingstaticfunction.DBConnectionKeeping.con;
-			stmt = con.createStatement();
-			String updatesql = "UPDATE "+config.StaticProperty.gettestdetail_tb()
-			+" SET TESTDETAIL_SUBTITLE = '" + testdetailbean.getTESTDETAIL_SUBTITLE() 
-			+ "', TESTDETAIL_DATA1 = '" + testdetailbean.getTESTDETAIL_DATA1() 
-			+ "', TESTDETAIL_DATA2 = '" + testdetailbean.getTESTDETAIL_DATA2() 
-			+ "', TESTDETAIL_DATA3 = '" + testdetailbean.getTESTDETAIL_DATA3() 
-			+ "', TESTDETAIL_DATA4 = '" + testdetailbean.getTESTDETAIL_DATA4() 
-			+ "', TESTDETAIL_DATA5 = '" + testdetailbean.getTESTDETAIL_DATA5() 
-			+ "', TESTDETAIL_ANSWER = '" + testdetailbean.getTESTDETAIL_ANSWER() 
-			+ "', TESTDETAIL_IMAGE = '" + testdetailbean.getTESTDETAIL_IMAGE_PATH() 
-			+ "', TESTDETAIL_IMAGE_PATH = '" + testdetailbean.getTESTDETAIL_IMAGE_PATH() 
-			+ "' WHERE TESTDETAIL_ID_PK = '" + testdetailbean.getTESTDETAIL_ID_PK() + "';";
-			stmt.executeUpdate(updatesql);
+			PreparedStatement pstmt = null;
+			conn = usingstaticfunction.DBConnectionKeeping.con;
+			System.out.println("IMAGE : " + testdetailbean.getTESTDETAIL_ID_PK());
+			System.out.println(updatesql);
+			pstmt = conn.prepareStatement(updatesql);
+			pstmt.setBinaryStream(1, testdetailbean.getTESTDETAIL_IMAGE());
+			pstmt.executeUpdate();
 			return true;
-		} catch (SQLException e) { } return false;
+		} catch (SQLException e) {e.printStackTrace(); } return false;
 	}
 	public boolean insertTestDetail(TestDetailBean testdetailbean) {
 		String insertsql = "INSERT INTO "+config.StaticProperty.gettestdetail_tb()+"(TESTDETAIL_ID_PK, TESTDETAIL_DATA1, TESTDETAIL_DATA2, TESTDETAIL_DATA3, TESTDETAIL_DATA4, TESTDETAIL_DATA5, TESTDETAIL_ANSWER, TESTDETAIL_IMAGE, TESTDETAIL_IMAGE_PATH, TESTDETAIL_SUBTITLE, TESTDETAIL_WRITER, TESTDETAIL_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
@@ -144,7 +148,7 @@ public class TestDetailAdd {
 			conn.close();
 			pstmt.close();
 			return true;
-		} catch (SQLException e) {
+		} catch (SQLException e) { e.printStackTrace();
 		} finally {
 			try {
 				if (conn != null)
@@ -280,8 +284,5 @@ public class TestDetailAdd {
 			}
 			return theFile;
 		}catch(Exception e) { } return null;
-	}
-	private void SelectedItems() {
-		
 	}
 }
