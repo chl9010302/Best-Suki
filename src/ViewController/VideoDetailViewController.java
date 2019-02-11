@@ -39,7 +39,7 @@ public class VideoDetailViewController  implements Initializable {
 	@FXML private void NAV_StasticsView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavstasticsview()); }
 	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageview()); }
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
-	@FXML private void NAV_FullScreenVideo(ActionEvent event) throws IOException { CommonController.NAV_POPUP(getClass(), event, config.StaticProperty.getnavfullscreenvideo()); }
+	@FXML private void NAV_FullScreenVideo(ActionEvent event) throws IOException { CommonController.NAV_POPUP(getClass(), event, config.StaticProperty.getnavfullscreenvideoview()); }
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML
 	private void editAction(ActionEvent event) {
@@ -61,7 +61,6 @@ public class VideoDetailViewController  implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		VideoDetailAdd videodetailadd = new VideoDetailAdd();
 		URL = "https://www.youtube.com/embed/" + videodetailadd.selectFilepath(videodetailadd.videodetail_id).substring(32, videodetailadd.selectFilepath(videodetailadd.videodetail_id).length()) + "?wmode=transparent";
-		System.out.println(URL);
 		videodetail_subtitle.setText(videodetailadd.selectSubtitle(videodetailadd.videodetail_id));
 		
 		engine = Myweb.getEngine();

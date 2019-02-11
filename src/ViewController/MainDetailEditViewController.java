@@ -51,10 +51,10 @@ public class MainDetailEditViewController implements Initializable {
 			noticedetailbean.setNOTICEDETAIL_CONTEXT(txtContext.getText().toString());
 			NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
 			noticedetailadd.updateNoticeDetail(noticedetailbean);
-		}catch(Exception e) { }
+		}catch(Exception e) { e.printStackTrace();}
 		try {
 			CommonController.NAV(getClass(), event, config.StaticProperty.getnavmaindetailview());
-		}catch(Exception e) { }
+		}catch(Exception e) {}
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();

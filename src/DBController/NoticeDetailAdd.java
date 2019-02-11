@@ -107,7 +107,7 @@ public class NoticeDetailAdd {
 			String updatesql = "UPDATE "+config.StaticProperty.getnoticedetail_tb()+" SET NOTICEDETAIL_SUBTITLE = '" + noticedetailbean.getNOTICEDETAIL_SUBTITLE() + "', NOTICEDETAIL_CONTEXT = '" + noticedetailbean.getNOTICEDETAIL_CONTEXT() + "' WHERE NOTICEDETAIL_ID_PK = '" + noticedetailbean.getNOTICEDETAIL_ID_PK() + "';";
 			stmt.executeUpdate(updatesql);
 			return true;
-		} catch (SQLException e) { }
+		} catch (SQLException e) {}
 		return false;
 	}
 	public boolean select() {

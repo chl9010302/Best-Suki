@@ -61,7 +61,6 @@ public class TestBoardDetailEditViewController implements Initializable {
 		TestDetailAdd testdetailadd = new TestDetailAdd();
 		try {
 			testdetailbean = new TestDetailBean();
-			System.out.println(testdetailadd.testdetail_id);
 			testdetailbean.setTESTDETAIL_ID_PK(testdetailadd.testdetail_id);
 			testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
 			testdetailbean.setTESTDETAIL_IMAGE_PATH(filename);

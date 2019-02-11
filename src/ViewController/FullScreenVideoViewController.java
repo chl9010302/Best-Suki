@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.web.WebView;
 
-public class FullScreenVideoController implements Initializable{
+public class FullScreenVideoViewController implements Initializable{
     @FXML WebView fullscreenview;
 
 	
@@ -17,7 +17,6 @@ public class FullScreenVideoController implements Initializable{
 		// TODO Auto-generated method stub
 		try {
 			Dimension res = Toolkit.getDefaultToolkit().getScreenSize();
-			System.out.println("해상도 : " + res.width + " x " + res.height);  	
 			fullscreenview.getEngine().load(
 					ViewController.VideoDetailViewController.URL
 					);

@@ -118,7 +118,7 @@ public class StaticProperty {
 	public static String getnavapplication(){
 		return properties.getProperty("nav20");
 	}
-	public static String getnavfullscreenvideo(){
+	public static String getnavfullscreenvideoview(){
 		return properties.getProperty("nav21");
 	}
 	public static String getnavtestdetailview(){

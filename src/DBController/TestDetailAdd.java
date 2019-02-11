@@ -118,8 +118,6 @@ public class TestDetailAdd {
 		try {
 			PreparedStatement pstmt = null;
 			conn = usingstaticfunction.DBConnectionKeeping.con;
-			System.out.println("IMAGE : " + testdetailbean.getTESTDETAIL_ID_PK());
-			System.out.println(updatesql);
 			pstmt = conn.prepareStatement(updatesql);
 			pstmt.setBinaryStream(1, testdetailbean.getTESTDETAIL_IMAGE());
 			pstmt.executeUpdate();

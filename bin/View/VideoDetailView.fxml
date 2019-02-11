@@ -122,8 +122,8 @@
                   </HBox>
         <HBox alignment="TOP_RIGHT" prefHeight="23.0" prefWidth="628.0" spacing="5.0">
           <children>
-           <Button onAction="#NAV_FullScreenVideo" text="전체화면" />
-            <Button onAction="#editAction" text="수정" />
+           <Button onAction="#NAV_FullScreenVideo" text="전체화면" style="-fx-text-fill:red; -fx-border-width: 2px; -fx-border-color: white;" />
+            <Button onAction="#editAction" text="수정" style="-fx-border-width: 2px; -fx-border-color: white;" />
           </children>
                      <VBox.margin>
                         <Insets right="20.0" />

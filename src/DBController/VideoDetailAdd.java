@@ -95,7 +95,7 @@ public class VideoDetailAdd {
 			conn.close();
 			pstmt.close();
 			return true;
-		} catch (SQLException e) { 
+		} catch (SQLException e) {  e.printStackTrace();
 		} finally {
 			try {
 				if (conn != null)

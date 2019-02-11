@@ -80,12 +80,10 @@ public class PropertiesDemo {
         // 키값을 주고 해당 값이 있으면 해당 값을 반환하지만
         // 해당 값이 없으면 null을 반환합니다.
         Object result = properties.computeIfAbsent("undefined", value -> returnNull(value));
-        System.out.println("result value is " + result);
    */
     }
 
     public static Object returnNull(Object key) {
-        System.out.println(key + " value is null.");
         return null;
     }
 }

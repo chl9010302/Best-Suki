@@ -44,7 +44,6 @@ public class TestViewController implements Initializable {
 			ColTest_Date.setCellValueFactory(cellData -> cellData.getValue().getTest_time());
 			ColTest_Btndetail.setCellValueFactory(new PropertyValueFactory<TestAdd, String>("test_btndetail"));
 			testTableView.setItems(testadd.gettestadd());
-			System.out.println(TestDetailAdd.selected_testid.size());
 		}catch(Exception e) {}
 	}
 }
