@@ -18,7 +18,7 @@ import javafx.scene.input.KeyEvent;
 
 public class LoginViewController implements Initializable {
 	//Declare JAVA
-	public static String login_id="";
+	public static String login_id;
 	Sha256 sha256 = new Sha256();
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword;

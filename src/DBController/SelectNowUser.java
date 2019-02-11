@@ -13,7 +13,7 @@ public class SelectNowUser {
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
 		StringBuilder sb = new StringBuilder();
-		String sql = sb.append("SELECT * FROM  "+config.StaticProperty.getuser_tb()+" WHERE").append(" USER_ID_PK = ").append(login_Id).append(";")
+		String sql = sb.append("SELECT * FROM  "+config.StaticProperty.getuser_tb()+" WHERE").append(" USER_ID_PK = '").append(login_Id).append("';")
 				.toString();
 		Connection con = usingstaticfunction.DBConnectionKeeping.con;
 		Statement stmt = null;
@@ -38,6 +38,6 @@ public class SelectNowUser {
 				userbean.setCLASS_NUMBER3(rs.getString("CLASS_NUMBER3"));
 				userbean.setCLASS_NUMBER4(rs.getString("CLASS_NUMBER4"));
 			} return userbean;
-		} catch (Exception e) { } return null;
+		} catch (Exception e) { e.printStackTrace();} return null;
 	}
 }

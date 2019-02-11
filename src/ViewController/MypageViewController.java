@@ -28,7 +28,7 @@ public class MypageViewController implements Initializable {
 			SelectNowUser selectnowuser = new SelectNowUser();
 			UserBean userbean;
 			userbean  = selectnowuser.getSelectUser(LoginViewController.login_id);
-			Mypage_UserId.setText(userbean.getUSER_ID_PK());
+			Mypage_UserId.setText(LoginViewController.login_id);
 			Mypage_UserPassword.setText("*********");
 			Mypage_UserName.setText(userbean.getUSER_NAME());
 			Mypage_UserAddress.setText(userbean.getUSER_ADDRESS());
@@ -37,6 +37,6 @@ public class MypageViewController implements Initializable {
 			Mypage_UserGender.setText(userbean.getUSER_GENDER());
 			Mypage_UserPhone.setText(userbean.getUSER_PHONE());
 			Mypage_UserFmphone.setText(userbean.getUSER_FMPHONE());
-			}catch (Exception e) { }
+			}catch (Exception e) { e.printStackTrace();}
 	}
 }
