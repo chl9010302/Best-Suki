@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.TestBoardDetailEditViewController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="860.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@back.jpg" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="65.0" prefWidth="834.0" AnchorPane.bottomAnchor="521.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#NAV_MypageView" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#logout" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Logout" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="79.0" prefHeight="494.0" prefWidth="155.0" AnchorPane.topAnchor="79.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#NAV_MainView" style="-fx-background-color: transparent;" text="NOTICE" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#NAV_VideoView" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#NAV_TestView" style="-fx-background-color: transparent;" text="TEST" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#NAV_TestBoardView" style="-fx-background-color: transparent;" text="TestBoard" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#NAV_StasticsView" style="-fx-background-color: transparent;" text="STASTICS" textFill="WHITE">
+               <font>
+                  <Font name="Tahoma" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <AnchorPane layoutX="169.0" layoutY="79.0" prefHeight="504.0" prefWidth="679.0" xmlns:fx="http://javafx.com/fxml">
+  <children>
+    <VBox alignment="TOP_CENTER" layoutX="30" prefHeight="250.0" prefWidth="341.0" style="-fx-border-color: white; -fx-border-width: 2px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+                  <HBox prefHeight="42.0" prefWidth="679.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
+                     <children>
+              <Label alignment="TOP_LEFT" text="TestDetailView" textFill="WHITE">
+                <font>
+                  <Font name="System Bold" size="21.0" />
+                </font>
+              </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="35.0" prefWidth="655.0">
+                     <children>
+                        <Label prefHeight="29.0" prefWidth="36.0" text="제목 : " textFill="WHITE" />
+                        <TextField fx:id="testdetail_subtitle" prefHeight="29.0" prefWidth="598.0" style="-fx-border-color: white; -fx-background-color: transparent">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <VBox prefHeight="200.0" prefWidth="314.0" style="-fx-border-color: white; -fx-border-width: 1px;">
+                     <children>
+                        <HBox prefHeight="30.0">
+                           <children>
+                                    <Label fx:id="txtFilepath" text="File Name" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font name="Tahoma" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Button mnemonicParsing="false" onAction="#fileChooserSelect" text="File Search" />
+                                 </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="30.0">
+                           <children>
+                              <RadioButton fx:id="testdetail_rb1" mnemonicParsing="false" onAction="#Quest1Group1Action" text="1. " textFill="WHITE">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="Quest1Group1" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <TextField fx:id="testdetail_answer1" PromptText="Answer 1" prefHeight="25.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="30.0">
+                           <children>
+                              <RadioButton fx:id="testdetail_rb2" mnemonicParsing="false" text="2. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                              <TextField fx:id="testdetail_answer2" PromptText="Answer 2" prefHeight="25.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="30.0">
+                           <children>
+                              <RadioButton fx:id="testdetail_rb3" mnemonicParsing="false" text="3. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                              <TextField fx:id="testdetail_answer3" PromptText="Answer 3" prefHeight="25.0" prefWidth="323.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="30.0">
+                           <children>
+                              <RadioButton fx:id="testdetail_rb4" mnemonicParsing="false" text="4. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                              <TextField fx:id="testdetail_answer4" PromptText="Answer 4" prefHeight="25.0" prefWidth="324.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="30.0">
+                           <children>
+                              <RadioButton fx:id="testdetail_rb5" mnemonicParsing="false" text="5. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                              <TextField fx:id="testdetail_answer5" PromptText="Answer 5" prefHeight="25.0" prefWidth="323.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
+                  </VBox>
+        <HBox alignment="TOP_RIGHT" prefHeight="23.0" prefWidth="628.0" spacing="5.0">
+          <children>
+            <Button onAction="#editAction" style="-fx-border-color: white;" text="수정" />
+            <Button onAction="#cancelAction" style="-fx-border-color: white;" text="취소" />
+          </children>
+                     <VBox.margin>
+                        <Insets right="20.0" />
+                     </VBox.margin>
+        </HBox>
+      </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+    </VBox>
+  </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+</AnchorPane>
+   </children>
+</AnchorPane>

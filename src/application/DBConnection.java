@@ -12,9 +12,8 @@ public class DBConnection {
 		Statement st = null;
 		ResultSet rs = null;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/academymanagementdb?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC", 
-					"root", "root");
+			Class.forName(config.StaticProperty.getdriver());
+			con = DriverManager.getConnection(config.StaticProperty.geturl(), config.StaticProperty.getusername(), config.StaticProperty.getpassword());
 			st = con.createStatement();
 			st.close();
 			con.close();
@@ -37,9 +36,8 @@ public class DBConnection {
 		Statement st = null;
 		ResultSet rs = null;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/academymanagementdb?serverTimezone=UTC",
-					"root", "root");
+			Class.forName(config.StaticProperty.getdriver());
+			con = DriverManager.getConnection(config.StaticProperty.geturl(), config.StaticProperty.getusername(), config.StaticProperty.getpassword());
 			return con;
 		} catch (Exception e) {
 			e.printStackTrace();

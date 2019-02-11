@@ -22,6 +22,18 @@ public class StaticProperty {
 	        properties.load(inputStream);
 	        inputStream.close();
 	}	
+	public static String getdriver(){
+		return properties.getProperty("driver");
+	}
+	public static String geturl(){
+		return properties.getProperty("url");
+	}
+	public static String getusername(){
+		return properties.getProperty("username");
+	}
+	public static String getpassword(){
+		return properties.getProperty("password");
+	}
 	public static String getuserclass_tb(){
 		return properties.getProperty("db1");
 	}

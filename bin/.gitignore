@@ -1,7 +1,8 @@
-/ViewController/
-/View/
-/config/
-/DBModel/
-/usingstaticfunction/
 /DBController/
+/DBModel/
+/ImageStore/
+/ViewController/
+/academyutil/
 /application/
+/config/
+/usingstaticfunction/
