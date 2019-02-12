@@ -61,7 +61,7 @@ public class VideoDetailAdd {
 			videodetail_id = videodetail_id_pk.get();
 			try {
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideodetailview());
-			} catch (IOException e) { }
+			} catch (IOException e) {e.printStackTrace(); }
 		});
 	}
 	public VideoDetailAdd(VideoDetailBean videodetailbean) {

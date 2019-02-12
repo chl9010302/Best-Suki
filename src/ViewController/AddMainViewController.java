@@ -48,7 +48,7 @@ public class AddMainViewController implements Initializable {
 		try {
 			noticedetailbean = new NoticeDetailBean();
 			NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
-			noticedetailbean.setNOTICEDETAIL_ID_PK(txtSubtitle.getText().toString());
+			noticedetailbean.setNOTICEDETAIL_ID_PK(CommonController.MakeId());
 			noticedetailbean.setNOTICEDETAIL_SUBTITLE(txtSubtitle.getText().toString());
 			noticedetailbean.setNOTICEDETAIL_WRITER(login_id);
 			noticedetailbean.setNOTICEDETAIL_CONTEXT(txtContext.getText().toString());

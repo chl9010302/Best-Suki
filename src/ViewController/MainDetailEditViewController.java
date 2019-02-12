@@ -46,7 +46,7 @@ public class MainDetailEditViewController implements Initializable {
 	private void editAction(ActionEvent event) {
 		try {
 			noticedetailbean = new NoticeDetailBean();
-			noticedetailbean.setNOTICEDETAIL_ID_PK(txtSubtitle.getText().toString());
+			noticedetailbean.setNOTICEDETAIL_ID_PK(NoticeDetailAdd.noticedetail_id);
 			noticedetailbean.setNOTICEDETAIL_SUBTITLE(txtSubtitle.getText().toString());
 			noticedetailbean.setNOTICEDETAIL_CONTEXT(txtContext.getText().toString());
 			NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import ViewController.CommonController;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class UserLogin {
@@ -56,11 +57,8 @@ public class UserLogin {
 		int i = 0;
 		sql = "INSERT INTO "+config.StaticProperty.getdate_tb()+"(DATE_ID_PK, USER_ID, DATE_LOGINTIME)VALUES(?,?,now())";
 		pstmt = conn.prepareStatement(sql);
-		Calendar calendar = Calendar.getInstance();
-		java.util.Date date = calendar.getTime();
-		String dateidpk = (new SimpleDateFormat("yyyyMMddHHmmss").format(date));
-		logintime = dateidpk;
-		pstmt.setString(1, dateidpk);
+		logintime = CommonController.MakeId();
+		pstmt.setString(1, CommonController.MakeId());
 		pstmt.setString(2, user_id);
 		i = pstmt.executeUpdate();
 		return i;

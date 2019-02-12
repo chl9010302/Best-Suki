@@ -38,7 +38,7 @@ public class TestingViewController implements Initializable {
 	@FXML
 	private void saveAction(ActionEvent action) {
 		testdetailbean = new TestDetailBean();
-		testdetailbean.setTESTDETAIL_ID_PK(usingstaticfunction.TestDetailFunction.makeTestDetailKey(testdetail_subtitle.getText().toString()));
+		testdetailbean.setTESTDETAIL_ID_PK(CommonController.MakeId());
 		testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
 		testdetailbean.setTESTDETAIL_IMAGE_PATH(filepath);
 		testdetailbean.setTESTDETAIL_DATA1(testdetail_answer1.getText().toString());

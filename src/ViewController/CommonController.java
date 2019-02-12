@@ -1,6 +1,8 @@
 package ViewController;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Optional;
 
 import DBController.UserLogin;
@@ -59,5 +61,11 @@ public class CommonController{
 				NAV(getclass, event, config.StaticProperty.getnavloginview());
 			}catch(Exception e) { }
 		}
+	}
+	public static String MakeId() {
+		Calendar calendar = Calendar.getInstance();
+		java.util.Date date = calendar.getTime();
+		String dateidpk = (new SimpleDateFormat("yyyyMMddHHmmss").format(date));
+		return dateidpk;
 	}
 }

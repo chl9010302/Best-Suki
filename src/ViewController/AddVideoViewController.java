@@ -47,16 +47,23 @@ public class AddVideoViewController implements Initializable {
 	}
 	@FXML
 	private void addAction(ActionEvent event) {
-		try {
-			videodetailbean = new VideoDetailBean();
-			videodetailbean.setVIDEODETAIL_ID_PK(txtSubtitle.getText().toString());
-			videodetailbean.setVIDEODETAIL_SUBTITLE(txtSubtitle.getText().toString());
-			videodetailbean.setVIDEODETAIL_WRITER(login_id);
-			videodetailbean.setVIDEODETAIL_FILEPATH(txtFilepath.getText().toString());
-			VideoDetailAdd videodetailadd = new VideoDetailAdd();
-			videodetailadd.insertVideodetail(videodetailbean);
-			((Stage) ((Node) event.getSource()).getScene().getWindow()).close(); // 창 닫음.
-		}catch(Exception e) { }
+		if(txtFilepath.getText().toString().contains("www.youtube.com")) {
+			try {
+				videodetailbean = new VideoDetailBean();
+				videodetailbean.setVIDEODETAIL_ID_PK(CommonController.MakeId());
+				videodetailbean.setVIDEODETAIL_SUBTITLE(txtSubtitle.getText().toString());
+				videodetailbean.setVIDEODETAIL_WRITER(login_id);
+				videodetailbean.setVIDEODETAIL_FILEPATH(txtFilepath.getText().toString());
+				VideoDetailAdd videodetailadd = new VideoDetailAdd();
+				videodetailadd.insertVideodetail(videodetailbean);
+				((Stage) ((Node) event.getSource()).getScene().getWindow()).close(); // 창 닫음.
+			}catch(Exception e) { }
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle(config.StaticProperty.alerttitlenovideopath());
+			alert.setHeaderText(config.StaticProperty.alertputvideopath());
+			alert.showAndWait();
+		}
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 	}

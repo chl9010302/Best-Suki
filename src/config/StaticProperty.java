@@ -157,6 +157,12 @@ public class StaticProperty {
 	public static String alertpasswordnotchanged(){
 		return properties.getProperty("alert9");
 	}
+	public static String alertputimage(){
+		return properties.getProperty("alert10");
+	}
+	public static String alertputvideopath(){
+		return properties.getProperty("alert11");
+	}
 	public static String alerttitlemessage(){
 		return properties.getProperty("alerttitle1");
 	}
@@ -165,6 +171,12 @@ public class StaticProperty {
 	}
 	public static String alerttitlelogout(){
 		return properties.getProperty("alerttitle3");
+	}
+	public static String alerttitlenoimage(){
+		return properties.getProperty("alerttitle4");
+	}
+	public static String alerttitlenovideopath(){
+		return properties.getProperty("alerttitle5");
 	}
 	public static String alertbtnyes(){
 		return properties.getProperty("alertbtn1");

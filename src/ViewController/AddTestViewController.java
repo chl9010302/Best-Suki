@@ -60,7 +60,7 @@ public class AddTestViewController implements Initializable {
 			testbean = new TestBean();
 			TestDetailAdd testdetailadd = new TestDetailAdd();
 			TestAdd testadd = new TestAdd();
-			testbean.setTEST_ID_PK(ColTest_Subtitle.getText().toString());
+			testbean.setTEST_ID_PK(CommonController.MakeId());
 			testbean.setTEST_SUBTITLE(ColTest_Subtitle.getText().toString());
 			testbean.setTEST_WRITER(login_id);
 			for(int i = 1 ; i < getresult.size()+1; i++) {

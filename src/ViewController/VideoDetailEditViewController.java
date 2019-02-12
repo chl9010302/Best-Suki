@@ -45,11 +45,11 @@ public class VideoDetailEditViewController implements Initializable {
 	@FXML
 	private void editAction(ActionEvent event) {
 		try {
+			VideoDetailAdd videodetailadd = new VideoDetailAdd();
 			videodetailbean = new VideoDetailBean();
-			videodetailbean.setVIDEODETAIL_ID_PK(txtSubtitle.getText().toString());
+			videodetailbean.setVIDEODETAIL_ID_PK(videodetailadd.videodetail_id);
 			videodetailbean.setVIDEODETAIL_SUBTITLE(txtSubtitle.getText().toString());
 			videodetailbean.setVIDEODETAIL_FILEPATH(txtFilepath.getText().toString());
-			VideoDetailAdd videodetailadd = new VideoDetailAdd();
 			videodetailadd.updateVideoDetail(videodetailbean);
 		}catch(Exception e) { }
 		try {

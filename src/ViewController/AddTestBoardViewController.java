@@ -12,10 +12,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -33,31 +35,38 @@ public class AddTestBoardViewController implements Initializable {
 	@FXML private Label txtFilepath;
 	@FXML
 	private void saveAction(ActionEvent action) {
-		testdetailbean = new TestDetailBean();
-		testdetailbean.setTESTDETAIL_ID_PK(usingstaticfunction.TestDetailFunction.makeTestDetailKey(testdetail_subtitle.getText().toString()));
-		testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
-		testdetailbean.setTESTDETAIL_IMAGE_PATH(filename);
-		testdetailbean.setTESTDETAIL_IMAGE(input);
-		testdetailbean.setTESTDETAIL_DATA1(testdetail_answer1.getText().toString());
-		testdetailbean.setTESTDETAIL_DATA2(testdetail_answer2.getText().toString());
-		testdetailbean.setTESTDETAIL_DATA3(testdetail_answer3.getText().toString());
-		testdetailbean.setTESTDETAIL_DATA4(testdetail_answer4.getText().toString());
-		testdetailbean.setTESTDETAIL_DATA5(testdetail_answer5.getText().toString());
-		if(testdetail_rb1.isSelected()) {
-			testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer1.getText().toString());
-		}else if(testdetail_rb2.isSelected()) {
-			testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer2.getText().toString());
-		}else if(testdetail_rb3.isSelected()) {
-			testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer3.getText().toString());
-		}else if(testdetail_rb4.isSelected()) {
-			testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer4.getText().toString());
+		if(input != null) {
+			testdetailbean = new TestDetailBean();
+			testdetailbean.setTESTDETAIL_ID_PK(CommonController.MakeId());
+			testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
+			testdetailbean.setTESTDETAIL_IMAGE_PATH(filename);
+			testdetailbean.setTESTDETAIL_IMAGE(input);
+			testdetailbean.setTESTDETAIL_DATA1(testdetail_answer1.getText().toString());
+			testdetailbean.setTESTDETAIL_DATA2(testdetail_answer2.getText().toString());
+			testdetailbean.setTESTDETAIL_DATA3(testdetail_answer3.getText().toString());
+			testdetailbean.setTESTDETAIL_DATA4(testdetail_answer4.getText().toString());
+			testdetailbean.setTESTDETAIL_DATA5(testdetail_answer5.getText().toString());
+			if(testdetail_rb1.isSelected()) {
+				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer1.getText().toString());
+			}else if(testdetail_rb2.isSelected()) {
+				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer2.getText().toString());
+			}else if(testdetail_rb3.isSelected()) {
+				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer3.getText().toString());
+			}else if(testdetail_rb4.isSelected()) {
+				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer4.getText().toString());
+			}else {
+				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer5.getText().toString());
+			}
+			testdetailbean.setTESTDETAIL_WRITER(login_id);
+			((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
+			TestDetailAdd detailAdd = new TestDetailAdd();
+			detailAdd.insertTestDetail(testdetailbean);
 		}else {
-			testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer5.getText().toString());
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle(config.StaticProperty.alerttitlenoimage());
+			alert.setHeaderText(config.StaticProperty.alertputimage());
+			alert.showAndWait();
 		}
-		testdetailbean.setTESTDETAIL_WRITER(login_id);
-	    ((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
-	    TestDetailAdd detailAdd = new TestDetailAdd();
-	    detailAdd.insertTestDetail(testdetailbean);
 	}
 	@FXML
 	private void Quest1Group1Action(ActionEvent action) {
