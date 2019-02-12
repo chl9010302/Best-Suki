@@ -60,9 +60,9 @@ public class TestAdd {
 		this.test_btndetail = new Button("Details");
 		test_btndetail.setOnAction(event -> {
 			test_id = ""; // 초기화
-			test_id = test_id_pk.get();
+			test_id = selectgetTestId1(TEST_ID_PK);
 			try {
-				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview());
+				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestingview());
 			} catch (IOException e) {e.printStackTrace(); }
 		});
 	}
@@ -79,20 +79,20 @@ public class TestAdd {
 			stmt = con.createStatement();
 			String updatesql = "UPDATE "+config.StaticProperty.gettest_tb()
 			+" SET TEST_SUBTITLE = '" + testbean.getTEST_SUBTITLE() 
-			+ "', TEST_ID1_FK = '" + testbean.getTEST_ID1_FK() 
-			+ "', TEST_ID2_FK = '" + testbean.getTEST_ID2_FK() 
-			+ "', TEST_ID3_FK = '" + testbean.getTEST_ID3_FK() 
-			+ "', TEST_ID4_FK = '" + testbean.getTEST_ID4_FK() 
-			+ "', TEST_ID5_FK = '" + testbean.getTEST_ID5_FK() 
-			+ "', TEST_ID6_FK = '" + testbean.getTEST_ID6_FK() 
-			+ "', TEST_ID7_FK = '" + testbean.getTEST_ID7_FK() 
-			+ "', TEST_ID8_FK = '" + testbean.getTEST_ID8_FK() 
-			+ "', TEST_ID9_FK = '" + testbean.getTEST_ID9_FK() 
-			+ "', TEST_ID10_FK = '" + testbean.getTEST_ID10_FK() 
-			+ "', TEST_ID11_FK = '" + testbean.getTEST_ID11_FK() 
-			+ "', TEST_ID12_FK = '" + testbean.getTEST_ID12_FK() 
-			+ "', TEST_ID13_FK = '" + testbean.getTEST_ID13_FK()
-			+ "', TEST_ID14_FK = '" + testbean.getTEST_ID14_FK() 
+			+ "', TESTDETAIL_ID1_FK = '" + testbean.getTESTDETAIL_ID1_FK() 
+			+ "', TESTDETAIL_ID2_FK = '" + testbean.getTESTDETAIL_ID2_FK() 
+			+ "', TESTDETAIL_ID3_FK = '" + testbean.getTESTDETAIL_ID3_FK() 
+			+ "', TESTDETAIL_ID4_FK = '" + testbean.getTESTDETAIL_ID4_FK() 
+			+ "', TESTDETAIL_ID5_FK = '" + testbean.getTESTDETAIL_ID5_FK() 
+			+ "', TESTDETAIL_ID6_FK = '" + testbean.getTESTDETAIL_ID6_FK() 
+			+ "', TESTDETAIL_ID7_FK = '" + testbean.getTESTDETAIL_ID7_FK() 
+			+ "', TESTDETAIL_ID8_FK = '" + testbean.getTESTDETAIL_ID8_FK() 
+			+ "', TESTDETAIL_ID9_FK = '" + testbean.getTESTDETAIL_ID9_FK() 
+			+ "', TESTDETAIL_ID10_FK = '" + testbean.getTESTDETAIL_ID10_FK() 
+			+ "', TESTDETAIL_ID11_FK = '" + testbean.getTESTDETAIL_ID11_FK() 
+			+ "', TESTDETAIL_ID12_FK = '" + testbean.getTESTDETAIL_ID12_FK() 
+			+ "', TESTDETAIL_ID13_FK = '" + testbean.getTESTDETAIL_ID13_FK()
+			+ "', TESTDETAIL_ID14_FK = '" + testbean.getTESTDETAIL_ID14_FK() 
 			+ "' WHERE TEST_ID_PK = '" + testbean.getTEST_ID_PK() + "';";
 			stmt.executeUpdate(updatesql);
 			return true;
@@ -107,20 +107,20 @@ public class TestAdd {
 			pstmt = conn.prepareStatement(insertsql);
 			pstmt.setString(1, testbean.getTEST_ID_PK());
 			pstmt.setString(2, testbean.getTEST_SUBTITLE());
-			pstmt.setString(3, testbean.getTEST_ID1_FK());
-			pstmt.setString(4, testbean.getTEST_ID2_FK());
-			pstmt.setString(5, testbean.getTEST_ID3_FK());
-			pstmt.setString(6, testbean.getTEST_ID4_FK());
-			pstmt.setString(7, testbean.getTEST_ID5_FK());
-			pstmt.setString(8, testbean.getTEST_ID6_FK());
-			pstmt.setString(9, testbean.getTEST_ID7_FK());
-			pstmt.setString(10, testbean.getTEST_ID8_FK());
-			pstmt.setString(11, testbean.getTEST_ID9_FK());
-			pstmt.setString(12, testbean.getTEST_ID10_FK());
-			pstmt.setString(13, testbean.getTEST_ID11_FK());
-			pstmt.setString(14, testbean.getTEST_ID12_FK());
-			pstmt.setString(15, testbean.getTEST_ID13_FK());
-			pstmt.setString(16, testbean.getTEST_ID14_FK());
+			pstmt.setString(3, testbean.getTESTDETAIL_ID1_FK());
+			pstmt.setString(4, testbean.getTESTDETAIL_ID2_FK());
+			pstmt.setString(5, testbean.getTESTDETAIL_ID3_FK());
+			pstmt.setString(6, testbean.getTESTDETAIL_ID4_FK());
+			pstmt.setString(7, testbean.getTESTDETAIL_ID5_FK());
+			pstmt.setString(8, testbean.getTESTDETAIL_ID6_FK());
+			pstmt.setString(9, testbean.getTESTDETAIL_ID7_FK());
+			pstmt.setString(10, testbean.getTESTDETAIL_ID8_FK());
+			pstmt.setString(11, testbean.getTESTDETAIL_ID9_FK());
+			pstmt.setString(12, testbean.getTESTDETAIL_ID10_FK());
+			pstmt.setString(13, testbean.getTESTDETAIL_ID11_FK());
+			pstmt.setString(14, testbean.getTESTDETAIL_ID12_FK());
+			pstmt.setString(15, testbean.getTESTDETAIL_ID13_FK());
+			pstmt.setString(16, testbean.getTESTDETAIL_ID14_FK());
 			pstmt.setString(17, testbean.getTEST_WRITER());
 			pstmt.executeUpdate();
 			conn.close();
@@ -172,5 +172,19 @@ public class TestAdd {
 					result = rs.getString("TEST_SUBTITLE");
 			}
 		}catch(Exception e) { } return result;
+	}
+	public String selectgetTestId1(String id) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT TESTDETAIL_ID1_FK FROM "+config.StaticProperty.gettest_tb()+" WHERE TEST_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("TESTDETAIL_ID1_FK") != null)
+					result = rs.getString("TESTDETAIL_ID1_FK");
+			}
+		}catch(Exception e) { e.printStackTrace();} return result;
 	}
 }

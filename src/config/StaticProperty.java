@@ -130,6 +130,9 @@ public class StaticProperty {
 	public static String getnavaddtestview(){
 		return properties.getProperty("nav24");
 	}
+	public static String getnavtestingview(){
+		return properties.getProperty("nav25");
+	}
 	public static String alertlogout(){
 		return properties.getProperty("alert1");
 	}

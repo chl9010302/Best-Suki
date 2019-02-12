@@ -65,33 +65,33 @@ public class AddTestViewController implements Initializable {
 			testbean.setTEST_WRITER(login_id);
 			for(int i = 1 ; i < getresult.size()+1; i++) {
 				if(i==1) {
-					testbean.setTEST_ID1_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID1_FK(getresult.get(i-1));
 				}else if(i==2) {
-					testbean.setTEST_ID2_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID2_FK(getresult.get(i-1));
 				}else if(i==3) {
-					testbean.setTEST_ID3_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID3_FK(getresult.get(i-1));
 				}else if(i==4) {
-					testbean.setTEST_ID4_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID4_FK(getresult.get(i-1));
 				}else if(i==5) {
-					testbean.setTEST_ID5_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID5_FK(getresult.get(i-1));
 				}else if(i==6) {
-					testbean.setTEST_ID6_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID6_FK(getresult.get(i-1));
 				}else if(i==7) {
-					testbean.setTEST_ID7_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID7_FK(getresult.get(i-1));
 				}else if(i==8) {
-					testbean.setTEST_ID8_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID8_FK(getresult.get(i-1));
 				}else if(i==9) {
-					testbean.setTEST_ID9_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID9_FK(getresult.get(i-1));
 				}else if(i==10) {
-					testbean.setTEST_ID10_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID10_FK(getresult.get(i-1));
 				}else if(i==11) {
-					testbean.setTEST_ID11_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID11_FK(getresult.get(i-1));
 				}else if(i==12) {
-					testbean.setTEST_ID12_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID12_FK(getresult.get(i-1));
 				}else if(i==13) {
-					testbean.setTEST_ID13_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID13_FK(getresult.get(i-1));
 				}else if(i==14) {
-					testbean.setTEST_ID14_FK(getresult.get(i-1));
+					testbean.setTESTDETAIL_ID14_FK(getresult.get(i-1));
 				}
 			}
 			testadd.insertTest(testbean);
