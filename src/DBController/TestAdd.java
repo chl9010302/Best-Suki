@@ -91,7 +91,7 @@ public class TestAdd {
 			+ "', TEST_ID10_FK = '" + testbean.getTEST_ID10_FK() 
 			+ "', TEST_ID11_FK = '" + testbean.getTEST_ID11_FK() 
 			+ "', TEST_ID12_FK = '" + testbean.getTEST_ID12_FK() 
-			+ "', TEST_ID13_FK = '" + testbean.getTEST_ID13_FK() 
+			+ "', TEST_ID13_FK = '" + testbean.getTEST_ID13_FK()
 			+ "', TEST_ID14_FK = '" + testbean.getTEST_ID14_FK() 
 			+ "' WHERE TEST_ID_PK = '" + testbean.getTEST_ID_PK() + "';";
 			stmt.executeUpdate(updatesql);

@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -26,7 +27,8 @@ public class AddTestViewController implements Initializable {
 	//Declare FXML
 	@FXML private TableView<TestDetailAdd> testTableView;
 	@FXML private TextField ColTest_Subtitle;
-	@FXML private TableColumn<TestDetailAdd, String> ColTest_Writer, ColTest_Date, ColTest_Check;
+	@FXML private TableColumn<TestDetailAdd, CheckBox> ColTest_Check;
+	@FXML private TableColumn<TestDetailAdd, String> ColTest_Writer, ColTest_Date;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview()); }
@@ -61,7 +63,7 @@ public class AddTestViewController implements Initializable {
 	}
 	public void initialize(URL url, ResourceBundle rb) { 
 		TestDetailAdd testdetailadd = new TestDetailAdd();
-		ColTest_Check.setCellValueFactory(new PropertyValueFactory<TestDetailAdd, String>("testdetail_checkboxdetail"));
+		ColTest_Check.setCellValueFactory(new PropertyValueFactory<TestDetailAdd, CheckBox>("testdetail_checkboxdetail"));
 		ColTest_Writer.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_writer());
 		ColTest_Date.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_time());
 		testTableView.setItems(testdetailadd.gettestdetailadd());

@@ -106,7 +106,7 @@ public class TestDetailAdd {
 		//이미지 연결 시에는 PreparedStatement를 통해 setBinaryStream을사용해야 함.
 		String updatesql = "UPDATE "+config.StaticProperty.gettestdetail_tb()
 		+" SET TESTDETAIL_SUBTITLE = '" + testdetailbean.getTESTDETAIL_SUBTITLE() 
-		+ "', TESTDETAIL_DATA1 = '" + testdetailbean.getTESTDETAIL_DATA1() 
+		+ "', TESTDETAIL_DATA1 = '" + testdetailbean.getTESTDETAIL_DATA1()
 		+ "', TESTDETAIL_DATA2 = '" + testdetailbean.getTESTDETAIL_DATA2() 
 		+ "', TESTDETAIL_DATA3 = '" + testdetailbean.getTESTDETAIL_DATA3() 
 		+ "', TESTDETAIL_DATA4 = '" + testdetailbean.getTESTDETAIL_DATA4() 
@@ -263,7 +263,6 @@ public class TestDetailAdd {
 			}
 		}catch(Exception e) { } return result;
 	}
-	
 	public File selectIMAGE(String id) {
 		try {
 			StringBuilder sb = new StringBuilder();
