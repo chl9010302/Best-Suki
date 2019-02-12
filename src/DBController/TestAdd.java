@@ -19,10 +19,10 @@ public class TestAdd {
 	TestBean testbean;
 	Connection conn = null;
 	Statement stmt = null;
-	public static String test_id = "";
-	public static String testing_id = "";
-	public static int pagenumber;
-	public static int MAXPAGE;
+	public static String test_id_fk = ""; // test_id_fk를 알아내기 위함
+	public static String testing_id = ""; // test하고자 하는 id를 전체 뷰에서 사용하기 위함
+	public static int pagenumber; // testing 중에 페이지를기억하기 위함
+	public static int maxpage; // 테스트를 진행하기 위한 초기 값 설정
 	private StringProperty test_id_pk, test_subtitle, test_writer, test_time;
 	private Button test_btndetail;
 	public StringProperty getTest_writer() {
@@ -64,10 +64,10 @@ public class TestAdd {
 		test_btndetail.setOnAction(event -> {
 			pagenumber = 1;
 			testing_id = "";
-			test_id = ""; // 초기화
+			test_id_fk = ""; // 초기화
 			testing_id = TEST_ID_PK;
-			MAXPAGE = ccount(TEST_ID_PK);
-			test_id = selectgetTestId(TEST_ID_PK);
+			maxpage = ccount(TEST_ID_PK);
+			test_id_fk = selectgetTestId(TEST_ID_PK);
 			try {
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestingview());
 			} catch (IOException e) {e.printStackTrace(); }

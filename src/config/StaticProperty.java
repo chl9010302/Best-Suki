@@ -166,6 +166,9 @@ public class StaticProperty {
 	public static String alertputvideopath(){
 		return properties.getProperty("alert11");
 	}
+	public static String alertcongraturations(){
+		return properties.getProperty("alert12");
+	}
 	public static String alerttitlemessage(){
 		return properties.getProperty("alerttitle1");
 	}

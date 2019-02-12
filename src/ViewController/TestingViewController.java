@@ -2,17 +2,23 @@ package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import DBController.TestAdd;
 import DBController.TestDetailAdd;
+import DBController.UserJoin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -34,17 +40,23 @@ public class TestingViewController implements Initializable {
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML
 	private void nextAction(ActionEvent event) {
-		TestAdd.MAXPAGE--;
-		if(TestAdd.MAXPAGE != 0) {
+		TestAdd.maxpage--;
+		if(TestAdd.maxpage != 0) {
 			TestAdd testadd = new TestAdd();
 			++TestAdd.pagenumber;
-			TestAdd.test_id = testadd.selectgetTestId(TestAdd.testing_id);
+			TestAdd.test_id_fk = testadd.selectgetTestId(TestAdd.testing_id);
 			try {
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestingview());
 			} catch (IOException e) {e.printStackTrace(); }
 		}else {
 			try {
-				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview());
+				ButtonType YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
+				Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcongraturations(), YES);
+				alert.setTitle(config.StaticProperty.alertcongraturations());
+				Optional<ButtonType> result = alert.showAndWait();
+				if (result.orElse(YES) == YES) {
+					CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview());
+				}
 			} catch (IOException e) {e.printStackTrace(); }
 		}
 	}
@@ -52,20 +64,22 @@ public class TestingViewController implements Initializable {
 	private void Quest1Group1Action(ActionEvent action) {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
-		if(TestAdd.MAXPAGE == 1) {
+		if(TestAdd.maxpage == 1) {
 			btnSubmit.setText("제출하기");
+			label_TestingView.setText("마지막 문제입니다.");
+		}else {
+			int i = TestAdd.maxpage-1;
+			label_TestingView.setText("TestingView : " + i + " 문제 남았습니다.");
 		}
-		label_TestingView.setText("TestingView : " + TestAdd.MAXPAGE + " 문제 남았습니다.");
 		TestDetailAdd testdetailadd = new TestDetailAdd();
 		TestAdd testadd = new TestAdd();
-		System.out.println(TestAdd.pagenumber);
-		testdetail_subtitle.setText(testdetailadd.selectSubtitle(testadd.test_id));
-		testdetail_answer1.setText(testdetailadd.selectDATA1(testadd.test_id));
-		testdetail_answer2.setText(testdetailadd.selectDATA2(testadd.test_id));
-		testdetail_answer3.setText(testdetailadd.selectDATA3(testadd.test_id));
-		testdetail_answer4.setText(testdetailadd.selectDATA4(testadd.test_id));
-		testdetail_answer5.setText(testdetailadd.selectDATA5(testadd.test_id));
-		image = new Image(testdetailadd.selectIMAGE(testadd.test_id).toURI().toString(),623,150,true,true);
+		testdetail_subtitle.setText(testdetailadd.selectSubtitle(testadd.test_id_fk));
+		testdetail_answer1.setText(testdetailadd.selectDATA1(testadd.test_id_fk));
+		testdetail_answer2.setText(testdetailadd.selectDATA2(testadd.test_id_fk));
+		testdetail_answer3.setText(testdetailadd.selectDATA3(testadd.test_id_fk));
+		testdetail_answer4.setText(testdetailadd.selectDATA4(testadd.test_id_fk));
+		testdetail_answer5.setText(testdetailadd.selectDATA5(testadd.test_id_fk));
+		image = new Image(testdetailadd.selectIMAGE(testadd.test_id_fk).toURI().toString(),623,150,true,true);
 		testdetail_imageview.setImage(image);
 	}
 }
