@@ -303,7 +303,7 @@ public class TestDetailAdd {
 		try {
 			StringBuilder sb = new StringBuilder();
 			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT COUNT(*) FROM TESTDETAIL_TB")
+			String sql = sb.append("SELECT COUNT(*) FROM " +config.StaticProperty.gettestdetail_tb())
 					.append(";").toString();
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);

@@ -20,6 +20,9 @@ public class TestAdd {
 	Connection conn = null;
 	Statement stmt = null;
 	public static String test_id = "";
+	public static String testing_id = "";
+	public static int pagenumber;
+	public static int MAXPAGE;
 	private StringProperty test_id_pk, test_subtitle, test_writer, test_time;
 	private Button test_btndetail;
 	public StringProperty getTest_writer() {
@@ -59,8 +62,12 @@ public class TestAdd {
 		this.test_time = new SimpleStringProperty(TEST_TIME);
 		this.test_btndetail = new Button("Details");
 		test_btndetail.setOnAction(event -> {
+			pagenumber = 1;
+			testing_id = "";
 			test_id = ""; // 초기화
-			test_id = selectgetTestId1(TEST_ID_PK);
+			testing_id = TEST_ID_PK;
+			MAXPAGE = ccount(TEST_ID_PK);
+			test_id = selectgetTestId(TEST_ID_PK);
 			try {
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestingview());
 			} catch (IOException e) {e.printStackTrace(); }
@@ -173,17 +180,39 @@ public class TestAdd {
 			}
 		}catch(Exception e) { } return result;
 	}
-	public String selectgetTestId1(String id) {
+	public String selectgetTestId(String id) {
 		String result = "";
 		try {
 			StringBuilder sb = new StringBuilder();
 			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT TESTDETAIL_ID1_FK FROM "+config.StaticProperty.gettest_tb()+" WHERE TEST_ID_PK = '").append(id).append("';").toString();
+			String sql = sb.append("SELECT TESTDETAIL_ID" + pagenumber + "_FK FROM "+config.StaticProperty.gettest_tb()+" WHERE TEST_ID_PK = '").append(id).append("';").toString();
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				if (rs.getString("TESTDETAIL_ID1_FK") != null)
-					result = rs.getString("TESTDETAIL_ID1_FK");
+				if (rs.getString("TESTDETAIL_ID" + pagenumber + "_FK") != null)
+					result = rs.getString("TESTDETAIL_ID" + pagenumber + "_FK");
+			}
+		}catch(Exception e) { e.printStackTrace();} return result;
+	}
+	public int ccount(String id) {
+		int i = 1;
+		while(selectgetcount(id,i) != "") {
+			i++;
+			selectgetcount(id,i);
+		}
+		return i-1;
+	}
+	public String selectgetcount(String id, int i) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT TESTDETAIL_ID" + i + "_FK FROM "+config.StaticProperty.gettest_tb()+" WHERE TEST_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("TESTDETAIL_ID" + i + "_FK") != null)
+					result = rs.getString("TESTDETAIL_ID" + i + "_FK");
 			}
 		}catch(Exception e) { e.printStackTrace();} return result;
 	}
