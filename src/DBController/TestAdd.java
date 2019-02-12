@@ -67,7 +67,7 @@ public class TestAdd {
 		});
 	}
 	public TestAdd(TestBean testbean) {
-		insertTestDetail(testbean);
+		insertTest(testbean);
 	}
 	public boolean updateTestDetail(TestBean testbean) {
 		DBConnectionKeeping dbConnectionKeeping;
@@ -98,8 +98,8 @@ public class TestAdd {
 			return true;
 		} catch (SQLException e) { } return false;
 	}
-	public boolean insertTestDetail(TestBean testbean) {
-		String insertsql = "INSERT INTO "+config.StaticProperty.gettest_tb()+"(TEST_ID_PK, TEST_SUBTITLE, TEST_ID1_FK, TEST_ID2_FK, TEST_ID3_FK, TEST_ID4_FK, TEST_ID5_FK, TEST_ID6_FK, TEST_ID7_FK, TEST_ID8_FK, TEST_ID9_FK, TEST_ID10_FK, TEST_ID11_FK, TEST_ID12_FK, TEST_ID13_FK, TEST_ID14_FK, TEST_WRITER, TEST_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
+	public boolean insertTest(TestBean testbean) {
+		String insertsql = "INSERT INTO "+config.StaticProperty.gettest_tb()+"(TEST_ID_PK, TEST_SUBTITLE, TESTDETAIL_ID1_FK, TESTDETAIL_ID2_FK, TESTDETAIL_ID3_FK, TESTDETAIL_ID4_FK, TESTDETAIL_ID5_FK, TESTDETAIL_ID6_FK, TESTDETAIL_ID7_FK, TESTDETAIL_ID8_FK, TESTDETAIL_ID9_FK, TESTDETAIL_ID10_FK, TESTDETAIL_ID11_FK, TESTDETAIL_ID12_FK, TESTDETAIL_ID13_FK, TESTDETAIL_ID14_FK, TEST_WRITER, TEST_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
 		PreparedStatement pstmt = null;
 		this.testbean = testbean;
 		try {
@@ -126,7 +126,7 @@ public class TestAdd {
 			conn.close();
 			pstmt.close();
 			return true;
-		} catch (SQLException e) {
+		} catch (SQLException e) { e.printStackTrace();
 		} finally {
 			try {
 				if (conn != null)

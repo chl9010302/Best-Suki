@@ -2,9 +2,12 @@ package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import DBController.TestAdd;
 import DBController.TestDetailAdd;
 import DBModel.TestBean;
 import javafx.event.ActionEvent;
@@ -53,13 +56,47 @@ public class AddTestViewController implements Initializable {
 	@FXML
 	private void addAction(ActionEvent event) {
 		try {
+			ArrayList<String> getresult = CheckFunction(ColTest_Check);
 			testbean = new TestBean();
 			TestDetailAdd testdetailadd = new TestDetailAdd();
+			TestAdd testadd = new TestAdd();
+			testbean.setTEST_ID_PK(ColTest_Subtitle.getText().toString());
 			testbean.setTEST_SUBTITLE(ColTest_Subtitle.getText().toString());
 			testbean.setTEST_WRITER(login_id);
-//			testadd.insertTestDetail(testbean);
+			for(int i = 1 ; i < getresult.size()+1; i++) {
+				if(i==1) {
+					testbean.setTEST_ID1_FK(getresult.get(i-1));
+				}else if(i==2) {
+					testbean.setTEST_ID2_FK(getresult.get(i-1));
+				}else if(i==3) {
+					testbean.setTEST_ID3_FK(getresult.get(i-1));
+				}else if(i==4) {
+					testbean.setTEST_ID4_FK(getresult.get(i-1));
+				}else if(i==5) {
+					testbean.setTEST_ID5_FK(getresult.get(i-1));
+				}else if(i==6) {
+					testbean.setTEST_ID6_FK(getresult.get(i-1));
+				}else if(i==7) {
+					testbean.setTEST_ID7_FK(getresult.get(i-1));
+				}else if(i==8) {
+					testbean.setTEST_ID8_FK(getresult.get(i-1));
+				}else if(i==9) {
+					testbean.setTEST_ID9_FK(getresult.get(i-1));
+				}else if(i==10) {
+					testbean.setTEST_ID10_FK(getresult.get(i-1));
+				}else if(i==11) {
+					testbean.setTEST_ID11_FK(getresult.get(i-1));
+				}else if(i==12) {
+					testbean.setTEST_ID12_FK(getresult.get(i-1));
+				}else if(i==13) {
+					testbean.setTEST_ID13_FK(getresult.get(i-1));
+				}else if(i==14) {
+					testbean.setTEST_ID14_FK(getresult.get(i-1));
+				}
+			}
+			testadd.insertTest(testbean);
 			CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview());
-		}catch(Exception e) { }
+		}catch(Exception e) {e.printStackTrace(); }
 	}
 	public void initialize(URL url, ResourceBundle rb) { 
 		TestDetailAdd testdetailadd = new TestDetailAdd();
@@ -67,5 +104,16 @@ public class AddTestViewController implements Initializable {
 		ColTest_Writer.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_writer());
 		ColTest_Date.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_time());
 		testTableView.setItems(testdetailadd.gettestdetailadd());
+	}
+	private ArrayList<String> CheckFunction(TableColumn<TestDetailAdd, CheckBox> tablecolumn) {
+		TestDetailAdd testdetailadd = new TestDetailAdd();
+		ArrayList<String> checkarraylist = new ArrayList<>();
+		ArrayList<String> result = new ArrayList<>();
+		for(int i=0; i<testdetailadd.count(); i++) {
+			if(tablecolumn.getCellData(i).isSelected()) {
+				checkarraylist.add(testdetailadd.selectId(tablecolumn.getCellData(i).getText()));
+			}
+		}
+		return checkarraylist;
 	}
 }

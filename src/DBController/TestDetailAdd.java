@@ -179,6 +179,20 @@ public class TestDetailAdd {
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) { }
 	}
+	public String selectId(String subtitle) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT TESTDETAIL_ID_PK FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_SUBTITLE = '").append(subtitle).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("TESTDETAIL_ID_PK") != null)
+					result = rs.getString("TESTDETAIL_ID_PK");
+			}
+		}catch(Exception e) { } return result;
+	}
 	public String selectSubtitle(String id) {
 		String result = "";
 		try {
@@ -281,5 +295,20 @@ public class TestDetailAdd {
 			}
 			return theFile;
 		}catch(Exception e) { } return null;
+	}
+	public int count(){
+		int rowcount = 0;
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT COUNT(*) FROM TESTDETAIL_TB")
+					.append(";").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs.next()) rowcount = rs.getInt(1);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return rowcount;
 	}
 }
