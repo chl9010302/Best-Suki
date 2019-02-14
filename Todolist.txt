@@ -11,6 +11,8 @@
 [완성]Testview 구현하기
 [완성] VIDEO 뷰 구현 완성 - 기능 해야함.
 [완성] 이클립스 한번에 단어 바꾸기 가능한지?
+[완성] signupview mobile 및 parent mobile -> 3칸으로 변경
+[완성] Myeditview gender radiobox, age datepicker, mobile 및 parent mobile -> 3칸으로 변경
 
 DB 한글 < 수민 >
 문자보내기 < 성화 >
@@ -29,8 +31,6 @@ Btn_Edit 함수명 변경
 4. 게시판 VIEW 값(FXML에 fx:id) 및 Add에 값 매핑 반영
 
 ----------
-signupview mobile 및 parent mobile -> 3칸으로 변경
-Myeditview gender radiobox, age datepicker, mobile 및 parent mobile -> 3칸으로 변경
 address 주소찾기 가능한지?
 stastics 20개 -> 다음페이지 가능한지?
 test info 수정하는 버튼 추가

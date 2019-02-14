@@ -207,8 +207,12 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <RadioButton fx:id="rb_male" mnemonicParsing="false" text="Male" />
-                              <RadioButton fx:id="rb_female" mnemonicParsing="false" text="Female">
+                              <RadioButton fx:id="rb_male" mnemonicParsing="false" text="Male">
+                              	<toggleGroup>
+                        			<ToggleGroup fx:id="GenderGroup" />
+                     			</toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="rb_female" mnemonicParsing="false" text="Female" toggleGroup="$GenderGroup">
                                  <HBox.margin>
                                     <Insets left="20.0" />
                                  </HBox.margin>
@@ -225,7 +229,26 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserPhone" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                              <Label text="010 - " textFill="WHITE">
+                                 <font>
+                                    <Font name="Tahoma" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="EditProperty_UserPhone_Mid" prefWidth="60.0" style="-fx-border-color: white; -fx-border-width: 1px; -fx-background-color: transparent; -fx-alignment: center;">
+                                 <font>
+                                    <Font name="Tahoma" size="11.0" />
+                                 </font>
+                              </TextField>
+                              <Label text=" - " textFill="WHITE">
+                                 <font>
+                                    <Font name="Tahoma" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="EditProperty_UserPhone_End" prefWidth="60.0" style="-fx-border-color: white; -fx-border-width: 1px; -fx-background-color: transparent; -fx-alignment: center;">
+                                 <font>
+                                    <Font name="Tahoma" size="11.0" />
+                                 </font>
+                              </TextField>
                            </children>
                         </HBox>
                         <HBox prefHeight="30.0" prefWidth="200.0">
@@ -238,7 +261,26 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserFmphone" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                              <Label text="010 - " textFill="WHITE">
+                                 <font>
+                                    <Font name="Tahoma" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="EditProperty_UserFmphone_Mid" prefWidth="60.0" style="-fx-border-color: white; -fx-border-width: 1px; -fx-background-color: transparent; -fx-alignment: center;">
+                                 <font>
+                                    <Font name="Tahoma" size="11.0" />
+                                 </font>
+                              </TextField>
+                              <Label text=" - " textFill="WHITE">
+                                 <font>
+                                    <Font name="Tahoma" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="EditProperty_UserFmphone_End" prefWidth="60.0" style="-fx-border-color: white; -fx-border-width: 1px; -fx-background-color: transparent; -fx-alignment: center;">
+                                 <font>
+                                    <Font name="Tahoma" size="11.0" />
+                                 </font>
+                              </TextField>
                            </children>
                         </HBox>
                      </children>

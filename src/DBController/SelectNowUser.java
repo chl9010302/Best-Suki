@@ -40,4 +40,24 @@ public class SelectNowUser {
 			} return userbean;
 		} catch (Exception e) { e.printStackTrace();} return null;
 	}
+	public static String getSelectPasswordUser(String login_Id) {
+		String result = "";
+		DBConnectionKeeping dbConnectionKeeping;
+		if (usingstaticfunction.DBConnectionKeeping.con == null)
+			dbConnectionKeeping = new DBConnectionKeeping();
+		StringBuilder sb = new StringBuilder();
+		String sql = sb.append("SELECT USER_PASSWORD FROM  "+config.StaticProperty.getuser_tb()+" WHERE").append(" USER_ID_PK = '").append(login_Id).append("';")
+				.toString();
+		Connection con = usingstaticfunction.DBConnectionKeeping.con;
+		Statement stmt = null;
+		try {
+			stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if(rs.getString("USER_PASSWORD") != null) {
+					result = rs.getString("USER_PASSWORD");
+				}
+			} return result;
+		} catch (Exception e) { e.printStackTrace();} return null;
+	}
 }

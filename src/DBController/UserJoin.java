@@ -17,7 +17,7 @@ public class UserJoin {
 		insert(userjoin);
 	}
 	public boolean insert(UserBean userjoin) {
-		String insertsql = "INSERT INTO "+config.StaticProperty.getuser_tb()+"(USER_ID_PK, USER_PASSWORD, USER_NAME, USER_ADDRESS, USER_SCHOOLNAME, USER_AGE, USER_GENDER, USER_PHONE, USER_FMPHONE, USER_TEACHERSESSION) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		String insertsql = "INSERT INTO "+config.StaticProperty.getuser_tb()+"(USER_ID_PK, USER_PASSWORD, USER_NAME, USER_ADDRESS, USER_SCHOOLNAME, USER_AGE, USER_GENDER, USER_PHONE, USER_FMPHONE, USER_TEACHERSESSION, USER_LOGINSESSION) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	    PreparedStatement pstmt = null;
 	    userbean = userjoin;
 		try {
@@ -32,7 +32,8 @@ public class UserJoin {
 	  			pstmt.setString(7, userbean.getUSER_GENDER()); 
 	  			pstmt.setString(8, userbean.getUSER_PHONE()); 
 	  			pstmt.setString(9, userbean.getUSER_FMPHONE()); 
-	  			pstmt.setString(10, userbean.getUSER_TEACHERSESSION()); 
+	  			pstmt.setString(10, userbean.getUSER_LOGINSESSION());
+	  			pstmt.setString(11, userbean.getUSER_TEACHERSESSION()); 
 	  	        pstmt.executeUpdate();
 			conn.close();
 			pstmt.close();

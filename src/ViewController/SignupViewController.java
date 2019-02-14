@@ -26,10 +26,11 @@ public class SignupViewController implements Initializable {
 	//Declare JAVA
 	private UserBean user; // 회원가입 시 User 정보를 송신하기 위함.
 	private String usergender = "";
+	private String UserPhone, UserFmPhone;
 	Sha256 sha256 = new Sha256();
 	//Declare FXML
 	@FXML private ToggleGroup GenderGroup;
-	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone, UserFmphone;
+	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone_Mid, UserPhone_End, UserFmphone_Mid, UserFmphone_End;
 	@FXML private DatePicker UserAge;
 	@FXML private RadioButton UserGenderMale, UserGenderFeMale;
 	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavsignupview()); }
@@ -38,6 +39,8 @@ public class SignupViewController implements Initializable {
 	private void Signup(ActionEvent event) throws IOException, NoSuchAlgorithmException {
 		LocalDate localDate = UserAge.getValue();
 		// 회원가입 시 정보가  인터페이스됨.
+		UserPhone = "010-" + UserPhone_Mid.getText().toString() + "-" + UserPhone_End.getText().toString();
+		UserFmPhone = "010-" + UserFmphone_Mid.getText().toString() + "-" + UserFmphone_End.getText().toString();
 		user = new UserBean();
 		user.setUSER_ID_PK(UserId.getText().toString());
 		user.setUSER_PASSWORD(sha256.sha256(UserPassword.getText()));
@@ -46,8 +49,8 @@ public class SignupViewController implements Initializable {
 		user.setUSER_SCHOOLNAME(UserSchoolName.getText().toString());
 		user.setUSER_AGE(localDate.toString());
 		user.setUSER_GENDER(usergender);
-		user.setUSER_PHONE(UserPhone.getText().toString());
-		user.setUSER_FMPHONE(UserFmphone.getText().toString());
+		user.setUSER_PHONE(UserPhone);
+		user.setUSER_FMPHONE(UserFmPhone);
 		user.setUSER_LOGINSESSION("0");
 		user.setUSER_TEACHERSESSION("0");
 		// 회원가입과 함께 Login Page로 이동됨.

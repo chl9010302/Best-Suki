@@ -13,6 +13,9 @@ public class UserDataUpdate {
 		UserUpdate(userbean, User_id);
 	}
 	public boolean UserUpdate(UserBean userbean, String User_id) {
+		if(userbean.getUSER_PASSWORD() == null) {
+			userbean.setUSER_PASSWORD(SelectNowUser.getSelectPasswordUser(User_id));
+		}
 		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
@@ -20,6 +23,7 @@ public class UserDataUpdate {
 		try {
 		Connection con = usingstaticfunction.DBConnectionKeeping.con;
 		stmt = con.createStatement();
+		System.out.println();
 		StringBuilder sb = new StringBuilder();
 		String sql = sb.append("UPDATE "+config.StaticProperty.getuser_tb()+" SET")
 				.append(" USER_ID_PK = '"+userbean.getUSER_ID_PK())

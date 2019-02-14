@@ -139,31 +139,58 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
-                  <TextField fx:id="UserPhone" prefWidth="230.0" promptText="MobileNumber (necessary)" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red;">
+                  <Label text="010 - " textFill="WHITE">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>
-                     <HBox.margin>
-                        <Insets bottom="10.0" />
-                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="UserPhone_Mid" prefWidth="90.0" style="-fx-border-color: white; -fx-border-width: 1px; -fx-background-color: transparent;">
+                     <font>
+                        <Font name="Tahoma" size="11.0" />
+                     </font>
+                  </TextField>
+                  <Label text=" - " textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="UserPhone_End" prefWidth="90.0" promptText="Mobile." style="-fx-border-color: white; -fx-border-width: 1px; -fx-background-color: transparent;">
+                     <font>
+                        <Font name="Tahoma" size="11.0" />
+                     </font>
                   </TextField>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
-                  <TextField fx:id="UserFmphone" prefWidth="230.0" promptText="FM MobileNumber (necessary)" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: red;">
+                  <Label text="010 - " textFill="WHITE">
                      <font>
-                        <Font name="Tahoma" size="15.0" />
+                        <Font name="Tahoma" size="16.0" />
                      </font>
-                     <HBox.margin>
-                        <Insets bottom="10.0" />
-                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="UserFmphone_Mid" prefWidth="90.0" style="-fx-border-color: white; -fx-border-width: 1px; -fx-background-color: transparent;">
+                     <font>
+                        <Font name="Tahoma" size="11.0" />
+                     </font>
+                  </TextField>
+                  <Label text=" - " textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="UserFmphone_End" prefWidth="90.0" promptText="FM Mobile." style="-fx-border-color: white; -fx-border-width: 1px; -fx-background-color: transparent;">
+                     <font>
+                        <Font name="Tahoma" size="11.0" />
+                     </font>
                   </TextField>
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
             <Button Id="Login" mnemonicParsing="false" onAction="#Signup" opacity="0.72" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3;" text="SIGN UP" textFill="WHITE">
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets bottom="5.0" top="10.0" />
                </VBox.margin>
                <font>
                   <Font name="Tahoma" size="14.0" />
