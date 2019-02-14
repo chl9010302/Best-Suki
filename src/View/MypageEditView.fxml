@@ -194,7 +194,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserAge" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                              <DatePicker fx:id="dp_birth" style="-fx-background-color: transparent;" />
                            </children>
                         </HBox>
                         <HBox prefHeight="30.0" prefWidth="200.0">
@@ -207,7 +207,12 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="EditProperty_UserGender" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
+                              <RadioButton fx:id="rb_male" mnemonicParsing="false" text="Male" />
+                              <RadioButton fx:id="rb_female" mnemonicParsing="false" text="Female">
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </RadioButton>
                            </children>
                         </HBox>
                         <HBox prefHeight="30.0" prefWidth="200.0">

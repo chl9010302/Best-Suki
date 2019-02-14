@@ -2,6 +2,7 @@ package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -16,7 +17,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
 public class MypageEditViewController implements Initializable {
@@ -25,6 +28,8 @@ public class MypageEditViewController implements Initializable {
 	//Declare FXML
 	@FXML private Label Mypage_UserId, EditProperty_UserPassword;
 	@FXML private TextField EditProperty_UserName,  EditProperty_UserAddress, EditProperty_UserSchoolName, EditProperty_UserAge, EditProperty_UserGender, EditProperty_UserPhone, EditProperty_UserFmphone;
+	@FXML private RadioButton rb_male, rb_female;
+	@FXML private DatePicker dp_birth;
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview()); }
 	@FXML private void NAV_TestBoardView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestboardview()); }
@@ -76,8 +81,10 @@ public class MypageEditViewController implements Initializable {
 			CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageeditpasswordview());
 		} catch (IOException e) { }
 	}
+	@SuppressWarnings("static-access")
 	public void initialize(URL url, ResourceBundle rb) {
 		try {
+			LocalDate localdate = null;
 			SelectNowUser selectnowuser = new SelectNowUser();
 			UserBean userbean;
 			userbean  = selectnowuser.getSelectUser(LoginViewController.login_id);
@@ -86,6 +93,11 @@ public class MypageEditViewController implements Initializable {
 			EditProperty_UserName.setText(userbean.getUSER_NAME());
 			EditProperty_UserAddress.setText(userbean.getUSER_ADDRESS());
 			EditProperty_UserSchoolName.setText(userbean.getUSER_SCHOOLNAME());
+			System.out.println(userbean.getUSER_AGE());
+			if(userbean.getUSER_AGE().equals("Male")) {
+				rb_male.setSelected(true);
+			}else { rb_female.setSelected(true); }
+			dp_birth.setValue(localdate.of(Integer.parseInt(userbean.getUSER_AGE().substring(0, 3)), Integer.parseInt(userbean.getUSER_AGE().substring(5, 6)),Integer.parseInt(userbean.getUSER_AGE().substring(8, 9))));
 			EditProperty_UserAge.setText(userbean.getUSER_AGE());
 			EditProperty_UserGender.setText(userbean.getUSER_GENDER());
 			EditProperty_UserPhone.setText(userbean.getUSER_PHONE());
