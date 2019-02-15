@@ -15,7 +15,7 @@
          <children>
             <ImageView fitHeight="600.0" fitWidth="400.0">
                <image>
-                  <Image url="@back.jpg" />
+                  <Image url="@../image/back.jpg" />
                </image>
             </ImageView>
             <AnchorPane layoutY="14.0" prefHeight="600.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">

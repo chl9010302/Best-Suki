@@ -13,7 +13,7 @@
    <children>
       <ImageView fitWidth="860.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@back.jpg" />
+            <Image url="@../image/back.jpg" />
          </image>
       </ImageView>
       <HBox alignment="CENTER_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="65.0" prefWidth="834.0">

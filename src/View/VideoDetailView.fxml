@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="860.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@back.jpg" />
+            <Image url="@../image/back.jpg" />
          </image>
       </ImageView>
       <HBox alignment="CENTER_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="65.0" prefWidth="834.0" AnchorPane.bottomAnchor="521.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="14.0">
