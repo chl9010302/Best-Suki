@@ -25,7 +25,7 @@
             <children>
                         <HBox prefHeight="42.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
                            <children>
-                    <Label alignment="TOP_LEFT" text="Make Test" textFill="WHITE">
+                    <Label alignment="TOP_LEFT" text="Make Testdetail" textFill="WHITE">
                       <font>
                         <Font name="System Bold" size="21.0" />
                       </font>
@@ -39,7 +39,7 @@
                                     <Insets left="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="testdetail_subtitle"  prefHeight="25.0" prefWidth="318.0" style="-fx-background-color: transparent; -fx-border-color: white;">
+                              <TextField fx:id="testdetail_subtitle" prefHeight="25.0" prefWidth="318.0" style="-fx-background-color: transparent; -fx-border-color: white;">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -83,7 +83,7 @@
                               </HBox>
                               <HBox prefHeight="30.0">
                                  <children>
-                                    <RadioButton fx:id="testdetail_rb1" mnemonicParsing="false" text="1. " textFill="WHITE" onAction="#Quest1Group1Action">
+                                    <RadioButton fx:id="testdetail_rb1" mnemonicParsing="false" onAction="#Quest1Group1Action" text="1. " textFill="WHITE">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="Quest1Group1" />
                                        </toggleGroup>
@@ -93,7 +93,7 @@
                               </HBox>
                               <HBox prefHeight="30.0">
                                  <children>
-                                    <RadioButton fx:id="testdetail_rb2" mnemonicParsing="false" text="2. " textFill="WHITE" toggleGroup="$Quest1Group1"/>
+                                    <RadioButton fx:id="testdetail_rb2" mnemonicParsing="false" text="2. " textFill="WHITE" toggleGroup="$Quest1Group1" />
                                     <TextField fx:id="testdetail_answer2" prefHeight="25.0" prefWidth="322.0" promptText="Answer 2" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                                  </children>
                               </HBox>
@@ -125,7 +125,7 @@
                         </VBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="200.0">
                            <children>
-                              <Button mnemonicParsing="false" style="-fx-border-color: white; -fx-border-width: 2px;" text="Save" textFill="WHITE" onAction="#saveAction" >
+                              <Button mnemonicParsing="false" onAction="#saveAction" style="-fx-border-color: white; -fx-border-width: 2px;" text="Save" textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
