@@ -20,19 +20,40 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#NAV_SignUpView" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #b59c9c" text="Sign up" textFill="#b59c9c">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+                     <children>
+                        <ImageView blendMode="OVERLAY" fitHeight="20.0" fitWidth="20.0">
+                           <image>
+                              <Image url="@../image/white%20icon/add-user-24.png" />
+                           </image>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#NAV_SignUpView" style="-fx-text-fill: #b59c9c;" text="Sign up" textFill="#b59c9c">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Tahoma" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+                     <children>
+                        <ImageView fitHeight="15.0" fitWidth="20.0">
+                           <image>
+                              <Image url="@../image/white%20icon/login-24.png" />
+                           </image>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#NAV_LoginView" style="-fx-background-color: transparent;" text="Login" textFill="WHITE">
+                           <font>
+                              <Font name="Tahoma" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
                      <HBox.margin>
-                        <Insets right="15.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
-                     <font>
-                        <Font name="Tahoma" size="16.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#NAV_LoginView" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white; -fx-border-color: white;" text="Login" textFill="WHITE">
-                     <font>
-                        <Font name="Tahoma" size="16.0" />
-                     </font>
-                  </Button>
+                  </HBox>
                </children>
             </HBox>
          </children>
@@ -41,10 +62,18 @@
          <children>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0">
+                     <image>
+                        <Image url="@../image/white%20icon/user-24.png" />
+                     </image>
+                  </ImageView>
                   <TextField fx:id="UserId" prefWidth="230.0" promptText="User ID" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </TextField>
                </children>
                <VBox.margin>
@@ -53,21 +82,33 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
                <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0">
+                     <image>
+                        <Image url="@../image/white%20icon/key-24.png" />
+                     </image>
+                  </ImageView>
                   <PasswordField fx:id="UserPassword" onKeyPressed="#setOnKeyPressed" prefWidth="230.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
                      <font>
                         <Font name="Tahoma" size="16.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </PasswordField>
                </children>
             </HBox>
-            <Button Id="Login" mnemonicParsing="false" onAction="#login" opacity="0.72" prefWidth="250.0" style="-fx-background-color: #2f2f2fa3;" text="LOGIN" textFill="WHITE">
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: transparent;">
+               <children>
+                  <Button Id="Login" mnemonicParsing="false" onAction="#login" opacity="0.72" prefWidth="270.0" style="-fx-background-color: #2f2f2fa3;" text="LOGIN" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
-               <font>
-                  <Font name="Tahoma" size="14.0" />
-               </font>
-            </Button>
+            </HBox>
          </children>
       </VBox>
       <VBox alignment="CENTER" layoutX="47.0" layoutY="79.0" prefHeight="392.0" prefWidth="327.0" style="-fx-border-color: white; -fx-border-width: 3px;">

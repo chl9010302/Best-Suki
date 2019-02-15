@@ -9,26 +9,34 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane prefHeight="599.0" prefWidth="413.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.AddTestBoardViewController">
+<ScrollPane prefHeight="400.0" prefWidth="413.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewController.AddTestBoardViewController">
    <content>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0">
          <children>
-            <ImageView fitHeight="600.0" fitWidth="400.0">
+            <ImageView fitHeight="400.0" fitWidth="400.0">
                <image>
                   <Image url="@../image/back.jpg" />
                </image>
             </ImageView>
-            <AnchorPane layoutY="14.0" prefHeight="600.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
+            <AnchorPane layoutY="14.0" prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml">
         <children>
                   <HBox prefHeight="100.0" />
           <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="400.0" style="-fx-border-color: white; -fx-border-width: 2px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                        <HBox prefHeight="42.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
+                        <HBox alignment="CENTER_LEFT" prefHeight="42.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
                            <children>
+                              <ImageView fitHeight="20.0" fitWidth="20.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/add-24.png" />
+                                 </image>
+                              </ImageView>
                     <Label alignment="TOP_LEFT" text="Make Testdetail" textFill="WHITE">
                       <font>
                         <Font name="System Bold" size="21.0" />
                       </font>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
                     </Label>
                            </children>
                         </HBox>
@@ -49,36 +57,36 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="35.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;">
-                           <children>
-                              <Label contentDisplay="CENTER" prefHeight="20.0" text="몇 문제를 만드시겠습니까?" textFill="WHITE">
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: transparent; -fx-border-color: white;">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </TextField>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </HBox>
                         <VBox prefHeight="200.0" prefWidth="314.0" style="-fx-border-color: white; -fx-border-width: 1px;">
                            <children>
-                              <HBox prefHeight="30.0">
+                              <HBox alignment="CENTER_LEFT">
                                  <children>
+                                    <ImageView fitHeight="15.0" fitWidth="15.0">
+                                       <image>
+                                          <Image url="@../image/white%20icon/zoom-24.png" />
+                                       </image>
+                                       <rotationAxis>
+                                          <Point3D />
+                                       </rotationAxis>
+                                    </ImageView>
                                     <Label fx:id="txtFilepath" text="File Name" textFill="WHITE">
                                        <HBox.margin>
-                                          <Insets right="10.0" />
+                                          <Insets left="10.0" />
                                        </HBox.margin>
                                        <font>
-                                          <Font name="Tahoma" size="16.0" />
+                                          <Font name="Tahoma" size="14.0" />
                                        </font>
+                                       <rotationAxis>
+                                          <Point3D />
+                                       </rotationAxis>
                                     </Label>
-                                    <Button mnemonicParsing="false" onAction="#fileChooserSelect" text="File Search" />
+                                    <Button alignment="TOP_CENTER" mnemonicParsing="false" onAction="#fileChooserSelect" text="File Search" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin></Button>
                                  </children>
                               </HBox>
                               <HBox prefHeight="30.0">
@@ -123,13 +131,25 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                         </VBox>
-                        <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="200.0">
+                        <HBox alignment="TOP_RIGHT" prefWidth="200.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#saveAction" style="-fx-border-color: white; -fx-border-width: 2px;" text="Save" textFill="WHITE">
-                                 <font>
-                                    <Font name="Tahoma" size="16.0" />
-                                 </font>
-                              </Button>
+                              <HBox alignment="CENTER" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 1px; -fx-border-color: white;">
+                                 <children>
+                                    <ImageView fitHeight="15.0" fitWidth="15.0">
+                                       <image>
+                                          <Image url="@../image/white%20icon/save-24.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Button onAction="#saveAction" text="Save" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma" size="16.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="-3.0" left="3.0" right="-4.0" top="-1.0" />
+                                 </padding>
+                              </HBox>
                            </children>
                            <padding>
                               <Insets top="10.0" />

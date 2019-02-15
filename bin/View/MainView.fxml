@@ -143,7 +143,7 @@
                   </ImageView>
                   <Button mnemonicParsing="false" onAction="#NAV_StasticsView" style="-fx-background-color: transparent;" text="STASTICS" textFill="WHITE">
                      <font>
-                        <Font name="Tahoma" size="16.0" />
+                        <Font name="Tahoma" size="14.0" />
                      </font>
                      <HBox.margin>
                         <Insets />
@@ -165,10 +165,18 @@
       <children>
                   <HBox prefHeight="42.0" prefWidth="679.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
                      <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0">
+                           <image>
+                              <Image url="@../image/white%20icon/info-24.png" />
+                           </image>
+                        </ImageView>
               <Label alignment="TOP_LEFT" text="NOTICE" textFill="WHITE">
                 <font>
                   <Font name="System Bold" size="21.0" />
                 </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
               </Label>
                      </children>
                   </HBox>
@@ -186,8 +194,32 @@
                   </VBox>
         <HBox alignment="TOP_RIGHT" spacing="5.0">
           <children>
-            <Button onAction="#addAction" style="-fx-border-color: white;" text="글쓰기" textFill="WHITE" />
-            <Button onAction="#deleteAction" style="-fx-border-color: white;" text="삭제" textFill="WHITE" />
+                        <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 1px; -fx-border-color: white;">
+                           <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/add-24.png" />
+                                 </image>
+                              </ImageView>
+                  <Button onAction="#addAction" text="글쓰기" textFill="WHITE" />
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 1px; -fx-border-color: white;">
+                           <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/delete-24.png" />
+                                 </image>
+                              </ImageView>
+                  <Button onAction="#deleteAction" text="삭제" textFill="WHITE" />
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </HBox>
           </children>
         </HBox>
       </children>

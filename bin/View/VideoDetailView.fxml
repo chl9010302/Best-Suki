@@ -21,65 +21,140 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#NAV_MypageView" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE">
+                  <HBox alignment="CENTER" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                           <image>
+                              <Image url="@../image/white%20icon/user-24.png" />
+                           </image>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#NAV_MypageView" style="-fx-background-color: transparent;" text="My Page" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Tahoma" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="25.0">
+                           <image>
+                              <Image url="@../image/white%20icon/logout-32.png" />
+                           </image>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#logout" style="-fx-background-color: transparent;" text="Logout" textFill="WHITE">
+                           <font>
+                              <Font name="Tahoma" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
                      <HBox.margin>
-                        <Insets right="15.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
-                     <font>
-                        <Font name="Tahoma" size="16.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#logout" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;" text="Logout" textFill="WHITE">
-                     <font>
-                        <Font name="Tahoma" size="16.0" />
-                     </font>
-                  </Button>
+                  </HBox>
                </children>
             </HBox>
          </children>
       </HBox>
       <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="79.0" prefHeight="494.0" prefWidth="155.0" AnchorPane.topAnchor="79.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#NAV_MainView" style="-fx-background-color: transparent;" text="NOTICE" textFill="WHITE">
-               <font>
-                  <Font name="Tahoma" size="16.0" />
-               </font>
+            <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0">
+                     <image>
+                        <Image url="@../image/white%20icon/info-24.png" />
+                     </image>
+                  </ImageView>
+                  <Button mnemonicParsing="false" onAction="#NAV_MainView" style="-fx-background-color: transparent;" text="NOTICE" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" maxHeight="32.0" maxWidth="105.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0">
+                     <image>
+                        <Image url="@../image/white%20icon/video-play-3-24.png" />
+                     </image>
+                  </ImageView>
+                  <Button mnemonicParsing="false" onAction="#NAV_VideoView" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#NAV_VideoView" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE">
-               <font>
-                  <Font name="Tahoma" size="16.0" />
-               </font>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0">
+                     <image>
+                        <Image url="@../image/white%20icon/clipboard-8-24.png" />
+                     </image>
+                  </ImageView>
+                  <Button mnemonicParsing="false" onAction="#NAV_TestView" style="-fx-background-color: transparent;" text="TEST" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#NAV_TestView" style="-fx-background-color: transparent;" text="TEST" textFill="WHITE">
-               <font>
-                  <Font name="Tahoma" size="16.0" />
-               </font>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0">
+                     <image>
+                        <Image url="@../image/white%20icon/clipboard-8-24.png" />
+                     </image>
+                  </ImageView>
+                  <Button mnemonicParsing="false" onAction="#NAV_TestBoardView" style="-fx-background-color: transparent;" text="TestBoard" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#NAV_TestBoardView" style="-fx-background-color: transparent;" text="TestBoard" textFill="WHITE">
-               <font>
-                  <Font name="Tahoma" size="16.0" />
-               </font>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0">
+                     <image>
+                        <Image url="@../image/white%20icon/statistics-24.png" />
+                     </image>
+                  </ImageView>
+                  <Button mnemonicParsing="false" onAction="#NAV_StasticsView" style="-fx-background-color: transparent;" text="STASTICS" textFill="WHITE">
+                     <font>
+                        <Font name="Tahoma" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#NAV_StasticsView" style="-fx-background-color: transparent;" text="STASTICS" textFill="WHITE">
-               <font>
-                  <Font name="Tahoma" size="16.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Button>
+            </HBox>
          </children>
          <opaqueInsets>
             <Insets />

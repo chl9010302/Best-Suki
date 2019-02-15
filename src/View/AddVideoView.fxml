@@ -23,12 +23,20 @@
                   <HBox prefHeight="100.0" />
           <VBox alignment="TOP_CENTER" prefWidth="400.0" style="-fx-border-color: white; -fx-border-width: 2px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                        <HBox prefHeight="42.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
+                        <HBox alignment="CENTER_LEFT" prefHeight="42.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
                            <children>
+                              <ImageView fitHeight="20.0" fitWidth="20.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/add-24.png" />
+                                 </image>
+                              </ImageView>
                     <Label alignment="TOP_LEFT" text="Add Video" textFill="WHITE">
                       <font>
                         <Font name="System Bold" size="21.0" />
                       </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                     </Label>
                            </children>
                         </HBox>
@@ -66,17 +74,29 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="TOP_RIGHT" prefHeight="50.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_RIGHT">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#addAction" style="-fx-border-color: white; -fx-border-width: 2px;" text="Save" textFill="WHITE">
-                                 <font>
-                                    <Font name="Tahoma" size="16.0" />
-                                 </font>
-                              </Button>
+                              <HBox alignment="CENTER_RIGHT" style="-fx-border-width: 1px; -fx-border-color: white;">
+                                 <children>
+                                    <ImageView fitHeight="15.0" fitWidth="15.0">
+                                       <image>
+                                          <Image url="@../image/white%20icon/save-24.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Button mnemonicParsing="false" onAction="#addAction" text="Save" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma" size="16.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="-3.0" left="3.0" right="-4.0" top="-1.0" />
+                                 </padding>
+                              </HBox>
                            </children>
-                           <padding>
+                           <VBox.margin>
                               <Insets top="10.0" />
-                           </padding>
+                           </VBox.margin>
                         </HBox>
             </children>
                      <padding>
