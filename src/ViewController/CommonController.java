@@ -68,4 +68,12 @@ public class CommonController{
 		String dateidpk = (new SimpleDateFormat("yyyyMMddHHmmss").format(date));
 		return dateidpk;
 	}
+	public static String gender(Boolean selectedmale, Boolean selectedfemale) {
+		if(selectedmale == true) {
+			return "Male";
+		}else if(selectedfemale == true){
+			return "Female";
+		}
+		return null;
+	}
 }

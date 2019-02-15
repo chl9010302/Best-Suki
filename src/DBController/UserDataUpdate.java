@@ -40,6 +40,6 @@ public class UserDataUpdate {
 				.append("';").toString();
 			stmt.executeUpdate(sql);
 			return true;
-		} catch (SQLException e) { } return false;
+		} catch (SQLException e) {e.printStackTrace(); } return false;
 	}
 }

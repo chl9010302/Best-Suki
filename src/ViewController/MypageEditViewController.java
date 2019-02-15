@@ -55,8 +55,7 @@ public class MypageEditViewController implements Initializable {
 	}
 	@FXML
 	public void editAction(ActionEvent event) {
-		if(rb_male.isSelected()) { usergender = rb_male.getText(); }
-		if(rb_female.isSelected()) { usergender = rb_female.getText(); }
+		usergender = CommonController.gender(rb_male.isSelected(), rb_female.isSelected());
 		ButtonType YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
 		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetoedit(), YES);
 		alert.setTitle(config.StaticProperty.alertcompletetoedit());
@@ -64,8 +63,8 @@ public class MypageEditViewController implements Initializable {
 		
 		if (result.orElse(YES) == YES) {
 			UserBean userbean = new UserBean();
-			EditProperty_UserPhone = "010-" + EditProperty_UserPhone_Mid + "-" + EditProperty_UserPhone_End;
-			EditProperty_UserFmphone = "010-" + EditProperty_UserFmphone_Mid + "-" + EditProperty_UserFmphone_End;
+			EditProperty_UserPhone = "010-" + EditProperty_UserPhone_Mid.getText().toString() + "-" + EditProperty_UserPhone_End.getText().toString();
+			EditProperty_UserFmphone = "010-" + EditProperty_UserFmphone_Mid.getText().toString() + "-" + EditProperty_UserFmphone_End.getText().toString();
 			try {
 				userbean.setUSER_ID_PK(Mypage_UserId.getText().toString());
 				userbean.setUSER_NAME(EditProperty_UserName.getText().toString());
@@ -73,6 +72,7 @@ public class MypageEditViewController implements Initializable {
 				userbean.setUSER_SCHOOLNAME(EditProperty_UserSchoolName.getText().toString());
 				userbean.setUSER_AGE(dp_birth.getValue().toString());
 				userbean.setUSER_GENDER(usergender);
+				System.out.println(EditProperty_UserPhone);
 				userbean.setUSER_PHONE(EditProperty_UserPhone);
 				userbean.setUSER_FMPHONE(EditProperty_UserFmphone);
 				UserDataUpdate userdataupdate = new UserDataUpdate();
@@ -101,8 +101,7 @@ public class MypageEditViewController implements Initializable {
 			dp_birth.setValue(localdate);
 			if(userbean.getUSER_GENDER().equals("Male")) {
 				rb_male.setSelected(true);
-				usergender = rb_male.getText();
-			}else { rb_female.setSelected(true); usergender = rb_female.getText();}
+			}else { rb_female.setSelected(true);}
 			EditProperty_UserPhone_Mid.setText(userbean.getUSER_PHONE().substring(4, 8));
 			EditProperty_UserPhone_End.setText(userbean.getUSER_PHONE().substring(9, 13));
 			EditProperty_UserFmphone_Mid.setText(userbean.getUSER_FMPHONE().substring(4, 8));

@@ -76,8 +76,7 @@ public class SignupViewController implements Initializable {
 		}catch(Exception e) { }
 	}
 	public void radioSelect(ActionEvent action) {
-		if(UserGenderMale.isSelected()) { usergender = UserGenderMale.getText(); }
-		if(UserGenderFeMale.isSelected()) { usergender = UserGenderFeMale.getText(); }
+		usergender = CommonController.gender(UserGenderMale.isSelected(), UserGenderFeMale.isSelected());
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 	}
