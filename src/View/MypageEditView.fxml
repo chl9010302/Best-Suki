@@ -78,7 +78,7 @@
                <children>
                   <ImageView fitHeight="20.0" fitWidth="20.0">
                      <image>
-                        <Image url="@../image/white%20icon/video-play-3-24.png" />
+                        <Image url="@../image/white%20icon/video-play-24.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" onAction="#NAV_VideoView" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE">
@@ -165,23 +165,39 @@
       <children>
                   <HBox prefHeight="42.0" prefWidth="679.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
                      <children>
-              <Label alignment="TOP_LEFT" text="My Page" textFill="WHITE">
-                <font>
-                  <Font name="System Bold" size="21.0" />
-                </font>
-              </Label>
+                        <ImageView fitHeight="25.0" fitWidth="25.0">
+                           <image>
+                              <Image url="@../image/white%20icon/edit-24.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="TOP_LEFT" text="Edit Information" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
                      </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
                   </HBox>
                   <VBox prefHeight="472.0" prefWidth="655.0">
                      <children>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/user-24.png" />
+                                 </image>
+                              </ImageView>
                               <Label text="UserId            " textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
                               <Label fx:id="Mypage_UserId" style="-fx-background-color: transparent; -fx-text-fill: white;">
@@ -194,14 +210,19 @@
                               <Insets left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/key-24.png" />
+                                 </image>
+                              </ImageView>
                               <Label text="Password        " textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
                               <Label fx:id="EditProperty_UserPassword" style="-fx-background-color: transparent; -fx-text-fill: white;" />
@@ -214,14 +235,19 @@
                               <Insets left="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/badge-24.png" />
+                                 </image>
+                              </ImageView>
                               <Label text="Name             " textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
                               <TextField fx:id="EditProperty_UserName" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
@@ -230,14 +256,19 @@
                               <Insets left="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/address-book-24.png" />
+                                 </image>
+                              </ImageView>
                               <Label text="Address          " textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
                               <TextField fx:id="EditProperty_UserAddress" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
@@ -246,8 +277,13 @@
                               <Insets left="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/school-24.png" />
+                                 </image>
+                              </ImageView>
                               <Label text="SchoolName    " textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
@@ -258,9 +294,17 @@
                               </Label>
                               <TextField fx:id="EditProperty_UserSchoolName" style="-fx-background-color: transparent;  -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" />
                            </children>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/birthday-cake-24.png" />
+                                 </image>
+                              </ImageView>
                               <Label text="Age                " textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
@@ -271,9 +315,17 @@
                               </Label>
                               <DatePicker fx:id="dp_birth" style="-fx-background-color: transparent;" />
                            </children>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/male-24.png" />
+                                 </image>
+                              </ImageView>
                               <Label text="Gender           " textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
@@ -293,9 +345,17 @@
                                  </HBox.margin>
                               </RadioButton>
                            </children>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/mobile-phone-24.png" />
+                                 </image>
+                              </ImageView>
                               <Label text="Mobile.           " textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="16.0" />
@@ -325,9 +385,17 @@
                                  </font>
                               </TextField>
                            </children>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/google-mobile-24.png" />
+                                 </image>
+                              </ImageView>
                               <Label text="Parent's Mobile   " textFill="WHITE">
                                  <font>
                                     <Font name="Tahoma" size="14.0" />
@@ -357,13 +425,43 @@
                                  </font>
                               </TextField>
                            </children>
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
                         </HBox>
                      </children>
                   </VBox>
                   <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#editAction" style="-fx-border-color: white;" text="Edit" textFill="WHITE" />
-                     	<Button onAction="#cancelAction" style="-fx-border-color: white;" text="취소" />
+                        <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 1px; -fx-border-color: white;">
+                           <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/edit-24.png" />
+                                 </image>
+                              </ImageView>
+                              <Button mnemonicParsing="false" onAction="#editAction" text="수정" textFill="WHITE" />
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 1px; -fx-border-color: white;">
+                           <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/undo-24.png" />
+                                 </image>
+                              </ImageView>
+                           	<Button onAction="#cancelAction" text="취소" />
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </HBox>
                      </children>
                   </HBox>
       </children>

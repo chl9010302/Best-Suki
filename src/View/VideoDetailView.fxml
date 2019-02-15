@@ -79,7 +79,7 @@
                <children>
                   <ImageView fitHeight="20.0" fitWidth="20.0">
                      <image>
-                        <Image url="@../image/white%20icon/video-play-3-24.png" />
+                        <Image url="@../image/white%20icon/video-play-24.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" onAction="#NAV_VideoView" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE">
@@ -166,10 +166,18 @@
       <children>
                   <HBox prefHeight="42.0" prefWidth="679.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
                      <children>
-              <Label alignment="TOP_LEFT" text="NOTICE" textFill="WHITE">
+                        <ImageView fitHeight="25.0" fitWidth="25.0">
+                           <image>
+                              <Image url="@../image/white%20icon/video-play-24.png" />
+                           </image>
+                        </ImageView>
+              <Label alignment="TOP_LEFT" text="VIDEO Detail" textFill="WHITE">
                 <font>
                   <Font name="System Bold" size="21.0" />
                 </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
               </Label>
                      </children>
                   </HBox>
@@ -186,9 +194,9 @@
                         <Insets left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="366.0" prefWidth="651.0" style="width: 100%; height: 100%;" >
+                  <HBox prefHeight="366.0" prefWidth="651.0" style="width: 100%; height: 100%;">
                      <children>
-                        <WebView fx:id="Myweb" prefHeight="-1.0" prefWidth="700.0"  />
+                        <WebView fx:id="Myweb" prefHeight="-1.0" prefWidth="700.0" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -197,8 +205,32 @@
                   </HBox>
         <HBox alignment="TOP_RIGHT" prefHeight="23.0" prefWidth="628.0" spacing="5.0">
           <children>
-           <Button onAction="#NAV_FullScreenVideo" text="전체화면" style="-fx-text-fill:red; -fx-border-width: 2px; -fx-border-color: white;" />
-            <Button onAction="#editAction" text="수정" style="-fx-border-width: 2px; -fx-border-color: white;" />
+                        <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 1px; -fx-border-color: white;">
+                           <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/fullscreen-24.png" />
+                                 </image>
+                              </ImageView>
+                 <Button onAction="#NAV_FullScreenVideo" style="-fx-text-fill: red;" text="전체화면" />
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 1px; -fx-border-color: white;">
+                           <children>
+                              <ImageView fitHeight="15.0" fitWidth="15.0">
+                                 <image>
+                                    <Image url="@../image/white%20icon/edit-24.png" />
+                                 </image>
+                              </ImageView>
+                  <Button onAction="#editAction" text="수정" />
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </HBox>
           </children>
                      <VBox.margin>
                         <Insets right="20.0" />

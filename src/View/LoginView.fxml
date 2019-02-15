@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
                <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: white;">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" style="-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #b59c9c;">
                      <children>
                         <ImageView blendMode="OVERLAY" fitHeight="20.0" fitWidth="20.0">
                            <image>

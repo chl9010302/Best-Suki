@@ -78,7 +78,7 @@
                <children>
                   <ImageView fitHeight="20.0" fitWidth="20.0">
                      <image>
-                        <Image url="@../image/white%20icon/video-play-3-24.png" />
+                        <Image url="@../image/white%20icon/video-play-24.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" onAction="#NAV_VideoView" style="-fx-background-color: transparent;" text="VIDEO" textFill="WHITE">
