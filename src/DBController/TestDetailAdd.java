@@ -298,19 +298,4 @@ public class TestDetailAdd {
 			return theFile;
 		}catch(Exception e) { } return null;
 	}
-	public int count(){
-		int rowcount = 0;
-		try {
-			StringBuilder sb = new StringBuilder();
-			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT COUNT(*) FROM " +config.StaticProperty.gettestdetail_tb())
-					.append(";").toString();
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			if(rs.next()) rowcount = rs.getInt(1);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return rowcount;
-	}
 }

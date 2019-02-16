@@ -8,34 +8,34 @@
 [완성] Notice 게시판 값 넣기
 [완성] Video 게시판 값 넣기
 [완성] Properties로 모두 넣기
-[완성]Testview 구현하기
+[완성] Testview 구현하기
 [완성] VIDEO 뷰 구현 완성 - 기능 해야함.
 [완성] 이클립스 한번에 단어 바꾸기 가능한지?
 [완성] signupview mobile 및 parent mobile -> 3칸으로 변경
 [완성] Myeditview gender radiobox, age datepicker, mobile 및 parent mobile -> 3칸으로 변경
+[완성] stastics 20개 -> 다음페이지 가능한지? 
+[완성] TestView 게시판 값 넣기
+[완성] 서버 - mariadb는 있지만..
+[완성] Btn_Edit 함수명 변경
 
 DB 한글 < 수민 >
 문자보내기 < 성화 >
 IMAGE 가져오기 < 성화 >
 Test 다수를 한번에 만드는 기능 필요
-id마다 볼수있게 필터
-TestView 게시판 값 넣기
+statistics id마다 볼수있게 필터
 로그인창 시작 시 포커스 UserId 넣기
-서버 - mariadb는 있지만..
-Btn_Edit 함수명 변경
 
 게시판 만드는 방법
 1. 게시판 DB 생성
 2. 게시판 BEAN 생성
 3. 게시판 ADD VIEW 생성
 4. 게시판 VIEW 값(FXML에 fx:id) 및 Add에 값 매핑 반영
-
 ----------
-address 주소찾기 가능한지? - 불가능
-stastics 20개 -> 다음페이지 가능한지? 
 test info 수정하는 버튼 추가
 testing view 답 클릭 -> 저장
 제출하기 -> result view
+TableView -> Pagination 변경
+address 주소찾기 가능한지? - 불가능
 -----------------
 **주의사항**
 TextField -> Label 시 PromptText -> Text로 바꿔줄 것

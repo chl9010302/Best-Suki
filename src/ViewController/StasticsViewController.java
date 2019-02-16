@@ -2,19 +2,27 @@ package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
-
 import DBController.AddStastics;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.Background;
 
 public class StasticsViewController implements Initializable {
+	//Declare JAVA
+	private AddStastics stasticsview = new AddStastics();
+	private final List<AddStastics> data = createData();
+	private final static int rowsPerPage = 10;
+	private final TableView<AddStastics> table = createTable();
 	//Declare FXML
-	@FXML private TableView<AddStastics> StasticsView;
-	@FXML private TableColumn<AddStastics, String> USER_ID, USER_LOGIN_DATE, USER_LOGOUT_DATE;
+	@FXML private Pagination statistics_pagination;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview()); }
@@ -24,12 +32,34 @@ public class StasticsViewController implements Initializable {
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	public void initialize(URL url, ResourceBundle rb) {
-		try {
-			AddStastics stasticsview = new AddStastics();
-			USER_ID.setCellValueFactory(cellData -> cellData.getValue().getUSER_ID());
-			USER_LOGIN_DATE.setCellValueFactory(cellData -> cellData.getValue().getUSER_LOGIN_DATE());
-			USER_LOGOUT_DATE.setCellValueFactory(cellData -> cellData.getValue().getUSER_LOGOUT_DATE());
-			StasticsView.setItems(stasticsview.getstastics());
-		}catch(Exception e) {}
+		statistics_pagination.setPageFactory(this::createPage);
+		statistics_pagination.setPageCount(data.size()/10);
+	}
+	private Node createPage(int pageIndex) {
+		int fromindex = pageIndex * rowsPerPage;
+		int toindex = Math.min(fromindex + rowsPerPage, data.size());
+		table.setItems(FXCollections.observableArrayList(data.subList(fromindex, toindex)));
+		table.setMaxHeight(310);
+		return table;
+	}
+	@SuppressWarnings("unchecked")
+	private TableView<AddStastics> createTable() {
+		TableView<AddStastics> table = new TableView<>();
+		TableColumn<AddStastics, String> idColumn = new TableColumn<>("USER_ID");
+		idColumn.setCellValueFactory(param -> param.getValue().getUSER_ID());
+		idColumn.setPrefWidth(72);
+		TableColumn<AddStastics, String> loginColumn = new TableColumn<>("USER_LOGIN_DATE");
+		loginColumn.setCellValueFactory(param -> param.getValue().getUSER_LOGIN_DATE());
+		loginColumn.setPrefWidth(331);
+		TableColumn<AddStastics, String> logoutColumn = new TableColumn<>("USER_LOGOUT_DATE");
+		logoutColumn.setCellValueFactory(param -> param.getValue().getUSER_LOGOUT_DATE());
+		logoutColumn.setPrefWidth(251);
+		table.getColumns().addAll(idColumn, loginColumn, logoutColumn);
+		table.setBackground(Background.EMPTY);
+		table.setPrefHeight(200);
+		return table;
+	}
+	private List<AddStastics> createData() {
+		return stasticsview.getstastics();
 	}
 }

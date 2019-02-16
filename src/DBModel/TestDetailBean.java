@@ -25,18 +25,8 @@ public class TestDetailBean {
 	public void setTESTDETAIL_WRITER(String tESTDETAIL_WRITER) {
 		TESTDETAIL_WRITER = tESTDETAIL_WRITER;
 	}
-
-	private int Totalcount; // Board의 총 수를 가지고오기 위함.
 	
 	public TestDetailBean() { }
-	
-	
-	public int getCount() {
-		return Totalcount;
-	}
-	public void setBoardId(int totalcount) {
-		Totalcount = totalcount;
-	}
 	
 	public String getTESTDETAIL_ID_PK() {
 		return TESTDETAIL_ID_PK;

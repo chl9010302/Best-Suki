@@ -107,9 +107,10 @@ public class AddTestViewController implements Initializable {
 	}
 	private ArrayList<String> CheckFunction(TableColumn<TestDetailAdd, CheckBox> tablecolumn) {
 		TestDetailAdd testdetailadd = new TestDetailAdd();
+		int maxnumber = testdetailadd.gettestdetailadd().size();
 		ArrayList<String> checkarraylist = new ArrayList<>();
 		ArrayList<String> result = new ArrayList<>();
-		for(int i=0; i<testdetailadd.count(); i++) {
+		for(int i=0; i < maxnumber; i++) {
 			if(tablecolumn.getCellData(i).isSelected()) {
 				checkarraylist.add(testdetailadd.selectId(tablecolumn.getCellData(i).getText()));
 			}
