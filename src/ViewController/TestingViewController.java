@@ -25,6 +25,7 @@ import javafx.scene.image.ImageView;
 
 public class TestingViewController implements Initializable {
 	public static Image image;
+	public static String Resultid = "";
 	//Declare FXML
 	@FXML private Button btnSubmit;
 	@FXML private ToggleGroup Quest1Group1;
@@ -79,6 +80,7 @@ public class TestingViewController implements Initializable {
 				testresultbean.setTESTRESULT_WRITER(LoginViewController.login_id);
 				testresultbean.setTEST_ID(TestAdd.testing_id);
 				testresultadd.insertTestResult(testresultbean);
+				Resultid = CommonController.MakeId();
 				ButtonType YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
 				Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcongraturations(), YES);
 				alert.setTitle(config.StaticProperty.alertcongraturations());

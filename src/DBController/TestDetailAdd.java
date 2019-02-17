@@ -22,7 +22,7 @@ import usingstaticfunction.DBConnectionKeeping;
 
 public class TestDetailAdd {
 	TestDetailBean testdetailbean;
-	Connection conn = null;
+	public static Connection conn = null;
 	static Statement stmt = null;
 	public static ArrayList<String> selected_testid;
 	public static String testdetail_id = "";
@@ -296,5 +296,19 @@ public class TestDetailAdd {
 			}
 			return theFile;
 		}catch(Exception e) { } return null;
+	}
+	public static String selectANSWER(String id) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT TESTDETAIL_ANSWER FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if(rs.getString("TESTDETAIL_ANSWER") != null)
+					result = rs.getString("TESTDETAIL_ANSWER");
+			}
+		}catch(Exception e) { } return result;
 	}
 }

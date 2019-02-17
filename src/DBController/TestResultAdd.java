@@ -2,7 +2,9 @@ package DBController;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import DBModel.TestResultBean;
@@ -10,7 +12,8 @@ import DBModel.TestResultBean;
 public class TestResultAdd {
 	TestResultBean testresultbean;
 	public static ArrayList<String> testresult;
-	Connection conn = null;
+	static Statement stmt = null;
+	public static Connection conn = null;
 	public TestResultAdd() {
 	}
 	public TestResultAdd(TestResultBean testresultbean) {
@@ -50,5 +53,33 @@ public class TestResultAdd {
 					pstmt.close();
 			} catch (SQLException e3) { }
 		} return false;
+	}
+	public static String selectgetresultanswer(String id, int i) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT TESTRESULT_ANSWER" + i + " FROM "+config.StaticProperty.gettestresult_tb()+" WHERE TESTRESULT_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("TESTRESULT_ANSWER" + i) != null)
+					result = rs.getString("TESTRESULT_ANSWER" + i);
+			}
+		}catch(Exception e) { e.printStackTrace();} return result;
+	}
+	public static String selectgetresultid(String id, int i) {
+		String result = "";
+		try {
+			StringBuilder sb = new StringBuilder();
+			conn = application.DBConnection.getDBConection();
+			String sql = sb.append("SELECT TESTRESULT_ID" + i + " FROM "+config.StaticProperty.gettestresult_tb()+" WHERE TESTRESULT_ID_PK = '").append(id).append("';").toString();
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString("TESTRESULT_ID" + i) != null)
+					result = rs.getString("TESTRESULT_ID" + i);
+			}
+		}catch(Exception e) { e.printStackTrace();} return result;
 	}
 }
