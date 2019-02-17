@@ -58,6 +58,9 @@ public class StaticProperty {
 	public static String getvideodetail_tb(){
 		return properties.getProperty("db8");
 	}
+	public static String gettestresult_tb(){
+		return properties.getProperty("db9");
+	}
 	public static String getnavloginview(){
 		return properties.getProperty("nav1");
 	}

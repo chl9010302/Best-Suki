@@ -2,23 +2,25 @@ package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import DBController.TestAdd;
 import DBController.TestDetailAdd;
-import DBController.UserJoin;
+import DBController.TestResultAdd;
+import DBModel.TestResultBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -39,17 +41,39 @@ public class TestingViewController implements Initializable {
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML
-	private void nextAction(ActionEvent event) {
+	public void nextAction(ActionEvent event) {
 		TestAdd.maxpage--;
+		TestAdd testadd = new TestAdd();
+		TestResultAdd testresultadd = new TestResultAdd();
+		// 결과값 저장
+		TestResultAdd.testresult.add(testadd.selectgetTestId(TestAdd.testing_id));
+		TestResultAdd.testresult.add(getAnswer());
 		if(TestAdd.maxpage != 0) {
-			TestAdd testadd = new TestAdd();
 			++TestAdd.pagenumber;
 			TestAdd.test_id_fk = testadd.selectgetTestId(TestAdd.testing_id);
 			try {
+				System.out.println(testadd.selectgetTestId(TestAdd.testing_id) + " " +getAnswer()) ;
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestingview());
 			} catch (IOException e) {e.printStackTrace(); }
+			
+			//try문 끝
 		}else {
 			try {
+				TestResultBean testresultbean = new TestResultBean();
+				testresultbean.setTESTRESULT_ID1(TestResultAdd.testresult.get(0));
+				testresultbean.setTESTRESULT_ANSWER1(TestResultAdd.testresult.get(1));
+				testresultbean.setTESTRESULT_ID2(TestResultAdd.testresult.get(2));
+				testresultbean.setTESTRESULT_ANSWER2(TestResultAdd.testresult.get(3));
+				testresultbean.setTESTRESULT_ID3(TestResultAdd.testresult.get(4));
+				testresultbean.setTESTRESULT_ANSWER3(TestResultAdd.testresult.get(5));
+				testresultbean.setTESTRESULT_ID4(TestResultAdd.testresult.get(6));
+				testresultbean.setTESTRESULT_ANSWER4(TestResultAdd.testresult.get(7));
+				testresultbean.setTESTRESULT_ID5(TestResultAdd.testresult.get(8));
+				testresultbean.setTESTRESULT_ANSWER5(TestResultAdd.testresult.get(9));
+				testresultbean.setTESTRESULT_ID_PK(CommonController.MakeId());
+				testresultbean.setTESTRESULT_WRITER(LoginViewController.login_id);
+				testresultbean.setTEST_ID(TestAdd.testing_id);
+				testresultadd.insertTestResult(testresultbean);
 				ButtonType YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
 				Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcongraturations(), YES);
 				alert.setTitle(config.StaticProperty.alertcongraturations());
@@ -81,5 +105,20 @@ public class TestingViewController implements Initializable {
 		testdetail_answer5.setText(testdetailadd.selectDATA5(testadd.test_id_fk));
 		image = new Image(testdetailadd.selectIMAGE(testadd.test_id_fk).toURI().toString(),623,150,true,true);
 		testdetail_imageview.setImage(image);
+	}
+	private String getAnswer() {
+		String result = "";
+		if(testdetail_rb1.isSelected()) {
+			result = testdetail_answer1.getText().toString();
+		}else if(testdetail_rb2.isSelected()) {
+			result = testdetail_answer2.getText().toString();
+		}else if(testdetail_rb3.isSelected()) {
+			result = testdetail_answer3.getText().toString();
+		}else if(testdetail_rb4.isSelected()) {
+			result = testdetail_answer4.getText().toString();
+		}else {
+			result = testdetail_answer5.getText().toString();
+		}
+		return result;
 	}
 }

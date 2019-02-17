@@ -30,13 +30,12 @@ public class TestDetailViewController implements Initializable {
 	@FXML
 	private void editAction(ActionEvent event) {
 		try {
-			CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview());
+			CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestdetaileditview());
 		}catch(Exception e) {e.printStackTrace(); }
 	}
-	@SuppressWarnings("static-access")
 	public void initialize(URL url, ResourceBundle rb) { 
 		TestAdd testadd = new TestAdd();
 		testListView.setItems(testadd.gettestdetailid(TestViewController.test_id));
-		ColTest_Subtitle.setText(testadd.selectSubtitle(TestViewController.test_id));
+		ColTest_Subtitle.setText(TestAdd.selectSubtitle(TestViewController.test_id));
 	}
 }

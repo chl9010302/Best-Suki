@@ -163,7 +163,7 @@ public class TestDetailAdd {
 		try {
 			conn = application.DBConnection.getDBConection();
 			stmt = conn.createStatement();
-			String sql = sb.append("SELECT * FROM "+config.StaticProperty.gettestdetail_tb()).append(";").toString();
+			String sql = sb.append("SELECT * FROM "+config.StaticProperty.gettestdetail_tb()).append(" ORDER BY TESTDETAIL_TIME DESC;").toString();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				testdetailadd.add(new TestDetailAdd((String) rs.getString("TESTDETAIL_ID_PK"), (String) rs.getString("TESTDETAIL_SUBTITLE"), (String) rs.getString("TESTDETAIL_WRITER"),(String) rs.getString("TESTDETAIL_TIME").substring(0,10)));

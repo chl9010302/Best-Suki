@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import DBModel.TestBean;
 import javafx.beans.property.SimpleStringProperty;
@@ -62,6 +63,7 @@ public class TestAdd {
 		this.test_time = new SimpleStringProperty(TEST_TIME);
 		this.test_btndetail = new Button("Details");
 		test_btndetail.setOnAction(event -> {
+			TestResultAdd.testresult = new ArrayList<String>();
 			pagenumber = 1;
 			testing_id = "";
 			test_id_fk = ""; // 초기화
@@ -185,7 +187,7 @@ public class TestAdd {
 		ObservableList<String> test = FXCollections.observableArrayList();
 		int page = 0;
 		page = ccount(id);
-		for(int i=page; i>1; i--)
+		for(int i=page; i>0; i--)
 			test.add(TestDetailAdd.selectSubtitle(selectgetcount(id, i)));
 		return test;
 	}
@@ -205,9 +207,13 @@ public class TestAdd {
 	}
 	public int ccount(String id) {
 		int i = 1;
-		while(selectgetcount(id,i) != "") {
-			i++;
-			selectgetcount(id,i);
+		while(selectgetcount(id,i) != "" ) {
+			if(selectgetcount(id,i).equals("null")) {
+				break;
+			}else {
+				i++;
+				selectgetcount(id,i);
+			}
 		}
 		return i-1;
 	}
