@@ -169,6 +169,9 @@ public class StaticProperty {
 	public static String alertcongraturations(){
 		return properties.getProperty("alert12");
 	}
+	public static String alertnoitem(){
+		return properties.getProperty("alert13");
+	}
 	public static String alerttitlemessage(){
 		return properties.getProperty("alerttitle1");
 	}
@@ -183,6 +186,9 @@ public class StaticProperty {
 	}
 	public static String alerttitlenovideopath(){
 		return properties.getProperty("alerttitle5");
+	}
+	public static String alerttitlenoitem(){
+		return properties.getProperty("alerttitle6");
 	}
 	public static String alertbtnyes(){
 		return properties.getProperty("alertbtn1");

@@ -18,7 +18,7 @@ import usingstaticfunction.DBConnectionKeeping;
 public class TestAdd {
 	TestBean testbean;
 	Connection conn = null;
-	Statement stmt = null;
+	static Statement stmt = null;
 	public static String test_id_fk = ""; // test_id_fk를 알아내기 위함
 	public static String testing_id = ""; // test하고자 하는 id를 전체 뷰에서 사용하기 위함
 	public static int pagenumber; // testing 중에 페이지를기억하기 위함
@@ -166,19 +166,28 @@ public class TestAdd {
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) { }
 	}
-	public String selectSubtitle(String id) {
+	public static String selectSubtitle(String id) {
+		DBConnectionKeeping dbConnectionKeeping = null;
 		String result = "";
 		try {
 			StringBuilder sb = new StringBuilder();
-			conn = application.DBConnection.getDBConection();
+			dbConnectionKeeping.con = application.DBConnection.getDBConection();
 			String sql = sb.append("SELECT TEST_SUBTITLE FROM "+config.StaticProperty.gettest_tb()+" WHERE TEST_ID_PK = '").append(id).append("';").toString();
-			stmt = conn.createStatement();
+			stmt = dbConnectionKeeping.con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				if (rs.getString("TEST_SUBTITLE") != null)
 					result = rs.getString("TEST_SUBTITLE");
 			}
 		}catch(Exception e) { } return result;
+	}
+	public ObservableList<String> gettestdetailid(String id) {
+		ObservableList<String> test = FXCollections.observableArrayList();
+		int page = 0;
+		page = ccount(id);
+		for(int i=page; i>1; i--)
+			test.add(TestDetailAdd.selectSubtitle(selectgetcount(id, i)));
+		return test;
 	}
 	public String selectgetTestId(String id) {
 		String result = "";

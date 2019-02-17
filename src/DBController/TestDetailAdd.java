@@ -16,16 +16,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Alert.AlertType;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class TestDetailAdd {
 	TestDetailBean testdetailbean;
 	Connection conn = null;
-	Statement stmt = null;
+	static Statement stmt = null;
 	public static ArrayList<String> selected_testid;
 	public static String testdetail_id = "";
 	private StringProperty testdetail_id_pk, testdetail_subtitle, testdetail_writer, testdetail_time;
@@ -195,13 +193,14 @@ public class TestDetailAdd {
 			}
 		}catch(Exception e) { } return result;
 	}
-	public String selectSubtitle(String id) {
+	public static String selectSubtitle(String id) {
 		String result = "";
+		DBConnectionKeeping dbConnectionKeeping = null;
 		try {
 			StringBuilder sb = new StringBuilder();
-			conn = application.DBConnection.getDBConection();
+			dbConnectionKeeping.con = application.DBConnection.getDBConection();
 			String sql = sb.append("SELECT TESTDETAIL_SUBTITLE FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
-			stmt = conn.createStatement();
+			stmt = dbConnectionKeeping.con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				if (rs.getString("TESTDETAIL_SUBTITLE") != null)

@@ -17,6 +17,7 @@
 [완성] TestView 게시판 값 넣기
 [완성] 서버 - mariadb는 있지만..
 [완성] Btn_Edit 함수명 변경
+[완성] test info 보는 버튼 추가
 
 DB 한글 < 수민 >
 문자보내기 < 성화 >
@@ -36,6 +37,12 @@ testing view 답 클릭 -> 저장
 제출하기 -> result view
 TableView -> Pagination 변경
 address 주소찾기 가능한지? - 불가능
+Maplist로 구성
+텍스트 -> 엔터가능한걸로 변환
+뒤로가기
+무슨탭인지 보여주기라...흠
+전화번호 칠때 4글자 치면 넘어가도록
+아이디,전화번호에 !@#$%^&*() 안들어가도록
 -----------------
 **주의사항**
 TextField -> Label 시 PromptText -> Text로 바꿔줄 것

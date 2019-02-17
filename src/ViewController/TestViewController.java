@@ -9,11 +9,15 @@ import DBController.TestDetailAdd;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TestViewController implements Initializable {
+	//Declare JAVA
+	public static String test_id="";
 	//Declare FXML
 	@FXML private TableView<TestAdd> testTableView;
 	@FXML private TableColumn<TestAdd, String> ColTest_Subtitle, ColTest_Writer, ColTest_Date, ColTest_Btndetail;
@@ -27,14 +31,26 @@ public class TestViewController implements Initializable {
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML private void addAction(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavaddtestview()); }
 	@FXML
-	private void removeAction(ActionEvent action){
+	private void removeAction(ActionEvent event){
 		TestAdd testadd = new TestAdd();
 		int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
 		testadd.delete(String.valueOf(testTableView.getItems().get(selectedItem).getTest_id_pk().getValue()));
 		testTableView.setItems(testadd.gettestadd());
 	}
 	@FXML
-	private void modify(ActionEvent action) {
+	private void NAV_TestDetailView(ActionEvent event) throws IOException { 
+		if(testTableView.getSelectionModel().getSelectedIndex() == -1) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle(config.StaticProperty.alerttitlenoitem());
+			alert.setHeaderText(config.StaticProperty.alertnoitem());
+			alert.showAndWait();
+		}else {
+			TestAdd testadd = new TestAdd();
+			int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
+			test_id = String.valueOf(testTableView.getItems().get(selectedItem).getTest_id_pk().getValue());
+//			testadd.gettestdetailid(test_id);
+			CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestdetailview());
+		}
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		try {
