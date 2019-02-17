@@ -2,7 +2,6 @@ package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -44,7 +43,6 @@ public class TestingViewController implements Initializable {
 	public void nextAction(ActionEvent event) {
 		TestAdd.maxpage--;
 		TestAdd testadd = new TestAdd();
-		TestResultAdd testresultadd = new TestResultAdd();
 		// 결과값 저장
 		TestResultAdd.testresult.add(testadd.selectgetTestId(TestAdd.testing_id));
 		TestResultAdd.testresult.add(getAnswer());
@@ -52,14 +50,21 @@ public class TestingViewController implements Initializable {
 			++TestAdd.pagenumber;
 			TestAdd.test_id_fk = testadd.selectgetTestId(TestAdd.testing_id);
 			try {
-				System.out.println(testadd.selectgetTestId(TestAdd.testing_id) + " " +getAnswer()) ;
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestingview());
 			} catch (IOException e) {e.printStackTrace(); }
 			
 			//try문 끝
 		}else {
 			try {
+				TestResultAdd testresultadd = new TestResultAdd();
 				TestResultBean testresultbean = new TestResultBean();
+				int i = 0;
+				i = TestResultAdd.testresult.size();
+				if(i<10) {
+					for( int j = i; j<10;j++) {
+						TestResultAdd.testresult.add("");
+					}
+				}
 				testresultbean.setTESTRESULT_ID1(TestResultAdd.testresult.get(0));
 				testresultbean.setTESTRESULT_ANSWER1(TestResultAdd.testresult.get(1));
 				testresultbean.setTESTRESULT_ID2(TestResultAdd.testresult.get(2));
@@ -79,7 +84,7 @@ public class TestingViewController implements Initializable {
 				alert.setTitle(config.StaticProperty.alertcongraturations());
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.orElse(YES) == YES) {
-					CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview());
+					CommonController.NAV(getClass(), event, config.StaticProperty.getnavresultview());
 				}
 			} catch (IOException e) {e.printStackTrace(); }
 		}

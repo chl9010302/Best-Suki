@@ -136,6 +136,9 @@ public class StaticProperty {
 	public static String getnavtestingview(){
 		return properties.getProperty("nav25");
 	}
+	public static String getnavresultview(){
+		return properties.getProperty("nav26");
+	}
 	public static String alertlogout(){
 		return properties.getProperty("alert1");
 	}
