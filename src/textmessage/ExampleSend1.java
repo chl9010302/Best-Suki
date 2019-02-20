@@ -1,5 +1,6 @@
 package textmessage;
 import java.util.HashMap;
+
 import org.json.simple.JSONObject;
 
 import net.nurigo.java_sdk.api.Message;
@@ -17,10 +18,11 @@ public class ExampleSend1 {
 
     // 4 params(to, from, type, text) are mandatory. must be filled
     HashMap<String, String> params = new HashMap<String, String>();
-    params.put("to", "01041933272"); // 수신번호
-    params.put("from", "01041933272"); // 발신번호
+    params.put("to", "01068606226"); // 수신번호
+    params.put("from", "01068606226"); // 발신번호
     params.put("type", "SMS"); // Message type ( SMS, LMS, MMS, ATA )
-    params.put("text", "Test Message"); // 문자내용    
+    params.put("mode", "test"); 
+    params.put("text", "Test"); // 문자내용    
     params.put("app_version", "JAVA SDK v1.2"); // application name and version
 
     // Optional parameters for your own needs
