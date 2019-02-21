@@ -16,9 +16,10 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 
-public class AddMainViewController implements Initializable {
+public class AddMainViewController{
 	//Declare JAVA
 	private NoticeDetailBean noticedetailbean;
+	private NoticeDetailAdd noticedetailadd;
 	public static String login_id = LoginViewController.login_id;
 	//Declare FXML
 	@FXML private TextField txtSubtitle, txtContext; 
@@ -35,7 +36,7 @@ public class AddMainViewController implements Initializable {
 	private void addAction(ActionEvent event) {
 		try {
 			noticedetailbean = new NoticeDetailBean();
-			NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
+			noticedetailadd = new NoticeDetailAdd();
 			noticedetailbean.setNOTICEDETAIL_ID_PK(CommonController.MakeId());
 			noticedetailbean.setNOTICEDETAIL_SUBTITLE(txtSubtitle.getText().toString());
 			noticedetailbean.setNOTICEDETAIL_WRITER(login_id);
@@ -44,5 +45,4 @@ public class AddMainViewController implements Initializable {
 			CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());
 		}catch(Exception e) { }
 	}
-	public void initialize(URL url, ResourceBundle rb) { }
 }

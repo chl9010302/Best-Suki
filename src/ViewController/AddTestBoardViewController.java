@@ -21,7 +21,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class AddTestBoardViewController implements Initializable {
+public class AddTestBoardViewController{
 	//Declare JAVA
 	private TestDetailBean testdetailbean;
 	private Stage stage; // file choose 하기 위함.
@@ -37,6 +37,7 @@ public class AddTestBoardViewController implements Initializable {
 	private void saveAction(ActionEvent event) {
 		if(input != null) {
 			testdetailbean = new TestDetailBean();
+			TestDetailAdd detailAdd = new TestDetailAdd();
 			testdetailbean.setTESTDETAIL_ID_PK(CommonController.MakeId());
 			testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
 			testdetailbean.setTESTDETAIL_IMAGE_PATH(filename);
@@ -59,17 +60,10 @@ public class AddTestBoardViewController implements Initializable {
 			}
 			testdetailbean.setTESTDETAIL_WRITER(login_id);
 			((Stage) ((Node) event.getSource()).getScene().getWindow()).close(); // 창 닫음.
-			TestDetailAdd detailAdd = new TestDetailAdd();
 			detailAdd.insertTestDetail(testdetailbean);
 		}else {
 			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoimage(), config.StaticProperty.alertputimage());
 		}
-	}
-	@FXML
-	private void Quest1Group1Action(ActionEvent action) {
-	}
-	//fileChoose function
-	public void initialize(URL url, ResourceBundle rb) {
 	}
 	public void openFile() {
 		FileChooser fileChooser = new FileChooser();

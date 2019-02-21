@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class VideoViewController implements Initializable {
 	//Declare FXML
+	private VideoDetailAdd videodetailadd;
 	@FXML private TableView<VideoDetailAdd> videotableview;
 	@FXML private TableColumn<VideoDetailAdd, String> ColVideo_Id, ColVideo_Subtitle, ColVideo_Writer, ColVideo_Date, ColVideo_Btndetail;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
@@ -27,7 +28,7 @@ public class VideoViewController implements Initializable {
 	@FXML private void addAction(ActionEvent event) throws IOException { CommonController.NAV_POPUP(getClass(), event, config.StaticProperty.getnavaddvideoview());	}
 	@FXML
 	private void deleteAction(ActionEvent event){
-		VideoDetailAdd videodetailadd = new VideoDetailAdd();
+		videodetailadd = new VideoDetailAdd();
 		int selectedItem = videotableview.getSelectionModel().getSelectedIndex();
 		if(selectedItem == -1) {
 			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoitem(), config.StaticProperty.alertnoitem());
@@ -37,7 +38,7 @@ public class VideoViewController implements Initializable {
 		}
 	}
 	public void initialize(URL url, ResourceBundle rb) {
-		VideoDetailAdd videodetailadd = new VideoDetailAdd();
+		videodetailadd = new VideoDetailAdd();
 		ColVideo_Subtitle.setCellValueFactory(cellData -> cellData.getValue().getVideodetail_subtitle());
 		ColVideo_Writer.setCellValueFactory(cellData -> cellData.getValue().getVideodetail_writer());
 		ColVideo_Date.setCellValueFactory(cellData -> cellData.getValue().getVideodetail_time());
