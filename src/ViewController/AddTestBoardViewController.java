@@ -34,7 +34,7 @@ public class AddTestBoardViewController implements Initializable {
 	@FXML private ToggleGroup Quest1Group1;
 	@FXML private Label txtFilepath;
 	@FXML
-	private void saveAction(ActionEvent action) {
+	private void saveAction(ActionEvent event) {
 		if(input != null) {
 			testdetailbean = new TestDetailBean();
 			testdetailbean.setTESTDETAIL_ID_PK(CommonController.MakeId());
@@ -58,14 +58,11 @@ public class AddTestBoardViewController implements Initializable {
 				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer5.getText().toString());
 			}
 			testdetailbean.setTESTDETAIL_WRITER(login_id);
-			((Stage) ((Node) action.getSource()).getScene().getWindow()).close(); // 창 닫음.
+			((Stage) ((Node) event.getSource()).getScene().getWindow()).close(); // 창 닫음.
 			TestDetailAdd detailAdd = new TestDetailAdd();
 			detailAdd.insertTestDetail(testdetailbean);
 		}else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle(config.StaticProperty.alerttitlenoimage());
-			alert.setHeaderText(config.StaticProperty.alertputimage());
-			alert.showAndWait();
+			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoimage(), config.StaticProperty.alertputimage());
 		}
 	}
 	@FXML

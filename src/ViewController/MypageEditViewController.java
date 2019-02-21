@@ -40,19 +40,7 @@ public class MypageEditViewController implements Initializable {
 	@FXML private void NAV_MypageEditView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageeditview()); }
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
-	@FXML
-	private void cancelAction(ActionEvent event) {
-		ButtonType YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
-		ButtonType NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
-		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertgoback(), YES, NO);
-		alert.setTitle(config.StaticProperty.alerttitlecancel());
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.orElse(NO) == YES) {
-			try {
-				CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageview());
-			}catch(Exception e) { }
-		}
-	}
+	@FXML private void cancelAction(ActionEvent event) { CommonController.Alert_YesorNo(event, config.StaticProperty.alertgoback(), config.StaticProperty.alerttitlecancel(), getClass(), config.StaticProperty.getnavmypageview()); }
 	@FXML
 	public void editAction(ActionEvent event) {
 		usergender = CommonController.gender(rb_male.isSelected(), rb_female.isSelected());
@@ -60,7 +48,6 @@ public class MypageEditViewController implements Initializable {
 		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetoedit(), YES);
 		alert.setTitle(config.StaticProperty.alertcompletetoedit());
 		Optional<ButtonType> result = alert.showAndWait();
-		
 		if (result.orElse(YES) == YES) {
 			UserBean userbean = new UserBean();
 			EditProperty_UserPhone = "010-" + EditProperty_UserPhone_Mid.getText().toString() + "-" + EditProperty_UserPhone_End.getText().toString();

@@ -40,10 +40,7 @@ public class TestViewController implements Initializable {
 	@FXML
 	private void NAV_TestDetailView(ActionEvent event) throws IOException { 
 		if(testTableView.getSelectionModel().getSelectedIndex() == -1) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle(config.StaticProperty.alerttitlenoitem());
-			alert.setHeaderText(config.StaticProperty.alertnoitem());
-			alert.showAndWait();
+			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoitem(), config.StaticProperty.alertnoitem());
 		}else {
 			TestAdd testadd = new TestAdd();
 			int selectedItem = testTableView.getSelectionModel().getSelectedIndex();

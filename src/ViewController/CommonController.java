@@ -2,7 +2,6 @@ package ViewController;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Optional;
 
@@ -76,5 +75,30 @@ public class CommonController{
 			return "Female";
 		}
 		return null;
+	}
+	
+	public static void Alert_YesorNo(ActionEvent event, String alertcontent, String alerttitle, Class getclass, String str){
+		ButtonType YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
+		ButtonType NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
+		Alert alert = new Alert(AlertType.NONE,alertcontent, YES, NO);
+		alert.setTitle(alerttitle);
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.orElse(NO) == YES) {
+			try {
+				NAV(getclass, event, str);
+			}catch(Exception e) { }
+		}
+	}
+	public static void Alert_ERROR(ActionEvent event, String alertcontent, String alerttitle) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle(alerttitle);
+		alert.setHeaderText(alertcontent);
+		alert.showAndWait();
+	}
+	public static void Alert_ERROR_Key(KeyEvent event, String alertcontent, String alerttitle) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle(alerttitle);
+		alert.setHeaderText(alertcontent);
+		alert.showAndWait();
 	}
 }

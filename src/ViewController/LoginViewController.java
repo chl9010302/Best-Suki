@@ -36,10 +36,7 @@ public class LoginViewController implements Initializable {
 			}
 			else {
 				login_id ="";
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle(config.StaticProperty.alerttitlemessage());
-				alert.setHeaderText(config.StaticProperty.alertfailedtologin());
-				alert.showAndWait();
+				CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlemessage(), config.StaticProperty.alertfailedtologin());
 			}
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
@@ -63,10 +60,7 @@ public class LoginViewController implements Initializable {
 				}
 				else {
 					login_id ="";
-					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle(config.StaticProperty.alerttitlemessage());
-					alert.setHeaderText(config.StaticProperty.alertfailedtologin());
-					alert.showAndWait();
+					CommonController.Alert_ERROR_Key(event, config.StaticProperty.alerttitlemessage(), config.StaticProperty.alertfailedtologin());
 				}
 			}catch (NoSuchAlgorithmException e) {	
 			}catch (UnsupportedEncodingException e) {

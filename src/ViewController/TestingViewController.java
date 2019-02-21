@@ -56,39 +56,39 @@ public class TestingViewController implements Initializable {
 			
 			//try문 끝
 		}else {
-			try {
-				TestResultAdd testresultadd = new TestResultAdd();
-				TestResultBean testresultbean = new TestResultBean();
-				int i = 0;
-				i = TestResultAdd.testresult.size();
-				if(i<10) {
-					for( int j = i; j<10;j++) {
-						TestResultAdd.testresult.add("");
+			ButtonType YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
+			Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcongraturations(), YES);
+			alert.setTitle(config.StaticProperty.alertcongraturations());
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.orElse(YES) == YES) {
+				try {
+					TestResultAdd testresultadd = new TestResultAdd();
+					TestResultBean testresultbean = new TestResultBean();
+					int i = 0;
+					i = TestResultAdd.testresult.size();
+					if(i<10) {
+						for( int j = i; j<10;j++) {
+							TestResultAdd.testresult.add("");
+						}
 					}
-				}
-				testresultbean.setTESTRESULT_ID1(TestResultAdd.testresult.get(0));
-				testresultbean.setTESTRESULT_ANSWER1(TestResultAdd.testresult.get(1));
-				testresultbean.setTESTRESULT_ID2(TestResultAdd.testresult.get(2));
-				testresultbean.setTESTRESULT_ANSWER2(TestResultAdd.testresult.get(3));
-				testresultbean.setTESTRESULT_ID3(TestResultAdd.testresult.get(4));
-				testresultbean.setTESTRESULT_ANSWER3(TestResultAdd.testresult.get(5));
-				testresultbean.setTESTRESULT_ID4(TestResultAdd.testresult.get(6));
-				testresultbean.setTESTRESULT_ANSWER4(TestResultAdd.testresult.get(7));
-				testresultbean.setTESTRESULT_ID5(TestResultAdd.testresult.get(8));
-				testresultbean.setTESTRESULT_ANSWER5(TestResultAdd.testresult.get(9));
-				testresultbean.setTESTRESULT_ID_PK(CommonController.MakeId());
-				testresultbean.setTESTRESULT_WRITER(LoginViewController.login_id);
-				testresultbean.setTEST_ID(TestAdd.testing_id);
-				testresultadd.insertTestResult(testresultbean);
-				Resultid = CommonController.MakeId();
-				ButtonType YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
-				Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcongraturations(), YES);
-				alert.setTitle(config.StaticProperty.alertcongraturations());
-				Optional<ButtonType> result = alert.showAndWait();
-				if (result.orElse(YES) == YES) {
+					testresultbean.setTESTRESULT_ID1(TestResultAdd.testresult.get(0));
+					testresultbean.setTESTRESULT_ANSWER1(TestResultAdd.testresult.get(1));
+					testresultbean.setTESTRESULT_ID2(TestResultAdd.testresult.get(2));
+					testresultbean.setTESTRESULT_ANSWER2(TestResultAdd.testresult.get(3));
+					testresultbean.setTESTRESULT_ID3(TestResultAdd.testresult.get(4));
+					testresultbean.setTESTRESULT_ANSWER3(TestResultAdd.testresult.get(5));
+					testresultbean.setTESTRESULT_ID4(TestResultAdd.testresult.get(6));
+					testresultbean.setTESTRESULT_ANSWER4(TestResultAdd.testresult.get(7));
+					testresultbean.setTESTRESULT_ID5(TestResultAdd.testresult.get(8));
+					testresultbean.setTESTRESULT_ANSWER5(TestResultAdd.testresult.get(9));
+					testresultbean.setTESTRESULT_ID_PK(CommonController.MakeId());
+					testresultbean.setTESTRESULT_WRITER(LoginViewController.login_id);
+					testresultbean.setTEST_ID(TestAdd.testing_id);
+					testresultadd.insertTestResult(testresultbean);
+					Resultid = CommonController.MakeId();
 					CommonController.NAV(getClass(), event, config.StaticProperty.getnavresultview());
-				}
-			} catch (IOException e) {e.printStackTrace(); }
+				} catch (IOException e) {e.printStackTrace(); }
+			}
 		}
 	}
 	@FXML

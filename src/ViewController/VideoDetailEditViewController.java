@@ -29,19 +29,7 @@ public class VideoDetailEditViewController implements Initializable {
 	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageview()); }
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
-	@FXML
-	private void cancelAction(ActionEvent event) {
-		ButtonType YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
-		ButtonType NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
-		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcancel(), YES, NO);
-		alert.setTitle(config.StaticProperty.alerttitlecancel());
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.orElse(NO) == YES) {
-			try {
-				CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideodetailview());
-			}catch(Exception e) { }
-		}
-	}
+	@FXML private void cancelAction(ActionEvent event) { CommonController.Alert_YesorNo(event, config.StaticProperty.alertcancel(), config.StaticProperty.alerttitlecancel(), getClass(), config.StaticProperty.getnavvideodetailview()); }
 	@FXML
 	private void editAction(ActionEvent event) {
 		try {

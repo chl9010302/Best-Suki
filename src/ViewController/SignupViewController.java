@@ -68,10 +68,7 @@ public class SignupViewController implements Initializable {
 				}
 			}
 			else {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle(config.StaticProperty.alerttitlemessage());
-				alert.setHeaderText(config.StaticProperty.alertfailedtosignup());
-				alert.showAndWait();
+				CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlemessage(), config.StaticProperty.alertfailedtosignup());
 			}
 		}catch(Exception e) { }
 	}

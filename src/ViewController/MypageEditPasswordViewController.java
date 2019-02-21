@@ -32,6 +32,7 @@ public class MypageEditPasswordViewController implements Initializable {
 	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageview()); }
 	@FXML private void NAV_MypageEditView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageeditview()); }
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
+	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML
 	public void editPassword(ActionEvent event) {
 		ButtonType YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
@@ -62,7 +63,6 @@ public class MypageEditPasswordViewController implements Initializable {
 			}
 		}
 	}
-	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	public void initialize(URL url, ResourceBundle rb) {
 		try {
 			SelectNowUser selectnowuser = new SelectNowUser();

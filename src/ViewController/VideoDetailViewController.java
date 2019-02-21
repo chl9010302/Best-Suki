@@ -41,19 +41,7 @@ public class VideoDetailViewController  implements Initializable {
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
 	@FXML private void NAV_FullScreenVideo(ActionEvent event) throws IOException { CommonController.NAV_POPUP(getClass(), event, config.StaticProperty.getnavfullscreenvideoview()); }
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
-	@FXML
-	private void editAction(ActionEvent event) {
-		ButtonType YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
-		ButtonType NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
-		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertedit(), YES, NO);
-		alert.setTitle(config.StaticProperty.alerttitlecancel());
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.orElse(NO) == YES) {
-			try {
-				CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideodetaileditview());
-			}catch(Exception e) { }
-		}
-	}
+	@FXML private void editAction(ActionEvent event) { CommonController.Alert_YesorNo(event, config.StaticProperty.alertedit(), config.StaticProperty.alerttitlecancel(), getClass(), config.StaticProperty.getnavvideodetaileditview()); }
 	@FXML
 	private void fullscreen(ActionEvent event) {
 	
