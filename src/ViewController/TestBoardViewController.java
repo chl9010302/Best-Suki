@@ -26,14 +26,18 @@ public class TestBoardViewController implements Initializable {
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML private void addAction(ActionEvent event) throws IOException { CommonController.NAV_POPUP(getClass(), event, config.StaticProperty.getnavaddtestboardview()); }
 	@FXML
-	private void removeAction(ActionEvent action){
+	private void removeAction(ActionEvent event){
 		TestDetailAdd testdetailadd = new TestDetailAdd();
 		int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
-		testdetailadd.delete(String.valueOf(testTableView.getItems().get(selectedItem).getTestdetail_id_pk().getValue()));
-		testTableView.setItems(testdetailadd.gettestdetailadd());
+		if(selectedItem == -1) {
+			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoitem(), config.StaticProperty.alertnoitem());
+		} else {
+			testdetailadd.delete(String.valueOf(testTableView.getItems().get(selectedItem).getTestdetail_id_pk().getValue()));
+			testTableView.setItems(testdetailadd.gettestdetailadd());
+		}
 	}
 	@FXML
-	private void modify(ActionEvent action) {
+	private void modify(ActionEvent event) {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		try {

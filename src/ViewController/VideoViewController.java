@@ -26,11 +26,15 @@ public class VideoViewController implements Initializable {
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML private void addAction(ActionEvent event) throws IOException { CommonController.NAV_POPUP(getClass(), event, config.StaticProperty.getnavaddvideoview());	}
 	@FXML
-	private void deleteAction(ActionEvent action){
+	private void deleteAction(ActionEvent event){
 		VideoDetailAdd videodetailadd = new VideoDetailAdd();
 		int selectedItem = videotableview.getSelectionModel().getSelectedIndex();
-		videodetailadd.delete(String.valueOf(videotableview.getItems().get(selectedItem).getVideodetail_id_pk().getValue()));
-		videotableview.setItems(videodetailadd.getvideodetailadd());
+		if(selectedItem == -1) {
+			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoitem(), config.StaticProperty.alertnoitem());
+		} else {
+			videodetailadd.delete(String.valueOf(videotableview.getItems().get(selectedItem).getVideodetail_id_pk().getValue()));
+			videotableview.setItems(videodetailadd.getvideodetailadd());
+		}
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		VideoDetailAdd videodetailadd = new VideoDetailAdd();

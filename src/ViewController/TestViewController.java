@@ -34,8 +34,12 @@ public class TestViewController implements Initializable {
 	private void removeAction(ActionEvent event){
 		TestAdd testadd = new TestAdd();
 		int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
-		testadd.delete(String.valueOf(testTableView.getItems().get(selectedItem).getTest_id_pk().getValue()));
-		testTableView.setItems(testadd.gettestadd());
+		if(selectedItem == -1) {
+			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoitem(), config.StaticProperty.alertnoitem());
+		} else {
+			testadd.delete(String.valueOf(testTableView.getItems().get(selectedItem).getTest_id_pk().getValue()));
+			testTableView.setItems(testadd.gettestadd());
+		}
 	}
 	@FXML
 	private void NAV_TestDetailView(ActionEvent event) throws IOException { 

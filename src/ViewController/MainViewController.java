@@ -29,8 +29,12 @@ public class MainViewController implements Initializable {
 	private void deleteAction(ActionEvent event){
 		NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
 		int selectedItem = noticeTableView.getSelectionModel().getSelectedIndex();
-		noticedetailadd.delete(String.valueOf(noticeTableView.getItems().get(selectedItem).getNoticedetail_id_pk().getValue()));
-		noticeTableView.setItems(noticedetailadd.getnoticedetailadd());
+		if(selectedItem == -1) {
+			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoitem(), config.StaticProperty.alertnoitem());
+		} else {
+			noticedetailadd.delete(String.valueOf(noticeTableView.getItems().get(selectedItem).getNoticedetail_id_pk().getValue()));
+			noticeTableView.setItems(noticedetailadd.getnoticedetailadd());
+		}
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		try {
