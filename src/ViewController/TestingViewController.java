@@ -26,6 +26,14 @@ import javafx.scene.image.ImageView;
 public class TestingViewController implements Initializable {
 	public static Image image;
 	public static String Resultid = "";
+	private ButtonType YES;
+	private Alert alert;
+	private Optional<ButtonType> result;
+	private TestResultAdd testresultadd;
+	private TestResultBean testresultbean;
+	private TestDetailAdd testdetailadd;
+	private TestAdd testadd;
+	private String result_answer;
 	//Declare FXML
 	@FXML private Button btnSubmit;
 	@FXML private ToggleGroup Quest1Group1;
@@ -43,27 +51,26 @@ public class TestingViewController implements Initializable {
 	@FXML
 	public void nextAction(ActionEvent event) {
 		TestAdd.maxpage--;
-		TestAdd testadd = new TestAdd();
 		// 결과값 저장
-		TestResultAdd.testresult.add(testadd.selectgetTestId(TestAdd.testing_id));
+		TestResultAdd.testresult.add(TestAdd.selectgetTestId(TestAdd.testing_id));
 		TestResultAdd.testresult.add(getAnswer());
 		if(TestAdd.maxpage != 0) {
 			++TestAdd.pagenumber;
-			TestAdd.test_id_fk = testadd.selectgetTestId(TestAdd.testing_id);
+			TestAdd.test_id_fk = TestAdd.selectgetTestId(TestAdd.testing_id);
 			try {
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestingview());
 			} catch (IOException e) {e.printStackTrace(); }
 			
 			//try문 끝
 		}else {
-			ButtonType YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
-			Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcongraturations(), YES);
+			YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
+			alert = new Alert(AlertType.NONE,config.StaticProperty.alertcongraturations(), YES);
 			alert.setTitle(config.StaticProperty.alertcongraturations());
-			Optional<ButtonType> result = alert.showAndWait();
+			result = alert.showAndWait();
 			if (result.orElse(YES) == YES) {
 				try {
-					TestResultAdd testresultadd = new TestResultAdd();
-					TestResultBean testresultbean = new TestResultBean();
+					testresultadd = new TestResultAdd();
+					testresultbean = new TestResultBean();
 					int i = 0;
 					i = TestResultAdd.testresult.size();
 					if(i<10) {
@@ -102,8 +109,8 @@ public class TestingViewController implements Initializable {
 			int i = TestAdd.maxpage-1;
 			label_TestingView.setText("TestingView : " + i + " 문제 남았습니다.");
 		}
-		TestDetailAdd testdetailadd = new TestDetailAdd();
-		TestAdd testadd = new TestAdd();
+		testdetailadd = new TestDetailAdd();
+		testadd = new TestAdd();
 		testdetail_subtitle.setText(testdetailadd.selectSubtitle(testadd.test_id_fk));
 		testdetail_answer1.setText(testdetailadd.selectDATA1(testadd.test_id_fk));
 		testdetail_answer2.setText(testdetailadd.selectDATA2(testadd.test_id_fk));
@@ -114,18 +121,17 @@ public class TestingViewController implements Initializable {
 		testdetail_imageview.setImage(image);
 	}
 	private String getAnswer() {
-		String result = "";
 		if(testdetail_rb1.isSelected()) {
-			result = testdetail_answer1.getText().toString();
+			result_answer = testdetail_answer1.getText().toString();
 		}else if(testdetail_rb2.isSelected()) {
-			result = testdetail_answer2.getText().toString();
+			result_answer = testdetail_answer2.getText().toString();
 		}else if(testdetail_rb3.isSelected()) {
-			result = testdetail_answer3.getText().toString();
+			result_answer = testdetail_answer3.getText().toString();
 		}else if(testdetail_rb4.isSelected()) {
-			result = testdetail_answer4.getText().toString();
+			result_answer = testdetail_answer4.getText().toString();
 		}else {
-			result = testdetail_answer5.getText().toString();
+			result_answer = testdetail_answer5.getText().toString();
 		}
-		return result;
+		return result_answer;
 	}
 }

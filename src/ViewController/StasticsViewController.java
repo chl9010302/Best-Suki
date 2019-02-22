@@ -20,7 +20,12 @@ public class StasticsViewController implements Initializable {
 	private AddStastics stasticsview = new AddStastics();
 	private final List<AddStastics> data = createData();
 	private final static int rowsPerPage = 10;
-	private final TableView<AddStastics> table = createTable();
+	private TableView<AddStastics> table = createTable();
+	private int fromindex;
+	private int toindex;
+	private TableColumn<AddStastics, String> idColumn;
+	private TableColumn<AddStastics, String> loginColumn;
+	private TableColumn<AddStastics, String> logoutColumn;
 	//Declare FXML
 	@FXML private Pagination statistics_pagination;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
@@ -36,22 +41,22 @@ public class StasticsViewController implements Initializable {
 		statistics_pagination.setPageCount(data.size()/10);
 	}
 	private Node createPage(int pageIndex) {
-		int fromindex = pageIndex * rowsPerPage;
-		int toindex = Math.min(fromindex + rowsPerPage, data.size());
+		fromindex = pageIndex * rowsPerPage;
+		toindex = Math.min(fromindex + rowsPerPage, data.size());
 		table.setItems(FXCollections.observableArrayList(data.subList(fromindex, toindex)));
 		table.setMaxHeight(310);
 		return table;
 	}
 	@SuppressWarnings("unchecked")
 	private TableView<AddStastics> createTable() {
-		TableView<AddStastics> table = new TableView<>();
-		TableColumn<AddStastics, String> idColumn = new TableColumn<>("USER_ID");
+		table = new TableView<>();
+		idColumn = new TableColumn<>("USER_ID");
 		idColumn.setCellValueFactory(param -> param.getValue().getUSER_ID());
 		idColumn.setPrefWidth(72);
-		TableColumn<AddStastics, String> loginColumn = new TableColumn<>("USER_LOGIN_DATE");
+		loginColumn = new TableColumn<>("USER_LOGIN_DATE");
 		loginColumn.setCellValueFactory(param -> param.getValue().getUSER_LOGIN_DATE());
 		loginColumn.setPrefWidth(331);
-		TableColumn<AddStastics, String> logoutColumn = new TableColumn<>("USER_LOGOUT_DATE");
+		logoutColumn = new TableColumn<>("USER_LOGOUT_DATE");
 		logoutColumn.setCellValueFactory(param -> param.getValue().getUSER_LOGOUT_DATE());
 		logoutColumn.setPrefWidth(251);
 		table.getColumns().addAll(idColumn, loginColumn, logoutColumn);

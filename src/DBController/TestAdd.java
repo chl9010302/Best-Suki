@@ -18,7 +18,7 @@ import usingstaticfunction.DBConnectionKeeping;
 
 public class TestAdd {
 	TestBean testbean;
-	Connection conn = null;
+	static Connection conn = null;
 	static Statement stmt = null;
 	public static String test_id_fk = ""; // test_id_fk를 알아내기 위함
 	public static String testing_id = ""; // test하고자 하는 id를 전체 뷰에서 사용하기 위함
@@ -191,7 +191,7 @@ public class TestAdd {
 			test.add(TestDetailAdd.selectSubtitle(selectgetcount(id, i)));
 		return test;
 	}
-	public String selectgetTestId(String id) {
+	public static String selectgetTestId(String id) {
 		String result = "";
 		try {
 			StringBuilder sb = new StringBuilder();

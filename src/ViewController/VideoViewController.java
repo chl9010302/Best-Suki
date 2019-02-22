@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class VideoViewController implements Initializable {
 	//Declare FXML
 	private VideoDetailAdd videodetailadd;
+	private int selectedItem;
 	@FXML private TableView<VideoDetailAdd> videotableview;
 	@FXML private TableColumn<VideoDetailAdd, String> ColVideo_Id, ColVideo_Subtitle, ColVideo_Writer, ColVideo_Date, ColVideo_Btndetail;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
@@ -29,7 +30,7 @@ public class VideoViewController implements Initializable {
 	@FXML
 	private void deleteAction(ActionEvent event){
 		videodetailadd = new VideoDetailAdd();
-		int selectedItem = videotableview.getSelectionModel().getSelectedIndex();
+		selectedItem = videotableview.getSelectionModel().getSelectedIndex();
 		if(selectedItem == -1) {
 			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoitem(), config.StaticProperty.alertnoitem());
 		} else {

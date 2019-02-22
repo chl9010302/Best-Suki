@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 
 public class TestDetailViewController implements Initializable {
+	private TestAdd testadd;
 	//Declare JAVA
 	public static String login_id = LoginViewController.login_id;
 	//Declare FXML
@@ -34,7 +35,7 @@ public class TestDetailViewController implements Initializable {
 		}catch(Exception e) {e.printStackTrace(); }
 	}
 	public void initialize(URL url, ResourceBundle rb) { 
-		TestAdd testadd = new TestAdd();
+		testadd = new TestAdd();
 		testListView.setItems(testadd.gettestdetailid(TestViewController.test_id));
 		ColTest_Subtitle.setText(TestAdd.selectSubtitle(TestViewController.test_id));
 	}

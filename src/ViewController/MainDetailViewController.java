@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class MainDetailViewController implements Initializable {
+	private NoticeDetailAdd noticedetailadd;
 	//Declare FXML
 	@FXML private Label maindetail_subtitle, maindetail_context;
 	@FXML private TextField txtSubtitle, txtContext; 
@@ -30,7 +31,7 @@ public class MainDetailViewController implements Initializable {
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML private void editAction(ActionEvent event) { CommonController.Alert_YesorNo(event, config.StaticProperty.alertedit(), config.StaticProperty.alerttitlecancel(), getClass(), config.StaticProperty.getnavmaindetaileditview()); }
 	public void initialize(URL url, ResourceBundle rb) {
-		NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
+		noticedetailadd = new NoticeDetailAdd();
 		maindetail_subtitle.setText(noticedetailadd.selectSubtitle(noticedetailadd.noticedetail_id));
 		maindetail_context.setText(noticedetailadd.selectContext(noticedetailadd.noticedetail_id));
 	}

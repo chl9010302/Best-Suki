@@ -13,6 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TestBoardViewController implements Initializable {
+	private TestDetailAdd testdetailadd;
+	private int selectedItem;
 	//Declare FXML
 	@FXML private TableView<TestDetailAdd> testTableView;
 	@FXML private TableColumn<TestDetailAdd, String> ColTest_Subtitle, ColTest_Writer, ColTest_Date, ColTest_Btndetail;
@@ -27,8 +29,8 @@ public class TestBoardViewController implements Initializable {
 	@FXML private void addAction(ActionEvent event) throws IOException { CommonController.NAV_POPUP(getClass(), event, config.StaticProperty.getnavaddtestboardview()); }
 	@FXML
 	private void removeAction(ActionEvent event){
-		TestDetailAdd testdetailadd = new TestDetailAdd();
-		int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
+		testdetailadd = new TestDetailAdd();
+		selectedItem = testTableView.getSelectionModel().getSelectedIndex();
 		if(selectedItem == -1) {
 			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoitem(), config.StaticProperty.alertnoitem());
 		} else {
@@ -41,7 +43,7 @@ public class TestBoardViewController implements Initializable {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		try {
-			TestDetailAdd testdetailadd = new TestDetailAdd();
+			testdetailadd = new TestDetailAdd();
 			ColTest_Subtitle.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_Subtitle());
 			ColTest_Writer.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_writer());
 			ColTest_Date.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_time());

@@ -21,6 +21,7 @@ import javafx.scene.image.ImageView;
 
 public class TestBoardDetailViewController implements Initializable {
 	public static Image image;
+	private TestDetailAdd testdetailadd;
 	//Declare FXML
 	@FXML private ToggleGroup Quest1Group1;
 	@FXML private ImageView testdetail_imageview;
@@ -39,7 +40,7 @@ public class TestBoardDetailViewController implements Initializable {
 	private void Quest1Group1Action(ActionEvent action) {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
-		TestDetailAdd testdetailadd = new TestDetailAdd();
+		testdetailadd = new TestDetailAdd();
 		testdetail_subtitle.setText(testdetailadd.selectSubtitle(testdetailadd.testdetail_id));
 		testdetail_answer1.setText(testdetailadd.selectDATA1(testdetailadd.testdetail_id));
 		testdetail_answer2.setText(testdetailadd.selectDATA2(testdetailadd.testdetail_id));

@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 public class VideoDetailEditViewController implements Initializable {
 	//Declare JAVA
 	private VideoDetailBean videodetailbean;
+	private VideoDetailAdd videodetailadd;
 	//Declare FXML
 	@FXML private TextField txtSubtitle, txtFilepath; 
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
@@ -33,7 +34,7 @@ public class VideoDetailEditViewController implements Initializable {
 	@FXML
 	private void editAction(ActionEvent event) {
 		try {
-			VideoDetailAdd videodetailadd = new VideoDetailAdd();
+			videodetailadd = new VideoDetailAdd();
 			videodetailbean = new VideoDetailBean();
 			videodetailbean.setVIDEODETAIL_ID_PK(videodetailadd.videodetail_id);
 			videodetailbean.setVIDEODETAIL_SUBTITLE(txtSubtitle.getText().toString());
@@ -45,8 +46,8 @@ public class VideoDetailEditViewController implements Initializable {
 		}catch(Exception e) { }
 	}
 	public void initialize(URL url, ResourceBundle rb) {
-		VideoDetailAdd videodetailadd = new VideoDetailAdd();
-		txtSubtitle.setText(videodetailadd.selectSubtitle(videodetailadd.videodetail_id));
-		txtFilepath.setText(videodetailadd.selectFilepath(videodetailadd.videodetail_id));
+		videodetailadd = new VideoDetailAdd();
+		txtSubtitle.setText(videodetailadd.selectContent(videodetailadd.videodetail_id, "VIDEODETAIL_SUBTITLE"));
+		txtFilepath.setText(videodetailadd.selectContent(videodetailadd.videodetail_id, "VIDEODETAIL_FILEPATH"));
 	}
 }

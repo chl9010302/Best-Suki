@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 public class AddVideoViewController implements Initializable {
 	//Declare JAVA
 	private VideoDetailBean videodetailbean;
+	private VideoDetailAdd videodetailadd;
 	public static String login_id = LoginViewController.login_id;
 	//Declare FXML
 	@FXML private TextField txtSubtitle, txtFilepath; 
@@ -38,11 +39,11 @@ public class AddVideoViewController implements Initializable {
 		if(txtFilepath.getText().toString().contains("www.youtube.com")) {
 			try {
 				videodetailbean = new VideoDetailBean();
+				videodetailadd = new VideoDetailAdd();
 				videodetailbean.setVIDEODETAIL_ID_PK(CommonController.MakeId());
 				videodetailbean.setVIDEODETAIL_SUBTITLE(txtSubtitle.getText().toString());
 				videodetailbean.setVIDEODETAIL_WRITER(login_id);
 				videodetailbean.setVIDEODETAIL_FILEPATH(txtFilepath.getText().toString());
-				VideoDetailAdd videodetailadd = new VideoDetailAdd();
 				videodetailadd.insertVideodetail(videodetailbean);
 				((Stage) ((Node) event.getSource()).getScene().getWindow()).close(); // 창 닫음.
 			}catch(Exception e) { }

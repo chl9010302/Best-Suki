@@ -80,7 +80,6 @@ public class CommonController{
 		}
 		return null;
 	}
-	
 	public static void Alert_YesorNo(ActionEvent event, String alertcontent, String alerttitle, Class getclass, String str){
 		ButtonType YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
 		ButtonType NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -104,5 +103,10 @@ public class CommonController{
 		alert.setTitle(alerttitle);
 		alert.setHeaderText(alertcontent);
 		alert.showAndWait();
+	}
+	public static String MakeMobilenumber(String midnumber, String lastnumber) {
+		String result = "";
+		result = "010-" + midnumber + "-" + lastnumber;
+		return result;
 	}
 }

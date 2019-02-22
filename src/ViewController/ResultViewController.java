@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn;
 public class ResultViewController implements Initializable {
 	//Declare JAVA
 	public static String login_id = LoginViewController.login_id;
+	private String str;
 	//Declare FXML
 	@FXML private ListView<String> testListView;
 	@FXML private Label ColTest_Subtitle, TESTRESULT_ANSWER1, TESTRESULT_ANSWER2, TESTRESULT_ANSWER3, TESTRESULT_ANSWER4, TESTRESULT_ANSWER5, TESTDETAIL_ANSWER1, TESTDETAIL_ANSWER2, TESTDETAIL_ANSWER3, TESTDETAIL_ANSWER4, TESTDETAIL_ANSWER5, result1, result2, result3, result4, result5;
@@ -37,7 +38,7 @@ public class ResultViewController implements Initializable {
 	@SuppressWarnings("null")
 	public void initialize(URL url, ResourceBundle rb) {
 		ColTest_Subtitle.setText(TestAdd.selectSubtitle(TestAdd.testing_id));
-		String str = "TESTRESULT_ANSWER1";
+		str = "TESTRESULT_ANSWER1";
 		try {
 			Class c = Class.forName(getClass().toString());
 			Method m[] = c.getDeclaredMethods();

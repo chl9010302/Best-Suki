@@ -19,9 +19,13 @@ public class VideoDetailAdd {
 	VideoDetailBean videodetailbean;
 	Connection conn = null;
 	Statement stmt = null;
+	private String sql;
+	private String result;
+	private StringBuilder sb;
 	public static String videodetail_id = "";
 	private StringProperty videodetail_id_pk, videodetail_subtitle, videodetail_writer, videodetail_time, videodetail_filepath;
 	private Button videodetail_btndetail;
+	private ObservableList<VideoDetailAdd> videodetailadd_observablelist = FXCollections.observableArrayList();
 	public StringProperty getVideodetail_id_pk() {
 		return videodetail_id_pk;
 	}
@@ -75,18 +79,18 @@ public class VideoDetailAdd {
 		try {
 			Connection con = usingstaticfunction.DBConnectionKeeping.con;
 			stmt = con.createStatement();
-			String updatesql = "UPDATE "+config.StaticProperty.getvideodetail_tb()+" SET VIDEODETAIL_SUBTITLE = '" + videodetailbean.getVIDEODETAIL_SUBTITLE() + "', VIDEODETAIL_FILEPATH = '" + videodetailbean.getVIDEODETAIL_FILEPATH() + "' WHERE VIDEODETAIL_ID_PK = '" + videodetailbean.getVIDEODETAIL_ID_PK() + "';";
-			stmt.executeUpdate(updatesql);
+			sql = "UPDATE "+config.StaticProperty.getvideodetail_tb()+" SET VIDEODETAIL_SUBTITLE = '" + videodetailbean.getVIDEODETAIL_SUBTITLE() + "', VIDEODETAIL_FILEPATH = '" + videodetailbean.getVIDEODETAIL_FILEPATH() + "' WHERE VIDEODETAIL_ID_PK = '" + videodetailbean.getVIDEODETAIL_ID_PK() + "';";
+			stmt.executeUpdate(sql);
 			return true;
 		} catch (SQLException e) { } return false;
 	}
 	public boolean insertVideodetail(VideoDetailBean videodetailbean) {
-		String insertsql = "INSERT INTO "+config.StaticProperty.getvideodetail_tb()+"(VIDEODETAIL_ID_PK, VIDEODETAIL_SUBTITLE, VIDEODETAIL_WRITER, VIDEODETAIL_TIME, VIDEODETAIL_FILEPATH) VALUES(?, ?, ?, now(), ?);";
+		sql = "INSERT INTO "+config.StaticProperty.getvideodetail_tb()+"(VIDEODETAIL_ID_PK, VIDEODETAIL_SUBTITLE, VIDEODETAIL_WRITER, VIDEODETAIL_TIME, VIDEODETAIL_FILEPATH) VALUES(?, ?, ?, now(), ?);";
 		PreparedStatement pstmt = null;
 		this.videodetailbean = videodetailbean;
 		try {
 			conn = application.DBConnection.getDBConection();	
-			pstmt = conn.prepareStatement(insertsql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, videodetailbean.getVIDEODETAIL_ID_PK());
 			pstmt.setString(2, videodetailbean.getVIDEODETAIL_SUBTITLE());
 			pstmt.setString(3, videodetailbean.getVIDEODETAIL_WRITER());
@@ -112,7 +116,7 @@ public class VideoDetailAdd {
 		try {
 			conn = application.DBConnection.getDBConection();
 			stmt = conn.createStatement();
-			String sql = sb.append("SELECT * FROM "+config.StaticProperty.getvideodetail_tb()).append(";").toString();
+			sql = sb.append("SELECT * FROM "+config.StaticProperty.getvideodetail_tb()).append(";").toString();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				videodetailadd.add(new VideoDetailAdd((String) rs.getString("VIDEODETAIL_ID_PK"), (String) rs.getString("VIDEODETAIL_SUBTITLE"), (String) rs.getString("VIDEODETAIL_WRITER"),(String) rs.getString("VIDEODETAIL_TIME").substring(0,10), rs.getString("VIDEODETAIL_FILEPATH")));
@@ -122,37 +126,22 @@ public class VideoDetailAdd {
 	public void delete(String id) {
 		StringBuilder sb = new StringBuilder();
 		conn = application.DBConnection.getDBConection();
-		String sql = sb.append("DELETE FROM "+config.StaticProperty.getvideodetail_tb()+" WHERE VIDEODETAIL_ID_PK = '").append(id).append("';").toString();
+		sql = sb.append("DELETE FROM "+config.StaticProperty.getvideodetail_tb()+" WHERE VIDEODETAIL_ID_PK = '").append(id).append("';").toString();
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) { }
 	}
-	public String selectSubtitle(String id) {
-		String result = "";
+	public String selectContent(String id, String getcontent) {
+		StringBuilder sb = new StringBuilder();
 		try {
-			StringBuilder sb = new StringBuilder();
 			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT VIDEODETAIL_SUBTITLE FROM "+config.StaticProperty.getvideodetail_tb()+" WHERE VIDEODETAIL_ID_PK = '").append(id).append("';").toString();
+			sql = sb.append("SELECT " + getcontent + " FROM "+config.StaticProperty.getvideodetail_tb()+" WHERE VIDEODETAIL_ID_PK = '").append(id).append("';").toString();
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				if (rs.getString("VIDEODETAIL_SUBTITLE") != null)
-					result = rs.getString("VIDEODETAIL_SUBTITLE");
-			}
-		}catch(Exception e) { } return result;
-	}
-	public String selectFilepath(String id) {
-		String result = "";
-		try {
-			StringBuilder sb = new StringBuilder();
-			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT VIDEODETAIL_FILEPATH FROM "+config.StaticProperty.getvideodetail_tb()+" WHERE VIDEODETAIL_ID_PK = '").append(id).append("';").toString();
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				if (rs.getString("VIDEODETAIL_FILEPATH") != null)
-					result = rs.getString("VIDEODETAIL_FILEPATH");
+				if (rs.getString(getcontent) != null)
+					result = rs.getString(getcontent);
 			}
 		}catch(Exception e) { } return result;
 	}

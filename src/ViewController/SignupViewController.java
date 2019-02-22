@@ -27,6 +27,11 @@ public class SignupViewController implements Initializable {
 	private UserBean user; // 회원가입 시 User 정보를 송신하기 위함.
 	private String usergender = "";
 	private String UserPhone, UserFmPhone;
+	private LocalDate localDate;
+	private UserJoin userjoin;
+	private ButtonType YES;
+	private Alert alert;
+	private Optional<ButtonType> result;
 	Sha256 sha256 = new Sha256();
 	//Declare FXML
 	@FXML private ToggleGroup GenderGroup;
@@ -37,11 +42,11 @@ public class SignupViewController implements Initializable {
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML
 	private void Signup(ActionEvent event) throws IOException, NoSuchAlgorithmException {
-		LocalDate localDate = UserAge.getValue();
-		// 회원가입 시 정보가  인터페이스됨.
-		UserPhone = "010-" + UserPhone_Mid.getText().toString() + "-" + UserPhone_End.getText().toString();
-		UserFmPhone = "010-" + UserFmphone_Mid.getText().toString() + "-" + UserFmphone_End.getText().toString();
+		localDate = UserAge.getValue();
 		user = new UserBean();
+		// 회원가입 시 정보가  인터페이스됨.
+		UserPhone = CommonController.MakeMobilenumber(UserPhone_Mid.getText().toString(), UserPhone_End.getText().toString());
+		UserFmPhone = CommonController.MakeMobilenumber(UserFmphone_Mid.getText().toString(), UserFmphone_End.getText().toString());
 		user.setUSER_ID_PK(UserId.getText().toString());
 		user.setUSER_PASSWORD(sha256.sha256(UserPassword.getText()));
 		user.setUSER_NAME(UserName.getText().toString());
@@ -55,13 +60,13 @@ public class SignupViewController implements Initializable {
 		user.setUSER_TEACHERSESSION("0");
 		// 회원가입과 함께 Login Page로 이동됨.
 		try {
-			UserJoin userjoin = new UserJoin();
+			userjoin = new UserJoin();
 			int i = userjoin.joinCheck(UserId.getText().toString());
 			if(i == 1) {
-				ButtonType YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
-				Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetosignup(), YES);
+				YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
+				alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetosignup(), YES);
 				alert.setTitle(config.StaticProperty.alertcompletetosignup());
-				Optional<ButtonType> result = alert.showAndWait();
+				result = alert.showAndWait();
 				if (result.orElse(YES) == YES) {
 					userjoin = new UserJoin(user);
 					CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview());

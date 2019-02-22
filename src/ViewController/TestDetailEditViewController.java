@@ -26,6 +26,11 @@ public class TestDetailEditViewController implements Initializable {
 	//Declare JAVA
 	private TestBean testbean;
 	public static String login_id = LoginViewController.login_id;
+	private ArrayList<String> getresult;
+	private TestAdd testadd;
+	private TestDetailAdd testdetailadd;
+	private ArrayList<String> checkarraylist;
+	private int maxnumber;
 	//Declare FXML
 	@FXML private TableView<TestDetailAdd> testTableView;
 	@FXML private Label ColTest_Subtitle;
@@ -43,9 +48,9 @@ public class TestDetailEditViewController implements Initializable {
 	@FXML
 	private void editAction(ActionEvent event) {
 		try {
-			ArrayList<String> getresult = CheckFunction(ColTest_Check);
+			getresult = CheckFunction(ColTest_Check);
 			testbean = new TestBean();
-			TestAdd testadd = new TestAdd();
+			testadd = new TestAdd();
 			testbean.setTEST_ID_PK(TestViewController.test_id);
 			testbean.setTEST_SUBTITLE(TestAdd.selectSubtitle(TestViewController.test_id));
 			testbean.setTEST_WRITER(login_id);
@@ -85,7 +90,7 @@ public class TestDetailEditViewController implements Initializable {
 		}catch(Exception e) {e.printStackTrace(); }
 	}
 	public void initialize(URL url, ResourceBundle rb) { 
-		TestDetailAdd testdetailadd = new TestDetailAdd();
+		testdetailadd = new TestDetailAdd();
 		ColTest_Check.setCellValueFactory(new PropertyValueFactory<TestDetailAdd, CheckBox>("testdetail_checkboxdetail"));
 		ColTest_Writer.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_writer());
 		ColTest_Date.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_time());
@@ -93,11 +98,9 @@ public class TestDetailEditViewController implements Initializable {
 		ColTest_Subtitle.setText(TestAdd.selectSubtitle(TestViewController.test_id));
 	}
 	private ArrayList<String> CheckFunction(TableColumn<TestDetailAdd, CheckBox> tablecolumn) {
-		TestDetailAdd testdetailadd = new TestDetailAdd();
-		int maxnumber = testdetailadd.gettestdetailadd().size();
-		ArrayList<String> checkarraylist = new ArrayList<>();
-		ArrayList<String> result = new ArrayList<>();
-		
+		testdetailadd = new TestDetailAdd();
+		checkarraylist = new ArrayList<>();
+		maxnumber = testdetailadd.gettestdetailadd().size();
 		for(int i=0; i < maxnumber; i++) {
 			if(tablecolumn.getCellData(i).isSelected()) {
 				checkarraylist.add(testdetailadd.selectId(tablecolumn.getCellData(i).getText()));

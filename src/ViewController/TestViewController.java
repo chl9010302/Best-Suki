@@ -16,6 +16,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TestViewController implements Initializable {
+	private TestAdd testadd;
+	private int selectedItem;
 	//Declare JAVA
 	public static String test_id="";
 	//Declare FXML
@@ -32,8 +34,8 @@ public class TestViewController implements Initializable {
 	@FXML private void addAction(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavaddtestview()); }
 	@FXML
 	private void removeAction(ActionEvent event){
-		TestAdd testadd = new TestAdd();
-		int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
+		testadd = new TestAdd();
+		selectedItem = testTableView.getSelectionModel().getSelectedIndex();
 		if(selectedItem == -1) {
 			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoitem(), config.StaticProperty.alertnoitem());
 		} else {
@@ -46,16 +48,15 @@ public class TestViewController implements Initializable {
 		if(testTableView.getSelectionModel().getSelectedIndex() == -1) {
 			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoitem(), config.StaticProperty.alertnoitem());
 		}else {
-			TestAdd testadd = new TestAdd();
-			int selectedItem = testTableView.getSelectionModel().getSelectedIndex();
+			testadd = new TestAdd();
+			selectedItem = testTableView.getSelectionModel().getSelectedIndex();
 			test_id = String.valueOf(testTableView.getItems().get(selectedItem).getTest_id_pk().getValue());
-//			testadd.gettestdetailid(test_id);
 			CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestdetailview());
 		}
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		try {
-			TestAdd testadd = new TestAdd();
+			testadd = new TestAdd();
 			ColTest_Subtitle.setCellValueFactory(cellData -> cellData.getValue().getTest_Subtitle());
 			ColTest_Writer.setCellValueFactory(cellData -> cellData.getValue().getTest_writer());
 			ColTest_Date.setCellValueFactory(cellData -> cellData.getValue().getTest_time());

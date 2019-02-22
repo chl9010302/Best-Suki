@@ -26,8 +26,9 @@ public class VideoDetailViewController  implements Initializable {
 	//Declare JAVA
 	public static String login_id = LoginViewController.login_id;
 	private WebEngine engine;
-	private Stage stage;
-	public static  String URL = "";
+	private String getfilepath;
+	public static  String URL;
+	private VideoDetailAdd videodetailadd;
 	//Declare FXML
 	@FXML private WebView Myweb;
 	@FXML private Label videodetail_subtitle, videodetail_filepath;
@@ -42,17 +43,12 @@ public class VideoDetailViewController  implements Initializable {
 	@FXML private void NAV_FullScreenVideo(ActionEvent event) throws IOException { CommonController.NAV_POPUP(getClass(), event, config.StaticProperty.getnavfullscreenvideoview()); }
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML private void editAction(ActionEvent event) { CommonController.Alert_YesorNo(event, config.StaticProperty.alertedit(), config.StaticProperty.alerttitlecancel(), getClass(), config.StaticProperty.getnavvideodetaileditview()); }
-	@FXML
-	private void fullscreen(ActionEvent event) {
-	
-	}
 	public void initialize(URL url, ResourceBundle rb) {
-		VideoDetailAdd videodetailadd = new VideoDetailAdd();
-		URL = "https://www.youtube.com/embed/" + videodetailadd.selectFilepath(videodetailadd.videodetail_id).substring(32, videodetailadd.selectFilepath(videodetailadd.videodetail_id).length()) + "?wmode=transparent";
-		videodetail_subtitle.setText(videodetailadd.selectSubtitle(videodetailadd.videodetail_id));
-		
+		videodetailadd = new VideoDetailAdd();
+		getfilepath = videodetailadd.selectContent(videodetailadd.videodetail_id, "VIDEODETAIL_FILEPATH");
+		URL = "https://www.youtube.com/embed/" + getfilepath.substring(32, getfilepath.length()) + "?wmode=transparent";
+		videodetail_subtitle.setText(videodetailadd.selectContent(videodetailadd.videodetail_id, "VIDEODETAIL_SUBTITLE"));
 		engine = Myweb.getEngine();
 		engine.load(URL);
-		
 	}
 }

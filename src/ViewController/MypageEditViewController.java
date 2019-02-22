@@ -27,6 +27,13 @@ public class MypageEditViewController implements Initializable {
 	Sha256 sha256 = new Sha256();
 	private String usergender = "";
 	private String EditProperty_UserPhone, EditProperty_UserFmphone;
+	private ButtonType YES;
+	private Alert alert;
+	private Optional<ButtonType> result;
+	private UserBean userbean;
+	private UserDataUpdate userdataupdate;
+	private SelectNowUser selectnowuser;
+	private LocalDate localdate;
 	//Declare FXML
 	@FXML private Label Mypage_UserId, EditProperty_UserPassword;
 	@FXML private TextField EditProperty_UserName,  EditProperty_UserAddress, EditProperty_UserSchoolName, EditProperty_UserAge, EditProperty_UserGender, EditProperty_UserPhone_Mid, EditProperty_UserPhone_End, EditProperty_UserFmphone_Mid, EditProperty_UserFmphone_End;
@@ -41,17 +48,19 @@ public class MypageEditViewController implements Initializable {
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML private void cancelAction(ActionEvent event) { CommonController.Alert_YesorNo(event, config.StaticProperty.alertgoback(), config.StaticProperty.alerttitlecancel(), getClass(), config.StaticProperty.getnavmypageview()); }
+	@FXML public void editpasswordAction(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageeditpasswordview()); }
 	@FXML
 	public void editAction(ActionEvent event) {
 		usergender = CommonController.gender(rb_male.isSelected(), rb_female.isSelected());
-		ButtonType YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
-		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetoedit(), YES);
+		YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
+		alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetoedit(), YES);
 		alert.setTitle(config.StaticProperty.alertcompletetoedit());
-		Optional<ButtonType> result = alert.showAndWait();
+		result = alert.showAndWait();
 		if (result.orElse(YES) == YES) {
-			UserBean userbean = new UserBean();
-			EditProperty_UserPhone = "010-" + EditProperty_UserPhone_Mid.getText().toString() + "-" + EditProperty_UserPhone_End.getText().toString();
-			EditProperty_UserFmphone = "010-" + EditProperty_UserFmphone_Mid.getText().toString() + "-" + EditProperty_UserFmphone_End.getText().toString();
+			userbean = new UserBean();
+			userdataupdate = new UserDataUpdate();
+			EditProperty_UserPhone = CommonController.MakeMobilenumber(EditProperty_UserPhone_Mid.getText().toString(), EditProperty_UserPhone_End.getText().toString());
+			EditProperty_UserFmphone = CommonController.MakeMobilenumber(EditProperty_UserFmphone_Mid.getText().toString(), EditProperty_UserFmphone_End.getText().toString());
 			try {
 				userbean.setUSER_ID_PK(Mypage_UserId.getText().toString());
 				userbean.setUSER_NAME(EditProperty_UserName.getText().toString());
@@ -59,32 +68,24 @@ public class MypageEditViewController implements Initializable {
 				userbean.setUSER_SCHOOLNAME(EditProperty_UserSchoolName.getText().toString());
 				userbean.setUSER_AGE(dp_birth.getValue().toString());
 				userbean.setUSER_GENDER(usergender);
-				System.out.println(EditProperty_UserPhone);
 				userbean.setUSER_PHONE(EditProperty_UserPhone);
 				userbean.setUSER_FMPHONE(EditProperty_UserFmphone);
-				UserDataUpdate userdataupdate = new UserDataUpdate();
 				userdataupdate.UserUpdate(userbean, Mypage_UserId.getText().toString());
 				CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageview());
 			}catch(Exception e) { }
 		}
 	}
-	@FXML
-	public void editpasswordAction(ActionEvent event) {
-		try {
-			CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageeditpasswordview());
-		} catch (IOException e) { }
-	}
 	public void initialize(URL url, ResourceBundle rb) {
 		try {
-			UserBean userbean;
-			SelectNowUser selectnowuser = new SelectNowUser();
+			userbean = new UserBean();;
+			selectnowuser = new SelectNowUser();
 			userbean = selectnowuser.getSelectUser(LoginViewController.login_id);
 			Mypage_UserId.setText(userbean.getUSER_ID_PK());
 			EditProperty_UserPassword.setText("***************");
 			EditProperty_UserName.setText(userbean.getUSER_NAME());
 			EditProperty_UserAddress.setText(userbean.getUSER_ADDRESS());
 			EditProperty_UserSchoolName.setText(userbean.getUSER_SCHOOLNAME());
-			LocalDate localdate = LocalDate.of(Integer.parseInt(userbean.getUSER_AGE().substring(0, 4)), Integer.parseInt(userbean.getUSER_AGE().substring(5, 7)),Integer.parseInt(userbean.getUSER_AGE().substring(8, 10)));
+			localdate = LocalDate.of(Integer.parseInt(userbean.getUSER_AGE().substring(0, 4)), Integer.parseInt(userbean.getUSER_AGE().substring(5, 7)),Integer.parseInt(userbean.getUSER_AGE().substring(8, 10)));
 			dp_birth.setValue(localdate);
 			if(userbean.getUSER_GENDER().equals("Male")) {
 				rb_male.setSelected(true);

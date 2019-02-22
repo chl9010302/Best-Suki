@@ -19,6 +19,8 @@ import javafx.scene.input.KeyEvent;
 public class LoginViewController implements Initializable {
 	//Declare JAVA
 	public static String login_id;
+	private UserLogin userlogin;
+	private int i;
 	Sha256 sha256 = new Sha256();
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword;
@@ -27,40 +29,34 @@ public class LoginViewController implements Initializable {
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	private void login(ActionEvent event) {
-		UserLogin userlogin = new UserLogin();
+		userlogin = new UserLogin();
 		try {
-			int i = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
+			i = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 			login_id = UserId.getText().toString(); // 로그아웃 시 아이디를 기억하기 위함
 			if(i == 1) {
 				CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());
 			}
 			else {
 				login_id ="";
-				CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlemessage(), config.StaticProperty.alertfailedtologin());
+				CommonController.Alert_ERROR(event, config.StaticProperty.alertfailedtologin(), config.StaticProperty.alertfailedtologin());
 			}
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+		} catch (NoSuchAlgorithmException e) { e.printStackTrace();
+		} catch (UnsupportedEncodingException e) { e.printStackTrace();
+		} catch (Exception e) { e.printStackTrace(); }
 	}
 	public void setOnKeyPressed(KeyEvent event) {
 		if(event.getCode().toString().equals("ENTER"))
 		{
-			UserLogin userlogin = new UserLogin();
+			userlogin = new UserLogin();
 			try {
-				int i = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
+				i = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 				login_id = UserId.getText().toString(); // 로그아웃 시 아이디를 기억하기 위함
 				if(i == 1) {
 					CommonController.NAV_Key(getClass(), event, config.StaticProperty.getnavmainview());
 				}
 				else {
 					login_id ="";
-					CommonController.Alert_ERROR_Key(event, config.StaticProperty.alerttitlemessage(), config.StaticProperty.alertfailedtologin());
+					CommonController.Alert_ERROR_Key(event, config.StaticProperty.alertfailedtologin(), config.StaticProperty.alertfailedtologin());
 				}
 			}catch (NoSuchAlgorithmException e) {	
 			}catch (UnsupportedEncodingException e) {

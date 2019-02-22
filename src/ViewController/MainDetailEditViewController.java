@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 public class MainDetailEditViewController implements Initializable {
 	//Declare JAVA
 	private NoticeDetailBean noticedetailbean;
+	private NoticeDetailAdd noticedetailadd;
 	//Declare FXML
 	@FXML private TextField txtSubtitle, txtContext; 
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
@@ -34,10 +35,10 @@ public class MainDetailEditViewController implements Initializable {
 	private void editAction(ActionEvent event) {
 		try {
 			noticedetailbean = new NoticeDetailBean();
+			noticedetailadd = new NoticeDetailAdd();
 			noticedetailbean.setNOTICEDETAIL_ID_PK(NoticeDetailAdd.noticedetail_id);
 			noticedetailbean.setNOTICEDETAIL_SUBTITLE(txtSubtitle.getText().toString());
 			noticedetailbean.setNOTICEDETAIL_CONTEXT(txtContext.getText().toString());
-			NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
 			noticedetailadd.updateNoticeDetail(noticedetailbean);
 		}catch(Exception e) { e.printStackTrace();}
 		try {
@@ -45,7 +46,7 @@ public class MainDetailEditViewController implements Initializable {
 		}catch(Exception e) {}
 	}
 	public void initialize(URL url, ResourceBundle rb) {
-		NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
+		noticedetailadd = new NoticeDetailAdd();
 		txtSubtitle.setText(noticedetailadd.selectSubtitle(noticedetailadd.noticedetail_id));
 		txtContext.setText(noticedetailadd.selectContext(noticedetailadd.noticedetail_id));
 	}

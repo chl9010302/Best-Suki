@@ -28,6 +28,9 @@ public class AddTestBoardViewController{
 	public static String filename;
 	public static String login_id = LoginViewController.login_id;
 	public static FileInputStream input;
+	private TestDetailAdd detailAdd;
+	private FileChooser fileChooser;
+	private File file;
 	//Declare FXML
 	@FXML private TextField testdetail_subtitle, testdetail_answer1, testdetail_answer2, testdetail_answer3, testdetail_answer4, testdetail_answer5;
 	@FXML private RadioButton testdetail_rb1, testdetail_rb2, testdetail_rb3, testdetail_rb4, testdetail_rb5;
@@ -37,7 +40,7 @@ public class AddTestBoardViewController{
 	private void saveAction(ActionEvent event) {
 		if(input != null) {
 			testdetailbean = new TestDetailBean();
-			TestDetailAdd detailAdd = new TestDetailAdd();
+			detailAdd = new TestDetailAdd();
 			testdetailbean.setTESTDETAIL_ID_PK(CommonController.MakeId());
 			testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
 			testdetailbean.setTESTDETAIL_IMAGE_PATH(filename);
@@ -66,8 +69,8 @@ public class AddTestBoardViewController{
 		}
 	}
 	public void openFile() {
-		FileChooser fileChooser = new FileChooser();
-		File file = fileChooser.showOpenDialog(stage);
+		fileChooser = new FileChooser();
+		file = fileChooser.showOpenDialog(stage);
 		filename = file.getName();
 		try {
 			input = new FileInputStream(file);

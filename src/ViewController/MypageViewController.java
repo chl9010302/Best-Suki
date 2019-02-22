@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 public class MypageViewController implements Initializable {
+	private SelectNowUser selectnowuser;
+	private UserBean userbean;
 	//Declare FXML
 	@FXML private Label Mypage_UserId, Mypage_UserPassword, Mypage_UserName,  Mypage_UserAddress, Mypage_UserSchoolName, Mypage_UserAge, Mypage_UserGender, Mypage_UserPhone, Mypage_UserFmphone;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
@@ -25,8 +27,8 @@ public class MypageViewController implements Initializable {
 	@FXML private void editAction(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageeditview()); }
 	public void initialize(URL url, ResourceBundle rb) {
 		try {
-			SelectNowUser selectnowuser = new SelectNowUser();
-			UserBean userbean;
+			selectnowuser = new SelectNowUser();
+			userbean = new UserBean();
 			userbean  = selectnowuser.getSelectUser(LoginViewController.login_id);
 			Mypage_UserId.setText(LoginViewController.login_id);
 			Mypage_UserPassword.setText("*********");

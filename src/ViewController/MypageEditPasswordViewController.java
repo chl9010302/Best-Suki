@@ -21,7 +21,12 @@ import javafx.scene.control.PasswordField;
 
 public class MypageEditPasswordViewController implements Initializable {
 	//Declare JAVA
-	Sha256 sha256 = new Sha256();
+	private Sha256 sha256 = new Sha256();
+	private ButtonType YES;
+	private Alert alert;
+	private UserBean userbean;
+	private UserDataUpdate userdataupdate;
+	private SelectNowUser selectnowuser;
 	//Declare FXML
 	@FXML private Label Mypage_UserId, EditProperty_UserName,  EditProperty_UserAddress, EditProperty_UserSchoolName, EditProperty_UserAge, EditProperty_UserGender, EditProperty_UserPhone, EditProperty_UserFmphone;
 	@FXML private PasswordField EditProperty_UserPassword;
@@ -35,8 +40,8 @@ public class MypageEditPasswordViewController implements Initializable {
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML
 	public void editPassword(ActionEvent event) {
-		ButtonType YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
-		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetoedit(), YES);
+		YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
+		alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetoedit(), YES);
 		alert.setTitle(config.StaticProperty.alertcompletetoedit());
 		if(EditProperty_UserPassword.getText().equals("******")) {
 			Alert alert2 = new Alert(AlertType.NONE,config.StaticProperty.alertpasswordnotchanged(), YES);
@@ -45,7 +50,8 @@ public class MypageEditPasswordViewController implements Initializable {
 		}else {
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.orElse(YES) == YES) {
-				UserBean userbean = new UserBean();
+				userbean = new UserBean();
+				userdataupdate = new UserDataUpdate();
 				try {
 					userbean.setUSER_ID_PK(Mypage_UserId.getText().toString());
 					userbean.setUSER_PASSWORD(sha256.sha256(EditProperty_UserPassword.getText()));
@@ -56,7 +62,6 @@ public class MypageEditPasswordViewController implements Initializable {
 					userbean.setUSER_GENDER(EditProperty_UserGender.getText().toString());
 					userbean.setUSER_PHONE(EditProperty_UserPhone.getText().toString());
 					userbean.setUSER_FMPHONE(EditProperty_UserFmphone.getText().toString());
-					UserDataUpdate userdataupdate = new UserDataUpdate();
 					userdataupdate.UserUpdate(userbean, Mypage_UserId.getText().toString());
 					CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageview());
 				}catch(Exception e) { }
@@ -65,8 +70,8 @@ public class MypageEditPasswordViewController implements Initializable {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		try {
-			SelectNowUser selectnowuser = new SelectNowUser();
-			UserBean userbean;
+			selectnowuser = new SelectNowUser();
+			userbean = new UserBean();
 			userbean  = selectnowuser.getSelectUser(LoginViewController.login_id);
 			Mypage_UserId.setText(userbean.getUSER_ID_PK());
 			EditProperty_UserPassword.setText("******");

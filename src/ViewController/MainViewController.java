@@ -13,6 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MainViewController implements Initializable {
+	private NoticeDetailAdd noticedetailadd;
+	private int selectedItem;
 	//Declare FXML
 	@FXML private TableView<NoticeDetailAdd> noticeTableView;
 	@FXML private TableColumn<NoticeDetailAdd, String> ColNotice_Id, ColNotice_Subtitle, ColNotice_Writer, ColNotice_Date, ColNotice_Btndetail;
@@ -27,8 +29,8 @@ public class MainViewController implements Initializable {
 	@FXML private void addAction(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavaddmainview()); }
 	@FXML
 	private void deleteAction(ActionEvent event){
-		NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
-		int selectedItem = noticeTableView.getSelectionModel().getSelectedIndex();
+		noticedetailadd = new NoticeDetailAdd();
+		selectedItem = noticeTableView.getSelectionModel().getSelectedIndex();
 		if(selectedItem == -1) {
 			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoitem(), config.StaticProperty.alertnoitem());
 		} else {
@@ -37,8 +39,8 @@ public class MainViewController implements Initializable {
 		}
 	}
 	public void initialize(URL url, ResourceBundle rb) {
+		noticedetailadd = new NoticeDetailAdd();
 		try {
-			NoticeDetailAdd noticedetailadd = new NoticeDetailAdd();
 			ColNotice_Subtitle.setCellValueFactory(cellData -> cellData.getValue().getNoticedetail_subtitle());
 			ColNotice_Writer.setCellValueFactory(cellData -> cellData.getValue().getNoticedetail_writer());
 			ColNotice_Date.setCellValueFactory(cellData -> cellData.getValue().getNoticedetail_time());
