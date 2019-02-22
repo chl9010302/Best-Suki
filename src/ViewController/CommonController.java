@@ -1,13 +1,12 @@
 package ViewController;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Optional;
-
 import DBController.UserLogin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +18,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import usingstaticfunction.DBConnectionKeeping;
 
 public class CommonController{
 	// 마우스를 눌러서 화면 이동 액션
@@ -107,6 +106,28 @@ public class CommonController{
 	public static String MakeMobilenumber(String midnumber, String lastnumber) {
 		String result = "";
 		result = "010-" + midnumber + "-" + lastnumber;
+		return result;
+	}
+	
+	public static String selectcontent(String id, String getcontent, String gettable, String find_id) {
+		StringBuilder sb = new StringBuilder();
+		String sql;
+		Statement stmt = null;
+		ResultSet rs;
+		String result = null;
+		DBConnectionKeeping dbConnectionKeeping;
+		if (usingstaticfunction.DBConnectionKeeping.con == null)
+			dbConnectionKeeping = new DBConnectionKeeping();
+		try {
+			Connection con = usingstaticfunction.DBConnectionKeeping.con;
+			sql = sb.append("SELECT " + getcontent + " FROM "+gettable+" WHERE " + find_id + " = '").append(id).append("';").toString();
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				if (rs.getString(getcontent) != null)
+					result = rs.getString(getcontent);
+			}
+		}catch(Exception e) { }
 		return result;
 	}
 }

@@ -46,8 +46,7 @@ public class MainDetailEditViewController implements Initializable {
 		}catch(Exception e) {}
 	}
 	public void initialize(URL url, ResourceBundle rb) {
-		noticedetailadd = new NoticeDetailAdd();
-		txtSubtitle.setText(noticedetailadd.selectSubtitle(noticedetailadd.noticedetail_id));
-		txtContext.setText(noticedetailadd.selectContext(noticedetailadd.noticedetail_id));
+		txtSubtitle.setText(CommonController.selectcontent(noticedetailadd.noticedetail_id, "NOTICEDETAIL_SUBTITLE", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
+		txtContext.setText(CommonController.selectcontent(noticedetailadd.noticedetail_id, "NOTICEDETAIL_CONTEXT", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
 	}
 }

@@ -31,8 +31,7 @@ public class MainDetailViewController implements Initializable {
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML private void editAction(ActionEvent event) { CommonController.Alert_YesorNo(event, config.StaticProperty.alertedit(), config.StaticProperty.alerttitlecancel(), getClass(), config.StaticProperty.getnavmaindetaileditview()); }
 	public void initialize(URL url, ResourceBundle rb) {
-		noticedetailadd = new NoticeDetailAdd();
-		maindetail_subtitle.setText(noticedetailadd.selectSubtitle(noticedetailadd.noticedetail_id));
-		maindetail_context.setText(noticedetailadd.selectContext(noticedetailadd.noticedetail_id));
+		maindetail_subtitle.setText(CommonController.selectcontent(noticedetailadd.noticedetail_id, "NOTICEDETAIL_SUBTITLE", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
+		maindetail_context.setText(CommonController.selectcontent(noticedetailadd.noticedetail_id, "NOTICEDETAIL_CONTEXT", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
 	}
 }

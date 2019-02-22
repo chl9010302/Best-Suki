@@ -19,6 +19,11 @@ public class NoticeDetailAdd {
 	NoticeDetailBean noticedetailbean;
 	Connection conn = null;
 	Statement stmt = null;
+	PreparedStatement pstmt = null;
+	DBConnectionKeeping dbConnectionKeeping;
+	private String sql;
+	private StringBuilder sb;
+	private ResultSet rs;
 	public static String noticedetail_id = "";
 	private StringProperty noticedetail_id_pk, noticedetail_subtitle, noticedetail_writer, noticedetail_time, noticedetail_context;
 	private Button noticedetail_btndetail;
@@ -48,7 +53,8 @@ public class NoticeDetailAdd {
 		select();
 		return noticedetailadd;
 	}
-	public NoticeDetailAdd() { }
+	public NoticeDetailAdd() { 
+	}
 	public NoticeDetailAdd(NoticeDetailBean noticedetailbean) {
 		insertNoticeDetail(noticedetailbean);
 	}
@@ -60,7 +66,6 @@ public class NoticeDetailAdd {
 		this.noticedetail_context = new SimpleStringProperty(NOTICEDETAIL_CONTEXT);
 		this.noticedetail_btndetail = new Button("Details");
 		noticedetail_btndetail.setOnAction(event -> {
-			noticedetail_id = "";
 			noticedetail_id = noticedetail_id_pk.get();
 			try {
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavmaindetailview());
@@ -69,12 +74,12 @@ public class NoticeDetailAdd {
 	}
 	
 	public boolean insertNoticeDetail(NoticeDetailBean noticedetailbean) {
-		String insertsql = "INSERT INTO "+config.StaticProperty.getnoticedetail_tb()+"(NOTICEDETAIL_ID_PK, NOTICEDETAIL_SUBTITLE, NOTICEDETAIL_WRITER, NOTICEDETAIL_TIME, NOTICEDETAIL_CONTEXT) VALUES(?, ?, ?, now(), ?);";
-		PreparedStatement pstmt = null;
+		sql = "INSERT INTO "+config.StaticProperty.getnoticedetail_tb()+"(NOTICEDETAIL_ID_PK, NOTICEDETAIL_SUBTITLE, NOTICEDETAIL_WRITER, NOTICEDETAIL_TIME, NOTICEDETAIL_CONTEXT) VALUES(?, ?, ?, now(), ?);";
+		pstmt = null;
 		this.noticedetailbean = noticedetailbean;
 		try {
 			conn = application.DBConnection.getDBConection();	
-			pstmt = conn.prepareStatement(insertsql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, noticedetailbean.getNOTICEDETAIL_ID_PK());
 			pstmt.setString(2, noticedetailbean.getNOTICEDETAIL_SUBTITLE());
 			pstmt.setString(3, noticedetailbean.getNOTICEDETAIL_WRITER());
@@ -97,26 +102,24 @@ public class NoticeDetailAdd {
 		return false;
 	}
 	public boolean updateNoticeDetail(NoticeDetailBean noticedetailbean) {
-		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
-		Statement stmt = null;
 		try {
 			Connection con = usingstaticfunction.DBConnectionKeeping.con;
 			stmt = con.createStatement();
-			String updatesql = "UPDATE "+config.StaticProperty.getnoticedetail_tb()+" SET NOTICEDETAIL_SUBTITLE = '" + noticedetailbean.getNOTICEDETAIL_SUBTITLE() + "', NOTICEDETAIL_CONTEXT = '" + noticedetailbean.getNOTICEDETAIL_CONTEXT() + "' WHERE NOTICEDETAIL_ID_PK = '" + noticedetailbean.getNOTICEDETAIL_ID_PK() + "';";
-			stmt.executeUpdate(updatesql);
+			sql = "UPDATE "+config.StaticProperty.getnoticedetail_tb()+" SET NOTICEDETAIL_SUBTITLE = '" + noticedetailbean.getNOTICEDETAIL_SUBTITLE() + "', NOTICEDETAIL_CONTEXT = '" + noticedetailbean.getNOTICEDETAIL_CONTEXT() + "' WHERE NOTICEDETAIL_ID_PK = '" + noticedetailbean.getNOTICEDETAIL_ID_PK() + "';";
+			stmt.executeUpdate(sql);
 			return true;
 		} catch (SQLException e) {}
 		return false;
 	}
 	public boolean select() {
-		StringBuilder sb = new StringBuilder();
+		sb = new StringBuilder();
 		try {
 			conn = application.DBConnection.getDBConection();
 			stmt = conn.createStatement();
-			String sql = sb.append("SELECT * FROM "+config.StaticProperty.getnoticedetail_tb()).append(";").toString();
-			ResultSet rs = stmt.executeQuery(sql);
+			sql = sb.append("SELECT * FROM "+config.StaticProperty.getnoticedetail_tb()).append(";").toString();
+			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				noticedetailadd.add(new NoticeDetailAdd((String) rs.getString("NOTICEDETAIL_ID_PK"), (String) rs.getString("NOTICEDETAIL_SUBTITLE"), (String) rs.getString("NOTICEDETAIL_WRITER"),(String) rs.getString("NOTICEDETAIL_TIME").substring(0,10), rs.getString("NOTICEDETAIL_CONTEXT")));
 			}
@@ -124,42 +127,12 @@ public class NoticeDetailAdd {
 		return false;
 	}
 	public void delete(String id) {
-		StringBuilder sb = new StringBuilder();
+		sb = new StringBuilder();
 		conn = application.DBConnection.getDBConection();
 		String sql = sb.append("DELETE FROM "+config.StaticProperty.getnoticedetail_tb()+" WHERE NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) { }
-	}
-	public String selectSubtitle(String id) {
-		String result = "";
-		try {
-			StringBuilder sb = new StringBuilder();
-			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT NOTICEDETAIL_SUBTITLE FROM "+config.StaticProperty.getnoticedetail_tb()+" WHERE NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				if (rs.getString("NOTICEDETAIL_SUBTITLE") != null)
-					result = rs.getString("NOTICEDETAIL_SUBTITLE");
-			}
-		}catch(Exception e) { }
-		return result;
-	}
-	public String selectContext(String id) {
-		String result = "";
-		try {
-			StringBuilder sb = new StringBuilder();
-			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT NOTICEDETAIL_CONTEXT FROM "+config.StaticProperty.getnoticedetail_tb()+" WHERE NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				if (rs.getString("NOTICEDETAIL_CONTEXT") != null)
-					result = rs.getString("NOTICEDETAIL_CONTEXT");
-			}
-		}catch(Exception e) { }
-		return result;
 	}
 }
