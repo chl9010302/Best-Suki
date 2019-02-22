@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import DBModel.TestBean;
+import ViewController.CommonController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -168,27 +169,12 @@ public class TestAdd {
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) { }
 	}
-	public static String selectSubtitle(String id) {
-		DBConnectionKeeping dbConnectionKeeping = null;
-		String result = "";
-		try {
-			StringBuilder sb = new StringBuilder();
-			dbConnectionKeeping.con = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT TEST_SUBTITLE FROM "+config.StaticProperty.gettest_tb()+" WHERE TEST_ID_PK = '").append(id).append("';").toString();
-			stmt = dbConnectionKeeping.con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				if (rs.getString("TEST_SUBTITLE") != null)
-					result = rs.getString("TEST_SUBTITLE");
-			}
-		}catch(Exception e) { } return result;
-	}
 	public ObservableList<String> gettestdetailid(String id) {
 		ObservableList<String> test = FXCollections.observableArrayList();
 		int page = 0;
 		page = ccount(id);
 		for(int i=page; i>0; i--)
-			test.add(TestDetailAdd.selectSubtitle(selectgetcount(id, i)));
+			test.add(CommonController.selectcontent(selectgetcount(id, i), "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		return test;
 	}
 	public static String selectgetTestId(String id) {

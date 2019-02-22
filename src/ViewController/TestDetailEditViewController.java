@@ -52,7 +52,7 @@ public class TestDetailEditViewController implements Initializable {
 			testbean = new TestBean();
 			testadd = new TestAdd();
 			testbean.setTEST_ID_PK(TestViewController.test_id);
-			testbean.setTEST_SUBTITLE(TestAdd.selectSubtitle(TestViewController.test_id));
+			testbean.setTEST_SUBTITLE(CommonController.selectcontent(TestViewController.test_id, "TEST_SUBTITLE", config.StaticProperty.gettest_tb(), "TEST_ID_PK"));
 			testbean.setTEST_WRITER(login_id);
 			for(int i = 1 ; i < getresult.size()+1; i++) {
 				if(i==1) {
@@ -90,12 +90,11 @@ public class TestDetailEditViewController implements Initializable {
 		}catch(Exception e) {e.printStackTrace(); }
 	}
 	public void initialize(URL url, ResourceBundle rb) { 
-		testdetailadd = new TestDetailAdd();
 		ColTest_Check.setCellValueFactory(new PropertyValueFactory<TestDetailAdd, CheckBox>("testdetail_checkboxdetail"));
 		ColTest_Writer.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_writer());
 		ColTest_Date.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_time());
 		testTableView.setItems(testdetailadd.gettestdetailadd());
-		ColTest_Subtitle.setText(TestAdd.selectSubtitle(TestViewController.test_id));
+		ColTest_Subtitle.setText(CommonController.selectcontent(TestViewController.test_id, "TEST_SUBTITLE", config.StaticProperty.gettest_tb(), "TEST_ID_PK"));
 	}
 	private ArrayList<String> CheckFunction(TableColumn<TestDetailAdd, CheckBox> tablecolumn) {
 		testdetailadd = new TestDetailAdd();
@@ -103,7 +102,7 @@ public class TestDetailEditViewController implements Initializable {
 		maxnumber = testdetailadd.gettestdetailadd().size();
 		for(int i=0; i < maxnumber; i++) {
 			if(tablecolumn.getCellData(i).isSelected()) {
-				checkarraylist.add(testdetailadd.selectId(tablecolumn.getCellData(i).getText()));
+				checkarraylist.add(CommonController.selectcontent(tablecolumn.getCellData(i).getText(), "TESTDETAIL_ID_PK", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_SUBTITLE"));
 			}
 		}
 		return checkarraylist;

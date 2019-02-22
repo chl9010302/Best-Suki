@@ -103,7 +103,7 @@ public class AddTestViewController implements Initializable {
 		maxnumber = testdetailadd.gettestdetailadd().size();
 		for(int i=0; i < maxnumber; i++) {
 			if(tablecolumn.getCellData(i).isSelected()) {
-				checkarraylist.add(testdetailadd.selectId(tablecolumn.getCellData(i).getText()));
+				checkarraylist.add(CommonController.selectcontent(tablecolumn.getCellData(i).getText(), "TESTDETAIL_ID_PK", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_SUBTITLE"));
 			}
 		}
 		return checkarraylist;

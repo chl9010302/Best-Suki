@@ -42,8 +42,8 @@ public class TestBoardViewController implements Initializable {
 	private void modify(ActionEvent event) {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
+		testdetailadd = new TestDetailAdd();
 		try {
-			testdetailadd = new TestDetailAdd();
 			ColTest_Subtitle.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_Subtitle());
 			ColTest_Writer.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_writer());
 			ColTest_Date.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_time());

@@ -28,15 +28,10 @@ public class TestDetailViewController implements Initializable {
 	@FXML private void NAV_MypageView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmypageview()); }
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
-	@FXML
-	private void editAction(ActionEvent event) {
-		try {
-			CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestdetaileditview());
-		}catch(Exception e) {e.printStackTrace(); }
-	}
+	@FXML private void editAction(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestdetaileditview()); }
 	public void initialize(URL url, ResourceBundle rb) { 
 		testadd = new TestAdd();
 		testListView.setItems(testadd.gettestdetailid(TestViewController.test_id));
-		ColTest_Subtitle.setText(TestAdd.selectSubtitle(TestViewController.test_id));
+		ColTest_Subtitle.setText(CommonController.selectcontent(TestViewController.test_id, "TEST_SUBTITLE", config.StaticProperty.gettest_tb(), "TEST_ID_PK"));
 	}
 }

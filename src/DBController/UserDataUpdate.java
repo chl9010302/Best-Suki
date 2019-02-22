@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import DBModel.UserBean;
+import ViewController.CommonController;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class UserDataUpdate {
@@ -14,7 +15,8 @@ public class UserDataUpdate {
 	}
 	public boolean UserUpdate(UserBean userbean, String User_id) {
 		if(userbean.getUSER_PASSWORD() == null) {
-			userbean.setUSER_PASSWORD(SelectNowUser.getSelectPasswordUser(User_id));
+			userbean.setUSER_PASSWORD(CommonController.selectcontent(User_id, "USER_PASSWORD", config.StaticProperty.getuser_tb(), "USER_ID_PK"));
+			
 		}
 		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)

@@ -111,12 +111,13 @@ public class TestingViewController implements Initializable {
 		}
 		testdetailadd = new TestDetailAdd();
 		testadd = new TestAdd();
-		testdetail_subtitle.setText(testdetailadd.selectSubtitle(testadd.test_id_fk));
-		testdetail_answer1.setText(testdetailadd.selectDATA1(testadd.test_id_fk));
-		testdetail_answer2.setText(testdetailadd.selectDATA2(testadd.test_id_fk));
-		testdetail_answer3.setText(testdetailadd.selectDATA3(testadd.test_id_fk));
-		testdetail_answer4.setText(testdetailadd.selectDATA4(testadd.test_id_fk));
-		testdetail_answer5.setText(testdetailadd.selectDATA5(testadd.test_id_fk));
+		testdetail_subtitle.setText(CommonController.selectcontent(testadd.test_id_fk, "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_answer1.setText(CommonController.selectcontent(testadd.test_id_fk, "TESTDETAIL_DATA1", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_answer2.setText(CommonController.selectcontent(testadd.test_id_fk, "TESTDETAIL_DATA2", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_answer3.setText(CommonController.selectcontent(testadd.test_id_fk, "TESTDETAIL_DATA3", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_answer4.setText(CommonController.selectcontent(testadd.test_id_fk, "TESTDETAIL_DATA4", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_answer5.setText(CommonController.selectcontent(testadd.test_id_fk, "TESTDETAIL_DATA5", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		
 		image = new Image(testdetailadd.selectIMAGE(testadd.test_id_fk).toURI().toString(),623,150,true,true);
 		testdetail_imageview.setImage(image);
 	}

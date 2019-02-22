@@ -83,12 +83,12 @@ public class TestBoardDetailEditViewController implements Initializable {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		testdetailadd = new TestDetailAdd();
-		testdetail_subtitle.setText(testdetailadd.selectSubtitle(testdetailadd.testdetail_id));
-		testdetail_answer1.setText(testdetailadd.selectDATA1(testdetailadd.testdetail_id));
-		testdetail_answer2.setText(testdetailadd.selectDATA2(testdetailadd.testdetail_id));
-		testdetail_answer3.setText(testdetailadd.selectDATA3(testdetailadd.testdetail_id));
-		testdetail_answer4.setText(testdetailadd.selectDATA4(testdetailadd.testdetail_id));
-		testdetail_answer5.setText(testdetailadd.selectDATA5(testdetailadd.testdetail_id));
+		testdetail_subtitle.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_answer1.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA1", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_answer2.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA2", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_answer3.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA3", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_answer4.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA4", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_answer5.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA5", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 	}
 	public void openFile() {
 		fileChooser = new FileChooser();

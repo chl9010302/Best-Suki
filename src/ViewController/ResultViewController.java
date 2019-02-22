@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import DBController.TestAdd;
+import DBController.TestDetailAdd;
+import DBController.TestResultAdd;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,9 +37,8 @@ public class ResultViewController implements Initializable {
 			CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestdetaileditview());
 		}catch(Exception e) {e.printStackTrace(); }
 	}
-	@SuppressWarnings("null")
 	public void initialize(URL url, ResourceBundle rb) {
-		ColTest_Subtitle.setText(TestAdd.selectSubtitle(TestAdd.testing_id));
+		ColTest_Subtitle.setText(CommonController.selectcontent(TestAdd.testing_id, "TEST_SUBTITLE", config.StaticProperty.gettest_tb(), "TEST_ID_PK"));
 		str = "TESTRESULT_ANSWER1";
 		try {
 			Class c = Class.forName(getClass().toString());
@@ -47,36 +48,27 @@ public class ResultViewController implements Initializable {
 		} catch (Throwable e) {
 			System.err.println(e);
 		}
-//		for(int i=1; i<2; i++) {
-//			StringBuilder sb = new StringBuilder();
-//			sb = sb.append("TESTRESULT_ANSWER").append(i).append(".setText(TestResultAdd.selectgetresultanswer(TestingViewController.Resultid, ").append(i).append("));");
-//			String sql = sb.toString();
-//			System.out.println(sb.toString());
-//			TESTRESULT_ANSWER1.setText(TestResultAdd.selectgetresultanswer(TestingViewController.Resultid, 1));
-//			TESTDETAIL_ANSWER1.setText(TestDetailAdd.selectANSWER(TestResultAdd.selectgetresultid(TestingViewController.Resultid, 1)));
-//			result1.setText(setresult(TESTRESULT_ANSWER1.getText(), TESTDETAIL_ANSWER1.getText()));
-//		}
-//		TESTRESULT_ANSWER1.setText(TestResultAdd.selectgetresultanswer(TestingViewController.Resultid, 1));
-//		TESTDETAIL_ANSWER1.setText(TestDetailAdd.selectANSWER(TestResultAdd.selectgetresultid(TestingViewController.Resultid, 1)));
-//		result1.setText(setresult(TESTRESULT_ANSWER1.getText(), TESTDETAIL_ANSWER1.getText()));
-//		TESTRESULT_ANSWER2.setText(TestResultAdd.selectgetresultanswer(TestingViewController.Resultid, 2));
-//		TESTDETAIL_ANSWER2.setText(TestDetailAdd.selectANSWER(TestResultAdd.selectgetresultid(TestingViewController.Resultid, 2)));
-//		result2.setText(setresult(TESTRESULT_ANSWER2.getText(), TESTDETAIL_ANSWER2.getText()));
-//		TESTRESULT_ANSWER3.setText(TestResultAdd.selectgetresultanswer(TestingViewController.Resultid, 3));
-//		TESTDETAIL_ANSWER3.setText(TestDetailAdd.selectANSWER(TestResultAdd.selectgetresultid(TestingViewController.Resultid, 3)));
-//		result3.setText(setresult(TESTRESULT_ANSWER3.getText(), TESTDETAIL_ANSWER3.getText()));
-//		TESTRESULT_ANSWER4.setText(TestResultAdd.selectgetresultanswer(TestingViewController.Resultid, 4));
-//		TESTDETAIL_ANSWER4.setText(TestDetailAdd.selectANSWER(TestResultAdd.selectgetresultid(TestingViewController.Resultid, 4)));
-//		result4.setText(setresult(TESTRESULT_ANSWER4.getText(), TESTDETAIL_ANSWER4.getText()));
-//		TESTRESULT_ANSWER5.setText(TestResultAdd.selectgetresultanswer(TestingViewController.Resultid, 5));
-//		TESTDETAIL_ANSWER5.setText(TestDetailAdd.selectANSWER(TestResultAdd.selectgetresultid(TestingViewController.Resultid, 5)));
-//		result5.setText(setresult(TESTRESULT_ANSWER5.getText(), TESTDETAIL_ANSWER5.getText()));
+		TESTRESULT_ANSWER1.setText(TestResultAdd.selectgetresultanswer(TestingViewController.Resultid, 1));
+		TESTDETAIL_ANSWER1.setText(TestDetailAdd.selectANSWER(TestResultAdd.selectgetresultid(TestingViewController.Resultid, 1)));
+		result1.setText(setresult(TESTRESULT_ANSWER1.getText(), TESTDETAIL_ANSWER1.getText()));
+		TESTRESULT_ANSWER2.setText(TestResultAdd.selectgetresultanswer(TestingViewController.Resultid, 2));
+		TESTDETAIL_ANSWER2.setText(TestDetailAdd.selectANSWER(TestResultAdd.selectgetresultid(TestingViewController.Resultid, 2)));
+		result2.setText(setresult(TESTRESULT_ANSWER2.getText(), TESTDETAIL_ANSWER2.getText()));
+		TESTRESULT_ANSWER3.setText(TestResultAdd.selectgetresultanswer(TestingViewController.Resultid, 3));
+		TESTDETAIL_ANSWER3.setText(TestDetailAdd.selectANSWER(TestResultAdd.selectgetresultid(TestingViewController.Resultid, 3)));
+		result3.setText(setresult(TESTRESULT_ANSWER3.getText(), TESTDETAIL_ANSWER3.getText()));
+		TESTRESULT_ANSWER4.setText(TestResultAdd.selectgetresultanswer(TestingViewController.Resultid, 4));
+		TESTDETAIL_ANSWER4.setText(TestDetailAdd.selectANSWER(TestResultAdd.selectgetresultid(TestingViewController.Resultid, 4)));
+		result4.setText(setresult(TESTRESULT_ANSWER4.getText(), TESTDETAIL_ANSWER4.getText()));
+		TESTRESULT_ANSWER5.setText(TestResultAdd.selectgetresultanswer(TestingViewController.Resultid, 5));
+		TESTDETAIL_ANSWER5.setText(TestDetailAdd.selectANSWER(TestResultAdd.selectgetresultid(TestingViewController.Resultid, 5)));
+		result5.setText(setresult(TESTRESULT_ANSWER5.getText(), TESTDETAIL_ANSWER5.getText()));
 	}
 	
-//	public String setresult(String result1, String result2) {
-//		if(result1.equals(result2)) {
-//			return "맞았습니다.";
-//		}
-//		return "틀렸습니다.";
-//	}
+	public String setresult(String result1, String result2) {
+		if(result1.equals(result2)) {
+			return "맞았습니다.";
+		}
+		return "틀렸습니다.";
+	}
 }
