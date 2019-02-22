@@ -2,7 +2,6 @@ package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import DBController.NoticeDetailAdd;
@@ -10,10 +9,6 @@ import DBModel.NoticeDetailBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 
 public class MainDetailEditViewController implements Initializable {
