@@ -51,6 +51,8 @@ public class AddTestBoardViewController{
 			testdetailbean.setTESTDETAIL_DATA4(testdetail_answer4.getText().toString());
 			testdetailbean.setTESTDETAIL_DATA5(testdetail_answer5.getText().toString());
 			if(testdetail_rb1.isSelected()) {
+				
+				
 				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer1.getText().toString());
 			}else if(testdetail_rb2.isSelected()) {
 				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer2.getText().toString());
@@ -68,6 +70,7 @@ public class AddTestBoardViewController{
 			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoimage(), config.StaticProperty.alertputimage());
 		}
 	}
+	
 	public void openFile() {
 		fileChooser = new FileChooser();
 		file = fileChooser.showOpenDialog(stage);
@@ -78,6 +81,10 @@ public class AddTestBoardViewController{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	@FXML
+	private ToggleGroup Quest1Group1Action() {
+		return null;
 	}
 	public void fileChooserSelect(ActionEvent event) { 
 		openFile(); 

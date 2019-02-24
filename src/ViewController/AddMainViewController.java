@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 public class AddMainViewController{
 	//Declare JAVA
@@ -32,6 +33,7 @@ public class AddMainViewController{
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML private void deleteAction(ActionEvent event) { CommonController.Alert_YesorNo(event, config.StaticProperty.alertcancel(), config.StaticProperty.alerttitlecancel(), getClass(), config.StaticProperty.getnavmainview()); }
+
 	@FXML
 	private void addAction(ActionEvent event) {
 		try {
