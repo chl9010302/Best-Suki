@@ -144,8 +144,13 @@ public class CommonController{
 		return answer;
 	}
 	public static ArrayList<String> splitQuestion(String data) {
+		int lineCnt = 0;
+	    int fromIndex = -1;
+	    while ((fromIndex = data.indexOf(";", fromIndex + 1)) >= 0) {
+	      lineCnt++;
+	    }
 		ArrayList<String> question = new ArrayList<>();
-		for(int i = 0; i<5; i++) {
+		for(int i = 0; i<=lineCnt; i++) {
 			question.add(data.split(";")[i]);	
 		}
 		return question;

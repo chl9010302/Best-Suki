@@ -55,37 +55,15 @@ public class AddTestViewController implements Initializable {
 			testbean.setTEST_ID_PK(CommonController.MakeId());
 			testbean.setTEST_SUBTITLE(ColTest_Subtitle.getText().toString());
 			testbean.setTEST_WRITER(login_id);
-			for(int i = 1 ; i < getresult.size()+1; i++) {
-				if(i==1) {
-					testbean.setTESTDETAIL_ID1_FK(getresult.get(i-1));
-				}else if(i==2) {
-					testbean.setTESTDETAIL_ID2_FK(getresult.get(i-1));
-				}else if(i==3) {
-					testbean.setTESTDETAIL_ID3_FK(getresult.get(i-1));
-				}else if(i==4) {
-					testbean.setTESTDETAIL_ID4_FK(getresult.get(i-1));
-				}else if(i==5) {
-					testbean.setTESTDETAIL_ID5_FK(getresult.get(i-1));
-				}else if(i==6) {
-					testbean.setTESTDETAIL_ID6_FK(getresult.get(i-1));
-				}else if(i==7) {
-					testbean.setTESTDETAIL_ID7_FK(getresult.get(i-1));
-				}else if(i==8) {
-					testbean.setTESTDETAIL_ID8_FK(getresult.get(i-1));
-				}else if(i==9) {
-					testbean.setTESTDETAIL_ID9_FK(getresult.get(i-1));
-				}else if(i==10) {
-					testbean.setTESTDETAIL_ID10_FK(getresult.get(i-1));
-				}else if(i==11) {
-					testbean.setTESTDETAIL_ID11_FK(getresult.get(i-1));
-				}else if(i==12) {
-					testbean.setTESTDETAIL_ID12_FK(getresult.get(i-1));
-				}else if(i==13) {
-					testbean.setTESTDETAIL_ID13_FK(getresult.get(i-1));
-				}else if(i==14) {
-					testbean.setTESTDETAIL_ID14_FK(getresult.get(i-1));
+			String result = "";
+			for(int i = 0 ; i < getresult.size(); i++) {
+				if(i == getresult.size()-1) {
+					result += getresult.get(i);
+				}else {
+					result += getresult.get(i) + ";";
 				}
 			}
+			testbean.setTESTDETAIL_ID_FK(result);
 			testadd.insertTest(testbean);
 			CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview());
 		}catch(Exception e) {e.printStackTrace(); }

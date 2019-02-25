@@ -2,6 +2,7 @@ package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import DBController.TestAdd;
@@ -38,24 +39,31 @@ public class ResultViewController implements Initializable {
 		}catch(Exception e) {e.printStackTrace(); }
 	}
 	public void initialize(URL url, ResourceBundle rb) {
+		ArrayList<String> testid = CommonController.splitQuestion(CommonController.selectcontent(TestingViewController.Resultid, "TESTRESULT_ID" ,config.StaticProperty.gettestresult_tb(), "TESTRESULT_ID_PK"));
+		ArrayList<String> testanswer = CommonController.splitQuestion(CommonController.selectcontent(TestingViewController.Resultid, "TESTRESULT_ANSWER" ,config.StaticProperty.gettestresult_tb(), "TESTRESULT_ID_PK"));
 		ColTest_Subtitle.setText(CommonController.selectcontent(TestAdd.testing_id, "TEST_SUBTITLE", config.StaticProperty.gettest_tb(), "TEST_ID_PK"));
-		TESTRESULT_ANSWER1.setText(testresultadd.selectgetresultanswer(TestingViewController.Resultid, 1));
-		TESTDETAIL_ANSWER1.setText(testdetailadd.selectANSWER(testresultadd.selectgetresultid(TestingViewController.Resultid, 1)));
+		int i = testid.size();
+		for(int j=i; j<5; j++) {
+			testid.add(" ");
+			testanswer.add(" ");
+		}
+		System.out.println(testid.size());
+		TESTRESULT_ANSWER1.setText(testanswer.get(0));
+		TESTDETAIL_ANSWER1.setText(CommonController.selectcontent(testid.get(0), "TESTDETAIL_ANSWER", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		result1.setText(setresult(TESTRESULT_ANSWER1.getText(), TESTDETAIL_ANSWER1.getText()));
-		TESTRESULT_ANSWER2.setText(testresultadd.selectgetresultanswer(TestingViewController.Resultid, 2));
-		TESTDETAIL_ANSWER2.setText(testdetailadd.selectANSWER(testresultadd.selectgetresultid(TestingViewController.Resultid, 2)));
+		TESTRESULT_ANSWER2.setText(testanswer.get(1));
+		TESTDETAIL_ANSWER2.setText(CommonController.selectcontent(testid.get(1), "TESTDETAIL_ANSWER", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		result2.setText(setresult(TESTRESULT_ANSWER2.getText(), TESTDETAIL_ANSWER2.getText()));
-		TESTRESULT_ANSWER3.setText(testresultadd.selectgetresultanswer(TestingViewController.Resultid, 3));
-		TESTDETAIL_ANSWER3.setText(testdetailadd.selectANSWER(testresultadd.selectgetresultid(TestingViewController.Resultid, 3)));
+		TESTRESULT_ANSWER3.setText(testanswer.get(2));
+		TESTDETAIL_ANSWER3.setText(CommonController.selectcontent(testid.get(2), "TESTDETAIL_ANSWER", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		result3.setText(setresult(TESTRESULT_ANSWER3.getText(), TESTDETAIL_ANSWER3.getText()));
-		TESTRESULT_ANSWER4.setText(testresultadd.selectgetresultanswer(TestingViewController.Resultid, 4));
-		TESTDETAIL_ANSWER4.setText(testdetailadd.selectANSWER(testresultadd.selectgetresultid(TestingViewController.Resultid, 4)));
+		TESTRESULT_ANSWER4.setText(testanswer.get(3));
+		TESTDETAIL_ANSWER4.setText(CommonController.selectcontent(testid.get(3), "TESTDETAIL_ANSWER", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		result4.setText(setresult(TESTRESULT_ANSWER4.getText(), TESTDETAIL_ANSWER4.getText()));
-		TESTRESULT_ANSWER5.setText(testresultadd.selectgetresultanswer(TestingViewController.Resultid, 5));
-		TESTDETAIL_ANSWER5.setText(testdetailadd.selectANSWER(testresultadd.selectgetresultid(TestingViewController.Resultid, 5)));
+		TESTRESULT_ANSWER5.setText(testanswer.get(4));
+		TESTDETAIL_ANSWER5.setText(CommonController.selectcontent(testid.get(4), "TESTDETAIL_ANSWER", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		result5.setText(setresult(TESTRESULT_ANSWER5.getText(), TESTDETAIL_ANSWER5.getText()));
 	}
-	
 	public String setresult(String result1, String result2) {
 		if(result1.equals(result2)) {
 			return "맞았습니다.";

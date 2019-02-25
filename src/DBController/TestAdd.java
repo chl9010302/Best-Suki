@@ -27,6 +27,7 @@ public class TestAdd {
 	public static int maxpage; // 테스트를 진행하기 위한 초기 값 설정
 	private StringProperty test_id_pk, test_subtitle, test_writer, test_time;
 	private Button test_btndetail;
+	public static ArrayList<String> result_arraylist;
 	public StringProperty getTest_writer() {
 		return test_writer;
 	}
@@ -65,12 +66,13 @@ public class TestAdd {
 		this.test_btndetail = new Button("Details");
 		test_btndetail.setOnAction(event -> {
 			TestResultAdd.testresult = new ArrayList<String>();
-			pagenumber = 1;
+			pagenumber = 0;
 			testing_id = "";
 			test_id_fk = ""; // 초기화
 			testing_id = TEST_ID_PK;
 			maxpage = ccount(TEST_ID_PK);
-			test_id_fk = selectgetTestId(TEST_ID_PK);
+			result_arraylist = CommonController.splitQuestion(CommonController.selectcontent(TEST_ID_PK, "TESTDETAIL_ID_FK", config.StaticProperty.gettest_tb(), "TEST_ID_PK"));
+			test_id_fk = result_arraylist.get(0);
 			try {
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestingview());
 			} catch (IOException e) {e.printStackTrace(); }
@@ -89,27 +91,14 @@ public class TestAdd {
 			stmt = con.createStatement();
 			String updatesql = "UPDATE "+config.StaticProperty.gettest_tb()
 			+" SET TEST_SUBTITLE = '" + testbean.getTEST_SUBTITLE() 
-			+ "', TESTDETAIL_ID1_FK = '" + testbean.getTESTDETAIL_ID1_FK() 
-			+ "', TESTDETAIL_ID2_FK = '" + testbean.getTESTDETAIL_ID2_FK() 
-			+ "', TESTDETAIL_ID3_FK = '" + testbean.getTESTDETAIL_ID3_FK() 
-			+ "', TESTDETAIL_ID4_FK = '" + testbean.getTESTDETAIL_ID4_FK() 
-			+ "', TESTDETAIL_ID5_FK = '" + testbean.getTESTDETAIL_ID5_FK() 
-			+ "', TESTDETAIL_ID6_FK = '" + testbean.getTESTDETAIL_ID6_FK() 
-			+ "', TESTDETAIL_ID7_FK = '" + testbean.getTESTDETAIL_ID7_FK() 
-			+ "', TESTDETAIL_ID8_FK = '" + testbean.getTESTDETAIL_ID8_FK() 
-			+ "', TESTDETAIL_ID9_FK = '" + testbean.getTESTDETAIL_ID9_FK() 
-			+ "', TESTDETAIL_ID10_FK = '" + testbean.getTESTDETAIL_ID10_FK() 
-			+ "', TESTDETAIL_ID11_FK = '" + testbean.getTESTDETAIL_ID11_FK() 
-			+ "', TESTDETAIL_ID12_FK = '" + testbean.getTESTDETAIL_ID12_FK() 
-			+ "', TESTDETAIL_ID13_FK = '" + testbean.getTESTDETAIL_ID13_FK()
-			+ "', TESTDETAIL_ID14_FK = '" + testbean.getTESTDETAIL_ID14_FK() 
+			+ "', TESTDETAIL_ID_FK = '" + testbean.getTESTDETAIL_ID_FK() 
 			+ "' WHERE TEST_ID_PK = '" + testbean.getTEST_ID_PK() + "';";
 			stmt.executeUpdate(updatesql);
 			return true;
 		} catch (SQLException e) { } return false;
 	}
 	public boolean insertTest(TestBean testbean) {
-		String insertsql = "INSERT INTO "+config.StaticProperty.gettest_tb()+"(TEST_ID_PK, TEST_SUBTITLE, TESTDETAIL_ID1_FK, TESTDETAIL_ID2_FK, TESTDETAIL_ID3_FK, TESTDETAIL_ID4_FK, TESTDETAIL_ID5_FK, TESTDETAIL_ID6_FK, TESTDETAIL_ID7_FK, TESTDETAIL_ID8_FK, TESTDETAIL_ID9_FK, TESTDETAIL_ID10_FK, TESTDETAIL_ID11_FK, TESTDETAIL_ID12_FK, TESTDETAIL_ID13_FK, TESTDETAIL_ID14_FK, TEST_WRITER, TEST_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
+		String insertsql = "INSERT INTO "+config.StaticProperty.gettest_tb()+"(TEST_ID_PK, TEST_SUBTITLE, TESTDETAIL_ID_FK, TEST_WRITER, TEST_TIME) VALUES(?, ?, ?, ?, now());";
 		PreparedStatement pstmt = null;
 		this.testbean = testbean;
 		try {
@@ -117,21 +106,8 @@ public class TestAdd {
 			pstmt = conn.prepareStatement(insertsql);
 			pstmt.setString(1, testbean.getTEST_ID_PK());
 			pstmt.setString(2, testbean.getTEST_SUBTITLE());
-			pstmt.setString(3, testbean.getTESTDETAIL_ID1_FK());
-			pstmt.setString(4, testbean.getTESTDETAIL_ID2_FK());
-			pstmt.setString(5, testbean.getTESTDETAIL_ID3_FK());
-			pstmt.setString(6, testbean.getTESTDETAIL_ID4_FK());
-			pstmt.setString(7, testbean.getTESTDETAIL_ID5_FK());
-			pstmt.setString(8, testbean.getTESTDETAIL_ID6_FK());
-			pstmt.setString(9, testbean.getTESTDETAIL_ID7_FK());
-			pstmt.setString(10, testbean.getTESTDETAIL_ID8_FK());
-			pstmt.setString(11, testbean.getTESTDETAIL_ID9_FK());
-			pstmt.setString(12, testbean.getTESTDETAIL_ID10_FK());
-			pstmt.setString(13, testbean.getTESTDETAIL_ID11_FK());
-			pstmt.setString(14, testbean.getTESTDETAIL_ID12_FK());
-			pstmt.setString(15, testbean.getTESTDETAIL_ID13_FK());
-			pstmt.setString(16, testbean.getTESTDETAIL_ID14_FK());
-			pstmt.setString(17, testbean.getTEST_WRITER());
+			pstmt.setString(3, testbean.getTESTDETAIL_ID_FK());
+			pstmt.setString(4, testbean.getTEST_WRITER());
 			pstmt.executeUpdate();
 			conn.close();
 			pstmt.close();
@@ -173,48 +149,17 @@ public class TestAdd {
 		ObservableList<String> test = FXCollections.observableArrayList();
 		int page = 0;
 		page = ccount(id);
-		for(int i=page; i>0; i--)
-			test.add(CommonController.selectcontent(selectgetcount(id, i), "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		for(int i=0; i<CommonController.splitQuestion(CommonController.selectcontent(id, "TESTDETAIL_ID_FK", config.StaticProperty.gettest_tb(), "TEST_ID_PK")).size(); i++) {
+			test.add(CommonController.splitQuestion(CommonController.selectcontent(id, "TESTDETAIL_ID_FK", config.StaticProperty.gettest_tb(), "TEST_ID_PK")).get(i));
+		}
 		return test;
 	}
-	public static String selectgetTestId(String id) {
-		String result = "";
-		try {
-			StringBuilder sb = new StringBuilder();
-			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT TESTDETAIL_ID" + pagenumber + "_FK FROM "+config.StaticProperty.gettest_tb()+" WHERE TEST_ID_PK = '").append(id).append("';").toString();
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				if (rs.getString("TESTDETAIL_ID" + pagenumber + "_FK") != null)
-					result = rs.getString("TESTDETAIL_ID" + pagenumber + "_FK");
-			}
-		}catch(Exception e) { e.printStackTrace();} return result;
-	}
 	public int ccount(String id) {
-		int i = 1;
-		while(selectgetcount(id,i) != "" ) {
-			if(selectgetcount(id,i).equals("null")) {
-				break;
-			}else {
-				i++;
-				selectgetcount(id,i);
-			}
-		}
-		return i-1;
-	}
-	public String selectgetcount(String id, int i) {
-		String result = "";
-		try {
-			StringBuilder sb = new StringBuilder();
-			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT TESTDETAIL_ID" + i + "_FK FROM "+config.StaticProperty.gettest_tb()+" WHERE TEST_ID_PK = '").append(id).append("';").toString();
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				if (rs.getString("TESTDETAIL_ID" + i + "_FK") != null)
-					result = rs.getString("TESTDETAIL_ID" + i + "_FK");
-			}
-		}catch(Exception e) { e.printStackTrace();} return result;
+		int lineCnt = 1;
+	    int fromIndex = -1;
+	    while ((fromIndex = CommonController.selectcontent(id, "TESTDETAIL_ID_FK", config.StaticProperty.gettest_tb(), "TEST_ID_PK").indexOf(";", fromIndex + 1)) >= 0) {
+	      lineCnt++;
+	    }
+		return lineCnt;
 	}
 }

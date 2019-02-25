@@ -91,20 +91,6 @@ public class TestDetailAdd {
 	public TestDetailAdd(TestDetailBean testdetailbean) {
 		insertTestDetail(testdetailbean);
 	}
-	public boolean updateTest(String test_id_pk) {
-		if (usingstaticfunction.DBConnectionKeeping.con == null)
-			dbConnectionKeeping = new DBConnectionKeeping();
-		stmt = null;
-		try {
-			conn = usingstaticfunction.DBConnectionKeeping.con;
-			stmt = conn.createStatement();
-			sql = "UPDATE "+config.StaticProperty.gettest_tb()
-			+" SET TESTDETAIL_ID1_FK = '" + testdetailbean.getTESTDETAIL_SUBTITLE() 
-			+ "' WHERE TEST_ID_PK = '" + testdetailbean.getTESTDETAIL_ID_PK() + "';";
-			stmt.executeUpdate(sql);
-			return true;
-		} catch (SQLException e) { } return false;
-	}
 	public boolean updateTestDetail(TestDetailBean testdetailbean) {
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();

@@ -54,17 +54,17 @@ public class TestingViewController implements Initializable {
 	public void nextAction(ActionEvent event) {
 		TestAdd.maxpage--;
 		// 결과값 저장
-		TestResultAdd.testresult.add(TestAdd.selectgetTestId(TestAdd.testing_id));
-		TestResultAdd.testresult.add(getAnswer());
 		if(TestAdd.maxpage != 0) {
+			TestResultAdd.answer_result += getAnswer() + ";";
 			++TestAdd.pagenumber;
-			TestAdd.test_id_fk = TestAdd.selectgetTestId(TestAdd.testing_id);
+			TestAdd.test_id_fk = TestAdd.result_arraylist.get(TestAdd.pagenumber);
 			try {
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestingview());
 			} catch (IOException e) {e.printStackTrace(); }
 			
 			//try문 끝
 		}else {
+			TestResultAdd.answer_result += getAnswer();
 			YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
 			alert = new Alert(AlertType.NONE,config.StaticProperty.alertcongraturations(), YES);
 			alert.setTitle(config.StaticProperty.alertcongraturations());
@@ -80,16 +80,9 @@ public class TestingViewController implements Initializable {
 							TestResultAdd.testresult.add("");
 						}
 					}
-					testresultbean.setTESTRESULT_ID1(TestResultAdd.testresult.get(0));
-					testresultbean.setTESTRESULT_ANSWER1(TestResultAdd.testresult.get(1));
-					testresultbean.setTESTRESULT_ID2(TestResultAdd.testresult.get(2));
-					testresultbean.setTESTRESULT_ANSWER2(TestResultAdd.testresult.get(3));
-					testresultbean.setTESTRESULT_ID3(TestResultAdd.testresult.get(4));
-					testresultbean.setTESTRESULT_ANSWER3(TestResultAdd.testresult.get(5));
-					testresultbean.setTESTRESULT_ID4(TestResultAdd.testresult.get(6));
-					testresultbean.setTESTRESULT_ANSWER4(TestResultAdd.testresult.get(7));
-					testresultbean.setTESTRESULT_ID5(TestResultAdd.testresult.get(8));
-					testresultbean.setTESTRESULT_ANSWER5(TestResultAdd.testresult.get(9));
+					String result_answer = "";
+					testresultbean.setTESTRESULT_ID(CommonController.selectcontent(testadd.testing_id, "TESTDETAIL_ID_FK", config.StaticProperty.gettest_tb(), "TEST_ID_PK"));
+					testresultbean.setTESTRESULT_ANSWER(TestResultAdd.answer_result);
 					testresultbean.setTESTRESULT_ID_PK(CommonController.MakeId());
 					testresultbean.setTESTRESULT_WRITER(LoginViewController.login_id);
 					testresultbean.setTEST_ID(TestAdd.testing_id);
