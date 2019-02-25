@@ -3,21 +3,19 @@ package ViewController;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import DBController.TestDetailAdd;
 import DBModel.TestDetailBean;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -41,6 +39,12 @@ public class AddTestBoardViewController{
 		if(input != null) {
 			testdetailbean = new TestDetailBean();
 			detailAdd = new TestDetailAdd();
+			Quest1Group1 = new ToggleGroup();
+			testdetail_rb1.setToggleGroup(Quest1Group1);
+			testdetail_rb2.setToggleGroup(Quest1Group1);
+			testdetail_rb3.setToggleGroup(Quest1Group1);
+			testdetail_rb4.setToggleGroup(Quest1Group1);
+			testdetail_rb5.setToggleGroup(Quest1Group1);
 			testdetailbean.setTESTDETAIL_ID_PK(CommonController.MakeId());
 			testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
 			testdetailbean.setTESTDETAIL_IMAGE_PATH(filename);
@@ -50,9 +54,18 @@ public class AddTestBoardViewController{
 			testdetailbean.setTESTDETAIL_DATA3(testdetail_answer3.getText().toString());
 			testdetailbean.setTESTDETAIL_DATA4(testdetail_answer4.getText().toString());
 			testdetailbean.setTESTDETAIL_DATA5(testdetail_answer5.getText().toString());
+			Quest1Group1.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+				public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+					if(Quest1Group1.getSelectedToggle() != null) {
+						System.out.println(new_toggle.getUserData().toString());
+						System.out.println(Quest1Group1.getSelectedToggle().getUserData().toString());
+						System.out.println("adfadf");
+					}
+					System.out.println("afdadfaf");
+				}
+			});
+			System.out.println(Quest1Group1.getSelectedToggle());
 			if(testdetail_rb1.isSelected()) {
-				
-				
 				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer1.getText().toString());
 			}else if(testdetail_rb2.isSelected()) {
 				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer2.getText().toString());
@@ -70,7 +83,6 @@ public class AddTestBoardViewController{
 			CommonController.Alert_ERROR(event, config.StaticProperty.alerttitlenoimage(), config.StaticProperty.alertputimage());
 		}
 	}
-	
 	public void openFile() {
 		fileChooser = new FileChooser();
 		file = fileChooser.showOpenDialog(stage);
@@ -81,10 +93,6 @@ public class AddTestBoardViewController{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	@FXML
-	private ToggleGroup Quest1Group1Action() {
-		return null;
 	}
 	public void fileChooserSelect(ActionEvent event) { 
 		openFile(); 
