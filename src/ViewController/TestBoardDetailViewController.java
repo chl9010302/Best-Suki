@@ -2,6 +2,7 @@ package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -41,12 +42,14 @@ public class TestBoardDetailViewController implements Initializable {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		testdetailadd = new TestDetailAdd();
+		ArrayList<String> result = new ArrayList<>();
+		result = CommonController.splitQuestion(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		testdetail_subtitle.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer1.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA1", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer2.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA2", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer3.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA3", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer4.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA4", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer5.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA5", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_answer1.setText(result.get(0));
+		testdetail_answer2.setText(result.get(1));
+		testdetail_answer3.setText(result.get(2));
+		testdetail_answer4.setText(result.get(3));
+		testdetail_answer5.setText(result.get(4));
 		image = new Image(testdetailadd.selectIMAGE(testdetailadd.testdetail_id).toURI().toString(),623,150,true,true);
 		testdetail_imageview.setImage(image);
 	}

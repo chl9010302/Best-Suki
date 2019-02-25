@@ -23,12 +23,19 @@ import usingstaticfunction.DBConnectionKeeping;
 public class TestDetailAdd {
 	TestDetailBean testdetailbean;
 	public static Connection conn = null;
-	static Statement stmt = null;
+	private static Statement stmt = null;
+	private static PreparedStatement pstmt;
 	public static ArrayList<String> selected_testid;
 	public static String testdetail_id = "";
 	private StringProperty testdetail_id_pk, testdetail_subtitle, testdetail_writer, testdetail_time;
 	private Button testdetail_btndetail;
 	private CheckBox testdetail_checkboxdetail;
+	private DBConnectionKeeping dbConnectionKeeping;
+	private String sql, result;
+	private StringBuilder sb;
+	private ResultSet rs;
+	private File theFile;
+	private FileOutputStream output;
 	public StringProperty getTestdetail_writer() {
 		return testdetail_writer;
 	}
@@ -85,63 +92,53 @@ public class TestDetailAdd {
 		insertTestDetail(testdetailbean);
 	}
 	public boolean updateTest(String test_id_pk) {
-		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
-		Statement stmt = null;
+		stmt = null;
 		try {
-			Connection con = usingstaticfunction.DBConnectionKeeping.con;
-			stmt = con.createStatement();
-			String updatesql = "UPDATE "+config.StaticProperty.gettest_tb()
+			conn = usingstaticfunction.DBConnectionKeeping.con;
+			stmt = conn.createStatement();
+			sql = "UPDATE "+config.StaticProperty.gettest_tb()
 			+" SET TESTDETAIL_ID1_FK = '" + testdetailbean.getTESTDETAIL_SUBTITLE() 
 			+ "' WHERE TEST_ID_PK = '" + testdetailbean.getTESTDETAIL_ID_PK() + "';";
-			stmt.executeUpdate(updatesql);
+			stmt.executeUpdate(sql);
 			return true;
 		} catch (SQLException e) { } return false;
 	}
 	public boolean updateTestDetail(TestDetailBean testdetailbean) {
-		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
 		//이미지 연결 시에는 PreparedStatement를 통해 setBinaryStream을사용해야 함.
-		String updatesql = "UPDATE "+config.StaticProperty.gettestdetail_tb()
+		sql = "UPDATE "+config.StaticProperty.gettestdetail_tb()
 		+" SET TESTDETAIL_SUBTITLE = '" + testdetailbean.getTESTDETAIL_SUBTITLE() 
-		+ "', TESTDETAIL_DATA1 = '" + testdetailbean.getTESTDETAIL_DATA1()
-		+ "', TESTDETAIL_DATA2 = '" + testdetailbean.getTESTDETAIL_DATA2() 
-		+ "', TESTDETAIL_DATA3 = '" + testdetailbean.getTESTDETAIL_DATA3() 
-		+ "', TESTDETAIL_DATA4 = '" + testdetailbean.getTESTDETAIL_DATA4() 
-		+ "', TESTDETAIL_DATA5 = '" + testdetailbean.getTESTDETAIL_DATA5() 
+		+ "', TESTDETAIL_DATA = '" + testdetailbean.getTESTDETAIL_DATA()
 		+ "', TESTDETAIL_ANSWER = '" + testdetailbean.getTESTDETAIL_ANSWER() 
 		+ "', TESTDETAIL_IMAGE_PATH = '" + testdetailbean.getTESTDETAIL_IMAGE_PATH() 
 		+ "', TESTDETAIL_IMAGE = ? " 
 		+ " WHERE TESTDETAIL_ID_PK = '" + testdetailbean.getTESTDETAIL_ID_PK() + "';";
 		try {
-			PreparedStatement pstmt = null;
+			pstmt = null;
 			conn = usingstaticfunction.DBConnectionKeeping.con;
-			pstmt = conn.prepareStatement(updatesql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setBinaryStream(1, testdetailbean.getTESTDETAIL_IMAGE());
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {e.printStackTrace(); } return false;
 	}
 	public boolean insertTestDetail(TestDetailBean testdetailbean) {
-		String insertsql = "INSERT INTO "+config.StaticProperty.gettestdetail_tb()+"(TESTDETAIL_ID_PK, TESTDETAIL_DATA1, TESTDETAIL_DATA2, TESTDETAIL_DATA3, TESTDETAIL_DATA4, TESTDETAIL_DATA5, TESTDETAIL_ANSWER, TESTDETAIL_IMAGE, TESTDETAIL_IMAGE_PATH, TESTDETAIL_SUBTITLE, TESTDETAIL_WRITER, TESTDETAIL_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
-		PreparedStatement pstmt = null;
+		sql = "INSERT INTO "+config.StaticProperty.gettestdetail_tb()+"(TESTDETAIL_ID_PK, TESTDETAIL_DATA, TESTDETAIL_ANSWER, TESTDETAIL_IMAGE, TESTDETAIL_IMAGE_PATH, TESTDETAIL_SUBTITLE, TESTDETAIL_WRITER, TESTDETAIL_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, now());";
+		pstmt = null;
 		this.testdetailbean = testdetailbean;
 		try {
 			conn = application.DBConnection.getDBConection();	
-			pstmt = conn.prepareStatement(insertsql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, testdetailbean.getTESTDETAIL_ID_PK());
-			pstmt.setString(2, testdetailbean.getTESTDETAIL_DATA1());
-			pstmt.setString(3, testdetailbean.getTESTDETAIL_DATA2());
-			pstmt.setString(4, testdetailbean.getTESTDETAIL_DATA3());
-			pstmt.setString(5, testdetailbean.getTESTDETAIL_DATA4());
-			pstmt.setString(6, testdetailbean.getTESTDETAIL_DATA5());
-			pstmt.setString(7, testdetailbean.getTESTDETAIL_ANSWER());
-			pstmt.setBinaryStream(8, testdetailbean.getTESTDETAIL_IMAGE());	
-			pstmt.setString(9, testdetailbean.getTESTDETAIL_IMAGE_PATH());
-			pstmt.setString(10, testdetailbean.getTESTDETAIL_SUBTITLE());
-			pstmt.setString(11, testdetailbean.getTESTDETAIL_WRITER());
+			pstmt.setString(2, testdetailbean.getTESTDETAIL_DATA());
+			pstmt.setString(3, testdetailbean.getTESTDETAIL_ANSWER());
+			pstmt.setBinaryStream(4, testdetailbean.getTESTDETAIL_IMAGE());	
+			pstmt.setString(5, testdetailbean.getTESTDETAIL_IMAGE_PATH());
+			pstmt.setString(6, testdetailbean.getTESTDETAIL_SUBTITLE());
+			pstmt.setString(7, testdetailbean.getTESTDETAIL_WRITER());
 			pstmt.executeUpdate();
 			conn.close();
 			pstmt.close();
@@ -159,21 +156,21 @@ public class TestDetailAdd {
 		} return false;
 	}
 	public boolean select() {
-		StringBuilder sb = new StringBuilder();
+		sb = new StringBuilder();
 		try {
 			conn = application.DBConnection.getDBConection();
 			stmt = conn.createStatement();
-			String sql = sb.append("SELECT * FROM "+config.StaticProperty.gettestdetail_tb()).append(" ORDER BY TESTDETAIL_TIME DESC;").toString();
-			ResultSet rs = stmt.executeQuery(sql);
+			sql = sb.append("SELECT * FROM "+config.StaticProperty.gettestdetail_tb()).append(" ORDER BY TESTDETAIL_TIME DESC;").toString();
+			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				testdetailadd.add(new TestDetailAdd((String) rs.getString("TESTDETAIL_ID_PK"), (String) rs.getString("TESTDETAIL_SUBTITLE"), (String) rs.getString("TESTDETAIL_WRITER"),(String) rs.getString("TESTDETAIL_TIME").substring(0,10)));
 			}
 		} catch (SQLException e) { } return false;
 	}
 	public void delete(String id) {
-		StringBuilder sb = new StringBuilder();
+		sb = new StringBuilder();
 		conn = application.DBConnection.getDBConection();
-		String sql = sb.append("DELETE FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
+		sql = sb.append("DELETE FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
@@ -181,13 +178,13 @@ public class TestDetailAdd {
 	}
 	public File selectIMAGE(String id) {
 		try {
-			StringBuilder sb = new StringBuilder();
-			File theFile = new File("abc.jpg");
-			FileOutputStream output =new FileOutputStream(theFile);
+			sb = new StringBuilder();
+			theFile = new File("abc.jpg");
+			output =new FileOutputStream(theFile);
 			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT TESTDETAIL_IMAGE FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
+			sql = sb.append("SELECT TESTDETAIL_IMAGE FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
 			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				InputStream input = rs.getBinaryStream("TESTDETAIL_IMAGE");
 				byte[] buffer = new byte[1024];
@@ -198,12 +195,12 @@ public class TestDetailAdd {
 			return theFile;
 		}catch(Exception e) { } return null;
 	}
-	public static String selectANSWER(String id) {
-		String result = "";
+	public String selectANSWER(String id) {
+		result = "";
 		try {
-			StringBuilder sb = new StringBuilder();
+			sb = new StringBuilder();
 			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT TESTDETAIL_ANSWER FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
+			sql = sb.append("SELECT TESTDETAIL_ANSWER FROM "+config.StaticProperty.gettestdetail_tb()+" WHERE TESTDETAIL_ID_PK = '").append(id).append("';").toString();
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {

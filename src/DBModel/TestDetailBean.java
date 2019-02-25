@@ -7,11 +7,7 @@ import javafx.scene.control.Button;
 public class TestDetailBean {
 
 	private String TESTDETAIL_ID_PK;
-	private String TESTDETAIL_DATA1;
-	private String TESTDETAIL_DATA2;
-	private String TESTDETAIL_DATA3;
-	private String TESTDETAIL_DATA4;
-	private String TESTDETAIL_DATA5;
+	private String TESTDETAIL_DATA;
 	private String TESTDETAIL_ANSWER;
 	private FileInputStream TESTDETAIL_IMAGE;
 	private String TESTDETAIL_IMAGE_PATH;
@@ -36,44 +32,12 @@ public class TestDetailBean {
 		TESTDETAIL_ID_PK = tESTDETAIL_ID_PK;
 	}
 
-	public String getTESTDETAIL_DATA1() {
-		return TESTDETAIL_DATA1;
+	public String getTESTDETAIL_DATA() {
+		return TESTDETAIL_DATA;
 	}
 
-	public void setTESTDETAIL_DATA1(String tESTDETAIL_DATA1) {
-		TESTDETAIL_DATA1 = tESTDETAIL_DATA1;
-	}
-
-	public String getTESTDETAIL_DATA2() {
-		return TESTDETAIL_DATA2;
-	}
-
-	public void setTESTDETAIL_DATA2(String tESTDETAIL_DATA2) {
-		TESTDETAIL_DATA2 = tESTDETAIL_DATA2;
-	}
-
-	public String getTESTDETAIL_DATA3() {
-		return TESTDETAIL_DATA3;
-	}
-
-	public void setTESTDETAIL_DATA3(String tESTDETAIL_DATA3) {
-		TESTDETAIL_DATA3 = tESTDETAIL_DATA3;
-	}
-
-	public String getTESTDETAIL_DATA4() {
-		return TESTDETAIL_DATA4;
-	}
-
-	public void setTESTDETAIL_DATA4(String tESTDETAIL_DATA4) {
-		TESTDETAIL_DATA4 = tESTDETAIL_DATA4;
-	}
-
-	public String getTESTDETAIL_DATA5() {
-		return TESTDETAIL_DATA5;
-	}
-
-	public void setTESTDETAIL_DATA5(String tESTDETAIL_DATA5) {
-		TESTDETAIL_DATA5 = tESTDETAIL_DATA5;
+	public void setTESTDETAIL_DATA(String tESTDETAIL_DATA) {
+		TESTDETAIL_DATA = tESTDETAIL_DATA;
 	}
 
 	public String getTESTDETAIL_ANSWER() {

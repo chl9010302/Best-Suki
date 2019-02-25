@@ -46,7 +46,7 @@ public class VideoDetailViewController  implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		videodetailadd = new VideoDetailAdd();
 		getfilepath = videodetailadd.selectContent(videodetailadd.videodetail_id, "VIDEODETAIL_FILEPATH");
-		URL = "https://www.youtube.com/embed/" + getfilepath.substring(32, getfilepath.length()) + "?wmode=transparent";
+		URL = "https://www.youtube.com/embed/" + getfilepath.substring(32) + "?wmode=transparent";
 		videodetail_subtitle.setText(videodetailadd.selectContent(videodetailadd.videodetail_id, "VIDEODETAIL_SUBTITLE"));
 		engine = Myweb.getEngine();
 		engine.load(URL);

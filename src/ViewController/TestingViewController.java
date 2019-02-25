@@ -2,6 +2,7 @@ package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -34,6 +35,7 @@ public class TestingViewController implements Initializable {
 	private TestDetailAdd testdetailadd;
 	private TestAdd testadd;
 	private String result_answer;
+	private ArrayList<String> initial_result;
 	//Declare FXML
 	@FXML private Button btnSubmit;
 	@FXML private ToggleGroup Quest1Group1;
@@ -111,13 +113,14 @@ public class TestingViewController implements Initializable {
 		}
 		testdetailadd = new TestDetailAdd();
 		testadd = new TestAdd();
+		initial_result = new ArrayList<>();
 		testdetail_subtitle.setText(CommonController.selectcontent(testadd.test_id_fk, "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer1.setText(CommonController.selectcontent(testadd.test_id_fk, "TESTDETAIL_DATA1", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer2.setText(CommonController.selectcontent(testadd.test_id_fk, "TESTDETAIL_DATA2", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer3.setText(CommonController.selectcontent(testadd.test_id_fk, "TESTDETAIL_DATA3", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer4.setText(CommonController.selectcontent(testadd.test_id_fk, "TESTDETAIL_DATA4", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer5.setText(CommonController.selectcontent(testadd.test_id_fk, "TESTDETAIL_DATA5", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		
+		initial_result = CommonController.splitQuestion(CommonController.selectcontent(testadd.test_id_fk, "TESTDETAIL_DATA", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_answer1.setText(initial_result.get(0));
+		testdetail_answer2.setText(initial_result.get(1));
+		testdetail_answer3.setText(initial_result.get(2));
+		testdetail_answer4.setText(initial_result.get(3));
+		testdetail_answer5.setText(initial_result.get(4));
 		image = new Image(testdetailadd.selectIMAGE(testadd.test_id_fk).toURI().toString(),623,150,true,true);
 		testdetail_imageview.setImage(image);
 	}

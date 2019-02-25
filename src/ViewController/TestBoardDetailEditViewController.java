@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import DBController.TestDetailAdd;
@@ -13,10 +13,6 @@ import DBModel.TestDetailBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -33,6 +29,7 @@ public class TestBoardDetailEditViewController implements Initializable {
 	private TestDetailAdd testdetailadd;
 	private FileChooser fileChooser;
 	private File file;
+	private ArrayList<String> question_selected;
 	//Declare FXML
 	@FXML private ToggleGroup Quest1Group1;
 	@FXML private TextField testdetail_subtitle, testdetail_answer1, testdetail_answer2, testdetail_answer3, testdetail_answer4, testdetail_answer5;
@@ -52,15 +49,17 @@ public class TestBoardDetailEditViewController implements Initializable {
 		TestDetailAdd testdetailadd = new TestDetailAdd();
 		try {
 			testdetailbean = new TestDetailBean();
+			question_selected = new ArrayList<>();
 			testdetailbean.setTESTDETAIL_ID_PK(testdetailadd.testdetail_id);
 			testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
 			testdetailbean.setTESTDETAIL_IMAGE_PATH(filename);
 			testdetailbean.setTESTDETAIL_IMAGE(input);
-			testdetailbean.setTESTDETAIL_DATA1(testdetail_answer1.getText().toString());
-			testdetailbean.setTESTDETAIL_DATA2(testdetail_answer2.getText().toString());
-			testdetailbean.setTESTDETAIL_DATA3(testdetail_answer3.getText().toString());
-			testdetailbean.setTESTDETAIL_DATA4(testdetail_answer4.getText().toString());
-			testdetailbean.setTESTDETAIL_DATA5(testdetail_answer5.getText().toString());
+			question_selected.add(testdetail_answer1.getText().toString());
+			question_selected.add(testdetail_answer2.getText().toString());
+			question_selected.add(testdetail_answer3.getText().toString());
+			question_selected.add(testdetail_answer4.getText().toString());
+			question_selected.add(testdetail_answer5.getText().toString());
+			testdetailbean.setTESTDETAIL_DATA(CommonController.makeAnswer(question_selected));
 			if(testdetail_rb1.isSelected()) {
 				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer1.getText().toString());
 			}else if(testdetail_rb2.isSelected()) {
@@ -83,12 +82,14 @@ public class TestBoardDetailEditViewController implements Initializable {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		testdetailadd = new TestDetailAdd();
+		ArrayList<String> result = new ArrayList<>();
+		result = CommonController.splitQuestion(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		testdetail_subtitle.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer1.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA1", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer2.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA2", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer3.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA3", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer4.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA4", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer5.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA5", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_answer1.setText(result.get(0));
+		testdetail_answer2.setText(result.get(1));
+		testdetail_answer3.setText(result.get(2));
+		testdetail_answer4.setText(result.get(3));
+		testdetail_answer5.setText(result.get(4));
 	}
 	public void openFile() {
 		fileChooser = new FileChooser();

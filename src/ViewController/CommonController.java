@@ -5,8 +5,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Optional;
+
 import DBController.UserLogin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -129,5 +131,23 @@ public class CommonController{
 			}
 		}catch(Exception e) { }
 		return result;
+	}
+	public static String makeAnswer(ArrayList<String> answer1) {
+		String answer = "";
+		for(int i=0; i<answer1.size(); i++) {
+			if(i != answer1.size()-1) {
+				answer += answer1.get(i) + ";";
+			}else {
+				answer += answer1.get(i);
+			}
+		}
+		return answer;
+	}
+	public static ArrayList<String> splitQuestion(String data) {
+		ArrayList<String> question = new ArrayList<>();
+		for(int i = 0; i<5; i++) {
+			question.add(data.split(";")[i]);	
+		}
+		return question;
 	}
 }

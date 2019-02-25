@@ -12,19 +12,24 @@ import DBModel.TestResultBean;
 public class TestResultAdd {
 	TestResultBean testresultbean;
 	public static ArrayList<String> testresult;
-	static Statement stmt = null;
+	private Statement stmt = null;
 	public static Connection conn = null;
+	private String result, sql;
+	private StringBuilder sb;
+	private ResultSet rs;
+	private PreparedStatement pstmt;
+	
 	public TestResultAdd() {
 	}
 	public TestResultAdd(TestResultBean testresultbean) {
 		insertTestResult(testresultbean);
 	}
 	public boolean insertTestResult(TestResultBean testresultbean) {
-		String insertsql = "INSERT INTO "+config.StaticProperty.gettestresult_tb()+"(TESTRESULT_ID_PK, TEST_ID, TESTRESULT_ID1, TESTRESULT_ID2, TESTRESULT_ID3, TESTRESULT_ID4, TESTRESULT_ID5, TESTRESULT_ANSWER1, TESTRESULT_ANSWER2, TESTRESULT_ANSWER3, TESTRESULT_ANSWER4, TESTRESULT_ANSWER5, TESTRESULT_WRITER, TESTRESULT_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
-		PreparedStatement pstmt = null;
+		sql = "INSERT INTO "+config.StaticProperty.gettestresult_tb()+"(TESTRESULT_ID_PK, TEST_ID, TESTRESULT_ID1, TESTRESULT_ID2, TESTRESULT_ID3, TESTRESULT_ID4, TESTRESULT_ID5, TESTRESULT_ANSWER1, TESTRESULT_ANSWER2, TESTRESULT_ANSWER3, TESTRESULT_ANSWER4, TESTRESULT_ANSWER5, TESTRESULT_WRITER, TESTRESULT_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now());";
+		pstmt = null;
 		try {
 			conn = application.DBConnection.getDBConection();		
-			pstmt = conn.prepareStatement(insertsql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, testresultbean.getTESTRESULT_ID_PK());
 			pstmt.setString(2, testresultbean.getTEST_ID());
 			pstmt.setString(3, testresultbean.getTESTRESULT_ID1());
@@ -54,28 +59,28 @@ public class TestResultAdd {
 			} catch (SQLException e3) { }
 		} return false;
 	}
-	public static String selectgetresultanswer(String id, int i) {
-		String result = "";
+	public String selectgetresultanswer(String id, int i) {
+		result = "";
 		try {
-			StringBuilder sb = new StringBuilder();
+			sb = new StringBuilder();
 			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT TESTRESULT_ANSWER" + i + " FROM "+config.StaticProperty.gettestresult_tb()+" WHERE TESTRESULT_ID_PK = '").append(id).append("';").toString();
+			sql = sb.append("SELECT TESTRESULT_ANSWER" + i + " FROM "+config.StaticProperty.gettestresult_tb()+" WHERE TESTRESULT_ID_PK = '").append(id).append("';").toString();
 			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				if (rs.getString("TESTRESULT_ANSWER" + i) != null)
 					result = rs.getString("TESTRESULT_ANSWER" + i);
 			}
 		}catch(Exception e) { e.printStackTrace();} return result;
 	}
-	public static String selectgetresultid(String id, int i) {
-		String result = "";
+	public String selectgetresultid(String id, int i) {
+		result = "";
 		try {
-			StringBuilder sb = new StringBuilder();
+			sb = new StringBuilder();
 			conn = application.DBConnection.getDBConection();
-			String sql = sb.append("SELECT TESTRESULT_ID" + i + " FROM "+config.StaticProperty.gettestresult_tb()+" WHERE TESTRESULT_ID_PK = '").append(id).append("';").toString();
+			sql = sb.append("SELECT TESTRESULT_ID" + i + " FROM "+config.StaticProperty.gettestresult_tb()+" WHERE TESTRESULT_ID_PK = '").append(id).append("';").toString();
 			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				if (rs.getString("TESTRESULT_ID" + i) != null)
 					result = rs.getString("TESTRESULT_ID" + i);
