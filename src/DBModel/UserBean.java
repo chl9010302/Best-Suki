@@ -13,10 +13,7 @@ public class UserBean {
 	private String USER_FMPHONE       ;
 	private String USER_LOGINSESSION  ;
 	private String USER_TEACHERSESSION;
-	private String CLASS_NUMBER1      ;
-	private String CLASS_NUMBER2      ;
-	private String CLASS_NUMBER3      ;
-	private String CLASS_NUMBER4      ;
+	private String CLASS_NUMBER       ;
 	
 	public UserBean(){
 		setUSER_TEACHERSESSION("1");
@@ -109,40 +106,11 @@ public class UserBean {
 		USER_TEACHERSESSION = uSER_TEACHERSESSION;
 	}
 
-	public String getCLASS_NUMBER1() {
-		return CLASS_NUMBER1;
+	public String getCLASS_NUMBER() {
+		return CLASS_NUMBER;
 	}
 
-	public void setCLASS_NUMBER1(String cLASS_NUMBER1) {
-		CLASS_NUMBER1 = cLASS_NUMBER1;
+	public void setCLASS_NUMBER(String cLASS_NUMBER) {
+		CLASS_NUMBER = cLASS_NUMBER;
 	}
-
-	public String getCLASS_NUMBER2() {
-		return CLASS_NUMBER2;
-	}
-
-	public void setCLASS_NUMBER2(String cLASS_NUMBER2) {
-		CLASS_NUMBER2 = cLASS_NUMBER2;
-	}
-
-	public String getCLASS_NUMBER3() {
-		return CLASS_NUMBER3;
-	}
-
-	public void setCLASS_NUMBER3(String cLASS_NUMBER3) {
-		CLASS_NUMBER3 = cLASS_NUMBER3;
-	}
-
-	public String getCLASS_NUMBER4() {
-		return CLASS_NUMBER4;
-	}
-
-	public void setCLASS_NUMBER4(String cLASS_NUMBER4) {
-		CLASS_NUMBER4 = cLASS_NUMBER4;
-	}
-
-	
-	
-	
-	
 }

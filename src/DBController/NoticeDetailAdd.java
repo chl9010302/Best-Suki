@@ -16,15 +16,14 @@ import javafx.scene.control.Button;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class NoticeDetailAdd {
-	private NoticeDetailBean noticedetailbean;
 	private Connection conn = null;
 	private Statement stmt = null;
 	private PreparedStatement pstmt = null;
 	private DBConnectionKeeping dbConnectionKeeping;
-	private String sql;
 	private StringBuilder sb;
 	private ResultSet rs;
-	public static String noticedetail_id = "";
+	private NoticeDetailBean noticedetailbean;
+	public static String noticedetail_id, sql;
 	private StringProperty noticedetail_id_pk, noticedetail_subtitle, noticedetail_writer, noticedetail_time, noticedetail_context;
 	private Button noticedetail_btndetail;
 	public StringProperty getNoticedetail_id_pk() {

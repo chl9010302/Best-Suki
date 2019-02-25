@@ -20,12 +20,11 @@ import usingstaticfunction.DBConnectionKeeping;
 public class TestAdd {
 	public static String test_id_fk = ""; // test_id_fk를 알아내기 위함
 	public static String testing_id = ""; // test하고자 하는 id를 전체 뷰에서 사용하기 위함
-	public static int pagenumber; // testing 중에 페이지를기억하기 위함
-	public static int maxpage; // 테스트를 진행하기 위한 초기 값 설정
-	private TestBean testbean;
+	public static int pagenumber, maxpage; // testing 중에 페이지를기억하기 위함 / 테스트를 진행하기 위한 초기 값 설정
 	private Connection conn = null;
 	private Statement stmt = null;
 	private PreparedStatement pstmt;
+	private TestBean testbean;
 	private StringProperty test_id_pk, test_subtitle, test_writer, test_time;
 	private Button test_btndetail;
 	public static ArrayList<String> result_arraylist;

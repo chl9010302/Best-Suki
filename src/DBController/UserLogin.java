@@ -5,23 +5,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import ViewController.CommonController;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class UserLogin {
+	public static String logintime;
 	private Connection conn = null;
 	private ResultSet rs;
 	private PreparedStatement pstmt;
 	private Statement stmt;
-	private String sql;
-	public static String logintime;
-	private int check_loginsession, check_datesession;
 	private DBConnectionKeeping dbConnectionKeeping;
-	private Connection con;
+	private String sql;
 	private StringBuilder sb;
+	private int check_loginsession, check_datesession;
 	public int loginCheck(String user_id, String user_pw) {
 		check_loginsession = 0;
 		sql = "SELECT USER_ID_PK FROM "+config.StaticProperty.getuser_tb()+" WHERE USER_ID_PK = ? AND USER_PASSWORD = ?";
@@ -86,8 +83,8 @@ public class UserLogin {
 		stmt = null;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
-		con = usingstaticfunction.DBConnectionKeeping.con;
-		stmt = con.createStatement();
+		conn = usingstaticfunction.DBConnectionKeeping.con;
+		stmt = conn.createStatement();
 		sql = sb.append("UPDATE "+config.StaticProperty.getdate_tb()+" SET DATE_LOGOUTTIME = now() WHERE DATE_ID_PK = '").append(logintime).append("';").toString();
 		try {
 			stmt.executeUpdate(sql);

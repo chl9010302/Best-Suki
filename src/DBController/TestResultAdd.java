@@ -10,7 +10,7 @@ import DBModel.TestResultBean;
 public class TestResultAdd {
 	private TestResultBean testresultbean;
 	public static ArrayList<String> testresult;
-	public static String answer_result="";
+	public static String answer_result=""; // test result를 담기 위함.
 	private Connection conn = null;
 	private String sql;
 	private PreparedStatement pstmt;

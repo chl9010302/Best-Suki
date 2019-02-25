@@ -8,23 +8,25 @@ import DBModel.UserBean;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class SelectNowUser {
+	private DBConnectionKeeping dbConnectionKeeping;
+	private Connection con;
+	private Statement stmt;
 	private ResultSet rs;
 	private UserBean userbean;
 	private StringBuilder sb;
 	private String sql;
-	private DBConnectionKeeping dbConnectionKeeping;
 	public UserBean getSelectUser(String login_Id) {
+		userbean = new UserBean();
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
 		sb = new StringBuilder();
 		sql = sb.append("SELECT * FROM  "+config.StaticProperty.getuser_tb()+" WHERE").append(" USER_ID_PK = '").append(login_Id).append("';")
 				.toString();
-		Connection con = usingstaticfunction.DBConnectionKeeping.con;
-		Statement stmt = null;
+		con = usingstaticfunction.DBConnectionKeeping.con;
+		stmt = null;
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
-			userbean = new UserBean();
 			while (rs.next()) {
 				userbean.setUSER_ID_PK(rs.getString("USER_ID_PK"));
 				userbean.setUSER_PASSWORD(rs.getString("USER_PASSWORD"));
@@ -37,10 +39,7 @@ public class SelectNowUser {
 				userbean.setUSER_FMPHONE(rs.getString("USER_FMPHONE"));
 				userbean.setUSER_LOGINSESSION(rs.getString("USER_LOGINSESSION"));
 				userbean.setUSER_TEACHERSESSION(rs.getString("USER_TEACHERSESSION"));
-				userbean.setCLASS_NUMBER1(rs.getString("CLASS_NUMBER1"));
-				userbean.setCLASS_NUMBER2(rs.getString("CLASS_NUMBER2"));
-				userbean.setCLASS_NUMBER3(rs.getString("CLASS_NUMBER3"));
-				userbean.setCLASS_NUMBER4(rs.getString("CLASS_NUMBER4"));
+				userbean.setCLASS_NUMBER(rs.getString("CLASS_NUMBER"));
 			} return userbean;
 		} catch (Exception e) { e.printStackTrace();} return null;
 	}

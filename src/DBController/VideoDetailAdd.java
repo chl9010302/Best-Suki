@@ -16,16 +16,16 @@ import javafx.scene.control.Button;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class VideoDetailAdd {
-	private VideoDetailBean videodetailbean;
+	public static String videodetail_id;
 	private Connection conn = null;
 	private Statement stmt = null;
 	private Connection con;
 	private PreparedStatement pstmt;
 	private DBConnectionKeeping dbConnectionKeeping;
+	private VideoDetailBean videodetailbean;
 	private String sql, result;
 	private StringBuilder sb;
 	private ResultSet rs;
-	public static String videodetail_id = "";
 	private StringProperty videodetail_id_pk, videodetail_subtitle, videodetail_writer, videodetail_time, videodetail_filepath;
 	private Button videodetail_btndetail;
 	private ObservableList<VideoDetailAdd> videodetailadd_observablelist = FXCollections.observableArrayList();
@@ -64,7 +64,6 @@ public class VideoDetailAdd {
 		this.videodetail_filepath = new SimpleStringProperty(VIDEODETAIL_FILEPATH);
 		this.videodetail_btndetail = new Button("Details");
 		videodetail_btndetail.setOnAction(event -> {
-			videodetail_id = ""; // 초기화
 			videodetail_id = videodetail_id_pk.get();
 			try {
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideodetailview());
