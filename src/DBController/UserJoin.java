@@ -4,25 +4,27 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import DBModel.UserBean;
 
 public class UserJoin {
-	UserBean userbean;
-	Connection conn = null;
-	Statement stmt = null;
+	private UserBean userbean;
+	private Connection conn = null;
+	private PreparedStatement pstmt;
+	private String sql;
+	private ResultSet rs;
+	private int join_checksession;
 	public UserJoin() { }
 	public UserJoin(UserBean userjoin) {
 		insert(userjoin);
 	}
 	public boolean insert(UserBean userjoin) {
-		String insertsql = "INSERT INTO "+config.StaticProperty.getuser_tb()+"(USER_ID_PK, USER_PASSWORD, USER_NAME, USER_ADDRESS, USER_SCHOOLNAME, USER_AGE, USER_GENDER, USER_PHONE, USER_FMPHONE, USER_TEACHERSESSION, USER_LOGINSESSION) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		sql = "INSERT INTO "+config.StaticProperty.getuser_tb()+"(USER_ID_PK, USER_PASSWORD, USER_NAME, USER_ADDRESS, USER_SCHOOLNAME, USER_AGE, USER_GENDER, USER_PHONE, USER_FMPHONE, USER_TEACHERSESSION, USER_LOGINSESSION) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	    PreparedStatement pstmt = null;
 	    userbean = userjoin;
 		try {
 			 conn = application.DBConnection.getDBConection();
-			 pstmt = conn.prepareStatement(insertsql);
+			 pstmt = conn.prepareStatement(sql);
 	  			pstmt.setString(1,userbean.getUSER_ID_PK() );
 	  			pstmt.setString(2,userbean.getUSER_PASSWORD()); 
 	  			pstmt.setString(3, userbean.getUSER_NAME()); 
@@ -52,10 +54,9 @@ public class UserJoin {
 		return false;
 	}
 	public int joinCheck(String user_id) {
-		int i = 1;
-		String sql = "SELECT USER_ID_PK FROM "+config.StaticProperty.getuser_tb()+" WHERE USER_ID_PK = ? ";
-		ResultSet rs = null;
-		PreparedStatement pstmt = null;
+		join_checksession = 1;
+		sql = "SELECT USER_ID_PK FROM "+config.StaticProperty.getuser_tb()+" WHERE USER_ID_PK = ? ";
+		rs = null;
 		try {
 			conn = application.DBConnection.getDBConection();
 			pstmt = conn.prepareStatement(sql);
@@ -63,7 +64,7 @@ public class UserJoin {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				if(rs.getString("USER_ID_PK") != null) {
-					i = 0;
+					join_checksession = 0;
 				}
 			}
 		} catch (SQLException e) {
@@ -73,6 +74,6 @@ public class UserJoin {
 				if (pstmt != null) pstmt.close();
 				if (conn != null) conn.close();
 			} catch (SQLException e2) {  }
-		} return i;
+		} return join_checksession;
 	}
 }

@@ -18,16 +18,23 @@ import javafx.scene.control.Button;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class TestAdd {
-	TestBean testbean;
-	static Connection conn = null;
-	static Statement stmt = null;
 	public static String test_id_fk = ""; // test_id_fk를 알아내기 위함
 	public static String testing_id = ""; // test하고자 하는 id를 전체 뷰에서 사용하기 위함
 	public static int pagenumber; // testing 중에 페이지를기억하기 위함
 	public static int maxpage; // 테스트를 진행하기 위한 초기 값 설정
+	private TestBean testbean;
+	private Connection conn = null;
+	private Statement stmt = null;
+	private PreparedStatement pstmt;
 	private StringProperty test_id_pk, test_subtitle, test_writer, test_time;
 	private Button test_btndetail;
 	public static ArrayList<String> result_arraylist;
+	private String sql;
+	private StringBuilder sb;
+	private ResultSet rs;
+	private ObservableList<String> test;
+	private int page, lineCnt, fromIndex;
+	private DBConnectionKeeping dbConnectionKeeping;
 	public StringProperty getTest_writer() {
 		return test_writer;
 	}
@@ -82,28 +89,26 @@ public class TestAdd {
 		insertTest(testbean);
 	}
 	public boolean updateTestDetail(TestBean testbean) {
-		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
-		Statement stmt = null;
 		try {
-			Connection con = usingstaticfunction.DBConnectionKeeping.con;
-			stmt = con.createStatement();
-			String updatesql = "UPDATE "+config.StaticProperty.gettest_tb()
+			conn = usingstaticfunction.DBConnectionKeeping.con;
+			stmt = conn.createStatement();
+			sql = "UPDATE "+config.StaticProperty.gettest_tb()
 			+" SET TEST_SUBTITLE = '" + testbean.getTEST_SUBTITLE() 
 			+ "', TESTDETAIL_ID_FK = '" + testbean.getTESTDETAIL_ID_FK() 
 			+ "' WHERE TEST_ID_PK = '" + testbean.getTEST_ID_PK() + "';";
-			stmt.executeUpdate(updatesql);
+			stmt.executeUpdate(sql);
 			return true;
 		} catch (SQLException e) { } return false;
 	}
 	public boolean insertTest(TestBean testbean) {
-		String insertsql = "INSERT INTO "+config.StaticProperty.gettest_tb()+"(TEST_ID_PK, TEST_SUBTITLE, TESTDETAIL_ID_FK, TEST_WRITER, TEST_TIME) VALUES(?, ?, ?, ?, now());";
-		PreparedStatement pstmt = null;
+		sql = "INSERT INTO "+config.StaticProperty.gettest_tb()+"(TEST_ID_PK, TEST_SUBTITLE, TESTDETAIL_ID_FK, TEST_WRITER, TEST_TIME) VALUES(?, ?, ?, ?, now());";
+		pstmt = null;
 		this.testbean = testbean;
 		try {
 			conn = application.DBConnection.getDBConection();	
-			pstmt = conn.prepareStatement(insertsql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, testbean.getTEST_ID_PK());
 			pstmt.setString(2, testbean.getTEST_SUBTITLE());
 			pstmt.setString(3, testbean.getTESTDETAIL_ID_FK());
@@ -125,29 +130,28 @@ public class TestAdd {
 		} return false;
 	}
 	public boolean select() {
-		StringBuilder sb = new StringBuilder();
+		sb = new StringBuilder();
 		try {
 			conn = application.DBConnection.getDBConection();
 			stmt = conn.createStatement();
-			String sql = sb.append("SELECT * FROM "+config.StaticProperty.gettest_tb()).append(";").toString();
-			ResultSet rs = stmt.executeQuery(sql);
+			sql = sb.append("SELECT * FROM "+config.StaticProperty.gettest_tb()).append(";").toString();
+			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				testadd.add(new TestAdd((String) rs.getString("TEST_ID_PK"), (String) rs.getString("TEST_SUBTITLE"), (String) rs.getString("TEST_WRITER"),(String) rs.getString("TEST_TIME").substring(0,10)));
 			}
 		} catch (SQLException e) { } return false;
 	}
 	public void delete(String id) {
-		StringBuilder sb = new StringBuilder();
+		sb = new StringBuilder();
 		conn = application.DBConnection.getDBConection();
-		String sql = sb.append("DELETE FROM "+config.StaticProperty.gettest_tb()+" WHERE TEST_ID_PK = '").append(id).append("';").toString();
+		sql = sb.append("DELETE FROM "+config.StaticProperty.gettest_tb()+" WHERE TEST_ID_PK = '").append(id).append("';").toString();
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
 		} catch (SQLException e) { }
 	}
 	public ObservableList<String> gettestdetailid(String id) {
-		ObservableList<String> test = FXCollections.observableArrayList();
-		int page = 0;
+		test = FXCollections.observableArrayList();
 		page = ccount(id);
 		for(int i=0; i<CommonController.splitQuestion(CommonController.selectcontent(id, "TESTDETAIL_ID_FK", config.StaticProperty.gettest_tb(), "TEST_ID_PK")).size(); i++) {
 			test.add(CommonController.splitQuestion(CommonController.selectcontent(id, "TESTDETAIL_ID_FK", config.StaticProperty.gettest_tb(), "TEST_ID_PK")).get(i));
@@ -155,8 +159,8 @@ public class TestAdd {
 		return test;
 	}
 	public int ccount(String id) {
-		int lineCnt = 1;
-	    int fromIndex = -1;
+		lineCnt = 1;
+	    fromIndex = -1;
 	    while ((fromIndex = CommonController.selectcontent(id, "TESTDETAIL_ID_FK", config.StaticProperty.gettest_tb(), "TEST_ID_PK").indexOf(";", fromIndex + 1)) >= 0) {
 	      lineCnt++;
 	    }

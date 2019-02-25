@@ -21,17 +21,16 @@ import javafx.scene.control.CheckBox;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class TestDetailAdd {
-	TestDetailBean testdetailbean;
-	public static Connection conn = null;
-	private static Statement stmt = null;
-	private static PreparedStatement pstmt;
 	public static ArrayList<String> selected_testid;
-	public static String testdetail_id = "";
+	public static String testdetail_id, sql, result;
+	private TestDetailBean testdetailbean;
+	private Statement stmt = null;
+	private PreparedStatement pstmt;
+	private Connection conn = null;
 	private StringProperty testdetail_id_pk, testdetail_subtitle, testdetail_writer, testdetail_time;
 	private Button testdetail_btndetail;
 	private CheckBox testdetail_checkboxdetail;
 	private DBConnectionKeeping dbConnectionKeeping;
-	private String sql, result;
 	private StringBuilder sb;
 	private ResultSet rs;
 	private File theFile;

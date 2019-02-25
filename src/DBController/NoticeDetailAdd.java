@@ -16,11 +16,11 @@ import javafx.scene.control.Button;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class NoticeDetailAdd {
-	NoticeDetailBean noticedetailbean;
-	Connection conn = null;
-	Statement stmt = null;
-	PreparedStatement pstmt = null;
-	DBConnectionKeeping dbConnectionKeeping;
+	private NoticeDetailBean noticedetailbean;
+	private Connection conn = null;
+	private Statement stmt = null;
+	private PreparedStatement pstmt = null;
+	private DBConnectionKeeping dbConnectionKeeping;
 	private String sql;
 	private StringBuilder sb;
 	private ResultSet rs;
@@ -129,7 +129,7 @@ public class NoticeDetailAdd {
 	public void delete(String id) {
 		sb = new StringBuilder();
 		conn = application.DBConnection.getDBConection();
-		String sql = sb.append("DELETE FROM "+config.StaticProperty.getnoticedetail_tb()+" WHERE NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
+		sql = sb.append("DELETE FROM "+config.StaticProperty.getnoticedetail_tb()+" WHERE NOTICEDETAIL_ID_PK = '").append(id).append("';").toString();
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);

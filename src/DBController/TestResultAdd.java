@@ -2,24 +2,18 @@ package DBController;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import DBModel.TestResultBean;
 
 public class TestResultAdd {
-	TestResultBean testresultbean;
+	private TestResultBean testresultbean;
 	public static ArrayList<String> testresult;
 	public static String answer_result="";
-	private Statement stmt = null;
-	public static Connection conn = null;
-	private String result, sql;
-	private StringBuilder sb;
-	private ResultSet rs;
+	private Connection conn = null;
+	private String sql;
 	private PreparedStatement pstmt;
-	
 	public TestResultAdd() {
 	}
 	public TestResultAdd(TestResultBean testresultbean) {

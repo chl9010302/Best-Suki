@@ -9,6 +9,11 @@ import ViewController.CommonController;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class UserDataUpdate {
+	private Statement stmt;
+	private DBConnectionKeeping dbConnectionKeeping;
+	private Connection con;
+	private StringBuilder sb;
+	private String sql;
 	public UserDataUpdate() { }
 	public UserDataUpdate(UserBean userbean, String User_id) {
 		UserUpdate(userbean, User_id);
@@ -16,18 +21,15 @@ public class UserDataUpdate {
 	public boolean UserUpdate(UserBean userbean, String User_id) {
 		if(userbean.getUSER_PASSWORD() == null) {
 			userbean.setUSER_PASSWORD(CommonController.selectcontent(User_id, "USER_PASSWORD", config.StaticProperty.getuser_tb(), "USER_ID_PK"));
-			
 		}
-		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
-		Statement stmt = null;
+		stmt = null;
 		try {
-		Connection con = usingstaticfunction.DBConnectionKeeping.con;
+		con = usingstaticfunction.DBConnectionKeeping.con;
 		stmt = con.createStatement();
-		System.out.println();
-		StringBuilder sb = new StringBuilder();
-		String sql = sb.append("UPDATE "+config.StaticProperty.getuser_tb()+" SET")
+		sb = new StringBuilder();
+		sql = sb.append("UPDATE "+config.StaticProperty.getuser_tb()+" SET")
 				.append(" USER_ID_PK = '"+userbean.getUSER_ID_PK())
 				.append("', USER_PASSWORD = '"+userbean.getUSER_PASSWORD())
 				.append("', USER_NAME = '"+userbean.getUSER_NAME())

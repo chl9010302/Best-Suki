@@ -11,12 +11,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class AddStastics {
-	Connection conn = null;
-	Statement stmt = null;
+	private Connection conn = null;
+	private Statement stmt = null;
 	private String sql;
 	private StringBuilder sb;
 	private ObservableList<AddStastics> addstastics = FXCollections.observableArrayList();
 	private StringProperty USER_ID, USER_LOGIN_DATE, USER_LOGOUT_DATE;
+	private ResultSet rs;
 	public AddStastics() {
 		// TODO Auto-generated constructor stub
 	}
@@ -45,7 +46,7 @@ public class AddStastics {
 			stmt = conn.createStatement();
 			sql = sb.append("SELECT * FROM "+config.StaticProperty.getdate_tb()+" ORDER BY DATE_LOGINTIME DESC")
 					.append(";").toString(); 
-			ResultSet rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				addstastics.add(new AddStastics((String)rs.getString("USER_ID"), (String)rs.getString("DATE_LOGINTIME"), (String)rs.getString("DATE_LOGOUTTIME")));
 			}
