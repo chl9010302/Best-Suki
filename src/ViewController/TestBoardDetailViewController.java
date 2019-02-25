@@ -23,6 +23,7 @@ import javafx.scene.image.ImageView;
 public class TestBoardDetailViewController implements Initializable {
 	public static Image image;
 	private TestDetailAdd testdetailadd;
+	private ArrayList<String> result;
 	//Declare FXML
 	@FXML private ToggleGroup Quest1Group1;
 	@FXML private ImageView testdetail_imageview;
@@ -42,7 +43,7 @@ public class TestBoardDetailViewController implements Initializable {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		testdetailadd = new TestDetailAdd();
-		ArrayList<String> result = new ArrayList<>();
+		result = new ArrayList<>();
 		result = CommonController.splitQuestion(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		testdetail_subtitle.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		testdetail_answer1.setText(result.get(0));

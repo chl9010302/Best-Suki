@@ -24,41 +24,53 @@ import javafx.stage.Stage;
 import usingstaticfunction.DBConnectionKeeping;
 
 public class CommonController{
+	public static Parent View;
+	public static Scene View_scene;
+	public static Stage app_stage;
+	public static UserLogin userlogout;
+	public static ButtonType YES, NO;
+	public static Alert alert;
+	public static Optional<ButtonType> result;
+	public static Calendar calendar;
+	public static String dateidpk, result_phone, sql, result_select, answer;
+	public static StringBuilder sb;
+	public static int lineCnt, fromIndex;
+	public static ArrayList<String> question;
 	// 마우스를 눌러서 화면 이동 액션
 	public static void NAV (Class getclass, ActionEvent event, String str) throws IOException {
-		Parent View = FXMLLoader.load(getclass.getResource(str));
-		Scene View_scene = new Scene(View);
+		View = FXMLLoader.load(getclass.getResource(str));
+		View_scene = new Scene(View);
 		View_scene.getStylesheets().add(getclass.getResource(config.StaticProperty.getnavapplication()).toExternalForm());
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(View_scene);
 		app_stage.show();
 	}
 	// 키를 눌러서 화면 이동 액션
 	public static void NAV_Key (Class getclass, KeyEvent event, String str) throws IOException {
-		Parent View = FXMLLoader.load(getclass.getResource(str));
-		Scene View_scene = new Scene(View);
+		View = FXMLLoader.load(getclass.getResource(str));
+		View_scene = new Scene(View);
 		View_scene.getStylesheets().add(getclass.getResource(config.StaticProperty.getnavapplication()).toExternalForm());
-		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(View_scene);
 		app_stage.show();
 	}
 	// 팝업하여 화면 이동 액션
 	public static void NAV_POPUP (Class getclass, ActionEvent event, String str) throws IOException {
-		Parent View = FXMLLoader.load(getclass.getResource(str));
-		Scene View_scene = new Scene(View);
+		View = FXMLLoader.load(getclass.getResource(str));
+		View_scene = new Scene(View);
 		View_scene.getStylesheets().add(getclass.getResource(config.StaticProperty.getnavapplication()).toExternalForm());
-		Stage app_stage = new Stage();
+		app_stage = new Stage();
 		app_stage.setScene(View_scene);
 		app_stage.show();
 	}
 	// 로그아웃 액션
 	public static void logout(Class getclass, ActionEvent event) {
-		UserLogin userlogout = new UserLogin();
-		ButtonType YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
-		ButtonType NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
-		Alert alert = new Alert(AlertType.NONE,config.StaticProperty.alertlogout(), YES, NO);
+		userlogout = new UserLogin();
+		YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
+		NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
+		alert = new Alert(AlertType.NONE,config.StaticProperty.alertlogout(), YES, NO);
 		alert.setTitle(config.StaticProperty.alerttitlelogout());
-		Optional<ButtonType> result = alert.showAndWait();
+		result = alert.showAndWait();
 		if (result.orElse(NO) == YES) {
 			try {
 				userlogout.logout(LoginViewController.login_id);
@@ -68,9 +80,9 @@ public class CommonController{
 		}
 	}
 	public static String MakeId() {
-		Calendar calendar = Calendar.getInstance();
+		calendar = Calendar.getInstance();
 		java.util.Date date = calendar.getTime();
-		String dateidpk = (new SimpleDateFormat("yyyyMMddHHmmss").format(date));
+		dateidpk = (new SimpleDateFormat("yyyyMMddHHmmss").format(date));
 		return dateidpk;
 	}
 	public static String gender(Boolean selectedmale, Boolean selectedfemale) {
@@ -82,11 +94,11 @@ public class CommonController{
 		return null;
 	}
 	public static void Alert_YesorNo(ActionEvent event, String alertcontent, String alerttitle, Class getclass, String str){
-		ButtonType YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
-		ButtonType NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
-		Alert alert = new Alert(AlertType.NONE,alertcontent, YES, NO);
+		YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
+		NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
+		alert = new Alert(AlertType.NONE,alertcontent, YES, NO);
 		alert.setTitle(alerttitle);
-		Optional<ButtonType> result = alert.showAndWait();
+		result = alert.showAndWait();
 		if (result.orElse(NO) == YES) {
 			try {
 				NAV(getclass, event, str);
@@ -94,29 +106,27 @@ public class CommonController{
 		}
 	}
 	public static void Alert_ERROR(ActionEvent event, String alertcontent, String alerttitle) {
-		Alert alert = new Alert(AlertType.ERROR);
+		alert = new Alert(AlertType.ERROR);
 		alert.setTitle(alerttitle);
 		alert.setHeaderText(alertcontent);
 		alert.showAndWait();
 	}
 	public static void Alert_ERROR_Key(KeyEvent event, String alertcontent, String alerttitle) {
-		Alert alert = new Alert(AlertType.ERROR);
+		alert = new Alert(AlertType.ERROR);
 		alert.setTitle(alerttitle);
 		alert.setHeaderText(alertcontent);
 		alert.showAndWait();
 	}
 	public static String MakeMobilenumber(String midnumber, String lastnumber) {
-		String result = "";
-		result = "010-" + midnumber + "-" + lastnumber;
-		return result;
+		result_phone = "";
+		result_phone = "010-" + midnumber + "-" + lastnumber;
+		return result_phone;
 	}
 	
 	public static String selectcontent(String id, String getcontent, String gettable, String find_id) {
-		StringBuilder sb = new StringBuilder();
-		String sql;
+		sb = new StringBuilder();
 		Statement stmt = null;
 		ResultSet rs;
-		String result = null;
 		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
@@ -127,13 +137,13 @@ public class CommonController{
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				if (rs.getString(getcontent) != null)
-					result = rs.getString(getcontent);
+					result_select = rs.getString(getcontent);
 			}
 		}catch(Exception e) { }
-		return result;
+		return result_select;
 	}
 	public static String makeAnswer(ArrayList<String> answer1) {
-		String answer = "";
+		answer = "";
 		for(int i=0; i<answer1.size(); i++) {
 			if(i != answer1.size()-1) {
 				answer += answer1.get(i) + ";";
@@ -144,12 +154,12 @@ public class CommonController{
 		return answer;
 	}
 	public static ArrayList<String> splitQuestion(String data) {
-		int lineCnt = 0;
-	    int fromIndex = -1;
+		lineCnt = 0;
+	    fromIndex = -1;
 	    while ((fromIndex = data.indexOf(";", fromIndex + 1)) >= 0) {
 	      lineCnt++;
 	    }
-		ArrayList<String> question = new ArrayList<>();
+		question = new ArrayList<>();
 		for(int i = 0; i<=lineCnt; i++) {
 			question.add(data.split(";")[i]);	
 		}

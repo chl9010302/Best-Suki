@@ -80,7 +80,6 @@ public class TestingViewController implements Initializable {
 							TestResultAdd.testresult.add("");
 						}
 					}
-					String result_answer = "";
 					testresultbean.setTESTRESULT_ID(CommonController.selectcontent(testadd.testing_id, "TESTDETAIL_ID_FK", config.StaticProperty.gettest_tb(), "TEST_ID_PK"));
 					testresultbean.setTESTRESULT_ANSWER(TestResultAdd.answer_result);
 					testresultbean.setTESTRESULT_ID_PK(CommonController.MakeId());

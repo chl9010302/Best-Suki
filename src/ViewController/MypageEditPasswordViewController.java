@@ -23,10 +23,11 @@ public class MypageEditPasswordViewController implements Initializable {
 	//Declare JAVA
 	private Sha256 sha256 = new Sha256();
 	private ButtonType YES;
-	private Alert alert;
+	private Alert alert, alert2;
 	private UserBean userbean;
 	private UserDataUpdate userdataupdate;
 	private SelectNowUser selectnowuser;
+	private Optional<ButtonType> result2, result;
 	//Declare FXML
 	@FXML private Label Mypage_UserId, EditProperty_UserName,  EditProperty_UserAddress, EditProperty_UserSchoolName, EditProperty_UserAge, EditProperty_UserGender, EditProperty_UserPhone, EditProperty_UserFmphone;
 	@FXML private PasswordField EditProperty_UserPassword;
@@ -44,11 +45,11 @@ public class MypageEditPasswordViewController implements Initializable {
 		alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetoedit(), YES);
 		alert.setTitle(config.StaticProperty.alertcompletetoedit());
 		if(EditProperty_UserPassword.getText().equals("******")) {
-			Alert alert2 = new Alert(AlertType.NONE,config.StaticProperty.alertpasswordnotchanged(), YES);
+			alert2 = new Alert(AlertType.NONE,config.StaticProperty.alertpasswordnotchanged(), YES);
 			alert2.setTitle(config.StaticProperty.alertpasswordnotchanged());
-			Optional<ButtonType> result2 = alert2.showAndWait();
+			result2 = alert2.showAndWait();
 		}else {
-			Optional<ButtonType> result = alert.showAndWait();
+			result = alert.showAndWait();
 			if (result.orElse(YES) == YES) {
 				userbean = new UserBean();
 				userdataupdate = new UserDataUpdate();

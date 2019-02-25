@@ -20,6 +20,7 @@ public class ResultViewController implements Initializable {
 	public static String login_id = LoginViewController.login_id;
 	private TestDetailAdd testdetailadd;
 	private TestResultAdd testresultadd;
+	private ArrayList<String> testid, testanswer;
 	//Declare FXML
 	@FXML private ListView<String> testListView;
 	@FXML private Label ColTest_Subtitle, TESTRESULT_ANSWER1, TESTRESULT_ANSWER2, TESTRESULT_ANSWER3, TESTRESULT_ANSWER4, TESTRESULT_ANSWER5, TESTDETAIL_ANSWER1, TESTDETAIL_ANSWER2, TESTDETAIL_ANSWER3, TESTDETAIL_ANSWER4, TESTDETAIL_ANSWER5, result1, result2, result3, result4, result5;
@@ -39,8 +40,8 @@ public class ResultViewController implements Initializable {
 		}catch(Exception e) {e.printStackTrace(); }
 	}
 	public void initialize(URL url, ResourceBundle rb) {
-		ArrayList<String> testid = CommonController.splitQuestion(CommonController.selectcontent(TestingViewController.Resultid, "TESTRESULT_ID" ,config.StaticProperty.gettestresult_tb(), "TESTRESULT_ID_PK"));
-		ArrayList<String> testanswer = CommonController.splitQuestion(CommonController.selectcontent(TestingViewController.Resultid, "TESTRESULT_ANSWER" ,config.StaticProperty.gettestresult_tb(), "TESTRESULT_ID_PK"));
+		testid = CommonController.splitQuestion(CommonController.selectcontent(TestingViewController.Resultid, "TESTRESULT_ID" ,config.StaticProperty.gettestresult_tb(), "TESTRESULT_ID_PK"));
+		testanswer = CommonController.splitQuestion(CommonController.selectcontent(TestingViewController.Resultid, "TESTRESULT_ANSWER" ,config.StaticProperty.gettestresult_tb(), "TESTRESULT_ID_PK"));
 		ColTest_Subtitle.setText(CommonController.selectcontent(TestAdd.testing_id, "TEST_SUBTITLE", config.StaticProperty.gettest_tb(), "TEST_ID_PK"));
 		int i = testid.size();
 		for(int j=i; j<5; j++) {

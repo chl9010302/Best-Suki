@@ -3,8 +3,6 @@ package ViewController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import DBController.TestAdd;
@@ -13,10 +11,6 @@ import DBModel.TestBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,6 +25,7 @@ public class AddTestViewController implements Initializable {
 	private TestDetailAdd testdetailadd;
 	private TestAdd testadd;
 	private int maxnumber;
+	private String result;
 	//Declare FXML
 	@FXML private TableView<TestDetailAdd> testTableView;
 	@FXML private TextField ColTest_Subtitle;
@@ -55,7 +50,6 @@ public class AddTestViewController implements Initializable {
 			testbean.setTEST_ID_PK(CommonController.MakeId());
 			testbean.setTEST_SUBTITLE(ColTest_Subtitle.getText().toString());
 			testbean.setTEST_WRITER(login_id);
-			String result = "";
 			for(int i = 0 ; i < getresult.size(); i++) {
 				if(i == getresult.size()-1) {
 					result += getresult.get(i);

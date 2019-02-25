@@ -29,7 +29,7 @@ public class TestBoardDetailEditViewController implements Initializable {
 	private TestDetailAdd testdetailadd;
 	private FileChooser fileChooser;
 	private File file;
-	private ArrayList<String> question_selected;
+	private ArrayList<String> question_selected, result;
 	//Declare FXML
 	@FXML private ToggleGroup Quest1Group1;
 	@FXML private TextField testdetail_subtitle, testdetail_answer1, testdetail_answer2, testdetail_answer3, testdetail_answer4, testdetail_answer5;
@@ -46,7 +46,7 @@ public class TestBoardDetailEditViewController implements Initializable {
 	@FXML private void cancelAction(ActionEvent event) { CommonController.Alert_YesorNo(event, config.StaticProperty.alertcancel(), config.StaticProperty.alerttitlecancel(), getClass(), config.StaticProperty.getnavtestboarddetailview()); }
 	@FXML
 	private void editAction(ActionEvent event) {
-		TestDetailAdd testdetailadd = new TestDetailAdd();
+		testdetailadd = new TestDetailAdd();
 		try {
 			testdetailbean = new TestDetailBean();
 			question_selected = new ArrayList<>();
@@ -82,7 +82,7 @@ public class TestBoardDetailEditViewController implements Initializable {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		testdetailadd = new TestDetailAdd();
-		ArrayList<String> result = new ArrayList<>();
+		result = new ArrayList<>();
 		result = CommonController.splitQuestion(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		testdetail_subtitle.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		testdetail_answer1.setText(result.get(0));
