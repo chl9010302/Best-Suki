@@ -142,7 +142,7 @@
                         <Image url="@../image/white%20icon/statistics-24.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onAction="#NAV_StasticsView" style="-fx-background-color: transparent;" text="STASTICS" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#NAV_StatisticsView" style="-fx-background-color: transparent;" text="STATISTICS" textFill="WHITE">
                      <font>
                         <Font name="Tahoma" size="14.0" />
                      </font>

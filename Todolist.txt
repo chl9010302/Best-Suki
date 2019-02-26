@@ -1,6 +1,6 @@
 ﻿[완성] 실패시 뷰(어떤실패, 이쁘게)
 [완성] LOGOUT
-[완성] STASTICS view
+[완성] STATISTICS view
 [완성] 게시판 생성
 [완성] mypage
 [완성] 비밀번호 바꾸기
@@ -13,7 +13,7 @@
 [완성] 이클립스 한번에 단어 바꾸기 가능한지?
 [완성] signupview mobile 및 parent mobile -> 3칸으로 변경
 [완성] Myeditview gender radiobox, age datepicker, mobile 및 parent mobile -> 3칸으로 변경
-[완성] stastics 20개 -> 다음페이지 가능한지? 
+[완성] STATISTICS 20개 -> 다음페이지 가능한지? 
 [완성] TestView 게시판 값 넣기
 [완성] 서버 - mariadb는 있지만..
 [완성] Btn_Edit 함수명 변경

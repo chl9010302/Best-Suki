@@ -70,7 +70,7 @@ public class StaticProperty {
 	public static String getnavtestboardview(){
 		return properties.getProperty("nav3");
 	}
-	public static String getnavstasticsview(){
+	public static String getnavstatisticsview(){
 		return properties.getProperty("nav4");
 	}
 	public static String getnavmypageview(){
