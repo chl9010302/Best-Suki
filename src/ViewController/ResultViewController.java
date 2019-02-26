@@ -6,20 +6,15 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import DBController.TestAdd;
-import DBController.TestDetailAdd;
-import DBController.TestResultAdd;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
-
 public class ResultViewController implements Initializable {
 	//Declare JAVA
 	public static String login_id = LoginViewController.login_id;
-	private TestDetailAdd testdetailadd;
-	private TestResultAdd testresultadd;
 	private ArrayList<String> testid, testanswer;
 	//Declare FXML
 	@FXML private ListView<String> testListView;
@@ -48,7 +43,6 @@ public class ResultViewController implements Initializable {
 			testid.add(" ");
 			testanswer.add(" ");
 		}
-		System.out.println(testid.size());
 		TESTRESULT_ANSWER1.setText(testanswer.get(0));
 		TESTDETAIL_ANSWER1.setText(CommonController.selectcontent(testid.get(0), "TESTDETAIL_ANSWER", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		result1.setText(setresult(TESTRESULT_ANSWER1.getText(), TESTDETAIL_ANSWER1.getText()));

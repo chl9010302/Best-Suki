@@ -19,7 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 public class TestBoardDetailEditViewController implements Initializable {
 	//Declare JAVA
 	private TestDetailBean testdetailbean;
@@ -50,7 +49,7 @@ public class TestBoardDetailEditViewController implements Initializable {
 		try {
 			testdetailbean = new TestDetailBean();
 			question_selected = new ArrayList<>();
-			testdetailbean.setTESTDETAIL_ID_PK(testdetailadd.testdetail_id);
+			testdetailbean.setTESTDETAIL_ID_PK(TestDetailAdd.testdetail_id);
 			testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
 			testdetailbean.setTESTDETAIL_IMAGE_PATH(filename);
 			testdetailbean.setTESTDETAIL_IMAGE(input);
@@ -83,8 +82,8 @@ public class TestBoardDetailEditViewController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		testdetailadd = new TestDetailAdd();
 		result = new ArrayList<>();
-		result = CommonController.splitQuestion(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_subtitle.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		result = CommonController.splitQuestion(CommonController.selectcontent(TestDetailAdd.testdetail_id, "TESTDETAIL_DATA", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_subtitle.setText(CommonController.selectcontent(TestDetailAdd.testdetail_id, "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		testdetail_answer1.setText(result.get(0));
 		testdetail_answer2.setText(result.get(1));
 		testdetail_answer3.setText(result.get(2));

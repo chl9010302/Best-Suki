@@ -25,9 +25,12 @@ import usingstaticfunction.DBConnectionKeeping;
 
 public class CommonController{
 	public static Parent View;
+	public static Statement stmt;
+	public static ResultSet rs;
 	public static Scene View_scene;
 	public static Stage app_stage;
 	public static UserLogin userlogout;
+	public static DBConnectionKeeping dbConnectionKeeping;;
 	public static ButtonType YES, NO;
 	public static Alert alert;
 	public static Optional<ButtonType> result;
@@ -37,7 +40,7 @@ public class CommonController{
 	public static int lineCnt, fromIndex;
 	public static ArrayList<String> question;
 	// 마우스를 눌러서 화면 이동 액션
-	public static void NAV (Class getclass, ActionEvent event, String str) throws IOException {
+	public static void NAV (Class<?> getclass, ActionEvent event, String str) throws IOException {
 		View = FXMLLoader.load(getclass.getResource(str));
 		View_scene = new Scene(View);
 		View_scene.getStylesheets().add(getclass.getResource(config.StaticProperty.getnavapplication()).toExternalForm());
@@ -46,7 +49,7 @@ public class CommonController{
 		app_stage.show();
 	}
 	// 키를 눌러서 화면 이동 액션
-	public static void NAV_Key (Class getclass, KeyEvent event, String str) throws IOException {
+	public static void NAV_Key (Class<?> getclass, KeyEvent event, String str) throws IOException {
 		View = FXMLLoader.load(getclass.getResource(str));
 		View_scene = new Scene(View);
 		View_scene.getStylesheets().add(getclass.getResource(config.StaticProperty.getnavapplication()).toExternalForm());
@@ -55,7 +58,7 @@ public class CommonController{
 		app_stage.show();
 	}
 	// 팝업하여 화면 이동 액션
-	public static void NAV_POPUP (Class getclass, ActionEvent event, String str) throws IOException {
+	public static void NAV_POPUP (Class<?> getclass, ActionEvent event, String str) throws IOException {
 		View = FXMLLoader.load(getclass.getResource(str));
 		View_scene = new Scene(View);
 		View_scene.getStylesheets().add(getclass.getResource(config.StaticProperty.getnavapplication()).toExternalForm());
@@ -64,7 +67,7 @@ public class CommonController{
 		app_stage.show();
 	}
 	// 로그아웃 액션
-	public static void logout(Class getclass, ActionEvent event) {
+	public static void logout(Class<?> getclass, ActionEvent event) {
 		userlogout = new UserLogin();
 		YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
 		NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -93,7 +96,7 @@ public class CommonController{
 		}
 		return null;
 	}
-	public static void Alert_YesorNo(ActionEvent event, String alertcontent, String alerttitle, Class getclass, String str){
+	public static void Alert_YesorNo(ActionEvent event, String alertcontent, String alerttitle, Class<?> getclass, String str){
 		YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
 		NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
 		alert = new Alert(AlertType.NONE,alertcontent, YES, NO);
@@ -125,9 +128,6 @@ public class CommonController{
 	
 	public static String selectcontent(String id, String getcontent, String gettable, String find_id) {
 		sb = new StringBuilder();
-		Statement stmt = null;
-		ResultSet rs;
-		DBConnectionKeeping dbConnectionKeeping;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
 		try {

@@ -3,17 +3,12 @@ package ViewController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import DBController.TestDetailAdd;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
@@ -44,14 +39,14 @@ public class TestBoardDetailViewController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		testdetailadd = new TestDetailAdd();
 		result = new ArrayList<>();
-		result = CommonController.splitQuestion(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_DATA", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_subtitle.setText(CommonController.selectcontent(testdetailadd.testdetail_id, "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		result = CommonController.splitQuestion(CommonController.selectcontent(TestDetailAdd.testdetail_id, "TESTDETAIL_DATA", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+		testdetail_subtitle.setText(CommonController.selectcontent(TestDetailAdd.testdetail_id, "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 		testdetail_answer1.setText(result.get(0));
 		testdetail_answer2.setText(result.get(1));
 		testdetail_answer3.setText(result.get(2));
 		testdetail_answer4.setText(result.get(3));
 		testdetail_answer5.setText(result.get(4));
-		image = new Image(testdetailadd.selectIMAGE(testdetailadd.testdetail_id).toURI().toString(),623,150,true,true);
+		image = new Image(testdetailadd.selectIMAGE(TestDetailAdd.testdetail_id).toURI().toString(),623,150,true,true);
 		testdetail_imageview.setImage(image);
 	}
 }

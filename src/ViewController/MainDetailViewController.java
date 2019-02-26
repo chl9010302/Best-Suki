@@ -2,22 +2,16 @@ package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import DBController.NoticeDetailAdd;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class MainDetailViewController implements Initializable {
-	private NoticeDetailAdd noticedetailadd;
 	//Declare FXML
 	@FXML private Label maindetail_subtitle, maindetail_context;
 	@FXML private TextField txtSubtitle, txtContext; 
@@ -31,7 +25,7 @@ public class MainDetailViewController implements Initializable {
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML private void editAction(ActionEvent event) { CommonController.Alert_YesorNo(event, config.StaticProperty.alertedit(), config.StaticProperty.alerttitlecancel(), getClass(), config.StaticProperty.getnavmaindetaileditview()); }
 	public void initialize(URL url, ResourceBundle rb) {
-		maindetail_subtitle.setText(CommonController.selectcontent(noticedetailadd.noticedetail_id, "NOTICEDETAIL_SUBTITLE", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
-		maindetail_context.setText(CommonController.selectcontent(noticedetailadd.noticedetail_id, "NOTICEDETAIL_CONTEXT", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
+		maindetail_subtitle.setText(CommonController.selectcontent(NoticeDetailAdd.noticedetail_id, "NOTICEDETAIL_SUBTITLE", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
+		maindetail_context.setText(CommonController.selectcontent(NoticeDetailAdd.noticedetail_id, "NOTICEDETAIL_CONTEXT", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
 	}
 }

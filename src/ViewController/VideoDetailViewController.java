@@ -2,26 +2,16 @@ package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import DBController.VideoDetailAdd;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.Stage;
-
 public class VideoDetailViewController  implements Initializable {
 	//Declare JAVA
 	public static String login_id = LoginViewController.login_id;
@@ -45,9 +35,9 @@ public class VideoDetailViewController  implements Initializable {
 	@FXML private void editAction(ActionEvent event) { CommonController.Alert_YesorNo(event, config.StaticProperty.alertedit(), config.StaticProperty.alerttitlecancel(), getClass(), config.StaticProperty.getnavvideodetaileditview()); }
 	public void initialize(URL url, ResourceBundle rb) {
 		videodetailadd = new VideoDetailAdd();
-		getfilepath = videodetailadd.selectContent(videodetailadd.videodetail_id, "VIDEODETAIL_FILEPATH");
+		getfilepath = videodetailadd.selectContent(VideoDetailAdd.videodetail_id, "VIDEODETAIL_FILEPATH");
 		URL = "https://www.youtube.com/embed/" + getfilepath.substring(32) + "?wmode=transparent";
-		videodetail_subtitle.setText(videodetailadd.selectContent(videodetailadd.videodetail_id, "VIDEODETAIL_SUBTITLE"));
+		videodetail_subtitle.setText(videodetailadd.selectContent(VideoDetailAdd.videodetail_id, "VIDEODETAIL_SUBTITLE"));
 		engine = Myweb.getEngine();
 		engine.load(URL);
 	}

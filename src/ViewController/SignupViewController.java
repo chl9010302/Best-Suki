@@ -21,7 +21,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-
 public class SignupViewController implements Initializable {
 	//Declare JAVA
 	private UserBean user; // 회원가입 시 User 정보를 송신하기 위함.

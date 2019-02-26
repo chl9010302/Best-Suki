@@ -40,13 +40,7 @@ public class AddTestBoardViewController{
 			question_selected = new ArrayList<>();
 			testdetailbean = new TestDetailBean();
 			detailAdd = new TestDetailAdd();
-			Quest1Group1 = new ToggleGroup();
 			// ToggleGroup내 rb setup
-			testdetail_rb1.setToggleGroup(Quest1Group1);
-			testdetail_rb2.setToggleGroup(Quest1Group1);
-			testdetail_rb3.setToggleGroup(Quest1Group1);
-			testdetail_rb4.setToggleGroup(Quest1Group1);
-			testdetail_rb5.setToggleGroup(Quest1Group1);
 			question_selected.add(testdetail_answer1.getText().toString());
 			question_selected.add(testdetail_answer2.getText().toString());
 			question_selected.add(testdetail_answer3.getText().toString());

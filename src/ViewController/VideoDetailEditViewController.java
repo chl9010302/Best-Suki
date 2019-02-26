@@ -2,7 +2,6 @@ package ViewController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import DBController.VideoDetailAdd;
@@ -10,12 +9,7 @@ import DBModel.VideoDetailBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-
 public class VideoDetailEditViewController implements Initializable {
 	//Declare JAVA
 	private VideoDetailBean videodetailbean;
@@ -36,7 +30,7 @@ public class VideoDetailEditViewController implements Initializable {
 		try {
 			videodetailadd = new VideoDetailAdd();
 			videodetailbean = new VideoDetailBean();
-			videodetailbean.setVIDEODETAIL_ID_PK(videodetailadd.videodetail_id);
+			videodetailbean.setVIDEODETAIL_ID_PK(VideoDetailAdd.videodetail_id);
 			videodetailbean.setVIDEODETAIL_SUBTITLE(txtSubtitle.getText().toString());
 			videodetailbean.setVIDEODETAIL_FILEPATH(txtFilepath.getText().toString());
 			videodetailadd.updateVideoDetail(videodetailbean);
@@ -47,7 +41,7 @@ public class VideoDetailEditViewController implements Initializable {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		videodetailadd = new VideoDetailAdd();
-		txtSubtitle.setText(videodetailadd.selectContent(videodetailadd.videodetail_id, "VIDEODETAIL_SUBTITLE"));
-		txtFilepath.setText(videodetailadd.selectContent(videodetailadd.videodetail_id, "VIDEODETAIL_FILEPATH"));
+		txtSubtitle.setText(videodetailadd.selectContent(VideoDetailAdd.videodetail_id, "VIDEODETAIL_SUBTITLE"));
+		txtFilepath.setText(videodetailadd.selectContent(VideoDetailAdd.videodetail_id, "VIDEODETAIL_FILEPATH"));
 	}
 }
