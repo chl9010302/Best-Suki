@@ -1,13 +1,13 @@
-/View/
 /ADSClient-1.1.jar
-/application/
-/config/
-/image/
 /DBController/
 /DBModel/
 /ImageStore/
+/View/
 /ViewController/
 /academyutil/
+/application/
+/config/
+/image/
 /javaSDK-2.2-sources.jar
 /javaSDK-2.2.jar
 /jfxrt.jar
