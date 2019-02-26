@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import DBController.UserJoin;
 import DBModel.UserBean;
 import academyutil.Sha256;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -80,5 +81,9 @@ public class SignupViewController implements Initializable {
 		usergender = CommonController.gender(UserGenderMale.isSelected(), UserGenderFeMale.isSelected());
 	}
 	public void initialize(URL url, ResourceBundle rb) {
+		CommonController.getlistener(UserPhone_Mid);
+		CommonController.getlistener(UserPhone_End);
+		CommonController.getlistener(UserFmphone_Mid);
+		CommonController.getlistener(UserFmphone_End);
 	}
 }

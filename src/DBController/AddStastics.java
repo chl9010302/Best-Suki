@@ -39,10 +39,10 @@ public class AddStastics {
 	}
 	public boolean select() {
 		sb = new StringBuilder();
+		conn = application.DBConnection.getDBConection();
 		try {
-			conn = application.DBConnection.getDBConection();
 			stmt = conn.createStatement();
-			sql = sb.append("SELECT * FROM " +config.StaticProperty.getdate_tb()+ " ORDER BY DATE_LOGINTIME DESC")
+			sql = sb.append("SELECT * FROM ").append(config.StaticProperty.getdate_tb()).append(" ORDER BY DATE_LOGINTIME DESC")
 					.append(";").toString(); 
 			rs = stmt.executeQuery(sql);
 			while(rs.next()){

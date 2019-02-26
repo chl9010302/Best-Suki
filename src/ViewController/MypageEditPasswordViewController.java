@@ -44,7 +44,7 @@ public class MypageEditPasswordViewController implements Initializable {
 		YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
 		alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetoedit(), YES);
 		alert.setTitle(config.StaticProperty.alertcompletetoedit());
-		if(EditProperty_UserPassword.getText().equals("******")) {
+		if(EditProperty_UserPassword.getText().equals("")) {
 			alert2 = new Alert(AlertType.NONE,config.StaticProperty.alertpasswordnotchanged(), YES);
 			alert2.setTitle(config.StaticProperty.alertpasswordnotchanged());
 			result2 = alert2.showAndWait();
@@ -75,7 +75,7 @@ public class MypageEditPasswordViewController implements Initializable {
 			userbean = new UserBean();
 			userbean  = selectnowuser.getSelectUser(LoginViewController.login_id);
 			Mypage_UserId.setText(userbean.getUSER_ID_PK());
-			EditProperty_UserPassword.setText("******");
+			EditProperty_UserPassword.setText("");
 			EditProperty_UserName.setText(userbean.getUSER_NAME());
 			EditProperty_UserAddress.setText(userbean.getUSER_ADDRESS());
 			EditProperty_UserSchoolName.setText(userbean.getUSER_SCHOOLNAME());

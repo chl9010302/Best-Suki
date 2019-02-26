@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import DBController.UserLogin;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -19,6 +20,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import usingstaticfunction.DBConnectionKeeping;
@@ -164,5 +167,14 @@ public class CommonController{
 			question.add(data.split(";")[i]);	
 		}
 		return question;
+	}
+	public static void getlistener(TextField textfield) {
+		textfield.textProperty().addListener((observable, oldValue, newValue) -> {
+		    if(!newValue.matches("[0-9]*") || newValue.length()>4){
+		    	textfield.setText(oldValue);
+		    }else if(newValue.length()==4) {
+		    	//여기 넣기
+		    }
+	    });
 	}
 }

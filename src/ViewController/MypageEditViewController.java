@@ -77,6 +77,10 @@ public class MypageEditViewController implements Initializable {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		try {
+			CommonController.getlistener(EditProperty_UserPhone_Mid);
+			CommonController.getlistener(EditProperty_UserPhone_End);
+			CommonController.getlistener(EditProperty_UserFmphone_Mid);
+			CommonController.getlistener(EditProperty_UserFmphone_End);
 			userbean = new UserBean();;
 			selectnowuser = new SelectNowUser();
 			userbean = selectnowuser.getSelectUser(LoginViewController.login_id);

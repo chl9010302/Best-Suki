@@ -60,6 +60,7 @@ public class StasticsViewController implements Initializable {
 		return table;
 	}
 	private List<AddStastics> createData() {
+		stasticsview = new AddStastics();
 		return stasticsview.getstastics();
 	}
 }
