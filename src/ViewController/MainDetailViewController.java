@@ -9,12 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class MainDetailViewController implements Initializable {
 	//Declare FXML
-	@FXML private Label maindetail_subtitle, maindetail_context;
-	@FXML private TextField txtSubtitle, txtContext; 
+	@FXML private Label maindetail_subtitle, maindetail_txtContext;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview()); }
@@ -26,6 +26,6 @@ public class MainDetailViewController implements Initializable {
 	@FXML private void editAction(ActionEvent event) { CommonController.Alert_YesorNo(event, config.StaticProperty.alertedit(), config.StaticProperty.alerttitlecancel(), getClass(), config.StaticProperty.getnavmaindetaileditview()); }
 	public void initialize(URL url, ResourceBundle rb) {
 		maindetail_subtitle.setText(CommonController.selectcontent(NoticeDetailAdd.noticedetail_id, "NOTICEDETAIL_SUBTITLE", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
-		maindetail_context.setText(CommonController.selectcontent(NoticeDetailAdd.noticedetail_id, "NOTICEDETAIL_CONTEXT", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
+		maindetail_txtContext.setText(CommonController.selectcontent(NoticeDetailAdd.noticedetail_id, "NOTICEDETAIL_CONTEXT", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
 	}
 }

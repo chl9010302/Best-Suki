@@ -19,8 +19,8 @@ public class NoticeDetailAdd {
 	private Connection conn = null;
 	private Statement stmt = null;
 	private PreparedStatement pstmt = null;
-	private DBConnectionKeeping dbConnectionKeeping;
 	private StringBuilder sb;
+	private DBConnectionKeeping dbConnectionKeeping;
 	private ResultSet rs;
 	private NoticeDetailBean noticedetailbean;
 	public static String noticedetail_id, sql;
@@ -67,7 +67,7 @@ public class NoticeDetailAdd {
 			noticedetail_id = noticedetail_id_pk.get();
 			try {
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavmaindetailview());
-			} catch (IOException e) { }
+			} catch (IOException e) { e.printStackTrace();}
 		});
 	}
 	public boolean insertNoticeDetail(NoticeDetailBean Noticedetailbean) {
@@ -99,15 +99,19 @@ public class NoticeDetailAdd {
 		return false;
 	}
 	public boolean updateNoticeDetail(NoticeDetailBean noticedetailbean) {
-		if (usingstaticfunction.DBConnectionKeeping.con == null)
-			dbConnectionKeeping = new DBConnectionKeeping();
+		sql = "UPDATE "+config.StaticProperty.getnoticedetail_tb()+" SET NOTICEDETAIL_SUBTITLE = ?, NOTICEDETAIL_CONTEXT = ? WHERE NOTICEDETAIL_ID_PK = ?;";
+		pstmt = null;
 		try {
-			Connection con = usingstaticfunction.DBConnectionKeeping.con;
-			stmt = con.createStatement();
-			sql = "UPDATE "+config.StaticProperty.getnoticedetail_tb()+" SET NOTICEDETAIL_SUBTITLE = '" + noticedetailbean.getNOTICEDETAIL_SUBTITLE() + "', NOTICEDETAIL_CONTEXT = '" + noticedetailbean.getNOTICEDETAIL_CONTEXT() + "' WHERE NOTICEDETAIL_ID_PK = '" + noticedetailbean.getNOTICEDETAIL_ID_PK() + "';";
-			stmt.executeUpdate(sql);
+			conn = application.DBConnection.getDBConection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noticedetailbean.getNOTICEDETAIL_SUBTITLE());
+			pstmt.setString(2, noticedetailbean.getNOTICEDETAIL_CONTEXT());
+			pstmt.setString(3, noticedetailbean.getNOTICEDETAIL_ID_PK());
+			pstmt.executeUpdate();
+			conn.close();
+			pstmt.close();
 			return true;
-		} catch (SQLException e) {}
+		} catch (SQLException e) {e.printStackTrace();}
 		return false;
 	}
 	public boolean select() {

@@ -9,6 +9,7 @@ import DBModel.NoticeDetailBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class MainDetailEditViewController implements Initializable {
@@ -16,7 +17,8 @@ public class MainDetailEditViewController implements Initializable {
 	private NoticeDetailBean noticedetailbean;
 	private NoticeDetailAdd noticedetailadd;
 	//Declare FXML
-	@FXML private TextField txtSubtitle, txtContext; 
+	@FXML private TextField txtSubtitle;
+	@FXML private TextArea txtContext; 
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview()); }
@@ -39,7 +41,7 @@ public class MainDetailEditViewController implements Initializable {
 		}catch(Exception e) { e.printStackTrace();}
 	}
 	public void initialize(URL url, ResourceBundle rb) {
-		txtSubtitle.setText(CommonController.selectcontent(noticedetailadd.noticedetail_id, "NOTICEDETAIL_SUBTITLE", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
-		txtContext.setText(CommonController.selectcontent(noticedetailadd.noticedetail_id, "NOTICEDETAIL_CONTEXT", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
+		txtSubtitle.setText(CommonController.selectcontent(NoticeDetailAdd.noticedetail_id, "NOTICEDETAIL_SUBTITLE", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
+		txtContext.setText(CommonController.selectcontent(NoticeDetailAdd.noticedetail_id, "NOTICEDETAIL_CONTEXT", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));
 	}
 }

@@ -193,14 +193,22 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="322.0" prefWidth="635.0">
+                  <HBox prefHeight="322.0" prefWidth="635.0" style="-fx-background-color: transparent;">
                      <children>
-                        <Label text="내용 : " textFill="WHITE" />
-                        <Label fx:id="maindetail_context" alignment="TOP_LEFT" prefHeight="319.0" prefWidth="597.0" style="-fx-border-color: white;" text="내용" textFill="WHITE">
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </Label>
+                        <ScrollPane prefHeight="322.0" prefViewportHeight="15.0" prefViewportWidth="60.0" prefWidth="637.0">
+                           <content>
+                              <AnchorPane>
+                                 <children>
+                                    <Label alignment="TOP_LEFT" prefWidth="36.0" text="내용 : " textFill="WHITE" />
+                                    <Label fx:id="maindetail_txtContext" alignment="TOP_LEFT" text="내용" textFill="WHITE">
+                                       <padding>
+                                          <Insets left="40.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

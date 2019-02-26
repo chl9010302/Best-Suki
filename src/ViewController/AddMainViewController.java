@@ -6,6 +6,7 @@ import DBController.NoticeDetailAdd;
 import DBModel.NoticeDetailBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 public class AddMainViewController{
 	//Declare JAVA
@@ -13,7 +14,8 @@ public class AddMainViewController{
 	private NoticeDetailAdd noticedetailadd;
 	public static String login_id = LoginViewController.login_id;
 	//Declare FXML
-	@FXML private TextField txtSubtitle, txtContext; 
+	@FXML private TextField txtSubtitle;
+	@FXML private TextArea txtContext;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview()); }
