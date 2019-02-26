@@ -84,8 +84,8 @@ public class TestAdd {
 			} catch (IOException e) {e.printStackTrace(); }
 		});
 	}
-	public TestAdd(TestBean testbean) {
-		insertTest(testbean);
+	public TestAdd(TestBean Testbean) {
+		insertTest(Testbean);
 	}
 	public boolean updateTestDetail(TestBean testbean) {
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
@@ -101,10 +101,10 @@ public class TestAdd {
 			return true;
 		} catch (SQLException e) { } return false;
 	}
-	public boolean insertTest(TestBean testbean) {
+	public boolean insertTest(TestBean Testbean) {
 		sql = "INSERT INTO "+config.StaticProperty.gettest_tb()+"(TEST_ID_PK, TEST_SUBTITLE, TESTDETAIL_ID_FK, TEST_WRITER, TEST_TIME) VALUES(?, ?, ?, ?, now());";
 		pstmt = null;
-		this.testbean = testbean;
+		this.testbean = Testbean;
 		try {
 			conn = application.DBConnection.getDBConection();	
 			pstmt = conn.prepareStatement(sql);

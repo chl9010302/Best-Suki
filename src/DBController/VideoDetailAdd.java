@@ -19,16 +19,14 @@ public class VideoDetailAdd {
 	public static String videodetail_id;
 	private Connection conn = null;
 	private Statement stmt = null;
-	private Connection con;
 	private PreparedStatement pstmt;
+	private ResultSet rs;
 	private DBConnectionKeeping dbConnectionKeeping;
 	private VideoDetailBean videodetailbean;
 	private String sql, result;
 	private StringBuilder sb;
-	private ResultSet rs;
 	private StringProperty videodetail_id_pk, videodetail_subtitle, videodetail_writer, videodetail_time, videodetail_filepath;
 	private Button videodetail_btndetail;
-	private ObservableList<VideoDetailAdd> videodetailadd_observablelist = FXCollections.observableArrayList();
 	public StringProperty getVideodetail_id_pk() {
 		return videodetail_id_pk;
 	}
@@ -78,17 +76,17 @@ public class VideoDetailAdd {
 			dbConnectionKeeping = new DBConnectionKeeping();
 		stmt = null;
 		try {
-			con = usingstaticfunction.DBConnectionKeeping.con;
-			stmt = con.createStatement();
+			conn = usingstaticfunction.DBConnectionKeeping.con;
+			stmt = conn.createStatement();
 			sql = "UPDATE "+config.StaticProperty.getvideodetail_tb()+" SET VIDEODETAIL_SUBTITLE = '" + videodetailbean.getVIDEODETAIL_SUBTITLE() + "', VIDEODETAIL_FILEPATH = '" + videodetailbean.getVIDEODETAIL_FILEPATH() + "' WHERE VIDEODETAIL_ID_PK = '" + videodetailbean.getVIDEODETAIL_ID_PK() + "';";
 			stmt.executeUpdate(sql);
 			return true;
 		} catch (SQLException e) { } return false;
 	}
-	public boolean insertVideodetail(VideoDetailBean videodetailbean) {
+	public boolean insertVideodetail(VideoDetailBean Videodetailbean) {
 		sql = "INSERT INTO "+config.StaticProperty.getvideodetail_tb()+"(VIDEODETAIL_ID_PK, VIDEODETAIL_SUBTITLE, VIDEODETAIL_WRITER, VIDEODETAIL_TIME, VIDEODETAIL_FILEPATH) VALUES(?, ?, ?, now(), ?);";
 		pstmt = null;
-		this.videodetailbean = videodetailbean;
+		this.videodetailbean = Videodetailbean;
 		try {
 			conn = application.DBConnection.getDBConection();	
 			pstmt = conn.prepareStatement(sql);

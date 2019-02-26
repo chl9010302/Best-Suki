@@ -28,7 +28,6 @@ public class UserLogin {
 			pstmt.setString(1, user_id);
 			pstmt.setString(2, user_pw);
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				if (rs.getString("USER_ID_PK") != null) {
 					sql = "UPDATE "+config.StaticProperty.getuser_tb()+" SET USER_LOGINSESSION = 1 WHERE USER_ID_PK = ?";
@@ -41,7 +40,6 @@ public class UserLogin {
 					}
 				}
 			}
-
 		} catch (SQLException e) {
 		} finally {
 			try {
@@ -66,11 +64,11 @@ public class UserLogin {
 		return check_datesession;
 	}
 	public void logout(String user_id) throws SQLException {
-		Statement stmt = null;
+		stmt = null;
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
 			dbConnectionKeeping = new DBConnectionKeeping();
-		Connection con = usingstaticfunction.DBConnectionKeeping.con;
-		stmt = con.createStatement();
+		conn = usingstaticfunction.DBConnectionKeeping.con;
+		stmt = conn.createStatement();
 		sb = new StringBuilder();
 		sql = sb.append("UPDATE "+config.StaticProperty.getuser_tb()+" SET").append(" USER_LOGINSESSION = 0").append(" WHERE USER_ID_PK = '")
 				.append(user_id).append("';").toString();

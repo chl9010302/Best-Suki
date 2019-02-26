@@ -87,8 +87,8 @@ public class TestDetailAdd {
 			} catch (IOException e) {e.printStackTrace(); }
 		});
 	}
-	public TestDetailAdd(TestDetailBean testdetailbean) {
-		insertTestDetail(testdetailbean);
+	public TestDetailAdd(TestDetailBean Testdetailbean) {
+		insertTestDetail(Testdetailbean);
 	}
 	public boolean updateTestDetail(TestDetailBean testdetailbean) {
 		if (usingstaticfunction.DBConnectionKeeping.con == null)
@@ -110,10 +110,10 @@ public class TestDetailAdd {
 			return true;
 		} catch (SQLException e) {e.printStackTrace(); } return false;
 	}
-	public boolean insertTestDetail(TestDetailBean testdetailbean) {
+	public boolean insertTestDetail(TestDetailBean Testdetailbean) {
 		sql = "INSERT INTO "+config.StaticProperty.gettestdetail_tb()+"(TESTDETAIL_ID_PK, TESTDETAIL_DATA, TESTDETAIL_ANSWER, TESTDETAIL_IMAGE, TESTDETAIL_IMAGE_PATH, TESTDETAIL_SUBTITLE, TESTDETAIL_WRITER, TESTDETAIL_TIME) VALUES(?, ?, ?, ?, ?, ?, ?, now());";
 		pstmt = null;
-		this.testdetailbean = testdetailbean;
+		this.testdetailbean = Testdetailbean;
 		try {
 			conn = application.DBConnection.getDBConection();	
 			pstmt = conn.prepareStatement(sql);

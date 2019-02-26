@@ -20,7 +20,7 @@ public class UserJoin {
 	}
 	public boolean insert(UserBean userjoin) {
 		sql = "INSERT INTO "+config.StaticProperty.getuser_tb()+"(USER_ID_PK, USER_PASSWORD, USER_NAME, USER_ADDRESS, USER_SCHOOLNAME, USER_AGE, USER_GENDER, USER_PHONE, USER_FMPHONE, USER_TEACHERSESSION, USER_LOGINSESSION) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-	    PreparedStatement pstmt = null;
+	    pstmt = null;
 	    userbean = userjoin;
 		try {
 			 conn = application.DBConnection.getDBConection();

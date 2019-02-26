@@ -54,8 +54,8 @@ public class NoticeDetailAdd {
 	}
 	public NoticeDetailAdd() { 
 	}
-	public NoticeDetailAdd(NoticeDetailBean noticedetailbean) {
-		insertNoticeDetail(noticedetailbean);
+	public NoticeDetailAdd(NoticeDetailBean Noticedetailbean) {
+		insertNoticeDetail(Noticedetailbean);
 	}
 	public NoticeDetailAdd(String NOTICEDETAIL_ID_PK, String NOTICEDETAIL_SUBTITLE, String NOTICEDETAIL_WRITER, String NOTICEDETAIL_TIME, String NOTICEDETAIL_CONTEXT) {
 		this.noticedetail_id_pk = new SimpleStringProperty(NOTICEDETAIL_ID_PK);
@@ -72,10 +72,10 @@ public class NoticeDetailAdd {
 		});
 	}
 	
-	public boolean insertNoticeDetail(NoticeDetailBean noticedetailbean) {
+	public boolean insertNoticeDetail(NoticeDetailBean Noticedetailbean) {
 		sql = "INSERT INTO "+config.StaticProperty.getnoticedetail_tb()+"(NOTICEDETAIL_ID_PK, NOTICEDETAIL_SUBTITLE, NOTICEDETAIL_WRITER, NOTICEDETAIL_TIME, NOTICEDETAIL_CONTEXT) VALUES(?, ?, ?, now(), ?);";
 		pstmt = null;
-		this.noticedetailbean = noticedetailbean;
+		this.noticedetailbean = Noticedetailbean;
 		try {
 			conn = application.DBConnection.getDBConection();	
 			pstmt = conn.prepareStatement(sql);

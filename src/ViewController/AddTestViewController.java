@@ -25,7 +25,7 @@ public class AddTestViewController implements Initializable {
 	private TestDetailAdd testdetailadd;
 	private TestAdd testadd;
 	private int maxnumber;
-	private String result;
+	private String result="";
 	//Declare FXML
 	@FXML private TableView<TestDetailAdd> testTableView;
 	@FXML private TextField ColTest_Subtitle;

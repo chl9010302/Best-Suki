@@ -132,7 +132,7 @@ public class CommonController{
 			dbConnectionKeeping = new DBConnectionKeeping();
 		try {
 			Connection con = usingstaticfunction.DBConnectionKeeping.con;
-			sql = sb.append("SELECT " + getcontent + " FROM "+gettable+" WHERE " + find_id + " = '").append(id).append("';").toString();
+			sql = sb.append("SELECT " + getcontent + " FROM "+ gettable + " WHERE " + find_id + " = '").append(id).append("';").toString();
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
@@ -154,6 +154,7 @@ public class CommonController{
 		return answer;
 	}
 	public static ArrayList<String> splitQuestion(String data) {
+		System.out.println(data);
 		lineCnt = 0;
 	    fromIndex = -1;
 	    while ((fromIndex = data.indexOf(";", fromIndex + 1)) >= 0) {

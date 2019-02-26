@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import DBModel.TestResultBean;
 
 public class TestResultAdd {
-	private TestResultBean testresultbean;
 	public static ArrayList<String> testresult;
 	public static String answer_result=""; // test result를 담기 위함.
 	private Connection conn = null;
@@ -16,8 +15,8 @@ public class TestResultAdd {
 	private PreparedStatement pstmt;
 	public TestResultAdd() {
 	}
-	public TestResultAdd(TestResultBean testresultbean) {
-		insertTestResult(testresultbean);
+	public TestResultAdd(TestResultBean Testresultbean) {
+		insertTestResult(Testresultbean);
 	}
 	public boolean insertTestResult(TestResultBean testresultbean) {
 		sql = "INSERT INTO "+config.StaticProperty.gettestresult_tb()+"(TESTRESULT_ID_PK, TEST_ID, TESTRESULT_ID, TESTRESULT_ANSWER, TESTRESULT_WRITER, TESTRESULT_TIME) VALUES(?, ?, ?, ?, ?, now());";
