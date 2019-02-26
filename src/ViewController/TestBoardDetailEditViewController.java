@@ -17,10 +17,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 public class TestBoardDetailEditViewController implements Initializable {
 	//Declare JAVA
+	public static Image image;
 	private TestDetailBean testdetailbean;
 	private Stage stage; // file choose 하기 위함.
 	public static String filename;
@@ -29,6 +31,8 @@ public class TestBoardDetailEditViewController implements Initializable {
 	private FileChooser fileChooser;
 	private File file;
 	private ArrayList<String> question_selected, result;
+	private int index_answer;
+	private String number_answer;
 	//Declare FXML
 	@FXML private ToggleGroup Quest1Group1;
 	@FXML private TextField testdetail_subtitle, testdetail_answer1, testdetail_answer2, testdetail_answer3, testdetail_answer4, testdetail_answer5;
@@ -49,32 +53,30 @@ public class TestBoardDetailEditViewController implements Initializable {
 		try {
 			testdetailbean = new TestDetailBean();
 			question_selected = new ArrayList<>();
-			testdetailbean.setTESTDETAIL_ID_PK(TestDetailAdd.testdetail_id);
-			testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
-			testdetailbean.setTESTDETAIL_IMAGE_PATH(filename);
-			testdetailbean.setTESTDETAIL_IMAGE(input);
 			question_selected.add(testdetail_answer1.getText().toString());
 			question_selected.add(testdetail_answer2.getText().toString());
 			question_selected.add(testdetail_answer3.getText().toString());
 			question_selected.add(testdetail_answer4.getText().toString());
 			question_selected.add(testdetail_answer5.getText().toString());
+			index_answer = Quest1Group1.getSelectedToggle().toString().indexOf("'");
+			number_answer = Quest1Group1.getSelectedToggle().toString().substring(index_answer+1, index_answer+2);
+			
+			testdetailbean.setTESTDETAIL_ID_PK(TestDetailAdd.testdetail_id);
+			testdetailbean.setTESTDETAIL_SUBTITLE(testdetail_subtitle.getText().toString());
+			testdetailbean.setTESTDETAIL_IMAGE_PATH(filename);
+			testdetailbean.setTESTDETAIL_IMAGE(input);
+			question_selected.add(question_selected.get(0));
+			question_selected.add(question_selected.get(1));
+			question_selected.add(question_selected.get(2));
+			question_selected.add(question_selected.get(3));
+			question_selected.add(question_selected.get(4));
 			testdetailbean.setTESTDETAIL_DATA(CommonController.makeAnswer(question_selected));
-			if(testdetail_rb1.isSelected()) {
-				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer1.getText().toString());
-			}else if(testdetail_rb2.isSelected()) {
-				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer2.getText().toString());
-			}else if(testdetail_rb3.isSelected()) {
-				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer3.getText().toString());
-			}else if(testdetail_rb4.isSelected()) {
-				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer4.getText().toString());
-			}else {
-				testdetailbean.setTESTDETAIL_ANSWER(testdetail_answer5.getText().toString());
-			}
+			testdetailbean.setTESTDETAIL_ANSWER(question_selected.get(Integer.parseInt(number_answer)-1));
 			testdetailadd.updateTestDetail(testdetailbean);
 		}catch(Exception e) {e.printStackTrace(); }
 		try {
 			CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestboarddetailview());
-		}catch(Exception e) { }
+		}catch(Exception e) { e.printStackTrace();}
 	}
 	@FXML
 	private void Quest1Group1Action(ActionEvent action) {
@@ -89,6 +91,8 @@ public class TestBoardDetailEditViewController implements Initializable {
 		testdetail_answer3.setText(result.get(2));
 		testdetail_answer4.setText(result.get(3));
 		testdetail_answer5.setText(result.get(4));
+		image = new Image(testdetailadd.selectIMAGE(TestDetailAdd.testdetail_id).toURI().toString(),623,150,true,true);
+//		testdetail_imageview.setImage(image);
 	}
 	public void openFile() {
 		fileChooser = new FileChooser();

@@ -18,7 +18,7 @@ public class LoginViewController implements Initializable {
 	//Declare JAVA
 	public static String login_id;
 	private UserLogin userlogin;
-	private int i;
+	private int check_loginsession;
 	Sha256 sha256 = new Sha256();
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword;
@@ -29,9 +29,9 @@ public class LoginViewController implements Initializable {
 	private void login(ActionEvent event) {
 		userlogin = new UserLogin();
 		try {
-			i = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
+			check_loginsession = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 			login_id = UserId.getText().toString(); // 로그아웃 시 아이디를 기억하기 위함
-			if(i == 1) {
+			if(check_loginsession == 1) {
 				CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());
 			}
 			else {
@@ -47,9 +47,9 @@ public class LoginViewController implements Initializable {
 		{
 			userlogin = new UserLogin();
 			try {
-				i = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
+				check_loginsession = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 				login_id = UserId.getText().toString(); // 로그아웃 시 아이디를 기억하기 위함
-				if(i == 1) {
+				if(check_loginsession == 1) {
 					CommonController.NAV_Key(getClass(), event, config.StaticProperty.getnavmainview());
 				}
 				else {

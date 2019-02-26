@@ -15,9 +15,9 @@ import javafx.stage.Stage;
 
 public class AddVideoViewController implements Initializable {
 	//Declare JAVA
+	public static String login_id = LoginViewController.login_id;
 	private VideoDetailBean videodetailbean;
 	private VideoDetailAdd videodetailadd;
-	public static String login_id = LoginViewController.login_id;
 	//Declare FXML
 	@FXML private TextField txtSubtitle, txtFilepath; 
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }

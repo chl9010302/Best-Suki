@@ -16,15 +16,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.Background;
 public class StasticsViewController implements Initializable {
 	//Declare JAVA
-	private AddStastics stasticsview = new AddStastics();
+	private AddStastics stasticsview;
 	private final List<AddStastics> data = createData();
-	private final static int rowsPerPage = 10;
 	private TableView<AddStastics> table = createTable();
-	private int fromindex;
-	private int toindex;
-	private TableColumn<AddStastics, String> idColumn;
-	private TableColumn<AddStastics, String> loginColumn;
-	private TableColumn<AddStastics, String> logoutColumn;
+	private TableColumn<AddStastics, String> idColumn, loginColumn, logoutColumn;
+	private int fromindex, toindex, rowsPerPage = 10;
 	//Declare FXML
 	@FXML private Pagination statistics_pagination;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }

@@ -7,7 +7,6 @@ import DBModel.NoticeDetailBean;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-
 public class AddMainViewController{
 	//Declare JAVA
 	private NoticeDetailBean noticedetailbean;
@@ -24,7 +23,6 @@ public class AddMainViewController{
 	@FXML private void NAV_VideoView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavvideoview()); }
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	@FXML private void deleteAction(ActionEvent event) { CommonController.Alert_YesorNo(event, config.StaticProperty.alertcancel(), config.StaticProperty.alerttitlecancel(), getClass(), config.StaticProperty.getnavmainview()); }
-
 	@FXML
 	private void addAction(ActionEvent event) {
 		try {

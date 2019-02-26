@@ -34,11 +34,11 @@ public class CommonController{
 	public static ButtonType YES, NO;
 	public static Alert alert;
 	public static Optional<ButtonType> result;
+	public static ArrayList<String> question;
 	public static Calendar calendar;
 	public static String dateidpk, result_phone, sql, result_select, answer;
 	public static StringBuilder sb;
 	public static int lineCnt, fromIndex;
-	public static ArrayList<String> question;
 	// 마우스를 눌러서 화면 이동 액션
 	public static void NAV (Class<?> getclass, ActionEvent event, String str) throws IOException {
 		View = FXMLLoader.load(getclass.getResource(str));

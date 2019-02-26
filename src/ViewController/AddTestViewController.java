@@ -16,11 +16,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 public class AddTestViewController implements Initializable {
 	//Declare JAVA
-	private TestBean testbean;
 	public static String login_id = LoginViewController.login_id;
+	private TestBean testbean;
 	private ArrayList<String> getresult, checkarraylist;
 	private TestDetailAdd testdetailadd;
 	private TestAdd testadd;

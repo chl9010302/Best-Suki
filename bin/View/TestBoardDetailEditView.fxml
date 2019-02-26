@@ -221,12 +221,11 @@
                            </padding>
                         </HBox>
                         <HBox prefHeight="30.0">
+                        	<fx:define>
+                            	<ToggleGroup fx:id="Quest1Group1" />
+							</fx:define>
                            <children>
-                              <RadioButton fx:id="testdetail_rb1" mnemonicParsing="false" onAction="#Quest1Group1Action" text="1. " textFill="WHITE">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="Quest1Group1" />
-                                 </toggleGroup>
-                              </RadioButton>
+                              <RadioButton fx:id="testdetail_rb1" mnemonicParsing="false" onAction="#Quest1Group1Action" text="1. " textFill="WHITE" toggleGroup="$Quest1Group1" />
                               <TextField fx:id="testdetail_answer1" PromptText="Answer 1" prefHeight="25.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                            <VBox.margin>

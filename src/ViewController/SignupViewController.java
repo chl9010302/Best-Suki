@@ -24,14 +24,14 @@ import javafx.scene.control.ToggleGroup;
 public class SignupViewController implements Initializable {
 	//Declare JAVA
 	private UserBean user; // 회원가입 시 User 정보를 송신하기 위함.
-	private String usergender = "";
-	private String UserPhone, UserFmPhone;
+	private String UserPhone, UserFmPhone, usergender;
 	private LocalDate localDate;
 	private UserJoin userjoin;
 	private ButtonType YES;
 	private Alert alert;
 	private Optional<ButtonType> result;
-	Sha256 sha256 = new Sha256();
+	private int check_signupsession;
+	private Sha256 sha256 = new Sha256();
 	//Declare FXML
 	@FXML private ToggleGroup GenderGroup;
 	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone_Mid, UserPhone_End, UserFmphone_Mid, UserFmphone_End;
@@ -60,8 +60,8 @@ public class SignupViewController implements Initializable {
 		// 회원가입과 함께 Login Page로 이동됨.
 		try {
 			userjoin = new UserJoin();
-			int i = userjoin.joinCheck(UserId.getText().toString());
-			if(i == 1) {
+			check_signupsession = userjoin.joinCheck(UserId.getText().toString());
+			if(check_signupsession == 1) {
 				YES = new ButtonType(config.StaticProperty.alertbtndone(), ButtonBar.ButtonData.OK_DONE);
 				alert = new Alert(AlertType.NONE,config.StaticProperty.alertcompletetosignup(), YES);
 				alert.setTitle(config.StaticProperty.alertcompletetosignup());
