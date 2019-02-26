@@ -22,7 +22,7 @@ import usingstaticfunction.DBConnectionKeeping;
 
 public class TestDetailAdd {
 	public static ArrayList<String> selected_testid;
-	public static String testdetail_id, sql, result;
+	public static String testdetail_id;
 	private TestDetailBean testdetailbean;
 	private Statement stmt = null;
 	private PreparedStatement pstmt;
@@ -35,6 +35,7 @@ public class TestDetailAdd {
 	private ResultSet rs;
 	private File theFile;
 	private FileOutputStream output;
+	private String sql, result;
 	public StringProperty getTestdetail_writer() {
 		return testdetail_writer;
 	}

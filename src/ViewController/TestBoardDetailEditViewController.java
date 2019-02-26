@@ -25,14 +25,13 @@ public class TestBoardDetailEditViewController implements Initializable {
 	public static Image image;
 	private TestDetailBean testdetailbean;
 	private Stage stage; // file choose 하기 위함.
-	public static String filename;
 	public static FileInputStream input;
 	private TestDetailAdd testdetailadd;
 	private FileChooser fileChooser;
 	private File file;
 	private ArrayList<String> question_selected, result;
 	private int index_answer;
-	private String number_answer;
+	private String number_answer, filename;
 	//Declare FXML
 	@FXML private ToggleGroup Quest1Group1;
 	@FXML private TextField testdetail_subtitle, testdetail_answer1, testdetail_answer2, testdetail_answer3, testdetail_answer4, testdetail_answer5;
@@ -77,9 +76,6 @@ public class TestBoardDetailEditViewController implements Initializable {
 		try {
 			CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestboarddetailview());
 		}catch(Exception e) { e.printStackTrace();}
-	}
-	@FXML
-	private void Quest1Group1Action(ActionEvent action) {
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		testdetailadd = new TestDetailAdd();

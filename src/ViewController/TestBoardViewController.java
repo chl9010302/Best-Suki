@@ -41,7 +41,6 @@ public class TestBoardViewController implements Initializable {
 	@FXML
 	private void modify(ActionEvent event) {
 	}
-
 	public void initialize(URL url, ResourceBundle rb) {
 		testdetailadd = new TestDetailAdd();
 		try {

@@ -52,8 +52,7 @@ public class NoticeDetailAdd {
 		select();
 		return noticedetailadd;
 	}
-	public NoticeDetailAdd() { 
-	}
+	public NoticeDetailAdd() { }
 	public NoticeDetailAdd(NoticeDetailBean Noticedetailbean) {
 		insertNoticeDetail(Noticedetailbean);
 	}
@@ -71,7 +70,6 @@ public class NoticeDetailAdd {
 			} catch (IOException e) { }
 		});
 	}
-	
 	public boolean insertNoticeDetail(NoticeDetailBean Noticedetailbean) {
 		sql = "INSERT INTO "+config.StaticProperty.getnoticedetail_tb()+"(NOTICEDETAIL_ID_PK, NOTICEDETAIL_SUBTITLE, NOTICEDETAIL_WRITER, NOTICEDETAIL_TIME, NOTICEDETAIL_CONTEXT) VALUES(?, ?, ?, now(), ?);";
 		pstmt = null;

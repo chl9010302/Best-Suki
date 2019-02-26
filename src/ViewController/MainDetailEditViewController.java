@@ -35,10 +35,8 @@ public class MainDetailEditViewController implements Initializable {
 			noticedetailbean.setNOTICEDETAIL_SUBTITLE(txtSubtitle.getText().toString());
 			noticedetailbean.setNOTICEDETAIL_CONTEXT(txtContext.getText().toString());
 			noticedetailadd.updateNoticeDetail(noticedetailbean);
-		}catch(Exception e) { e.printStackTrace();}
-		try {
 			CommonController.NAV(getClass(), event, config.StaticProperty.getnavmaindetailview());
-		}catch(Exception e) {}
+		}catch(Exception e) { e.printStackTrace();}
 	}
 	public void initialize(URL url, ResourceBundle rb) {
 		txtSubtitle.setText(CommonController.selectcontent(noticedetailadd.noticedetail_id, "NOTICEDETAIL_SUBTITLE", config.StaticProperty.getnoticedetail_tb(), "NOTICEDETAIL_ID_PK"));

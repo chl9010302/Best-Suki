@@ -19,7 +19,7 @@ public class LoginViewController implements Initializable {
 	public static String login_id;
 	private UserLogin userlogin;
 	private int check_loginsession;
-	Sha256 sha256 = new Sha256();
+	private Sha256 sha256 = new Sha256();
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword;
 	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavsignupview()); }

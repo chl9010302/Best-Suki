@@ -18,9 +18,7 @@ public class AddStastics {
 	private ObservableList<AddStastics> addstastics = FXCollections.observableArrayList();
 	private StringProperty USER_ID, USER_LOGIN_DATE, USER_LOGOUT_DATE;
 	private ResultSet rs;
-	public AddStastics() {
-		// TODO Auto-generated constructor stub
-	}
+	public AddStastics() { }
 	public ObservableList<AddStastics> getstastics() {
 		select();
 		return addstastics;
@@ -44,16 +42,13 @@ public class AddStastics {
 		try {
 			conn = application.DBConnection.getDBConection();
 			stmt = conn.createStatement();
-			sql = sb.append("SELECT * FROM "+config.StaticProperty.getdate_tb()+" ORDER BY DATE_LOGINTIME DESC")
+			sql = sb.append("SELECT * FROM " +config.StaticProperty.getdate_tb()+ " ORDER BY DATE_LOGINTIME DESC")
 					.append(";").toString(); 
 			rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				addstastics.add(new AddStastics((String)rs.getString("USER_ID"), (String)rs.getString("DATE_LOGINTIME"), (String)rs.getString("DATE_LOGOUTTIME")));
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (SQLException e) { e.printStackTrace();	}
 		return false;
 	}
 }

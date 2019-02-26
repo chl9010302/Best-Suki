@@ -38,8 +38,7 @@ public class ResultViewController implements Initializable {
 		testid = CommonController.splitQuestion(CommonController.selectcontent(TestingViewController.Resultid, "TESTRESULT_ID" ,config.StaticProperty.gettestresult_tb(), "TESTRESULT_ID_PK"));
 		testanswer = CommonController.splitQuestion(CommonController.selectcontent(TestingViewController.Resultid, "TESTRESULT_ANSWER" ,config.StaticProperty.gettestresult_tb(), "TESTRESULT_ID_PK"));
 		ColTest_Subtitle.setText(CommonController.selectcontent(TestAdd.testing_id, "TEST_SUBTITLE", config.StaticProperty.gettest_tb(), "TEST_ID_PK"));
-		int i = testid.size();
-		for(int j=i; j<5; j++) {
+		for(int j=testid.size(); j<5; j++) {
 			testid.add(" ");
 			testanswer.add(" ");
 		}

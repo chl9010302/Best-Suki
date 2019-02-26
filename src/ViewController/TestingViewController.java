@@ -35,6 +35,7 @@ public class TestingViewController implements Initializable {
 	private TestDetailAdd testdetailadd;
 	private String result_answer;
 	private ArrayList<String> initial_result;
+	private int left_page;
 	//Declare FXML
 	@FXML private Button btnSubmit;
 	@FXML private ToggleGroup Quest1Group1;
@@ -72,10 +73,8 @@ public class TestingViewController implements Initializable {
 				try {
 					testresultadd = new TestResultAdd();
 					testresultbean = new TestResultBean();
-					int i = 0;
-					i = TestResultAdd.testresult.size();
-					if(i<10) {
-						for( int j = i; j<10;j++) {
+					if(TestResultAdd.testresult.size() < 10) {
+						for( int j = TestResultAdd.testresult.size() ; j<10 ; j++) {
 							TestResultAdd.testresult.add("");
 						}
 					}
@@ -91,16 +90,13 @@ public class TestingViewController implements Initializable {
 			}
 		}
 	}
-	@FXML
-	private void Quest1Group1Action(ActionEvent action) {
-	}
 	public void initialize(URL url, ResourceBundle rb) {
 		if(TestAdd.maxpage == 1) {
 			btnSubmit.setText("제출하기");
 			label_TestingView.setText("마지막 문제입니다.");
 		}else {
-			int i = TestAdd.maxpage-1;
-			label_TestingView.setText("TestingView : " + i + " 문제 남았습니다.");
+			left_page = TestAdd.maxpage-1;
+			label_TestingView.setText("TestingView : " + left_page + " 문제 남았습니다.");
 		}
 		testdetailadd = new TestDetailAdd();
 		initial_result = new ArrayList<>();

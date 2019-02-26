@@ -209,7 +209,7 @@
                         </HBox>
                         <HBox prefHeight="30.0">
                            <children>
-                               <RadioButton fx:id="testdetail_rb1" mnemonicParsing="false" onAction="#Quest1Group1Action" text="1. " textFill="WHITE" toggleGroup="$Quest1Group1">
+                               <RadioButton fx:id="testdetail_rb1" mnemonicParsing="false" text="1. " textFill="WHITE" toggleGroup="$Quest1Group1">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="Quest1Group1" />
                                  </toggleGroup>
