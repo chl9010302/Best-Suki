@@ -163,7 +163,7 @@
   <children>
     <VBox alignment="TOP_CENTER" layoutX="30" prefHeight="250.0" prefWidth="341.0" style="-fx-border-color: white; -fx-border-width: 2px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-                  <HBox prefHeight="42.0" prefWidth="679.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
+                  <HBox prefHeight="42.0" style="-fx-border-color: white; -fx-border-width: 0px 0px 3px 0px;">
                      <children>
                         <ImageView fitHeight="25.0" fitWidth="25.0">
                            <image>
@@ -180,16 +180,9 @@
               </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="408.0" prefWidth="655.0">
+                  <HBox>
                      <children>
-                        <TableView fx:id="videotableview" prefHeight="378.0" prefWidth="656.0" style="-fx-background-color: transparent;">
-                          <columns>
-                              <TableColumn fx:id="ColVideo_Subtitle" prefWidth="317.0" text="제목" />
-                              <TableColumn fx:id="ColVideo_Writer" prefWidth="89.0" text="작성자" />
-                              <TableColumn fx:id="ColVideo_Date" prefWidth="132.0" text="날짜" />
-                              <TableColumn fx:id="ColVideo_Btndetail" prefWidth="116.0" text="상세보기" />
-                          </columns>
-                        </TableView>
+                        <Pagination fx:id="video_pagination" prefHeight="410.0" prefWidth="655.0" style="-fx-background-color: transparent;" />
                      </children>
                   </HBox>
                   <HBox alignment="TOP_RIGHT" spacing="5.0">

@@ -12,7 +12,6 @@ public class StaticProperty {
 		 loadProp("db.properties");
 		 loadProp("nav.properties");
 		 loadProp("alert.properties");
-		
 	}
 	public Properties getProperties() {
 	        return properties;

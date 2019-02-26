@@ -194,13 +194,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                      <children>
-                        <TableView fx:id="testTableView" prefHeight="322.0" prefWidth="640.0" style="-fx-background-color: transparent;" stylesheets="@../application/application.css">
-                          <columns>
-                              <TableColumn fx:id="ColTest_Check" minWidth="331.0" prefWidth="-1.0" text="Check" />
-                              <TableColumn fx:id="ColTest_Writer" prefWidth="77.0" text="Writer" />
-                              <TableColumn fx:id="ColTest_Date" prefWidth="151.0" text="Date" />
-                          </columns>
-                        </TableView>
+                        <Pagination fx:id="addtest_pagination" prefHeight="322.0" prefWidth="635.0" style="-fx-background-color: transparent;" />
                      </children>
                   </HBox>
         <HBox alignment="TOP_RIGHT" spacing="5.0">

@@ -174,26 +174,19 @@
                 <font>
                   <Font name="System Bold" size="21.0" />
                 </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
+                 	<HBox.margin>
+                      	<Insets left="10.0" />
+                    </HBox.margin>
               </Label>
                      </children>
                   </HBox>
-                  <VBox prefHeight="408.0" prefWidth="655.0">
+                  <VBox>
                      <children>
-                        <TableView fx:id="noticeTableView" prefHeight="402.0" style="-fx-background-color: transparent;">
-                          <columns>
-                            <TableColumn fx:id="ColNotice_Subtitle" prefWidth="317.0" text="제목" />
-                            <TableColumn fx:id="ColNotice_Writer" prefWidth="89.0" text="작성자" />
-                              <TableColumn fx:id="ColNotice_Date" prefWidth="132.0" text="시간" />
-                              <TableColumn fx:id="ColNotice_Btndetail" prefWidth="116.0" text="상세보기" />
-                          </columns>
-                        </TableView>
+                     	<Pagination fx:id="main_pagination" prefHeight="410.0" style="-fx-background-color: transparent;" />
                      </children>
                   </VBox>
-        <HBox alignment="TOP_RIGHT" spacing="5.0">
-          <children>
+       			<HBox alignment="TOP_RIGHT" spacing="5.0">
+          			<children>
                         <HBox alignment="CENTER_LEFT" maxHeight="30.0" maxWidth="105.0" style="-fx-border-width: 1px; -fx-border-color: white;">
                            <children>
                               <ImageView fitHeight="15.0" fitWidth="15.0">

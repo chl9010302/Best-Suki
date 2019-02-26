@@ -3,19 +3,24 @@ package ViewController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import DBController.TestAdd;
 import DBController.TestDetailAdd;
 import DBModel.TestBean;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Background;
 public class AddTestViewController implements Initializable {
 	//Declare JAVA
 	public static String login_id = LoginViewController.login_id;
@@ -25,11 +30,14 @@ public class AddTestViewController implements Initializable {
 	private TestAdd testadd;
 	private int maxnumber;
 	private String result="";
+	private final List<TestDetailAdd> addtest_data = createData();
+	private TableView<TestDetailAdd> addtest_table = createTable();
+	private TableColumn<TestDetailAdd, String> writerColumn, dateColumn;
+	private TableColumn<TestDetailAdd, CheckBox> checkColumn;
+	private int fromindex, toindex, rowsPerPage = 10;
 	//Declare FXML
-	@FXML private TableView<TestDetailAdd> testTableView;
+	@FXML private Pagination addtest_pagination;
 	@FXML private TextField ColTest_Subtitle;
-	@FXML private TableColumn<TestDetailAdd, CheckBox> ColTest_Check;
-	@FXML private TableColumn<TestDetailAdd, String> ColTest_Writer, ColTest_Date;
 	@FXML private void NAV_LoginView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavloginview()); }
 	@FXML private void NAV_MainView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());	}
 	@FXML private void NAV_TestView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestview()); }
@@ -42,7 +50,7 @@ public class AddTestViewController implements Initializable {
 	@FXML
 	private void addAction(ActionEvent event) {
 		try {
-			getresult = CheckFunction(ColTest_Check);
+			getresult = CheckFunction(checkColumn);
 			testbean = new TestBean();
 			testdetailadd = new TestDetailAdd();
 			testadd = new TestAdd();
@@ -62,11 +70,35 @@ public class AddTestViewController implements Initializable {
 		}catch(Exception e) {e.printStackTrace(); }
 	}
 	public void initialize(URL url, ResourceBundle rb) { 
+		addtest_pagination.setPageFactory(this::createPage);
+		addtest_pagination.setPageCount((int)Math.ceil((double)addtest_data.size()/rowsPerPage));
+	}
+	private Node createPage(int pageIndex) {
+		fromindex = pageIndex * rowsPerPage;
+		toindex = Math.min(fromindex + rowsPerPage, addtest_data.size());
+		addtest_table.setItems(FXCollections.observableArrayList(addtest_data.subList(fromindex, toindex)));
+		addtest_table.setMaxHeight(310);
+		return addtest_table;
+	}
+	@SuppressWarnings("unchecked")
+	private TableView<TestDetailAdd> createTable() {
+		addtest_table = new TableView<>();
+		checkColumn = new TableColumn<>("Check");
+		checkColumn.setCellValueFactory(new PropertyValueFactory<TestDetailAdd, CheckBox>("testdetail_checkboxdetail"));
+		checkColumn.setPrefWidth(100);
+		writerColumn = new TableColumn<>("작성자");
+		writerColumn.setCellValueFactory(param -> param.getValue().getTestdetail_writer());
+		writerColumn.setPrefWidth(100);
+		dateColumn = new TableColumn<>("날짜");
+		dateColumn.setCellValueFactory(param -> param.getValue().getTestdetail_time());
+		dateColumn.setPrefWidth(100);
+		addtest_table.getColumns().addAll(checkColumn, writerColumn, dateColumn);
+		addtest_table.setBackground(Background.EMPTY);
+		return addtest_table;
+	}
+	private List<TestDetailAdd> createData() {
 		testdetailadd = new TestDetailAdd();
-		ColTest_Check.setCellValueFactory(new PropertyValueFactory<TestDetailAdd, CheckBox>("testdetail_checkboxdetail"));
-		ColTest_Writer.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_writer());
-		ColTest_Date.setCellValueFactory(cellData -> cellData.getValue().getTestdetail_time());
-		testTableView.setItems(testdetailadd.gettestdetailadd());
+		return testdetailadd.gettestdetailadd();
 	}
 	private ArrayList<String> CheckFunction(TableColumn<TestDetailAdd, CheckBox> tablecolumn) {
 		testdetailadd = new TestDetailAdd();
@@ -77,6 +109,7 @@ public class AddTestViewController implements Initializable {
 				checkarraylist.add(CommonController.selectcontent(tablecolumn.getCellData(i).getText(), "TESTDETAIL_ID_PK", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_SUBTITLE"));
 			}
 		}
+		System.out.println(checkarraylist.toString());
 		return checkarraylist;
 	}
 }

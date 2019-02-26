@@ -18,8 +18,8 @@ import javafx.scene.layout.Background;
 public class StatisticsViewController implements Initializable {
 	//Declare JAVA
 	private AddStatistics addstatistics;
-	private final List<AddStatistics> data = createData();
-	private TableView<AddStatistics> table = createTable();
+	private final List<AddStatistics> statistics_data = createData();
+	private TableView<AddStatistics> statistics_table = createTable();
 	private TableColumn<AddStatistics, String> idColumn, loginColumn, logoutColumn;
 	private int fromindex, toindex, rowsPerPage = 10;
 	//Declare FXML
@@ -34,18 +34,18 @@ public class StatisticsViewController implements Initializable {
 	@FXML private void logout(ActionEvent event) { CommonController.logout(getClass(), event); }
 	public void initialize(URL url, ResourceBundle rb) {
 		statistics_pagination.setPageFactory(this::createPage);
-		statistics_pagination.setPageCount(data.size()/10);
+		statistics_pagination.setPageCount((int)Math.ceil((double)statistics_data.size()/rowsPerPage));
 	}
 	private Node createPage(int pageIndex) {
 		fromindex = pageIndex * rowsPerPage;
-		toindex = Math.min(fromindex + rowsPerPage, data.size());
-		table.setItems(FXCollections.observableArrayList(data.subList(fromindex, toindex)));
-		table.setMaxHeight(310);
-		return table;
+		toindex = Math.min(fromindex + rowsPerPage, statistics_data.size());
+		statistics_table.setItems(FXCollections.observableArrayList(statistics_data.subList(fromindex, toindex)));
+		statistics_table.setMaxHeight(310);
+		return statistics_table;
 	}
 	@SuppressWarnings("unchecked")
 	private TableView<AddStatistics> createTable() {
-		table = new TableView<>();
+		statistics_table = new TableView<>();
 		idColumn = new TableColumn<>("USER_ID");
 		idColumn.setCellValueFactory(param -> param.getValue().getUSER_ID());
 		idColumn.setPrefWidth(72);
@@ -55,10 +55,10 @@ public class StatisticsViewController implements Initializable {
 		logoutColumn = new TableColumn<>("USER_LOGOUT_DATE");
 		logoutColumn.setCellValueFactory(param -> param.getValue().getUSER_LOGOUT_DATE());
 		logoutColumn.setPrefWidth(251);
-		table.getColumns().addAll(idColumn, loginColumn, logoutColumn);
-		table.setBackground(Background.EMPTY);
-		table.setPrefHeight(200);
-		return table;
+		statistics_table.getColumns().addAll(idColumn, loginColumn, logoutColumn);
+		statistics_table.setBackground(Background.EMPTY);
+		statistics_table.setPrefHeight(550);
+		return statistics_table;
 	}
 	private List<AddStatistics> createData() {
 		addstatistics = new AddStatistics();

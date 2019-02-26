@@ -34,7 +34,6 @@ public class TestingViewController implements Initializable {
 	private TestResultBean testresultbean;
 	private TestDetailAdd testdetailadd;
 	private String result_answer;
-	private ArrayList<String> initial_result;
 	private int left_page;
 	//Declare FXML
 	@FXML private Button btnSubmit;
@@ -99,14 +98,12 @@ public class TestingViewController implements Initializable {
 			label_TestingView.setText("TestingView : " + left_page + " 문제 남았습니다.");
 		}
 		testdetailadd = new TestDetailAdd();
-		initial_result = new ArrayList<>();
 		testdetail_subtitle.setText(CommonController.selectcontent(TestAdd.test_id_fk, "TESTDETAIL_SUBTITLE", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		initial_result = CommonController.splitQuestion(CommonController.selectcontent(TestAdd.test_id_fk, "TESTDETAIL_DATA", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
-		testdetail_answer1.setText(initial_result.get(0));
-		testdetail_answer2.setText(initial_result.get(1));
-		testdetail_answer3.setText(initial_result.get(2));
-		testdetail_answer4.setText(initial_result.get(3));
-		testdetail_answer5.setText(initial_result.get(4));
+		testdetail_answer1.setText(TestAdd.initial_result.get(0));
+		testdetail_answer2.setText(TestAdd.initial_result.get(1));
+		testdetail_answer3.setText(TestAdd.initial_result.get(2));
+		testdetail_answer4.setText(TestAdd.initial_result.get(3));
+		testdetail_answer5.setText(TestAdd.initial_result.get(4));
 		image = new Image(testdetailadd.selectIMAGE(TestAdd.test_id_fk).toURI().toString(),623,150,true,true);
 		testdetail_imageview.setImage(image);
 	}

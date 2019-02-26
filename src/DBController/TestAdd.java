@@ -27,7 +27,7 @@ public class TestAdd {
 	private TestBean testbean;
 	private StringProperty test_id_pk, test_subtitle, test_writer, test_time;
 	private Button test_btndetail;
-	public static ArrayList<String> result_arraylist;
+	public static ArrayList<String> result_arraylist, initial_result;
 	private String sql;
 	private StringBuilder sb;
 	private ResultSet rs;
@@ -79,6 +79,7 @@ public class TestAdd {
 			maxpage = ccount(TEST_ID_PK);
 			result_arraylist = CommonController.splitQuestion(CommonController.selectcontent(TEST_ID_PK, "TESTDETAIL_ID_FK", config.StaticProperty.gettest_tb(), "TEST_ID_PK"));
 			test_id_fk = result_arraylist.get(0);
+			initial_result = CommonController.splitQuestion(CommonController.selectcontent(TestAdd.test_id_fk, "TESTDETAIL_DATA", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
 			try {
 				ViewController.CommonController.NAV(getClass(), event, config.StaticProperty.getnavtestingview());
 			} catch (IOException e) {e.printStackTrace(); }
