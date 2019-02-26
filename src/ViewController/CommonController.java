@@ -154,7 +154,6 @@ public class CommonController{
 		return answer;
 	}
 	public static ArrayList<String> splitQuestion(String data) {
-		System.out.println(data);
 		lineCnt = 0;
 	    fromIndex = -1;
 	    while ((fromIndex = data.indexOf(";", fromIndex + 1)) >= 0) {
