@@ -12,6 +12,7 @@ public class StaticProperty {
 		 loadProp("db.properties");
 		 loadProp("nav.properties");
 		 loadProp("alert.properties");
+		 loadProp("msg.properties");
 	}
 	public Properties getProperties() {
 	        return properties;
@@ -203,6 +204,15 @@ public class StaticProperty {
 	}
 	public static String alertbtndone(){
 		return properties.getProperty("alertbtn3");
+	}
+	public static String msglogin(){
+		return properties.getProperty("msg_login");
+	}
+	public static String msglogout(){
+		return properties.getProperty("msg_logout");
+	}
+	public static String msgtest(){
+		return properties.getProperty("msg_test");
 	}
 }
 

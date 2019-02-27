@@ -81,6 +81,10 @@ public class SignupViewController implements Initializable {
 		usergender = CommonController.gender(UserGenderMale.isSelected(), UserGenderFeMale.isSelected());
 	}
 	public void initialize(URL url, ResourceBundle rb) {
+		CommonController.onlyengandnumber(UserId);
+		CommonController.onlyengandkor(UserName);
+		CommonController.onlyengandkor(UserAddress);
+		CommonController.onlyengandkor(UserSchoolName);
 		CommonController.getlistener(UserPhone_Mid);
 		CommonController.getlistener(UserPhone_End);
 		CommonController.getlistener(UserFmphone_Mid);

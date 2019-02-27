@@ -121,9 +121,9 @@
                         <Image url="@../image/white%20icon/clipboard-8-24.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onAction="#NAV_TestBoardView" style="-fx-background-color: transparent;" text="TestBoard" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#NAV_TestBoardView" style="-fx-background-color: transparent;" text="TESTBOARD" textFill="WHITE">
                      <font>
-                        <Font name="Tahoma" size="14.0" />
+                        <Font name="Tahoma" size="12.0" />
                      </font>
                      <HBox.margin>
                         <Insets />
@@ -143,7 +143,7 @@
                   </ImageView>
                   <Button mnemonicParsing="false" onAction="#NAV_StatisticsView" style="-fx-background-color: transparent;" text="STATISTICS" textFill="WHITE">
                      <font>
-                        <Font name="Tahoma" size="14.0" />
+                        <Font name="Tahoma" size="12.0" />
                      </font>
                      <HBox.margin>
                         <Insets />

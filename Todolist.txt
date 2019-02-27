@@ -26,6 +26,18 @@
 [보류] Maplist로 구성 -> Common화 진행
 [불능] address 주소찾기 가능한지?
 [완성] TableView -> Pagination 변경
+[완성] 문자메시지 전송 문구
+[완성] userid에 영어 및 숫자만 들어가도록
+[완성] username에 한글 및 영어만 들어가도록
+[완성] address 및 userschoolname에 특수문자 제외 -> 영어 및 숫자만 들어가도록
+[완성] addmainview에서 textarea border 삽입
+[완성] addtest에서 제... -> 제목으로 변경
+[완성] testboarddetailview에서 radiobutton 삭제
+[완성] testboarddetaileditview에서 filesearch border 삽입
+[완성] 타이틀 testboarddetaileditview로 수정
+[완성] 좌측메뉴 TestBoard -> TESTBOARD로 변경
+[완성] resultview에서 view칸은 border 삽입
+[완성] subtitle -> 제목 / writer -> 작성자 / date -> 날짜
 
 DB 한글 < 수민 >
 문자보내기 < 성화 >
@@ -41,18 +53,6 @@ statistics id마다 볼수있게 필터
 4. 게시판 VIEW 값(FXML에 fx:id) 및 Add에 값 매핑 반영
 ----------
 난이도 <하>
-문자메시지 전송 문구
-userid에 영어 및 숫자만 들어가도록
-username에 한글 및 영어만 들어가도록
-address 및 userschoolname에 특수문자 제외
-addmainview에서 textarea border 삽입
-addtest에서 제... -> 제목으로 변경
-testboarddetailview에서 radiobutton 삭제
-testdetaileditview에서 filesearch border 삽입
-타이틀 testdetaileditview로 수정
-좌측메뉴 TestBoard -> TESTBOARD로 변경
-resultview에서 view칸은 border 삽입
-subtitle -> 제목 / writer -> 작성자 / date -> 날짜
 
 난이도 <중하>
 signup 시 필수값만 입력해도 값 들어가도록
@@ -78,6 +78,7 @@ RESULTVIEW에서 해설 추가하기
 testboard subtitle 같으면 에러 발생
 testdetailadd -> testboarddettailadd
 testadd -> testdetailadd
+아이디 비밀번호 다 ignore 처리
 
 난이도 <상>
 뒤로가기

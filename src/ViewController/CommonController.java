@@ -11,7 +11,6 @@ import java.util.Optional;
 
 import DBController.UserLogin;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -21,7 +20,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import usingstaticfunction.DBConnectionKeeping;
@@ -39,7 +37,7 @@ public class CommonController{
 	public static Optional<ButtonType> result;
 	public static ArrayList<String> question;
 	public static Calendar calendar;
-	public static String dateidpk, result_phone, sql, result_select, answer;
+	public static String dateidpk, result_phone, sql, result_select, answer, inDate;
 	public static StringBuilder sb;
 	public static int lineCnt, fromIndex;
 	// 마우스를 눌러서 화면 이동 액션
@@ -71,6 +69,7 @@ public class CommonController{
 	}
 	// 로그아웃 액션
 	public static void logout(Class<?> getclass, ActionEvent event) {
+		inDate = new java.text.SimpleDateFormat("MM월 dd일 HH시 mm분").format(new java.util.Date());
 		userlogout = new UserLogin();
 		YES = new ButtonType(config.StaticProperty.alertbtnyes(), ButtonBar.ButtonData.OK_DONE);
 		NO = new ButtonType(config.StaticProperty.alertbtnno(), ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -82,6 +81,7 @@ public class CommonController{
 				userlogout.logout(LoginViewController.login_id);
 				userlogout.logout2(LoginViewController.login_id);
 				NAV(getclass, event, config.StaticProperty.getnavloginview());
+//				Sendmsg.func_Sendmsg(CommonController.selectcontent(LoginViewController.login_id, "USER_NAME" , config.StaticProperty.getuser_tb(), "USER_ID_PK") + " " + config.StaticProperty.msglogout() + inDate , CommonController.selectcontent(LoginViewController.login_id, "USER_FMPHONE" , config.StaticProperty.getuser_tb(), "USER_ID_PK"));
 			}catch(Exception e) { }
 		}
 	}
@@ -174,6 +174,20 @@ public class CommonController{
 		    	textfield.setText(oldValue);
 		    }else if(newValue.length()==4) {
 		    	//여기 넣기
+		    }
+	    });
+	}
+	public static void onlyengandnumber(TextField textfield) {
+		textfield.textProperty().addListener((observable, oldValue, newValue) -> {
+		    if(!newValue.matches("[a-zA-Z0-9]*")){
+		    	textfield.setText(oldValue);
+		    }
+	    });
+	}
+	public static void onlyengandkor(TextField textfield) {
+		textfield.textProperty().addListener((observable, oldValue, newValue) -> {
+		    if(!newValue.matches("[a-zA-Zㄱ-ㅎ가-힣]*")){
+		    	textfield.setText(oldValue);
 		    }
 	    });
 	}

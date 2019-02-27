@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import textmessage.Sendmsg;
 
 public class LoginViewController implements Initializable {
 	//Declare JAVA
@@ -20,6 +21,7 @@ public class LoginViewController implements Initializable {
 	private UserLogin userlogin;
 	private int check_loginsession;
 	private Sha256 sha256 = new Sha256();
+	private String inDate;
 	//Declare FXML
 	@FXML private TextField UserId, UserPassword;
 	@FXML private void NAV_SignUpView(ActionEvent event) throws IOException { CommonController.NAV(getClass(), event, config.StaticProperty.getnavsignupview()); }
@@ -28,10 +30,12 @@ public class LoginViewController implements Initializable {
 	@FXML // 회원가입 버튼 클릭 시 활성화
 	private void login(ActionEvent event) {
 		userlogin = new UserLogin();
+		inDate = new java.text.SimpleDateFormat("MM월 dd일 HH시 mm분").format(new java.util.Date());
 		try {
 			check_loginsession = userlogin.loginCheck(UserId.getText().toString(), sha256.sha256(UserPassword.getText()));
 			login_id = UserId.getText().toString(); // 로그아웃 시 아이디를 기억하기 위함
 			if(check_loginsession == 1) {
+//				Sendmsg.func_Sendmsg(CommonController.selectcontent(login_id, "USER_NAME" , config.StaticProperty.getuser_tb(), "USER_ID_PK") + config.StaticProperty.msglogin() + inDate , CommonController.selectcontent(login_id, "USER_FMPHONE" , config.StaticProperty.getuser_tb(), "USER_ID_PK"));
 				CommonController.NAV(getClass(), event, config.StaticProperty.getnavmainview());
 			}
 			else {

@@ -122,9 +122,9 @@
                         <Image url="@../image/white%20icon/clipboard-8-24.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onAction="#NAV_TestBoardView" style="-fx-background-color: transparent;" text="TestBoard" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#NAV_TestBoardView" style="-fx-background-color: transparent;" text="TESTBOARD" textFill="WHITE">
                      <font>
-                        <Font name="Tahoma" size="14.0" />
+                        <Font name="Tahoma" size="12.0" />
                      </font>
                      <HBox.margin>
                         <Insets />
@@ -144,7 +144,7 @@
                   </ImageView>
                   <Button mnemonicParsing="false" onAction="#NAV_StatisticsView" style="-fx-background-color: transparent;" text="STATISTICS" textFill="WHITE">
                      <font>
-                        <Font name="Tahoma" size="14.0" />
+                        <Font name="Tahoma" size="12.0" />
                      </font>
                      <HBox.margin>
                         <Insets />
@@ -207,49 +207,65 @@
                               <Insets bottom="10.0" />
                            </padding>
                         </HBox>
-                        <HBox prefHeight="30.0">
+                        <HBox alignment="CENTER_LEFT">
                            <children>
-                              <RadioButton fx:id="testdetail_rb1" mnemonicParsing="false" text="1. " textFill="WHITE" toggleGroup="$Quest1Group1">
-                            	  	<toggleGroup>
-                                    	<ToggleGroup fx:id="Quest1Group1" />
-                                 	</toggleGroup>
-                              </RadioButton>
+                              <Label text="1. " textFill="WHITE">
+                                 <font>
+                                    <Font name="Tahoma" size="14.0" />
+                                 </font>
+                              </Label>
                               <Label fx:id="testdetail_answer1" Text="Answer 1" prefHeight="25.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="30.0">
+                        <HBox alignment="CENTER_LEFT">
                            <children>
-                              <RadioButton fx:id="testdetail_rb2" mnemonicParsing="false" text="2. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                              <Label text="2. " textFill="WHITE">
+                                 <font>
+                                    <Font name="Tahoma" size="14.0" />
+                                 </font>
+                              </Label>
                               <Label fx:id="testdetail_answer2" Text="Answer 2" prefHeight="25.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
                         </HBox>
-                        <HBox prefHeight="30.0">
+                        <HBox alignment="CENTER_LEFT">
                            <children>
-                              <RadioButton fx:id="testdetail_rb3" mnemonicParsing="false" text="3. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                              <Label text="3. " textFill="WHITE">
+                                 <font>
+                                    <Font name="Tahoma" size="14.0" />
+                                 </font>
+                              </Label>
                               <Label fx:id="testdetail_answer3" Text="Answer 3" prefHeight="25.0" prefWidth="323.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
                         </HBox>
-                        <HBox prefHeight="30.0">
+                        <HBox alignment="CENTER_LEFT">
                            <children>
-                              <RadioButton fx:id="testdetail_rb4" mnemonicParsing="false" text="4. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                              <Label text="4. " textFill="WHITE">
+                                 <font>
+                                    <Font name="Tahoma" size="14.0" />
+                                 </font>
+                              </Label>
                               <Label fx:id="testdetail_answer4" Text="Answer 4" prefHeight="25.0" prefWidth="324.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
                         </HBox>
-                        <HBox prefHeight="30.0">
+                        <HBox alignment="CENTER_LEFT">
                            <children>
-                              <RadioButton fx:id="testdetail_rb5" mnemonicParsing="false" text="5. " textFill="WHITE" toggleGroup="$Quest1Group1" />
+                              <Label text="5. " textFill="WHITE">
+                                 <font>
+                                    <Font name="Tahoma" size="14.0" />
+                                 </font>
+                              </Label>
                               <Label fx:id="testdetail_answer5" Text="Answer 5" prefHeight="25.0" prefWidth="323.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill:white;" />
                            </children>
                         </HBox>

@@ -121,9 +121,9 @@
                         <Image url="@../image/white%20icon/clipboard-8-24.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" onAction="#NAV_TestBoardView" style="-fx-background-color: transparent;" text="TestBoard" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#NAV_TestBoardView" style="-fx-background-color: transparent;" text="TESTBOARD" textFill="WHITE">
                      <font>
-                        <Font name="Tahoma" size="14.0" />
+                        <Font name="Tahoma" size="11.0" />
                      </font>
                      <HBox.margin>
                         <Insets />
@@ -143,7 +143,7 @@
                   </ImageView>
                   <Button mnemonicParsing="false" onAction="#NAV_StatisticsView" style="-fx-background-color: transparent;" text="STATISTICS" textFill="WHITE">
                      <font>
-                        <Font name="Tahoma" size="14.0" />
+                        <Font name="Tahoma" size="11.0" />
                      </font>
                      <HBox.margin>
                         <Insets />
@@ -189,7 +189,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: white;">
                      <children>
                         <HBox prefHeight="30.0" prefWidth="200.0">
                            <children>
@@ -432,6 +432,9 @@
                            </VBox.margin>
                         </HBox>
                      </children>
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
                   </VBox>
         <HBox alignment="TOP_RIGHT" spacing="5.0">
           <children>
@@ -452,6 +455,9 @@
                      <VBox.margin>
                         <Insets right="20.0" />
                      </VBox.margin>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
         </HBox>
       </children>
                <padding>
