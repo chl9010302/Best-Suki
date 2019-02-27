@@ -334,12 +334,12 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <RadioButton fx:id="rb_male" mnemonicParsing="false" text="Male">
+                              <RadioButton fx:id="rb_male" mnemonicParsing="false" text="Male" textFill="WHITE">
                               	<toggleGroup>
                         			<ToggleGroup fx:id="GenderGroup" />
                      			</toggleGroup>
                               </RadioButton>
-                              <RadioButton fx:id="rb_female" mnemonicParsing="false" text="Female" toggleGroup="$GenderGroup">
+                              <RadioButton fx:id="rb_female" mnemonicParsing="false" text="Female" textFill="WHITE" toggleGroup="$GenderGroup">
                                  <HBox.margin>
                                     <Insets left="20.0" />
                                  </HBox.margin>

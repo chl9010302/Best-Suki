@@ -10,7 +10,6 @@ import java.util.ResourceBundle;
 import DBController.UserJoin;
 import DBModel.UserBean;
 import academyutil.Sha256;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,6 +32,7 @@ public class SignupViewController implements Initializable {
 	private Optional<ButtonType> result;
 	private int check_signupsession;
 	private Sha256 sha256 = new Sha256();
+	private LocalDate localdate;
 	//Declare FXML
 	@FXML private ToggleGroup GenderGroup;
 	@FXML private TextField UserId, UserPassword, UserPasswordConfirm, UserName, UserAddress, UserSchoolName, UserPhone_Mid, UserPhone_End, UserFmphone_Mid, UserFmphone_End;
@@ -89,5 +89,8 @@ public class SignupViewController implements Initializable {
 		CommonController.getlistener(UserPhone_End);
 		CommonController.getlistener(UserFmphone_Mid);
 		CommonController.getlistener(UserFmphone_End);
+		//datepicker 초기값 설정
+		localdate = LocalDate.of(2005,01,01);
+		UserAge.setValue(localdate);
 	}
 }

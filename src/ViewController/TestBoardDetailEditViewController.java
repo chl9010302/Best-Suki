@@ -87,7 +87,8 @@ public class TestBoardDetailEditViewController implements Initializable {
 		testdetail_answer3.setText(result.get(2));
 		testdetail_answer4.setText(result.get(3));
 		testdetail_answer5.setText(result.get(4));
-		image = new Image(testdetailadd.selectIMAGE(TestDetailAdd.testdetail_id).toURI().toString(),623,150,true,true);
+		txtFilepath.setText(CommonController.selectcontent(TestDetailAdd.testdetail_id, "TESTDETAIL_IMAGE_PATH", config.StaticProperty.gettestdetail_tb(), "TESTDETAIL_ID_PK"));
+//		image = new Image(testdetailadd.selectIMAGE(TestDetailAdd.testdetail_id).toURI().toString(),623,150,true,true);
 //		testdetail_imageview.setImage(image);
 	}
 	public void openFile() {

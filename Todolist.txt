@@ -38,6 +38,8 @@
 [완성] 좌측메뉴 TestBoard -> TESTBOARD로 변경
 [완성] resultview에서 view칸은 border 삽입
 [완성] subtitle -> 제목 / writer -> 작성자 / date -> 날짜
+[완성] signup view에서 시작을 2005년 1월 1일로 설정
+[완성] mypageedit에서 male,female안보임 흰색으로 변경
 
 DB 한글 < 수민 >
 문자보내기 < 성화 >
@@ -53,16 +55,14 @@ statistics id마다 볼수있게 필터
 4. 게시판 VIEW 값(FXML에 fx:id) 및 Add에 값 매핑 반영
 ----------
 난이도 <하>
+초기경로 설정
+맞았습니다. -> 정답 / 틀렸습니다. -> 오답 || 정답 오답이 제일 앞으로 올 수 있도록
+resultview에서 수정 -> testview로 가기로 변경
 
 난이도 <중하>
 signup 시 필수값만 입력해도 값 들어가도록
-signup view에서 시작을 1990년 1월 1일로 설정
-mypageedit에서 male안보임 흰색으로 변경
 testboarddetaileditview에서 초기값 사진 보이도록
-초기경로 설정
 testboarddetaileditview에서 그냥 수정 버튼 클릭 시 기존의 값 들어가도록
-맞았습니다. -> 정답 / 틀렸습니다. -> 오답 || 정답 오답이 제일 앞으로 올 수 있도록
-resultview에서 수정 -> testview로 가기로 변경
 
 난이도 <중>
 addtest 시 흰색으로 우선나온 후 mouseover 시에는 회색으로 변경
