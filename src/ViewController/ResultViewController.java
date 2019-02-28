@@ -60,8 +60,8 @@ public class ResultViewController implements Initializable {
 	}
 	public String setresult(String result1, String result2) {
 		if(result1.equals(result2)) {
-			return "맞았습니다.";
+			return "[정답]";
 		}
-		return "틀렸습니다.";
+		return "[오답]";
 	}
 }
